@@ -1,0 +1,310 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proceso de creación de guiones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --ground:#fcfbfe; --surface:#f3f1f8; --surface-2:#ebe7f4; --line:#e0dcea;
+  --ink:#231d3b; --muted:#625c76;
+  --purple:#423475; --purple-ink:#423475; --on-purple:#ffffff;
+  --red:#d45762; --red-ink:#a8323e; --red-tint:#fbeef0;
+  --green:#61b89a; --green-ink:#2c7a5f; --green-tint:#eaf6f1;
+  --blue:#4aa7ba; --blue-ink:#27788a;
+  --orange:#f3972d; --orange-ink:#a85f0c;
+  --yellow:#f0f57d;
+  --code-bg:#eeebf6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+    --ink:#ece9f6; --muted:#aaa4c2;
+    --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+    --red-ink:#f0939b; --red-tint:#2e1b2c;
+    --green-ink:#86d6b9; --green-tint:#18302b;
+    --blue-ink:#85cfdd; --orange-ink:#f7b667;
+    --code-bg:#2a2548;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+  --ink:#ece9f6; --muted:#aaa4c2;
+  --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+  --red-ink:#f0939b; --red-tint:#2e1b2c;
+  --green-ink:#86d6b9; --green-tint:#18302b;
+  --blue-ink:#85cfdd; --orange-ink:#f7b667;
+  --code-bg:#2a2548;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.6;margin:0}
+.strip{display:flex;height:6px}
+.strip span{flex:1}
+header.top{background:var(--purple);color:var(--on-purple);padding-block:2.4rem 2.2rem;padding-inline:16px}
+header.top .in{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin:0 0 .6rem}
+header.top h1{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.15;margin:0 0 .8rem;text-wrap:balance;font-weight:650;letter-spacing:-.01em}
+header.top .lead{max-width:68ch;margin:0;font-size:1.05rem;opacity:.93}
+.layout{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:2rem 4rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1rem);align-self:start;font-size:.88rem;max-height:calc(100vh - 2rem);overflow:auto}
+nav.toc p{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .5rem}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
+nav.toc a{color:var(--ink);text-decoration:none;display:block;padding:.3rem .55rem;border-radius:6px;line-height:1.35}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--surface-2);outline:none}
+nav.toc .sub a{padding-left:1.3rem;color:var(--muted)}
+main{min-width:0;max-width:760px}
+main h2{font-size:1.55rem;line-height:1.25;margin:3rem 0 1rem;color:var(--purple-ink);text-wrap:balance;font-weight:650}
+main h2:first-child{margin-top:0}
+main h3{font-size:1.2rem;margin:2.2rem 0 .7rem;text-wrap:balance;font-weight:620}
+main h4{font-size:1.1rem;margin:1.6rem 0 .5rem}
+p,li{max-width:70ch}
+a{color:var(--purple-ink)}
+code{font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-size:.88em;background:var(--code-bg);padding:.08em .35em;border-radius:4px;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
+ul,ol{padding-left:1.3rem}
+li{margin:.3rem 0}
+li::marker{color:var(--purple-ink)}
+.tablewrap{overflow-x:auto;margin:1.2rem 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+th{background:var(--purple);color:var(--on-purple);text-align:left;font-weight:600;padding:.55rem .7rem}
+td{padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--surface)}
+blockquote{margin:1.4rem 0;padding:1rem 1.2rem;background:var(--surface);border-radius:10px}
+blockquote p{margin:.4rem 0}
+blockquote .tag{display:inline-block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:650;margin-bottom:.3rem;color:var(--muted)}
+blockquote.capsula{background:var(--green-tint)}
+blockquote.capsula .tag{color:var(--green-ink)}
+blockquote.revision{background:var(--red-tint)}
+blockquote.revision .tag{color:var(--red-ink)}
+.hito{display:flex;gap:.7rem;align-items:baseline;margin:1.6rem 0 .4rem;font-size:1.02rem;font-weight:620;line-height:1.4}
+.hito .hid{flex:none;background:var(--purple);color:var(--on-purple);font-family:"Geist Mono",ui-monospace,monospace;font-size:.78rem;font-weight:600;padding:.15rem .5rem;border-radius:999px;position:relative;top:-.08em}
+.hito + ul{margin-top:.2rem;padding-left:3.4rem}
+.leccion{border-top:1px solid var(--line);padding-top:1.4rem;margin-top:2.6rem}
+.leccion h4{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h4 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+details{margin:1rem 0}
+summary{cursor:pointer;font-weight:600;color:var(--purple-ink);padding:.35rem 0}
+summary:focus-visible{outline:2px solid var(--purple-ink);outline-offset:3px;border-radius:4px}
+.arco{list-style:none;padding:0;counter-reset:a;display:grid;gap:.7rem}
+.arco li{counter-increment:a;position:relative;padding-left:3rem;min-height:2.2rem;max-width:none}
+.arco li::before{content:counter(a);position:absolute;left:0;top:0;background:var(--surface-2);color:var(--purple-ink);font-weight:650;border-radius:50%;width:2.2rem;height:2.2rem;display:grid;place-items:center;font-family:"Geist Mono",monospace}
+.paso{display:grid;grid-template-columns:2.4rem 1fr;gap:.9rem;margin:1.3rem 0}
+.paso .num{font-family:"Geist Mono",ui-monospace,monospace;font-weight:600;color:var(--purple-ink);background:var(--surface-2);border-radius:8px;height:2.4rem;display:grid;place-items:center}
+.paso p{margin:0}
+.paso + ul{padding-left:4.6rem}
+.fases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem;margin:1.5rem 0 2rem}
+.fase{background:var(--surface);border-radius:10px;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.35rem}
+.fase .fn{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.fase .ft{font-weight:650;color:var(--purple-ink);font-size:1.05rem}
+.fase .fp{font-family:"Geist Mono",monospace;font-size:.82rem;color:var(--muted)}
+.fase .rv{margin-top:auto;display:flex;flex-wrap:wrap;gap:.3rem}
+.fase .rv span{font-size:.75rem;font-weight:600;color:var(--red-ink);background:var(--red-tint);border-radius:999px;padding:.1rem .55rem}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;gap:1.5rem}
+  nav.toc{position:static;max-height:none;background:var(--surface);border-radius:10px;padding:1rem}
+  .fases{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:460px){ .fases{grid-template-columns:1fr} .hito + ul{padding-left:1.3rem} .paso + ul{padding-left:1.3rem} }
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+<div class="strip"><span style="background:#423475"></span><span style="background:#d45762"></span><span style="background:#61b89a"></span><span style="background:#f0f57d"></span><span style="background:#4aa7ba"></span><span style="background:#f3972d"></span></div>
+<header class="top"><div class="in">
+<p class="eyebrow">Rutas Digitales · Guía de proceso</p>
+<h1>Proceso de creación de un guion de lección</h1>
+<p class="lead">Referencia de proceso para cualquier curso con este formato, sea cual sea el área de la matemática. Define qué va en la ruta, qué va en la tabla de hitos e ítems y en qué orden se toman las decisiones, con los puntos donde revisa el docente.</p>
+</div></header>
+<div class="layout">
+<nav class="toc" aria-label="Contenido"><p>Contenido</p><ol><li><a href="#qué-va-en-la-ruta">Qué va en la ruta</a></li><li><a href="#qué-va-en-la-tabla-de-hitos-e-ítems">Qué va en la tabla de hitos e ítems</a></li><li><a href="#panorama">Las cuatro fases de un vistazo</a></li><li><a href="#fase-1--secuencia-didáctica">Fase 1 · Secuencia didáctica</a></li><li><a href="#fase-2--redacción">Fase 2 · Redacción</a></li><li><a href="#fase-3--cierre-técnico">Fase 3 · Cierre técnico</a></li></ol></nav>
+<main>
+
+<p>Las reglas de redacción y los parámetros por componente viven en la guía de estilo del proyecto (la guía de estilo (<code>estructura_pedagogica.md</code>)), que es la fuente única de estilo y que este proceso invoca en la fase de redacción.</p>
+<p><strong>Las cantidades son referencias, no límites.</strong> Cuántos hitos lleva una lección, cuántas tareas un hito, cuántos turnos un diálogo o cuántas preguntas un componente se leen como un valor típico alrededor del cual hay margen: una lección puede apartarse un poco cuando el contenido lo pide, y lo que conviene evitar es alejarse mucho.</p>
+<hr />
+<h2 id="qué-va-en-la-ruta">Qué va en la ruta</h2>
+<p>La ruta describe cada lección con cuatro cosas: <strong>objetivo</strong>, <strong>lineamientos de contexto</strong>, <strong>hitos</strong> y, bajo cada hito, sus <strong>tareas</strong>.</p>
+<p><strong>El hito</strong> es lo que el estudiante logra en un tramo de la lección. Se escribe con un verbo de logro y el objeto sobre el que se logra: <em>"constatar que dos ramas dibujadas iguales pueden valer distinto"</em>. Van tres a cinco por lección, en el orden en que se alcanzan.</p>
+<p><strong>La tarea</strong> es una de las cosas concretas que el estudiante hace para alcanzar ese hito. Se escribe igual, con verbo y objeto, con el grano de un ítem o de un par de ítems. Van dos a cuatro por hito.</p>
+<p><strong>Los lineamientos de contexto</strong> describen la clase de situación que sirve, en términos de su estructura matemática: qué tiene que ofrecer la situación para que los hitos se puedan alcanzar. La situación concreta la elige la guionista.</p>
+<h3 id="lo-que-la-ruta-fija-y-lo-que-deja-abierto">Lo que la ruta fija y lo que deja abierto</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>La ruta fija</th>
+<th>La guionista decide</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Los hitos y su orden</td>
+<td>El contexto concreto</td>
+</tr>
+<tr>
+<td>Qué tareas caen en cada hito</td>
+<td>El orden de las tareas dentro del hito</td>
+</tr>
+<tr>
+<td>El objetivo y los lineamientos de contexto</td>
+<td>Cuántos ítems toma cada tarea</td>
+</tr>
+</tbody>
+</table></div>
+<p>La guionista puede proponer un reagrupamiento distinto, con su razón. Eso se acuerda en la Revisión 1, que es la primera del proceso.</p>
+<p><strong>Desde dónde rige.</strong> El formato agrupado por hito arranca en el <strong>Tema 3 de la Unidad 3</strong> y sigue en todo lo que se planifique después. Las rutas escritas antes conservan su lista plana de tareas: ahí el agrupamiento lo propone la guionista al tomar la lección y se acuerda en la Revisión 1, como en el ejemplo que sigue.</p>
+<h3 id="ejemplo-unidad-3-tema-2-lección-2">Ejemplo: Unidad 3, Tema 2, Lección 2</h3>
+<p><strong>Objetivo.</strong> Explorar cuándo un árbol resulta equiprobable en sus resultados finales y usar esa propiedad para calcular.</p>
+<p><strong>Lineamientos de contexto.</strong> Una situación de dos etapas en la que una etapa reúna, bajo una misma etiqueta, casos que se distinguen entre sí, y con un mecanismo de azar que el relato declare.</p>
+<p class="hito"><span class="hid">H1</span><span>Constatar que dos ramas dibujadas iguales pueden valer distinto</span></p>
+<ul>
+<li>Contar cuántos casos reúne cada combinación del árbol.</li>
+<li>Comparar dos combinaciones usando ese conteo.</li>
+</ul>
+<p class="hito"><span class="hid">H2</span><span>Anotar la probabilidad de cada tramo, y reconocer cuándo eso hace que todas las ramas valgan igual</span></p>
+<ul>
+<li>Escribir en cada tramo la probabilidad de la opción que se abre.</li>
+<li>Reconocer que un árbol de ramas idénticas tiene todas sus ramas equiprobables.</li>
+</ul>
+<p class="hito"><span class="hid">H3</span><span>Obtener el árbol donde todas las ramas valen igual, y relacionarlo con el anterior</span></p>
+<ul>
+<li>Construir el árbol que distingue los casos que el primero reunía.</li>
+<li>Establecer que cada hoja del primer árbol es un evento del segundo.</li>
+</ul>
+<p class="hito"><span class="hid">H4</span><span>Calcular con la Regla de Laplace donde corresponde, y decidir dónde corresponde</span></p>
+<ul>
+<li>Aplicar la Regla de Laplace sobre un árbol de ramas idénticas, contando ramas.</li>
+<li>Evaluar afirmaciones sobre equiprobabilidad comparando dos árboles.</li>
+<li>Decidir, en un contexto nuevo, en cuál de dos árboles es válido aplicarla.</li>
+<li>Justificar por escrito por qué un cálculo que supone equiprobabilidad sin verificarla da un valor distinto.</li>
+</ul>
+<h3 id="qué-gana-la-ruta-escrita-así">Qué gana la ruta escrita así</h3>
+<p>El agrupamiento se decide una vez, por quien tiene la vista de la unidad completa, que es quien mejor sabe qué depende de qué. La cobertura se lee en la ruta misma. Y el hito funciona como <strong>indicador</strong> al armar la evaluación del tema, de modo que el mapa de indicadores sale de la planificación.</p>
+<hr />
+<h2 id="qué-va-en-la-tabla-de-hitos-e-ítems">Qué va en la tabla de hitos e ítems</h2>
+<p>La tabla es el diseño de la lección y es lo que se aprueba antes de redactar. Esta tabla típicamente se construye para cada una de las secciones del curso, en orden: Construcción/Contexto, Práctica, Ticket y Activación. La Sistematización no necesita tabla.</p>
+<p><strong>Cada hito abre su grupo</strong>, en una fila de ancho completo, con el texto que trae la ruta.</p>
+<p><strong>Bajo cada hito va una fila por ítem</strong>, con cuatro columnas:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Columna</th>
+<th>Qué dice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N°</td>
+<td>Solo para preguntas: número correlativo en toda la lección</td>
+</tr>
+<tr>
+<td>Propósito</td>
+<td>Qué produce ese ítem para el hito</td>
+</tr>
+<tr>
+<td>Tipo</td>
+<td>Pregunta, diálogo, cápsula,</td>
+</tr>
+<tr>
+<td>Subtipo [llenar a medida que se construye]</td>
+<td>Alternativas, desplegables, completar, abierta, recurso, cápsula o diálogo</td>
+</tr>
+</tbody>
+</table></div>
+<p>Las cápsulas, los diálogos y los recursos llevan fila propia, porque ocupan lugar en la secuencia y aportan al hito. La Construcción suele tener varias cápsulas, típicamente una por cada idea fuerza de la lección, y la Sistematización las recoge al final.</p>
+<p>El <strong>propósito</strong> se escribe como lo que el ítem deja establecido: <em>"establece que la rama de Fuego reúne dos cartas"</em>, <em>"produce la probabilidad de cada tramo del árbol agrupado"</em>.</p>
+<h3 id="ejemplo-de-tres-filas-durante-la-construcción">Ejemplo de tres filas durante la Construcción</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>N°</th>
+<th>Propósito</th>
+<th>Tipo</th>
+<th>Subtipo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>H1 · Constatar que dos ramas dibujadas iguales pueden valer distinto</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td>Contar las cartas que hay detrás de cada poder</td>
+<td>Pregunta</td>
+<td>Completar</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Producir la probabilidad de cada tramo del árbol agrupado</td>
+<td>Pregunta</td>
+<td>Desplegables</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Eduardo constata que el dibujo parejo y la probabilidad son cosas distintas</td>
+<td>Diálogo</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="panorama">Las cuatro fases de un vistazo</h2><div class="fases" aria-label="Las cuatro fases">
+<div class="fase"><span class="fn">Fase 1</span><span class="ft">Encuadre</span><span class="fp">pasos 1 a 3</span></div>
+<div class="fase"><span class="fn">Fase 2</span><span class="ft">Diseño</span><span class="fp">pasos 4 a 12</span><div class="rv"><span>Revisión 1</span><span>Revisión 2</span></div></div>
+<div class="fase"><span class="fn">Fase 3</span><span class="ft">Redacción</span><span class="fp">pasos 13 a 16</span><div class="rv"><span>Revisión 3</span></div></div>
+<div class="fase"><span class="fn">Fase 4</span><span class="ft">Cierre técnico</span><span class="fp">pasos 17 a 20</span><div class="rv"><span>Revisión 4</span></div></div>
+</div><h2 id="fase-1--secuencia-didáctica">Fase 1 · Secuencia didáctica</h2>
+<div class="paso"><span class="num">1</span><p><strong>Leer la ruta completa del tema y acordar el léxico con el equipo.</strong> El vocabulario, la notación y los personajes se fijan antes de redactar, porque las lecciones vecinas suelen escribirse en paralelo.</p></div>
+<div class="paso"><span class="num">2</span><p><strong>Leer la descripción de la lección en la ruta.</strong> Objetivo, lineamientos de contexto, hitos y tareas. Cada tarea tendrá su ítem y cada ítem responderá a una tarea. Anotar las tareas cuya forma de ítem todavía no se ve.</p></div>
+<div class="paso"><span class="num">3</span><p><strong>Confirmar los hitos.</strong> Leer los hitos heredados y comprobar que cada uno se puede alcanzar con el tipo de contexto que se va a elegir. Si conviene otro agrupamiento, proponerlo con su razón.</p></div>
+<div class="paso"><span class="num">4</span><p><strong>Armar la tabla de hitos e ítems, con su contexto y su problema principal.</strong> Es un solo paso porque cada decisión condiciona a las otras: un ítem pide cierta estructura a la situación, y una situación sugiere ítems que no se habían previsto. Se avanza por vueltas, en este orden aproximado:</p></div>
+<ul>
+<li><strong>La tabla</strong>, y en paralelo explorar contextos. Sigue el formato de la sección anterior: bajo cada hito, sus ítems con número, componente, tipo y propósito.</li>
+<li><strong>Plantar la disonancia.</strong> Decidir qué error plausible comete un personaje y en qué ítem se estrella contra el dato que lo refuta. Ese choque mueve la Construcción, así que se reserva para ese ítem y queda marcado en la tabla.</li>
+<li><strong>Elegir el contexto.</strong> Entre los candidatos, el que sostiene la tabla completa: una situación que haga necesario el contenido, de uso corriente en el país, nueva dentro de la unidad, y verosímil a primera lectura.</li>
+<li><strong>Especificar el contexto hasta donde los ítems lo exijan.</strong> Todo dato del que dependa una respuesta queda declarado en el relato, incluido el mecanismo que produce la variación.</li>
+<li><strong>Fijar el problema principal.</strong> Cantidades, figuras, expresiones y valores se calculan una sola vez, en la cabecera de la tabla, y de ahí se copian a todos los ítems. Con ellos se pueden calcular las claves.</li>
+</ul>
+<blockquote class="revision"><span class="tag">Revisión 1</span><p><strong>hitos, tabla de ítems, disonancia, contexto y problema principal.</strong> Se confirma el agrupamiento de la ruta, o se acuerda la excepción propuesta, y con la tabla se revisan la disonancia, el contexto y el problema principal. Reordenar una tabla es barato, reescribir texto es caro. La redacción empieza cuando esto está aprobado. Es la revisión más barata de todas.</p>
+</blockquote>
+<blockquote>
+<p><strong>Revisión posible — contexto.</strong> No es necesaria en general, pero se puede tener una revisión de contexto para afinarlo o para tener más ideas si es necesario.</p>
+</blockquote>
+<div class="paso"><span class="num">5</span><p><strong>Decidir más específicamente qué contiene cada cápsula.</strong> Cada cápsula es un ítem de la tabla, así que su lugar ya está fijado; ahora se precisa qué dice. Para cada cápsula se anota qué resultado formaliza, que debe ser uno que los ítems anteriores ya produjeron; qué términos nuevos nombra; y con qué caso de la lección se ancla. Lo que la cápsula afirma no lo pregunta el ítem que la sigue: va después de la pregunta abierta que lo hace descubrir.</p></div>
+<div class="paso"><span class="num">6</span><p><strong>Revisar la validez matemática de las propiedades y otros enunciados generales.</strong> Se revisa cada propiedad, criterio, definición o regla que la lección va a enunciar:</p></div>
+<ul>
+<li><strong>Hipótesis completas.</strong> Las condiciones enunciadas bastan para que el resultado se cumpla. Se prueba con un caso que las cumpla y falle.</li>
+<li><strong>Dirección.</strong> Si un criterio se enuncia con "cuando", buscarle contraejemplo a la recíproca. Cuando la condición garantiza el resultado sin caracterizarlo, se escribe como garantía, en un solo sentido.</li>
+<li><strong>Coherencia con lo anterior.</strong> Cada término conserva el significado que le dieron las lecciones previas y la ruta.</li>
+<li><strong>Alcance.</strong> La lección tiene con qué mostrar lo que afirma. Lo que no puede mostrar no se enuncia.</li>
+</ul>
+<div class="paso"><span class="num">7</span><p><strong>Especificar los recursos.</strong> Qué interactivo hace falta, qué tiene que validar y qué imagen necesita diseño. Los recursos por construir quedan escritos como tarea de producción, con su ruta definitiva.</p></div>
+<h2 id="fase-2--redacción">Fase 2 · Redacción</h2>
+<div class="paso"><span class="num">8</span><p><strong>Redactar la Construcción.</strong> Es el componente que manda. Enunciados que dicen la tarea, alternativas ordenadas, desplegables de dos o tres opciones plausibles, diálogos de tres a cinco turnos que se detienen antes del hallazgo.</p></div>
+<blockquote class="revision"><span class="tag">Revisión 2</span><p><strong>construcción.</strong> Se lee la construcción entera como la ve el estudiante, haciendo ajustes necesarios tanto en el diseño de los ítems como en redacción de cápsulas.</p>
+</blockquote>
+<div class="paso"><span class="num">9</span><p><strong>Redactar el Contexto y la Activación.</strong> La Activación activa lo que la Construcción va a usar; el Contexto instala la situación y su mecanismo. Cada uno aporta una tarea distinta.</p></div>
+<div class="paso"><span class="num">10</span><p><strong>Redactar la Sistematización.</strong> Recoge por escrito los resultados que la lección produjo, nombrando los términos nuevos. Ahí queda escrito lo que el estudiante se lleva.</p></div>
+<div class="paso"><span class="num">11</span><p><strong>Redactar la Práctica y el Ticket.</strong> La Práctica repite la tarea con menos andamiaje y contexto nuevo. El Ticket mide el objetivo, y deja en manos del estudiante el juicio que la lección enseña.</p></div>
+<blockquote class="revision"><span class="tag">Revisión 3</span><p><strong>lectura de corrido.</strong> Se lee la lección entera como la ve el estudiante, comprobando que cada pregunta llegue con lo que necesita y aporte algo nuevo.</p>
+</blockquote>
+<div class="paso"><span class="num">12</span><p><strong>Inventariar los prerrequisitos.</strong> Los que se ven desde la lección construida, con el acuerdo de qué se da por sabido y qué se recupera en las diapositivas de repaso. La lista se ajusta solo cuando se cierra la lección inmediatamente anterior y se revisa al cerrar.</p></div>
+<blockquote><span class="tag">Sobre las diapositivas de repaso</span><p>Cuando la lección anterior ya existe, el contenido se resume de su Sistematización. Cuando todavía se está escribiendo, el contenido se puede inventariar y queda anotado como compromiso para quien la redacte, de modo que el término quede definido en un solo lugar.</p>
+</blockquote>
+<h2 id="fase-3--cierre-técnico">Fase 3 · Cierre técnico</h2>
+<div class="paso"><span class="num">13</span><p><strong>Numerar correlativo.</strong> Las preguntas corren de 1 hasta el final a lo largo de toda la lección. Cada referencia cruzada se reescribe y se comprueba contra la pregunta y la imagen a las que apunta.</p></div>
+<div class="paso"><span class="num">14</span><p><strong>Recalcular todas las claves</strong>, una por una, desde el problema principal. Después revisar el reparto: la clave se reparte más o menos equilibradamente entre a, b, c y d. Por ejemplo, cada letra de alternativas queda bajo el 35% de uso.</p></div>
+<div class="paso"><span class="num">15</span><p><strong>Estimar tiempos y cortar páginas.</strong> Los tiempos se cuentan desde el trabajo que ve el estudiante. Los cortes caen donde cambia el foco, y cada cápsula viaja con la pregunta que la aplica.</p></div>
+<div class="paso"><span class="num">16</span><p><strong>Cerrar lo técnico.</strong> Marcas de producción balanceadas, notación matemática cerrada y uniforme, componentes numerados, enlaces al servidor definitivo. El documento de entrega se genera desde la fuente.</p></div>
+<blockquote class="revision"><span class="tag">Revisión 4</span><p><strong>análisis y entrega.</strong> El guion pasa por el análisis pedagógico completo, se implementan los hallazgos aprobados y ahí se entrega.</p>
+</blockquote>
+
+</main>
+</div>
+</body>
+</html>

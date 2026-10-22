@@ -1,0 +1,458 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ruta de Combinatoria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --ground:#fcfbfe; --surface:#f3f1f8; --surface-2:#ebe7f4; --line:#e0dcea;
+  --ink:#231d3b; --muted:#625c76;
+  --purple:#423475; --purple-ink:#423475; --on-purple:#ffffff;
+  --red:#d45762; --red-ink:#a8323e; --red-tint:#fbeef0;
+  --green:#61b89a; --green-ink:#2c7a5f; --green-tint:#eaf6f1;
+  --blue:#4aa7ba; --blue-ink:#27788a;
+  --orange:#f3972d; --orange-ink:#a85f0c;
+  --yellow:#f0f57d;
+  --code-bg:#eeebf6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+    --ink:#ece9f6; --muted:#aaa4c2;
+    --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+    --red-ink:#f0939b; --red-tint:#2e1b2c;
+    --green-ink:#86d6b9; --green-tint:#18302b;
+    --blue-ink:#85cfdd; --orange-ink:#f7b667;
+    --code-bg:#2a2548;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+  --ink:#ece9f6; --muted:#aaa4c2;
+  --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+  --red-ink:#f0939b; --red-tint:#2e1b2c;
+  --green-ink:#86d6b9; --green-tint:#18302b;
+  --blue-ink:#85cfdd; --orange-ink:#f7b667;
+  --code-bg:#2a2548;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.6;margin:0}
+.strip{display:flex;height:6px}
+.strip span{flex:1}
+header.top{background:var(--purple);color:var(--on-purple);padding-block:2.4rem 2.2rem;padding-inline:16px}
+header.top .in{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin:0 0 .6rem}
+header.top h1{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.15;margin:0 0 .8rem;text-wrap:balance;font-weight:650;letter-spacing:-.01em}
+header.top .lead{max-width:68ch;margin:0;font-size:1.05rem;opacity:.93}
+.layout{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:2rem 4rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1rem);align-self:start;font-size:.88rem;max-height:calc(100vh - 2rem);overflow:auto}
+nav.toc p{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .5rem}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
+nav.toc a{color:var(--ink);text-decoration:none;display:block;padding:.3rem .55rem;border-radius:6px;line-height:1.35}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--surface-2);outline:none}
+nav.toc .sub a{padding-left:1.3rem;color:var(--muted)}
+main{min-width:0;max-width:760px}
+main h2{font-size:1.55rem;line-height:1.25;margin:3rem 0 1rem;color:var(--purple-ink);text-wrap:balance;font-weight:650}
+main h2:first-child{margin-top:0}
+main h3{font-size:1.2rem;margin:2.2rem 0 .7rem;text-wrap:balance;font-weight:620}
+main h4{font-size:1.1rem;margin:1.6rem 0 .5rem}
+p,li{max-width:70ch}
+a{color:var(--purple-ink)}
+code{font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-size:.88em;background:var(--code-bg);padding:.08em .35em;border-radius:4px;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
+ul,ol{padding-left:1.3rem}
+li{margin:.3rem 0}
+li::marker{color:var(--purple-ink)}
+.tablewrap{overflow-x:auto;margin:1.2rem 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+th{background:var(--purple);color:var(--on-purple);text-align:left;font-weight:600;padding:.55rem .7rem}
+td{padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--surface)}
+blockquote{margin:1.4rem 0;padding:1rem 1.2rem;background:var(--surface);border-radius:10px}
+blockquote p{margin:.4rem 0}
+blockquote .tag{display:inline-block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:650;margin-bottom:.3rem;color:var(--muted)}
+blockquote.capsula{background:var(--green-tint)}
+blockquote.capsula .tag{color:var(--green-ink)}
+blockquote.revision{background:var(--red-tint)}
+blockquote.revision .tag{color:var(--red-ink)}
+.hito{display:flex;gap:.7rem;align-items:baseline;margin:1.6rem 0 .4rem;font-size:1.02rem;font-weight:620;line-height:1.4}
+.hito .hid{flex:none;background:var(--purple);color:var(--on-purple);font-family:"Geist Mono",ui-monospace,monospace;font-size:.78rem;font-weight:600;padding:.15rem .5rem;border-radius:999px;position:relative;top:-.08em}
+.hito + ul{margin-top:.2rem;padding-left:3.4rem}
+.leccion{border-top:1px solid var(--line);padding-top:1.4rem;margin-top:2.6rem}
+.leccion h4{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h4 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+details{margin:1rem 0}
+summary{cursor:pointer;font-weight:600;color:var(--purple-ink);padding:.35rem 0}
+summary:focus-visible{outline:2px solid var(--purple-ink);outline-offset:3px;border-radius:4px}
+.arco{list-style:none;padding:0;counter-reset:a;display:grid;gap:.7rem}
+.arco li{counter-increment:a;position:relative;padding-left:3rem;min-height:2.2rem;max-width:none}
+.arco li::before{content:counter(a);position:absolute;left:0;top:0;background:var(--surface-2);color:var(--purple-ink);font-weight:650;border-radius:50%;width:2.2rem;height:2.2rem;display:grid;place-items:center;font-family:"Geist Mono",monospace}
+.paso{display:grid;grid-template-columns:2.4rem 1fr;gap:.9rem;margin:1.3rem 0}
+.paso .num{font-family:"Geist Mono",ui-monospace,monospace;font-weight:600;color:var(--purple-ink);background:var(--surface-2);border-radius:8px;height:2.4rem;display:grid;place-items:center}
+.paso p{margin:0}
+.paso + ul{padding-left:4.6rem}
+.fases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem;margin:1.5rem 0 2rem}
+.fase{background:var(--surface);border-radius:10px;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.35rem}
+.fase .fn{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.fase .ft{font-weight:650;color:var(--purple-ink);font-size:1.05rem}
+.fase .fp{font-family:"Geist Mono",monospace;font-size:.82rem;color:var(--muted)}
+.fase .rv{margin-top:auto;display:flex;flex-wrap:wrap;gap:.3rem}
+.fase .rv span{font-size:.75rem;font-weight:600;color:var(--red-ink);background:var(--red-tint);border-radius:999px;padding:.1rem .55rem}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;gap:1.5rem}
+  nav.toc{position:static;max-height:none;background:var(--surface);border-radius:10px;padding:1rem}
+  .fases{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:460px){ .fases{grid-template-columns:1fr} .hito + ul{padding-left:1.3rem} .paso + ul{padding-left:1.3rem} }
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+<div class="strip"><span style="background:#423475"></span><span style="background:#d45762"></span><span style="background:#61b89a"></span><span style="background:#f0f57d"></span><span style="background:#4aa7ba"></span><span style="background:#f3972d"></span></div>
+<header class="top"><div class="in">
+<p class="eyebrow">Unidad 3 · Modelando fenómenos mediante las probabilidades</p>
+<h1>Tema 3: Combinatoria: modelos de conteo</h1>
+<p class="lead">Construir modelos de conteo a partir de situaciones concretas, reconociendo en cada una qué propiedades la caracterizan, y decidir si alguno de esos modelos representa una situación nueva o si hace falta otra estrategia de conteo, para calcular probabilidades.</p>
+</div></header>
+<div class="layout">
+<nav class="toc" aria-label="Contenido"><p>Contenido</p><ol><li><a href="#presentacion">Presentación del tema</a></li><li><a href="#principio-de-diseño-del-tema">Principio de diseño del tema</a></li><li><a href="#lecciones">Lecciones</a></li><li class="sub"><a href="#lección-1--contar-sin-enumerar-casos-k-tuplas-y-el-primer-modelo">Lección 1 · Contar sin enumerar: casos, k-tuplas y el primer modelo</a></li><li class="sub"><a href="#lección-2--permutaciones-ordenar-todos-los-elementos">Lección 2 · Permutaciones: ordenar todos los elementos</a></li><li class="sub"><a href="#lección-3--variaciones-sin-repetición-elegir-y-ordenar-algunos">Lección 3 · Variaciones sin repetición: elegir y ordenar algunos</a></li><li class="sub"><a href="#lección-4--combinaciones-elegir-sin-ordenar">Lección 4 · Combinaciones: elegir sin ordenar</a></li><li class="sub"><a href="#lección-5--práctica-elegir-el-modelo">Lección 5 · Práctica: elegir el modelo</a></li><li class="sub"><a href="#lección-6--conteo-y-probabilidad-consistencia-entre-casos-favorables-y-totales">Lección 6 · Conteo y probabilidad: consistencia entre casos favorables y totales</a></li><li class="sub"><a href="#lección-7--ejercitación-modelos-de-conteo">Lección 7 · Ejercitación: modelos de conteo</a></li><li class="sub"><a href="#evaluación-tema-3">Evaluación Tema 3</a></li></ol></nav>
+<main>
+<h2 id="presentacion">Presentación del tema</h2><blockquote><span class="tag">Formato de la ruta</span><p> Desde este tema en adelante la ruta agrupa las tareas <strong>por hito</strong>. El hito es lo que el estudiante logra en un tramo de la lección; las tareas son lo que hace para lograrlo. La ruta fija los hitos, su orden y qué tareas caen en cada uno; la guionista elige el contexto concreto, el orden de las tareas dentro del hito y cuántos ítems toma cada tarea. Ver el documento <em>Proceso de creación de un guion de lección</em>.</p>
+</blockquote>
+
+<h2 id="principio-de-diseño-del-tema">Principio de diseño del tema</h2>
+<p>El tema no enseña cuatro fórmulas. Enseña a <strong>construir un modelo de conteo y a reconocer qué situaciones representa</strong>. Por eso cada lección de construcción recorre el mismo arco, en cinco pasos:</p>
+<ol class="arco">
+<li><strong>Caso concreto que se puede agotar.</strong> Una situación lo bastante pequeña como para listar todos sus resultados a mano o con un árbol, y contarlos sin fórmula.</li>
+<li><strong>Identificar las propiedades de la situación.</strong> Las tres preguntas que la caracterizan: ¿cuántas elecciones <code>k</code> se hacen, y cómo se compara <code>k</code> con la cantidad <code>n</code> de elementos disponibles? ¿puede repetirse un elemento? ¿dos resultados con los mismos elementos en distinto orden son el mismo resultado?</li>
+<li><strong>Generalizar el conteo.</strong> Rehacer el mismo argumento en un caso de las mismas propiedades pero de valores grandes y fijos, donde listar los resultados ya no es viable y el conteo hay que construirlo razonando. Nombrar qué cantidad de ese caso hace de <code>n</code> y cuál hace de <code>k</code>, y qué representa cada una. La expresión general sale de escribir ese mismo conteo con <code>n</code> y <code>k</code> en lugar de los dos números.</li>
+<li><strong>Definir el modelo.</strong> Nombrarlo, escribir su expresión y <strong>declarar las condiciones que una situación debe cumplir para que el modelo la represente</strong>.</li>
+<li><strong>Practicar la decisión y el cálculo.</strong> Distinguir situaciones donde esas condiciones se cumplen de otras donde no, y contar los resultados de las que sí. La práctica incluye situaciones de los modelos construidos en las lecciones anteriores, de modo que la decisión se tome cada vez entre todos los modelos disponibles hasta ese punto. Desde la Lección 4 incluye también situaciones que ningún modelo representa, cuyo conteo se razona directamente con los principios multiplicativo y aditivo.</li>
+</ol>
+<p>Los cinco pasos ordenan cómo se presentan las ideas en cada lección. No se le entregan al estudiante como un procedimiento que deba seguir.</p>
+<p>Los pasos 4 y 5 son los que distinguen un modelo de una fórmula: uno declara las condiciones y el otro las pone a prueba decidiendo. Es lo que el OA de Formación General pide literalmente: <em>desarrollar modelos</em> que combinen permutaciones y combinatoria sencilla <strong>para calcular probabilidades</strong>.</p>
+<p>El quinto paso hace del tema una <strong>cadena acumulativa</strong>: la Lección 2 decide entre dos modelos, la Lección 3 entre tres y la Lección 4 entre cuatro, así que cada modelo nuevo se incorpora a la práctica de todas las lecciones que siguen en vez de quedar encerrado en la suya. Se distingue de la Lección 5 en el alcance: ahí la decisión se toma entre los cuatro modelos, sin saber de antemano cuál está en juego, e incluye reconocer cuándo ninguno aplica y hace falta otra estrategia de conteo.</p>
+<p><strong>La tabla de diferencias entre modelos</strong> se construye a lo largo del tema y va en la Sistematización de cada lección, desde la Lección 2. Muestra sólo en qué se distinguen los modelos, y <strong>no lleva las expresiones de conteo</strong>: su función es comparar situaciones, no entregar una fórmula para cada una. El conteo se sigue razonando cada vez.</p>
+<p>La tabla tiene desde la Lección 2 sus cinco columnas: el modelo, las tres preguntas identificatorias y un ejemplo. Crece por filas: la Lección 2 parte con las filas de los dos primeros modelos, y desde ahí cada lección agrega <strong>una fila</strong> con su modelo y su ejemplo. La columna del orden está desde el inicio, aunque en los dos primeros modelos la respuesta sea la misma, para que el estudiante la lea como una de las preguntas que se le hace a toda situación y vea después cuándo cambia.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Lección</th>
+<th>Qué entra</th>
+<th>Por qué</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Sin tabla</td>
+<td>Hay un solo modelo, así que no hay diferencias que mostrar</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Las cinco columnas; filas de los dos primeros modelos</td>
+<td>Entre elecciones ordenadas con repetición y permutaciones cambian las dos primeras respuestas: en la permutación <code>k = n</code> y ningún elemento se repite, y en las elecciones con repetición <code>k</code> puede tomar cualquier valor, incluso mayor que <code>n</code>; en las dos el orden distingue los resultados</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Fila de las variaciones sin repetición</td>
+<td>Se distingue de los anteriores con las mismas dos primeras preguntas; el orden sigue distinguiendo en los tres</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Fila de las combinaciones</td>
+<td>Es el primer modelo en que el orden no distingue los resultados</td>
+</tr>
+</tbody>
+</table></div>
+<p>Estado de la tabla al cerrar la Lección 4 (planilla "Tablita de modelos"):</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Modelo</th>
+<th>¿Cuántas elecciones <code>k</code> se hacen, comparadas con los <code>n</code> elementos disponibles?</th>
+<th>¿Puede repetirse un elemento?</th>
+<th>¿Cambia el resultado si cambia el orden de los mismos elementos?</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Elecciones ordenadas con repetición</td>
+<td><code>k</code> puede ser cualquier número, incluso mayor que <code>n</code></td>
+<td>Un elemento puede aparecer en varias posiciones</td>
+<td>Sí, cada orden da un resultado distinto</td>
+<td>Clave de 4 dígitos</td>
+</tr>
+<tr>
+<td>Permutaciones</td>
+<td><code>k = n</code>: se usan todos los elementos</td>
+<td>Cada elemento aparece en una sola posición</td>
+<td>Sí, cada orden da un resultado distinto</td>
+<td>Ordenar los 10 pasos de una rutina de baile, sin repetirlos</td>
+</tr>
+<tr>
+<td>Variaciones sin repetición</td>
+<td><code>k ≤ n</code>: se usan algunos elementos, o todos. Con <code>k = n</code> es una permutación</td>
+<td>Cada elemento aparece en una sola posición</td>
+<td>Sí, cada orden da un resultado distinto</td>
+<td>Rutina de 3 pasos elegidos entre 10, mismos pasos en distinto orden son rutinas distintas</td>
+</tr>
+<tr>
+<td>Combinaciones</td>
+<td><code>k ≤ n</code>: se usan algunos elementos, o todos</td>
+<td>Cada elemento aparece en una sola posición</td>
+<td>Los mismos elementos en distinto orden dan el mismo resultado</td>
+<td>Elegir 3 pasos entre 10 para ensayarlos, sin orden</td>
+</tr>
+</tbody>
+</table></div>
+<p>Las dos primeras columnas se condicionan entre sí: cuando un elemento no puede repetirse, <code>k</code> no puede superar a <code>n</code>, porque los elementos se agotan.</p>
+<p><strong>La tabla no cubre todos los problemas de conteo.</strong> La Lección 4 lo declara al completarla: abarca estos cuatro modelos, y los problemas con restricciones más particulares se resuelven directamente con los principios multiplicativo y aditivo, sin pasar por ninguno de ellos.</p>
+<p><strong>OA PEDI:</strong> OA 3 — Modelos Probabilísticos <em>(los métodos de conteo son prerrequisito para el modelaje binomial de la unidad posterior)</em>.</p>
+<p><strong>OA Formación General:</strong></p>
+<ul>
+<li>2° Medio: <strong>MA2M OA 11</strong> (Combinatoria Simple) — desarrollar modelos que combinen permutaciones y combinatoria sencilla para calcular probabilidades.</li>
+</ul>
+<p><strong>Cobertura curricular.</strong> Las Lecciones 1 a 4 construyen los cuatro modelos que el OA nombra, y por el quinto paso de su arco cubren también el "desarrollar modelos … en diversas situaciones", que es donde el OA pone el peso: cada una decide entre todos los modelos disponibles hasta ese punto y cuenta en las situaciones que los cumplen. La Lección 5 agrega lo único que esa práctica no puede dar, decidir cuando la lección no indica qué modelo está en juego, y reconocer cuándo ninguno aplica y hace falta otra estrategia de conteo. La Lección 6 cubre el "para calcular probabilidades", sin el cual el OA queda a medias. <strong>Ninguna lección del tema excede el OA.</strong></p>
+<p><strong>Documentos de trabajo del tema:</strong></p>
+<ul>
+<li><code>00_Ruta_Digital/U3_Tema3_diseno.md</code> — registro de las decisiones de diseño y de lo que quedó fuera de alcance.</li>
+</ul>
+<p><strong>Dos dispositivos transversales, que ninguna lección omite:</strong></p>
+<ol type="1">
+<li><strong>Contraste explícito.</strong> Cada lección enuncia en qué se diferencia su situación de las anteriores, en términos de las tres propiedades. Por eso los contextos van emparejados, y el par directiva ↔︎ comité de las Lecciones 3 y 4 se conserva aunque la lección quede justa: entre esos dos contextos cambia <strong>una sola</strong> propiedad.</li>
+<li><strong>Tabla de diferencias entre modelos.</strong> Va en la Sistematización de cada lección de construcción desde la Lección 2, que la parte con los dos primeros modelos. Desde ahí cada lección agrega la fila de su modelo, con sus cinco columnas desde el inicio. La Lección 4 la completa, verifica que las tres preguntas bastan para distinguir los cuatro modelos y declara su alcance; la Lección 5 la usa como herramienta de trabajo.</li>
+</ol>
+<h2 id="lecciones">Lecciones</h2>
+<section class="leccion" id="lección-1--contar-sin-enumerar-casos-k-tuplas-y-el-primer-modelo"><h4><span class="ln">Lección 1</span>Contar sin enumerar: casos, k-tuplas y el primer modelo</h4>
+<p><strong>Objetivo:</strong> Determinar el número de resultados de un experimento de varias etapas sin enumerarlos, describirlos como k-tuplas y construir el modelo de las elecciones ordenadas con repetición.</p>
+<p><strong>El principio multiplicativo se recuerda, no se construye.</strong> Quedó establecido en la <strong>Lección 1 del Tema 2</strong>: cuando en cada etapa de un diagrama de árbol cada nodo se abre en la misma cantidad de opciones, la cantidad de ramas se obtiene multiplicando las opciones de cada etapa. Esta lección lo recupera en la Activación, desde la Sistematización de U3T2L1, y lo reencuadra en el lenguaje del tema durante la construcción: lo que allá era una rama acá es un <strong>caso</strong>, y se describe como una <strong>k-tupla</strong>. La lección no vuelve a deducirlo desde el árbol.</p>
+<p><strong>Lineamientos de contexto:</strong> una situación de varias etapas con tantos casos que dibujar el árbol deja de ser posible, aunque el conteo sí se pueda hacer; y otra de pocas etapas, con las mismas opciones disponibles en cada una, lo bastante pequeña como para listar sus casos. Todas las situaciones de la lección tienen etapas independientes. Sugeridos: las patentes de vehículos y su cambio de formato de 2007; un juego de tres ruletas de colores.</p>
+<details open>
+<summary>Hitos y tareas</summary>
+
+<p class="hito"><span class="hid">H1</span><span>Constatar que el principio multiplicativo sirve donde el árbol deja de ser práctico</span></p>
+<ul>
+<li>Para la Activación: listar todos los casos de una versión reducida del contexto y contarlos de las dos maneras, enumerando y multiplicando, verificando que coinciden.</li>
+<li>Para el Contexto: reconocer que el árbol del contexto (e.g. patentes chilenas) no se puede dibujar ni recorrer, y que el conteo sí se puede hacer con el principio multiplicativo de conteo, de modo que lo que falta es una <em>forma de escribirlo</em> sin el dibujo.</li>
+</ul>
+<p class="hito"><span class="hid">H2</span><span>Escribir el conteo sin dibujar el árbol</span></p>
+<ul>
+<li>Aplicar la representación de casillas a las etapas (la casilla es una 'variable dinámica' cuyos valores posibles son las opciones de la etapa respectiva), una por etapa con su número de opciones, y escribir el principio multiplicativo como <code>n₁·n₂·…·n_k</code>.</li>
+<li>Comparar cuántas patentes admite el formato usado hasta 2007 con el actual. <em>Nota: si se ocupa el contexto, la descripción de estos formatos es para el componente de Contexto.</em></li>
+</ul>
+<p class="hito"><span class="hid">H3</span><span>Describir los casos como k-tuplas y definir el modelo <code>nᵏ</code></span></p>
+<ul>
+<li>Nombrar <strong>caso</strong> o <strong>manera</strong> a cada resultado posible del proceso, que en el árbol del Tema 2 era identificado con una rama, y definir la k-tupla como la colección ordenada en que cada posición corresponde a la elección de una etapa.</li>
+<li>Establecer que dos k-tuplas son iguales sólo si coinciden en todas sus posiciones (así como las ramas coinciden si pasan por los mismos nodos), y describir el espacio muestral como el conjunto de todas las k-tuplas posibles, listando algunos elementos para verificar que se entiende el formato. <em>Nota: Esto realmente une las listas ordenadas del Tema 1 con los árboles del Tema 2</em>.</li>
+<li>Establecer que, cuando las <code>k</code> etapas ofrecen las mismas <code>n</code> opciones, el conteo es <code>nᵏ</code>, y nombrar el modelo de las elecciones ordenadas con repetición.</li>
+</ul>
+<p class="hito"><span class="hid">H4</span><span>Declarar las condiciones del modelo</span></p>
+<ul>
+<li>Enunciar las tres propiedades que una situación debe cumplir para que el modelo de las elecciones ordenadas con repetición la represente: que se haga una cantidad fija <code>k</code> de elecciones entre <code>n</code> elementos disponibles, con <code>k</code> cualquiera, incluso mayor que <code>n</code>, que un mismo elemento pueda elegirse más de una vez, y que dos resultados con los mismos elementos en distinto orden sean resultados distintos.</li>
+<li>Presentar las tres <strong>preguntas identificatorias</strong> como lo que se le pregunta a cualquier situación de conteo antes de contar: <em>¿cuántas elecciones <code>k</code> se hacen, y cómo se compara <code>k</code> con la cantidad <code>n</code> de elementos disponibles?</em>, <em>¿puede repetirse un elemento?</em> y <em>¿dos resultados con los mismos elementos en distinto orden son el mismo resultado?</em>. Responderlas para el modelo de esta lección. <em>Nota: esta lección no lleva tabla de diferencias, porque hay un solo modelo; la tabla parte en la Lección 2.</em></li>
+</ul>
+<p class="hito"><span class="hid">H5</span><span>Práctica: decidir si el modelo representa la situación, y contar</span></p>
+<ul>
+<li>Decidir si el modelo representa una partida de cachipún y una contraseña numérica, y determinar cuántos casos tiene cada una.</li>
+<li>Reconocer que no representa una situación donde una etapa ofrece distinta cantidad de opciones según lo elegido antes, y contar sus casos volviendo al árbol.</li>
+</ul>
+</details>
+
+<blockquote class="capsula"><span class="tag">Cápsula de observación que se debe incorporar</span><p>Para qué sirve contar: cuando el mecanismo de la situación hace que todos los casos sean igualmente posibles, el conteo entrega los dos números de la Regla de Laplace de la Lección 6 del Tema 1, el total de casos y los favorables. En el juego de ruletas de sectores iguales, las <code>nᵏ</code> k-tuplas son igualmente posibles, así que la probabilidad de que las tres ruletas queden del mismo color se obtiene contando cuántas k-tuplas cumplen esa condición y dividiendo por <code>nᵏ</code>. La cápsula declara la condición y muestra un caso; la Lección 3 vuelve sobre ella y la Lección 6 la desarrolla. Va como cápsula y no como tarea, porque es una relación que el estudiante nota y no produce.</p>
+</blockquote>
+</section><section class="leccion" id="lección-2--permutaciones-ordenar-todos-los-elementos"><h4><span class="ln">Lección 2</span>Permutaciones: ordenar todos los elementos</h4>
+<p><strong>Objetivo:</strong> Contar los ordenamientos posibles de <code>n</code> elementos cuando cada uno se usa exactamente una vez, y construir el modelo del factorial.</p>
+<p><strong>Lineamientos de contexto:</strong> una situación en que un conjunto de elementos se ordena por completo y ninguno se repite, con una versión de cuatro elementos que admita listar los 24 órdenes, una de cinco para ver cómo cambia el conteo, y una mayor para el caso general, donde listar ya no es viable. Sugerido: un robot que baila diez pasos de baile distintos, en un orden predefinido o sorteado, y que los estudiantes exploran con cuatro pasos, luego con cinco, para concluir con diez.</p>
+<details open>
+<summary>Hitos y tareas</summary>
+
+<p class="hito"><span class="hid">H1</span><span>Identificar las propiedades que cambian respecto del modelo anterior</span></p>
+<ul>
+<li>Revisar una lista de los 24 órdenes posibles de cuatro pasos de baile, ya armada, para comprobar si está completa y si repite alguno, y contarlos. <em>(Ajuste 2026-10-19: el estudiante audita una lista dada en vez de armarla, que es lo que se hizo en la Lección 1 del Tema 2; escribirla a mano desmotiva y deja invisible la falla, mientras que auditar permite ver la repetición y el faltante.)</em></li>
+<li>Contrastar con las ruletas de la clase anterior y reconocer los dos cambios: aquí se hacen tantas elecciones como elementos hay, <code>k = n</code>, y un elemento ya usado deja de estar disponible, de modo que el número de opciones decrece en cada etapa.</li>
+</ul>
+<p class="hito"><span class="hid">H2</span><span>Generalizar el conteo y escribirlo como <code>n!</code></span></p>
+<ul>
+<li>Representar el conteo con casillas decrecientes y reconocer el patrón <code>n·(n−1)·…·2·1</code>.</li>
+<li>Definir la permutación de <code>n</code> elementos y la notación factorial <code>n!</code>, verificando el caso <code>n = 4</code> contra la lista del hito anterior, y observando cómo cambia el conteo al pasar a <code>n = 5</code> (se multiplica por 5) para concluir el caso de diez elementos, donde listar ya no es viable.</li>
+<li>Describir el espacio muestral como el conjunto de todos los órdenes posibles y establecer que tiene <code>n!</code> elementos. <em>Nota: el término espacio muestral corresponde cuando el orden se sortea; con un orden predefinido, el conjunto de todos los órdenes posibles se llama así, sin el término.</em></li>
+</ul>
+<p class="hito"><span class="hid">H3</span><span>Justificar combinatorialmente la identidad <code>n! = n·(n−1)!</code></span></p>
+<ul>
+<li>Reconocer que un elemento nuevo puede insertarse en cualquiera de las <code>n</code> posiciones de cada permutación de los <code>n−1</code> anteriores.</li>
+<li>Argumentar por qué esa construcción genera todas las permutaciones sin repetir ninguna.</li>
+</ul>
+<p class="hito"><span class="hid">H4</span><span>Declarar las condiciones del modelo</span></p>
+<ul>
+<li>Enunciar las tres propiedades que una situación debe cumplir para que el factorial la represente: que se hagan tantas elecciones como elementos disponibles, <code>k = n</code>, que cada elemento se use exactamente una vez, y que dos resultados con los mismos elementos en distinto orden sean resultados distintos.</li>
+<li>Construir la <strong>tabla de diferencias entre modelos</strong>, con una fila para cada uno de los dos modelos y una columna por cada pregunta identificatoria, más una de ejemplo: <em>¿cuántas elecciones <code>k</code> se hacen, y cómo se compara <code>k</code> con la cantidad <code>n</code> de elementos disponibles?</em>, <em>¿puede repetirse un elemento?</em> y <em>¿cambia el resultado si cambia el orden de los mismos elementos?</em>. En los dos modelos el orden distingue los resultados, y la tabla lo declara. La tabla va en la Sistematización.</li>
+</ul>
+<p class="hito"><span class="hid">H5</span><span>Práctica: decidir entre los dos modelos disponibles, y contar</span></p>
+<ul>
+<li>Decidir, en dos situaciones nuevas, si corresponde el factorial o el modelo de la clase anterior, determinando antes si los elementos pueden repetirse.</li>
+<li>Determinar el número de resultados de cada una con el modelo elegido, y verificar el caso más pequeño listando sus resultados.</li>
+</ul>
+</details>
+
+<blockquote class="capsula"><span class="tag">Cápsula de observación comprometida</span><p>Fijada la primera elección, las siguientes sólo pueden tomarse entre las restantes: es la misma restricción del espacio muestral que define la probabilidad condicional en la Lección 6 del Tema 2. Va como cápsula y no como tarea, porque es una relación que el estudiante nota y no produce.</p>
+</blockquote>
+</section><section class="leccion" id="lección-3--variaciones-sin-repetición-elegir-y-ordenar-algunos"><h4><span class="ln">Lección 3</span>Variaciones sin repetición: elegir y ordenar algunos</h4>
+<p><strong>Objetivo:</strong> Contar arreglos ordenados de <code>k</code> elementos elegidos entre <code>n</code> cuando cada uno puede usarse una sola vez, y construir el modelo <code>V(n,k)</code>.</p>
+<p><strong>Lineamientos de contexto:</strong> una situación en que se eligen y ordenan sólo algunos de los elementos disponibles, con una versión reducida que admita listar los arreglos. <strong>El contexto se empareja con el de la Lección 4</strong>, de modo que entre las dos cambie únicamente si el orden importa. Sugeridos: una directiva de curso con cargos distintos, trabajada primero con cuatro candidatos y dos cargos; los cartones de lotería.</p>
+<details open>
+<summary>Hitos y tareas</summary>
+
+<p class="hito"><span class="hid">H1</span><span>Identificar la propiedad que cambia respecto del modelo anterior</span></p>
+<ul>
+<li>Listar los arreglos posibles de una directiva de dos cargos entre cuatro candidatos y contarlos.</li>
+<li>Contrastar con el festival de la clase anterior: allí <code>k = n</code>, porque se ordenaban todos los elementos, y aquí <code>k</code> es menor que <code>n</code>, porque se eligen y ordenan sólo algunos.</li>
+</ul>
+<p class="hito"><span class="hid">H2</span><span>Generalizar el conteo con casillas decrecientes</span></p>
+<ul>
+<li>Explicar por qué el conteo del caso reducido da <code>4·3</code>, representándolo con casillas decrecientes.</li>
+<li>Formalizar el conteo <code>n·(n−1)·…·(n−k+1)</code> y nombrarlo variación sin repetición de <code>k</code> elementos entre <code>n</code>.</li>
+</ul>
+<p class="hito"><span class="hid">H3</span><span>Escribir el modelo con factoriales y reconocer la permutación como su caso <code>k = n</code></span></p>
+<ul>
+<li>Escribir el producto como <code>V(n,k) = n!/(n−k)!</code>, justificando la división por los <code>(n−k)!</code> ordenamientos de los elementos no elegidos.</li>
+<li>Observar que la convención <code>0! = 1</code> permite que la expresión siga valiendo cuando <code>k = n</code>, y reconocer que el modelo de la clase anterior es ese caso.</li>
+</ul>
+<p class="hito"><span class="hid">H4</span><span>Declarar las condiciones del modelo</span></p>
+<ul>
+<li>Enunciar las tres propiedades que una situación debe cumplir para que la variación sin repetición la represente: que se haga una cantidad fija <code>k</code> de elecciones entre <code>n</code> elementos disponibles, con <code>k ≤ n</code>, que cada elemento elegido se use una sola vez, y que dos resultados con los mismos elementos en distinto orden sean resultados distintos.</li>
+<li>Agregar a la tabla de diferencias la fila de la variación sin repetición, reconociendo que se distingue de las permutaciones sólo en el valor de <code>k</code>, que allá es igual a <code>n</code> y acá puede ser menor, y de las elecciones ordenadas con repetición sólo en si un elemento puede repetirse. La columna del orden ya está, y el orden sigue distinguiendo los resultados en los tres modelos.</li>
+</ul>
+<p class="hito"><span class="hid">H5</span><span>Práctica: decidir entre los tres modelos disponibles, y contar</span></p>
+<ul>
+<li>Discriminar entre la directiva del curso, las contraseñas numéricas y los cartones de lotería según si admiten repetir elementos, determinando qué modelo corresponde a cada una.</li>
+<li>Determinar el número de resultados de cada una con el modelo elegido, y explicar por qué la directiva admite menos arreglos que el festival de la clase anterior pese a tener más candidatos.</li>
+</ul>
+</details>
+
+<blockquote class="capsula"><span class="tag">Cápsula de observación que se debe incorporar</span><p>Cierra lo anunciado en la Lección 1: cuando el mecanismo de la situación hace que todos los casos sean igualmente posibles, los conjuntos contados en los tres modelos construidos hasta aquí son espacios muestrales equiprobables, y contar sus elementos es lo que permite aplicar la Regla de Laplace de la Lección 6 del Tema 1. Esa condición la da el mecanismo, no el modelo de conteo, así que hay que declararla en cada situación.</p>
+</blockquote>
+</section><section class="leccion" id="lección-4--combinaciones-elegir-sin-ordenar"><h4><span class="ln">Lección 4</span>Combinaciones: elegir sin ordenar</h4>
+<p><strong>Objetivo:</strong> Contar elecciones de <code>k</code> elementos entre <code>n</code> cuando el orden no importa, construyendo el número combinatorio como corrección del conteo ordenado.</p>
+<p><strong>Lineamientos de contexto:</strong> la situación de la Lección 3 con los cargos eliminados, de modo que cambie únicamente si el orden importa, y una versión reducida de esa misma situación que admita listar todos los arreglos. Sugerido: un comité de curso sin cargos, sobre los mismos estudiantes, trabajado primero con cinco candidatos y tres elegidos.</p>
+<details open>
+<summary>Hitos y tareas</summary>
+
+<p class="hito"><span class="hid">H1</span><span>Identificar la propiedad que cambia respecto del modelo anterior y no permite utilizarlo</span></p>
+<ul>
+<li>Contrastar la directiva de la clase anterior con la elección de un comité del mismo curso sin cargos, reconociendo que ahora dos elecciones con los mismos estudiantes representan la misma decisión.</li>
+</ul>
+<p class="hito"><span class="hid">H2</span><span>Contar el caso reducido agrupando los arreglos que representan la misma elección</span></p>
+<ul>
+<li>Listar los arreglos ordenados de tres elegidos entre cinco candidatos y agrupar los que corresponden al mismo comité.</li>
+<li>Establecer que lo que se cuenta son subconjuntos y no k-tuplas, describir el conjunto de todos los comités posibles listando algunos, y distinguir la notación <code>{ }</code> de la notación <code>( )</code>.</li>
+</ul>
+<p class="hito"><span class="hid">H3</span><span>Generalizar la corrección y obtener el número combinatorio</span></p>
+<ul>
+<li>Reconocer que cada elección aparece <code>k!</code> veces entre los arreglos ordenados, obtener <code>C(n,k) = V(n,k)/k!</code> y nombrarlo número combinatorio.</li>
+<li>Obtener la forma cerrada <code>C(n,k) = n!/(k!·(n−k)!)</code> y aplicarla al comité del curso completo.</li>
+</ul>
+<p class="hito"><span class="hid">H4</span><span>Declarar las condiciones del modelo, completar la tabla de diferencias y declarar su alcance</span></p>
+<ul>
+<li>Enunciar las tres propiedades que una situación debe cumplir para que la combinación la represente: que se haga una cantidad fija <code>k</code> de elecciones entre <code>n</code> elementos disponibles, con <code>k ≤ n</code>, que cada elemento elegido se use una sola vez, y que dos resultados con los mismos elementos en distinto orden sean el mismo resultado.</li>
+<li>Agregar a la tabla de diferencias la fila de la combinación, que es la primera en que la respuesta a <em>¿cambia el resultado si cambia el orden de los mismos elementos?</em> es que no. Reconocer que entre la variación y la combinación cambia sólo esa respuesta, y verificar que las tres preguntas bastan para distinguir los cuatro modelos.</li>
+<li>Declarar el alcance de la tabla: abarca estos cuatro modelos, y hay problemas de conteo con restricciones más particulares que ninguno representa. Esos problemas se resuelven con los principios multiplicativo y aditivo en general, razonando etapa por etapa y separando en casos cuando una restricción lo exige. Por ejemplo: <em>con los dígitos 0, 2, 3, 6, 7 y 9, ¿cuántos números pares entre 1000 y 10000 se pueden formar? ¿Y si además todos los dígitos deben ser distintos?</em> <em>Nota: son números de cuatro cifras, así que la primera no puede ser 0 y la última debe ser 0, 2 o 6. Con repetición hay <code>5·6·6·3 = 540</code>. Sin repetición hay que separar según la última cifra, porque de ella depende cuántas opciones quedan para la primera: si termina en 0 hay <code>5·4·3 = 60</code>, y si termina en 2 o en 6 hay <code>4·4·3 = 48</code> en cada caso, en total <code>60 + 48 + 48 = 156</code>. Ninguno de los cuatro modelos da ese conteo, porque la primera y la última posición tienen restricciones propias.</em></li>
+</ul>
+<p class="hito"><span class="hid">H5</span><span>Práctica: decidir entre los cuatro modelos, y contar</span></p>
+<ul>
+<li>Determinar, en una situación que primero selecciona y después asigna posiciones, cuántas selecciones y cuántas asignaciones son posibles, decidiendo en cada caso si el orden importa.</li>
+<li>Corregir un conteo que aplicó variaciones donde correspondían combinaciones, recalculándolo con el modelo que sí representa la situación.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-5--práctica-elegir-el-modelo"><h4><span class="ln">Lección 5</span>Práctica: elegir el modelo</h4>
+<p><strong>Objetivo:</strong> Decidir en situaciones nuevas si alguno de los modelos de conteo las representa o si hace falta una estrategia de conteo nueva, respondiendo las tres preguntas identificatorias antes de calcular.</p>
+<p><strong>Lineamientos de contexto:</strong> situaciones variadas y breves, sin contexto narrativo único, incluidas algunas cuyo enunciado admita dos lecturas. La herramienta de trabajo son las tres preguntas identificatorias y la tabla de diferencias completada en la Lección 4. <strong>Esta lección no tiene componente de Construcción</strong>, porque no introduce ningún objeto nuevo.</p>
+<details open>
+<summary>Hitos y tareas</summary>
+
+<p class="hito"><span class="hid">H1</span><span>Usar las tres preguntas para decidir si aplica un modelo</span></p>
+<ul>
+<li>Responder las tres preguntas identificatorias en una situación de conteo para identificar sus propiedades, y con esas respuestas ver en la tabla de diferencias si alguno de los cuatro modelos la representa o si es necesario producir una estrategia de conteo nueva (ver Lección 1).</li>
+<li>Clasificar cuatro o cinco situaciones breves, de contextos distintos, que entre todas cubran las cuatro filas. En cada una se responden las tres preguntas y se nombra el modelo que resulta. El estudiante entrega las tres respuestas además del nombre del modelo, de modo que una clasificación equivocada se pueda rastrear hasta la pregunta que la produjo. La tarea termina en la clasificación: el cálculo y la justificación vienen después.</li>
+</ul>
+<p class="hito"><span class="hid">H2</span><span>Justificar la elección del modelo</span></p>
+<ul>
+<li>Volver sobre una de las situaciones ya clasificadas y justificar por escrito el modelo elegido, citando para cada pregunta identificatoria la parte del enunciado que determina su respuesta. Lo que se produce acá es la evidencia, no la clasificación, que ya está hecha. <em>Nota: la situación elegida tiene que traer en su texto un dato localizable por cada una de las tres preguntas; si alguna respuesta sale del sentido común y no del enunciado, la tarea se queda sin evidencia que citar.</em></li>
+</ul>
+<p class="hito"><span class="hid">H3</span><span>Anticipar el efecto de cambiar una propiedad</span></p>
+<ul>
+<li>Comparar dos situaciones del mismo contexto, con los mismos <code>n</code> y <code>k</code>, que difieren únicamente en una de las tres propiedades. Anticipar cuál admite más resultados y explicar por qué antes de calcular, después contar los de cada una con su modelo y contrastar el resultado con la anticipación. <em>Nota: el par más informativo es el que cambia si el orden distingue los resultados, porque ahí la diferencia entre los dos conteos es exactamente el factor <code>k!</code> que la Lección 4 construyó, y la anticipación se puede justificar sin calcular.</em></li>
+</ul>
+<p class="hito"><span class="hid">H4</span><span>Evaluar elecciones de modelo ajenas</span></p>
+<ul>
+<li>Evaluar un conteo ajeno que aplicó el principio multiplicativo a una situación cuyas etapas cambian de número de opciones según lo elegido antes: decidir si el conteo es válido, nombrar la condición que falla y rehacer el conteo con el árbol.</li>
+<li>Evaluar un conteo cuyo enunciado admite dos lecturas: determinar qué modelo corresponde a cada lectura, decidir cuál sostiene el enunciado citando las palabras que lo deciden, y proponer cómo redactarlo para que admita una sola lectura.</li>
+</ul>
+<p class="hito"><span class="hid">H5</span><span>Reconocer hasta dónde llega la tabla de diferencias</span></p>
+<ul>
+<li>Analizar una situación que ninguna de las cuatro filas representa, responder en ella las tres preguntas y constatar que esa combinación de respuestas falta en la tabla. <em>Nota: la combinación disponible es elegir <code>k</code> de <code>n</code> pudiendo repetir un elemento y sin que el orden distinga los resultados, por ejemplo tres helados de entre cuatro sabores. La tarea no construye un modelo nuevo.</em></li>
+<li>Contar los casos de esa misma situación con una estrategia propia, separándolos según cuántos elementos se repiten y sumando: en los tres helados de entre cuatro sabores hay 4 con los tres sabores iguales, <code>4·3 = 12</code> con dos iguales y uno distinto, y 4 con los tres distintos, en total <code>4 + 12 + 4 = 20</code>. <em>Nota: es el mismo recurso que la Lección 4 declara para los problemas que la tabla no cubre, los principios multiplicativo y aditivo aplicados por casos. El caso de los tres sabores distintos es una combinación, así que se puede contar con el modelo de la Lección 4 o listando.</em></li>
+<li>Redactar el enunciado de una situación propia para cada fila de la tabla, verificando que las tres respuestas quedan determinadas por lo que quedó escrito y no por lo que el autor tenía en mente.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-6--conteo-y-probabilidad-consistencia-entre-casos-favorables-y-totales"><h4><span class="ln">Lección 6</span>Conteo y probabilidad: consistencia entre casos favorables y totales</h4>
+<p><strong>Objetivo:</strong> Calcular probabilidades mediante modelos de conteo, reconociendo que los casos favorables y los casos totales deben contarse con el mismo modelo.</p>
+<p><strong>Lineamientos de contexto:</strong> el caso de un estudiante que resuelve un problema de probabilidad de forma distinta a la esperada, con aritmética correcta y un resultado distinto, donde los casos favorables se contaron sin considerar el orden y los totales considerándolo. Sugerido: una prueba de 100 metros planos con 3 estudiantes del 2°A, 2 del 2°B y 3 del 2°C, de los que clasifican los cuatro primeros lugares. El evento es que entre los cuatro clasificados haya estudiantes de los tres cursos. La respuesta correcta es 9/14 y el estudiante obtiene 3/112. El trabajo del estudiante se presenta con todo su desarrollo, sin rótulos de modelo ni la palabra "ordenadas": cuenta los favorables eligiendo personas, que es sin orden por naturaleza, y los totales llenando lugares, que es con orden por naturaleza, de modo que ninguno se equivoca al contar y el error es creíble. La Práctica y el Ticket usan contextos distintos del de la carrera; en la Práctica, las dos preguntas comparten un mismo contexto, con el mismo grupo y dos eventos, uno que no depende del orden y otro que sí.</p>
+<p>Los cuatro conteos que la lección usa, para que la guionista los tenga a la vista: sin orden hay <code>C(8,4) = 70</code> casos totales y 45 favorables, y con orden hay <code>V(8,4) = 1680</code> totales y <code>45·4! = 1080</code> favorables. El estudiante mezcla los 45 favorables sin orden con los 1680 totales con orden, y <code>45/1680 = 3/112</code>. Los 45 favorables salen de sumar los tres casos según cuál curso aporta dos clasificados: 18 si es el 2°A, 9 si es el 2°B y 18 si es el 2°C.</p>
+<details open>
+<summary>Hitos y tareas</summary>
+
+<p class="hito"><span class="hid">H1</span><span>Explicitar el supuesto que hace aplicable la Regla de Laplace</span></p>
+<ul>
+<li>Plantear si se puede calcular esta probabilidad con la Regla de Laplace, reconocer que eso exige casos igualmente probables, y examinar si hay evidencia de que algún corredor tenga más posibilidad que otro de llegar en un lugar dado.</li>
+<li>Comparar dos cuartetos concretos y establecer que valen lo mismo, deduciéndolo de que las llegadas completas de los ocho corredores son igualmente probables: cada cuarteto corresponde a la misma cantidad de ellas. <em>Nota: el supuesto se adopta sobre las llegadas completas, que es lo natural porque ningún corredor está favorecido, y de ahí se deduce que los cuartetos son equiprobables. No se pide como supuesto aparte. Hay una intuición que conviene dejar surgir: "un cuarteto con los dos corredores de 2°B es menos probable que uno con dos de 2°A, porque 2°B tiene menos gente". La primera mitad es cierta sobre eventos y la conclusión es falsa sobre cuartetos.</em></li>
+<li>Comparar dos eventos que reúnen distinta cantidad de cuartetos, por ejemplo "salen los dos de 2°B" y "salen dos de 2°A", y establecer que, aunque cada cuarteto vale lo mismo, el evento que reúne más cuartetos tiene más probabilidad. <em>Nota: la comparación es cualitativa. Los números no son necesarios en este hito.</em></li>
+<li>Dejar el supuesto escrito antes de revisar el cálculo del estudiante: los ocho corredores tienen la misma posibilidad de ocupar cualquier lugar de llegada. <em>Nota: el supuesto es una decisión de modelamiento y conviene presentarlo como tal, porque se adopta a falta de información sobre los tiempos de los corredores. Es la misma distinción entre consistente y correcta de la Lección 4 del Tema 1.</em></li>
+</ul>
+<p class="hito"><span class="hid">H2</span><span>Diagnosticar que el error está en usar dos modelos distintos</span></p>
+<ul>
+<li>Identificar qué modelo usó el estudiante para los casos favorables y cuál para los totales, ubicando cada uno en la tabla de diferencias: contó los 45 favorables con combinaciones, sin distinguir el orden de llegada, y los 1680 totales con variaciones sin repetición, distinguiéndolo.</li>
+<li>Verificar que la aritmética del estudiante es correcta, es decir que los 45 y los 1680 están bien contados con el modelo que usó en cada caso, y que <code>45/1680 = 3/112</code>.</li>
+<li>Diagnosticar el error como una inconsistencia entre los dos conteos: cada uno responde bien a su propia pregunta, y lo que falla es que las dos preguntas son distintas, así que el cociente no cuenta una parte de un todo. Descartar explícitamente las otras dos explicaciones posibles, que sería una equivocación de cálculo o un modelo mal aplicado por separado.</li>
+</ul>
+<p class="hito"><span class="hid">H3</span><span>Reparar el cálculo por dos vías y obtener el mismo valor</span></p>
+<ul>
+<li>Rehacer el cálculo contando favorables y totales con el modelo sin orden, <code>45/70</code>, y después los dos con el modelo con orden, <code>1080/1680</code>, verificando que las dos vías dan 9/14. <em>Nota: que las dos vías coincidan es lo que instala el criterio de la lección. Lo que importa es que los dos conteos usen el mismo modelo, y no cuál de los dos modelos se elija.</em></li>
+<li>Explicar por qué cada cuarteto admite 4! llegadas ordenadas y, con eso, por qué las dos vías coinciden: numerador y denominador se multiplican por el mismo factor, y los 1680 totales son 70·24.</li>
+<li>Reconocer que los casos favorables se separan en tres situaciones que no pueden ocurrir a la vez, según cuál sea el curso que aporta dos clasificados, y que por eso sus conteos se suman: 18 + 9 + 18 = 45. Es la aditividad entre eventos excluyentes de la Lección 4 del Tema 1, aplicada ahora a conteos.</li>
+<li>Evaluar un conteo alternativo de los favorables, "uno de cada curso y un cuarto corredor cualquiera" (<code>3·2·3·5 = 90</code>), y detectar que cuenta cada cuarteto dos veces. <em>Nota: es la misma idea del factor 24, una multiplicidad que hay que dividir: <code>90/2</code> y <code>1080/24</code> dan los mismos 45.</em></li>
+</ul>
+<p class="hito"><span class="hid">H4</span><span>Resolver y evaluar cálculos de probabilidad declarando el modelo usado</span></p>
+<ul>
+<li>Resolver un problema nuevo de probabilidad en un contexto distinto del de la carrera, dejando escrito qué modelo cuenta los casos favorables y cuál los totales antes de operar, y verificando que sea el mismo en los dos.</li>
+<li>Calcular, en ese mismo contexto, un evento que depende del orden, reconociendo que el modelo sin orden no lo expresa y que el evento dicta el modelo. <em>Nota: en la carrera sería "A1 gana y B2 es segundo", con <code>30/1680 = 1/56</code>; la tarea se plantea en el contexto nuevo.</em></li>
+<li>Evaluar un cálculo ajeno en que los dos conteos se hicieron con modelos distintos: identificar cuál de los dos habría que rehacer y rehacerlo. <em>Nota: la reparación admite las dos direcciones, y las dos llegan al mismo valor, que es lo que el hito anterior estableció. Lo que se evalúa es que el estudiante deje los dos conteos en el mismo modelo, no que elija uno en particular.</em></li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-7--ejercitación-modelos-de-conteo"><h4><span class="ln">Lección 7</span>Ejercitación: modelos de conteo</h4>
+<p><strong>Objetivo:</strong> Aplicar de forma integrada los modelos de conteo, identificando en cada problema cuál representa la situación.</p>
+<details open>
+<summary>Hitos y tareas</summary>
+
+<p class="hito"><span class="hid">H1</span><span>Resolver problemas eligiendo el modelo y llegando hasta la probabilidad</span></p>
+<ul>
+<li>Resolver problemas de dificultad creciente que integren la identificación del modelo, el cálculo y su aplicación al cálculo de probabilidades.</li>
+</ul>
+</details>
+
+<p>El conjunto de problemas cubre los cuatro modelos de la tabla de diferencias, incluye problemas con restricciones particulares que se resuelven con los principios multiplicativo y aditivo, incluye al menos un par emparejado que difiera en una sola propiedad, y cierra con problemas que exigen contar casos favorables y totales para obtener una probabilidad.</p>
+</section><section class="leccion" id="evaluación-tema-3"><h4>Evaluación Tema 3</h4>
+<p>Sin diseñar. La estructura del tema sugiere repartir los ítems entre construir el conteo de un caso concreto, decidir si un modelo representa una situación nueva o si hace falta otra estrategia de conteo, y calcular una probabilidad declarando el modelo usado. Formato del proyecto: ver la evaluación del Tema 1 de esta unidad como modelo.</p>
+</section>
+</main>
+</div>
+</body>
+</html>
