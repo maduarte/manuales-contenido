@@ -267,7 +267,7 @@ html{scroll-behavior:smooth}
 <blockquote class="capsula"><span class="tag">Cápsula de observación que se debe incorporar</span><p>Para qué sirve contar: cuando el mecanismo de la situación hace que todos los casos sean igualmente posibles, el conteo entrega los dos números de la Regla de Laplace de la Lección 6 del Tema 1, el total de casos y los favorables. En el juego de ruletas de sectores iguales, las <code>nᵏ</code> k-tuplas son igualmente posibles, así que la probabilidad de que las tres ruletas queden del mismo color se obtiene contando cuántas k-tuplas cumplen esa condición y dividiendo por <code>nᵏ</code>. La cápsula declara la condición y muestra un caso; la Lección 3 vuelve sobre ella y la Lección 6 la desarrolla. Va como cápsula y no como tarea, porque es una relación que el estudiante nota y no produce.</p>
 </blockquote>
 </section><section class="leccion" id="lección-2--permutaciones-ordenar-todos-los-elementos"><h4><span class="ln">Lección 2</span>Permutaciones: ordenar todos los elementos</h4>
-<p><strong>Objetivo:</strong> Contar los ordenamientos posibles de <code>n</code> elementos cuando cada uno se usa exactamente una vez, y construir el modelo del factorial.</p>
+<p><strong>Objetivo:</strong> Contar los ordenamientos posibles de <code>n</code> elementos cuando cada uno se usa exactamente una vez, y construir el modelo de las permutaciones, cuyo conteo se escribe con el factorial.</p>
 <p><strong>Lineamientos de contexto:</strong> una situación en que un conjunto de elementos se ordena por completo y ninguno se repite, con una versión de cuatro elementos que admita listar los 24 órdenes, una de cinco para ver cómo cambia el conteo, y una mayor para el caso general, donde listar ya no es viable. Sugerido: un robot que baila diez pasos de baile distintos, en un orden predefinido o sorteado, y que los estudiantes exploran con cuatro pasos, luego con cinco, para concluir con diez.</p>
 <details open>
 <summary>Hitos y tareas</summary>
@@ -275,7 +275,7 @@ html{scroll-behavior:smooth}
 <p class="hito"><span class="hid">H1</span><span>Identificar las propiedades que cambian respecto del modelo anterior</span></p>
 <ul>
 <li>Revisar una lista de los 24 órdenes posibles de cuatro pasos de baile, ya armada, para comprobar si está completa y si repite alguno, y contarlos.</li>
-<li>Contrastar con las ruletas de la clase anterior y reconocer los dos cambios: aquí se hacen tantas elecciones como elementos hay, <code>k = n</code>, y un elemento ya usado deja de estar disponible, de modo que el número de opciones decrece en cada etapa.</li>
+<li>Contrastar con el modelo de elecciones ordenadas con repetición de la clase anterior y reconocer los dos cambios: aquí se hacen tantas elecciones como elementos hay, <code>k = n</code>, y un elemento ya usado deja de estar disponible, de modo que el número de opciones decrece en cada etapa.</li>
 </ul>
 <p class="hito"><span class="hid">H2</span><span>Generalizar el conteo y escribirlo como <code>n!</code></span></p>
 <ul>
