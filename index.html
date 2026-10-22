@@ -1,22 +1,37 @@
-<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Manuales para guionistas</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap">
 <style>
-:root{--bg:#fff;--fg:#1f1b2e;--muted:#737373;--purple:#423475;--surface:#f3f4f6}
-@media (prefers-color-scheme:dark){:root{--bg:#16131f;--fg:#ece9f5;--muted:#a09bb0;--purple:#b9a9f0;--surface:#241f33}}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 "Geist",system-ui,sans-serif}
-main{max-width:640px;margin:0 auto;padding:48px 16px}
-h1{color:var(--purple);font-size:1.7rem;margin:0 0 .3em}
-p{color:var(--muted)}
-a.card{display:block;background:var(--surface);border-radius:10px;padding:14px 16px;margin:12px 0;text-decoration:none;color:var(--fg)}
-a.card b{display:block;color:var(--purple)}
-a.card span{color:var(--muted);font-size:.9rem}
-</style></head><body><main>
+:root{--ground:#fcfbfe;--card:#ffffff;--line:#e0dcea;--ink:#231d3b;--muted:#625c76;--purple:#423475;--shadow:0 1px 2px rgba(35,29,59,.05)}
+@media (prefers-color-scheme:dark){:root{--ground:#16132a;--card:#1f1b36;--line:#35305a;--ink:#ece9f6;--muted:#aaa4c2;--purple:#b9adf0;--shadow:none}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font:16px/1.55 "Geist",system-ui,-apple-system,"Segoe UI",sans-serif}
+.strip{display:flex;height:6px}.strip span{flex:1}
+main{max-width:640px;margin:0 auto;padding:56px 16px 48px}
+.eyebrow{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .6rem}
+h1{font-size:clamp(1.6rem,5vw,2.1rem);line-height:1.15;margin:0 0 .5rem;font-weight:650;letter-spacing:-.01em;text-wrap:balance}
+.sub{color:var(--muted);margin:0 0 2rem;max-width:52ch}
+.list{display:grid;gap:.7rem}
+a.card{display:grid;grid-template-columns:.9rem 1fr auto;gap:.9rem;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1rem 1.1rem;text-decoration:none;color:var(--ink);box-shadow:var(--shadow);transition:border-color .15s,transform .15s}
+a.card:hover,a.card:focus-visible{border-color:var(--c);transform:translateY(-1px);outline:none}
+a.card i{width:.9rem;height:.9rem;border-radius:50%;background:var(--c)}
+a.card b{display:block;font-weight:600;line-height:1.3}
+a.card span{display:block;color:var(--muted);font-size:.88rem;margin-top:.1rem}
+a.card em{font-style:normal;color:var(--muted);font-size:1.1rem}
+footer{margin-top:2rem;font-size:.85rem;color:var(--muted)}
+footer a{color:var(--muted)}
+@media (prefers-reduced-motion:reduce){a.card{transition:none}}
+</style></head><body>
+<div class="strip"><span style="background:#423475"></span><span style="background:#d45762"></span><span style="background:#61b89a"></span><span style="background:#f0f57d"></span><span style="background:#4aa7ba"></span><span style="background:#f3972d"></span></div>
+<main>
+<p class="eyebrow">Rutas Digitales · Probabilidad y Estadística</p>
 <h1>Manuales para guionistas</h1>
-<p>Material de apoyo para escribir guiones de lección del curso de Probabilidad y Estadística.</p>
-<a class="card" href="manual_diseno.html"><b>Manual de diseño</b><span>Los 16 pasos, las cuatro revisiones, listas de chequeo y glosario.</span></a>
-<a class="card" href="proceso_diseno_guiones.html"><b>Proceso de creación de un guion</b><span>Qué va en la ruta y en la tabla de hitos e ítems.</span></a>
-<a class="card" href="U3_Tema3_ruta.html"><b>Ruta del Tema 3, Unidad 3</b><span>Modelos de conteo: siete lecciones con sus hitos y tareas.</span></a>
+<p class="sub">Material de apoyo para diseñar y escribir guiones de lección.</p>
+<div class="list">
+<a class="card" style="--c:#61b89a" href="manual_diseno.html"><i></i><div><b>Manual de diseño</b><span>16 pasos, 4 revisiones, listas de chequeo y glosario</span></div><em aria-hidden="true">→</em></a>
+<a class="card" style="--c:#4aa7ba" href="proceso_diseno_guiones.html"><i></i><div><b>Proceso de creación de un guion</b><span>Qué va en la ruta y en la tabla de hitos e ítems</span></div><em aria-hidden="true">→</em></a>
+<a class="card" style="--c:#f3972d" href="U3_Tema3_ruta.html"><i></i><div><b>Ruta del Tema 3, Unidad 3</b><span>Modelos de conteo: siete lecciones con sus hitos y tareas</span></div><em aria-hidden="true">→</em></a>
+</div>
+<footer><a href="https://github.com/maduarte/manuales-guionistas">Código fuente en GitHub</a></footer>
 </main></body></html>
