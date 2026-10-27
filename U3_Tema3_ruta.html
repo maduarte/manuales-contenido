@@ -225,7 +225,7 @@ html{scroll-behavior:smooth}
 </ul>
 <p><strong>Dos dispositivos transversales, que ninguna lección omite:</strong></p>
 <ol type="1">
-<li><strong>Contraste explícito.</strong> Cada lección enuncia en qué se diferencia su situación de las anteriores, en términos de las tres propiedades. Por eso los contextos van emparejados, y el par directiva ↔︎ comité de las Lecciones 3 y 4 se conserva aunque la lección quede justa: entre esos dos contextos cambia <strong>una sola</strong> propiedad.</li>
+<li><strong>Contraste explícito.</strong> Cada lección enuncia en qué se diferencia su situación de las anteriores, en términos de las tres propiedades. Por eso los contextos de las Lecciones 2 y 4 comparten el robot de baile, de modo que sobre los mismos elementos cambie <strong>una sola</strong> propiedad, y la Lección 3 tiene contexto propio.</li>
 <li><strong>Tabla de diferencias entre modelos.</strong> Va en la Sistematización de cada lección de construcción desde la Lección 2, que la parte con los dos primeros modelos. Desde ahí cada lección agrega la fila de su modelo, con sus cinco columnas desde el inicio. La Lección 4 la completa y verifica que las tres preguntas bastan para distinguir los cuatro modelos; la Lección 5 la usa como herramienta de trabajo y declara su alcance.</li>
 </ol>
 <h2 id="lecciones">Lecciones</h2>
@@ -304,14 +304,14 @@ html{scroll-behavior:smooth}
 </blockquote>
 </section><section class="leccion" id="lección-3--variaciones-sin-repetición-elegir-y-ordenar-algunos"><h4><span class="ln">Lección 3</span>Variaciones sin repetición: elegir y ordenar algunos</h4>
 <p><strong>Objetivo:</strong> Contar arreglos ordenados de <code>k</code> elementos elegidos entre <code>n</code> cuando cada uno puede usarse una sola vez, y construir el modelo <code>V(n,k)</code>.</p>
-<p><strong>Lineamientos de contexto:</strong> una situación en que se eligen y ordenan sólo algunos de los elementos disponibles, con una versión reducida que admita listar los arreglos. <strong>El contexto se empareja con el de la Lección 4</strong>, de modo que entre las dos cambie únicamente si el orden importa. Sugeridos: una directiva de curso con cargos distintos, trabajada primero con cuatro candidatos y dos cargos; los cartones de lotería.</p>
+<p><strong>Lineamientos de contexto:</strong> una situación en que se eligen y ordenan sólo algunos de los elementos disponibles, con una versión reducida que admita listar los arreglos y una mayor para el caso general. Sugerido: el patrón de desbloqueo de un reloj deportivo, cuyos puntos están ubicados en círculo y que no admite tocar dos veces el mismo punto, trabajado primero con cuatro puntos y patrones de dos, luego con nueve puntos y patrones de tres. Para la práctica, situaciones de otros contextos, como los cartones de lotería.</p>
 <details open>
 <summary>Hitos y tareas</summary>
 
 <p class="hito"><span class="hid">H1</span><span>Identificar la propiedad que cambia respecto del modelo anterior</span></p>
 <ul>
-<li>Listar los arreglos posibles de una directiva de dos cargos entre cuatro candidatos y contarlos.</li>
-<li>Contrastar con el festival de la clase anterior: allí <code>k = n</code>, porque se ordenaban todos los elementos, y aquí <code>k</code> es menor que <code>n</code>, porque se eligen y ordenan sólo algunos.</li>
+<li>Listar los patrones posibles de dos puntos en un reloj de cuatro puntos y contarlos.</li>
+<li>Contrastar con la clase anterior: allí <code>k = n</code>, porque se ordenaban todos los elementos, y aquí <code>k</code> es menor que <code>n</code>, porque se eligen y ordenan sólo algunos.</li>
 </ul>
 <p class="hito"><span class="hid">H2</span><span>Generalizar el conteo con casillas decrecientes</span></p>
 <ul>
@@ -330,8 +330,8 @@ html{scroll-behavior:smooth}
 </ul>
 <p class="hito"><span class="hid">H5</span><span>Práctica: decidir entre los tres modelos disponibles, y contar</span></p>
 <ul>
-<li>Discriminar entre la directiva del curso, las contraseñas numéricas y los cartones de lotería según si admiten repetir elementos, determinando qué modelo corresponde a cada una.</li>
-<li>Determinar el número de resultados de cada una con el modelo elegido, y explicar por qué la directiva admite menos arreglos que el festival de la clase anterior pese a tener más candidatos.</li>
+<li>Discriminar entre los patrones del reloj, las claves numéricas y los cartones de lotería según si admiten repetir elementos, determinando qué modelo corresponde a cada una.</li>
+<li>Determinar el número de resultados de cada una con el modelo elegido.</li>
 </ul>
 </details>
 
@@ -339,23 +339,23 @@ html{scroll-behavior:smooth}
 </blockquote>
 </section><section class="leccion" id="lección-4--combinaciones-elegir-sin-ordenar"><h4><span class="ln">Lección 4</span>Combinaciones: elegir sin ordenar</h4>
 <p><strong>Objetivo:</strong> Contar elecciones de <code>k</code> elementos entre <code>n</code> cuando el orden no importa, construyendo el número combinatorio como corrección del conteo ordenado.</p>
-<p><strong>Lineamientos de contexto:</strong> la situación de la Lección 3 con los cargos eliminados, de modo que cambie únicamente si el orden importa, y una versión reducida de esa misma situación que admita listar todos los arreglos. Sugerido: un comité de curso sin cargos, sobre los mismos estudiantes, trabajado primero con cinco candidatos y tres elegidos.</p>
+<p><strong>Lineamientos de contexto:</strong> una situación en que se elige un grupo de elementos y el orden no importa, con una versión reducida que admita listar todos los arreglos. Puede retomar el contexto de la Lección 2, para que el estudiante vea que, sobre los mismos elementos, cambia sólo lo que se pregunta. Sugerido: el robot de baile de diez pasos, donde se elige un grupo de pasos para perfeccionar sin importar el orden, trabajado primero con cinco pasos y tres elegidos.</p>
 <details open>
 <summary>Hitos y tareas</summary>
 
 <p class="hito"><span class="hid">H1</span><span>Identificar la propiedad que cambia respecto del modelo anterior y no permite utilizarlo</span></p>
 <ul>
-<li>Contrastar la directiva de la clase anterior con la elección de un comité del mismo curso sin cargos, reconociendo que ahora dos elecciones con los mismos estudiantes representan la misma decisión.</li>
+<li>Contrastar el conteo de arreglos ordenados de la clase anterior con la elección de un grupo en que el orden no importa, reconociendo que ahora dos elecciones con los mismos elementos representan la misma decisión.</li>
 </ul>
 <p class="hito"><span class="hid">H2</span><span>Contar el caso reducido agrupando los arreglos que representan la misma elección</span></p>
 <ul>
-<li>Listar los arreglos ordenados de tres elegidos entre cinco candidatos y agrupar los que corresponden al mismo comité.</li>
-<li>Establecer que lo que se cuenta son subconjuntos y no k-tuplas, describir el conjunto de todos los comités posibles listando algunos, y distinguir la notación <code>{ }</code> de la notación <code>( )</code>.</li>
+<li>Listar los arreglos ordenados de tres elegidos entre cinco elementos y agrupar los que corresponden al mismo grupo.</li>
+<li>Establecer que lo que se cuenta son subconjuntos y no k-tuplas, describir el conjunto de todos los grupos posibles listando algunos, y distinguir la notación <code>{ }</code> de la notación <code>( )</code>.</li>
 </ul>
 <p class="hito"><span class="hid">H3</span><span>Generalizar la corrección y obtener el número combinatorio</span></p>
 <ul>
 <li>Reconocer que cada elección aparece <code>k!</code> veces entre los arreglos ordenados, obtener <code>C(n,k) = V(n,k)/k!</code> y nombrarlo número combinatorio.</li>
-<li>Obtener la forma cerrada <code>C(n,k) = n!/(k!·(n−k)!)</code> y aplicarla al comité del curso completo.</li>
+<li>Obtener la forma cerrada <code>C(n,k) = n!/(k!·(n−k)!)</code> y aplicarla a la situación completa.</li>
 </ul>
 <p class="hito"><span class="hid">H4</span><span>Declarar las condiciones del modelo y completar la tabla de diferencias</span></p>
 <ul>
@@ -398,7 +398,6 @@ html{scroll-behavior:smooth}
 <li>Analizar una situación que ninguna de las cuatro filas representa, responder en ella las tres preguntas y constatar que esa combinación de respuestas falta en la tabla. <em>Nota: la combinación disponible es elegir <code>k</code> de <code>n</code> pudiendo repetir un elemento y sin que el orden distinga los resultados, por ejemplo tres helados de entre cuatro sabores. La tarea no construye un modelo nuevo.</em></li>
 <li>Contar los casos de esa misma situación con una estrategia propia, separándolos según cuántos elementos se repiten y sumando: en los tres helados de entre cuatro sabores hay 4 con los tres sabores iguales, <code>4·3 = 12</code> con dos iguales y uno distinto, y 4 con los tres distintos, en total <code>4 + 12 + 4 = 20</code>. <em>Nota: es el mismo recurso que sirve para todos los problemas que la tabla no cubre, los principios multiplicativo y aditivo aplicados por casos. El caso de los tres sabores distintos es una combinación, así que se puede contar con el modelo de la Lección 4 o listando.</em></li>
 <li>Reconocer que hay problemas de conteo con restricciones particulares que ningún modelo representa, y que se resuelven con los principios multiplicativo y aditivo en general, razonando etapa por etapa y separando en casos cuando una restricción lo exige. Por ejemplo: <em>con los dígitos 0, 2, 3, 6, 7 y 9, ¿cuántos números pares entre 1000 y 10000 se pueden formar? ¿Y si además todos los dígitos deben ser distintos?</em> <em>Nota: son números de cuatro cifras, así que la primera no puede ser 0 y la última debe ser 0, 2 o 6. Con repetición hay <code>5·6·6·3 = 540</code>. Sin repetición hay que separar según la última cifra, porque de ella depende cuántas opciones quedan para la primera: si termina en 0 hay <code>5·4·3 = 60</code>, y si termina en 2 o en 6 hay <code>4·4·3 = 48</code> en cada caso, en total <code>60 + 48 + 48 = 156</code>. Ninguno de los cuatro modelos da ese conteo, porque la primera y la última posición tienen restricciones propias.</em></li>
-<li>Redactar el enunciado de una situación propia para cada fila de la tabla, verificando que las tres respuestas quedan determinadas por lo que quedó escrito y no por lo que el autor tenía en mente.</li>
 </ul>
 </details>
 
