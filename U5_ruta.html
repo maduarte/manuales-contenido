@@ -1,0 +1,232 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ruta de la Unidad 5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --ground:#fcfbfe; --surface:#f3f1f8; --surface-2:#ebe7f4; --line:#e0dcea;
+  --ink:#231d3b; --muted:#625c76;
+  --purple:#423475; --purple-ink:#423475; --on-purple:#ffffff;
+  --red:#d45762; --red-ink:#a8323e; --red-tint:#fbeef0;
+  --green:#61b89a; --green-ink:#2c7a5f; --green-tint:#eaf6f1;
+  --blue:#4aa7ba; --blue-ink:#27788a;
+  --orange:#f3972d; --orange-ink:#a85f0c;
+  --yellow:#f0f57d;
+  --code-bg:#eeebf6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+    --ink:#ece9f6; --muted:#aaa4c2;
+    --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+    --red-ink:#f0939b; --red-tint:#2e1b2c;
+    --green-ink:#86d6b9; --green-tint:#18302b;
+    --blue-ink:#85cfdd; --orange-ink:#f7b667;
+    --code-bg:#2a2548;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+  --ink:#ece9f6; --muted:#aaa4c2;
+  --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+  --red-ink:#f0939b; --red-tint:#2e1b2c;
+  --green-ink:#86d6b9; --green-tint:#18302b;
+  --blue-ink:#85cfdd; --orange-ink:#f7b667;
+  --code-bg:#2a2548;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.6;margin:0}
+.strip{display:flex;height:6px}
+.strip span{flex:1}
+header.top{background:var(--purple);color:var(--on-purple);padding-block:2.4rem 2.2rem;padding-inline:16px}
+header.top .in{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin:0 0 .6rem}
+header.top h1{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.15;margin:0 0 .8rem;text-wrap:balance;font-weight:650;letter-spacing:-.01em}
+header.top .lead{max-width:68ch;margin:0;font-size:1.05rem;opacity:.93}
+.layout{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:2rem 4rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1rem);align-self:start;font-size:.88rem;max-height:calc(100vh - 2rem);overflow:auto}
+nav.toc p{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .5rem}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
+nav.toc a{color:var(--ink);text-decoration:none;display:block;padding:.3rem .55rem;border-radius:6px;line-height:1.35}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--surface-2);outline:none}
+nav.toc .sub a{padding-left:1.3rem;color:var(--muted)}
+main{min-width:0;max-width:760px}
+main h2{font-size:1.55rem;line-height:1.25;margin:3rem 0 1rem;color:var(--purple-ink);text-wrap:balance;font-weight:650}
+main h2:first-child{margin-top:0}
+main h3{font-size:1.2rem;margin:2.2rem 0 .7rem;text-wrap:balance;font-weight:620}
+main h4{font-size:1.1rem;margin:1.6rem 0 .5rem}
+p,li{max-width:70ch}
+a{color:var(--purple-ink)}
+code{font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-size:.88em;background:var(--code-bg);padding:.08em .35em;border-radius:4px;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
+ul,ol{padding-left:1.3rem}
+li{margin:.3rem 0}
+li::marker{color:var(--purple-ink)}
+.tablewrap{overflow-x:auto;margin:1.2rem 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+th{background:var(--purple);color:var(--on-purple);text-align:left;font-weight:600;padding:.55rem .7rem}
+td{padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--surface)}
+blockquote{margin:1.4rem 0;padding:1rem 1.2rem;background:var(--surface);border-radius:10px}
+blockquote p{margin:.4rem 0}
+blockquote .tag{display:inline-block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:650;margin-bottom:.3rem;color:var(--muted)}
+blockquote.capsula{background:var(--green-tint)}
+blockquote.capsula .tag{color:var(--green-ink)}
+blockquote.revision{background:var(--red-tint)}
+blockquote.revision .tag{color:var(--red-ink)}
+.hito{display:flex;gap:.7rem;align-items:baseline;margin:1.6rem 0 .4rem;font-size:1.02rem;font-weight:620;line-height:1.4}
+.hito .hid{flex:none;background:var(--purple);color:var(--on-purple);font-family:"Geist Mono",ui-monospace,monospace;font-size:.78rem;font-weight:600;padding:.15rem .5rem;border-radius:999px;position:relative;top:-.08em}
+.hito + ul{margin-top:.2rem;padding-left:3.4rem}
+.leccion{border-top:1px solid var(--line);padding-top:1.4rem;margin-top:2.6rem}
+.leccion h4{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h4 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+details{margin:1rem 0}
+summary{cursor:pointer;font-weight:600;color:var(--purple-ink);padding:.35rem 0}
+summary:focus-visible{outline:2px solid var(--purple-ink);outline-offset:3px;border-radius:4px}
+.arco{list-style:none;padding:0;counter-reset:a;display:grid;gap:.7rem}
+.arco li{counter-increment:a;position:relative;padding-left:3rem;min-height:2.2rem;max-width:none}
+.arco li::before{content:counter(a);position:absolute;left:0;top:0;background:var(--surface-2);color:var(--purple-ink);font-weight:650;border-radius:50%;width:2.2rem;height:2.2rem;display:grid;place-items:center;font-family:"Geist Mono",monospace}
+.paso{display:grid;grid-template-columns:2.4rem 1fr;gap:.9rem;margin:1.3rem 0}
+.paso .num{font-family:"Geist Mono",ui-monospace,monospace;font-weight:600;color:var(--purple-ink);background:var(--surface-2);border-radius:8px;height:2.4rem;display:grid;place-items:center}
+.paso p{margin:0}
+.paso + ul{padding-left:4.6rem}
+.fases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem;margin:1.5rem 0 2rem}
+.fase{background:var(--surface);border-radius:10px;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.35rem}
+.fase .fn{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.fase .ft{font-weight:650;color:var(--purple-ink);font-size:1.05rem}
+.fase .fp{font-family:"Geist Mono",monospace;font-size:.82rem;color:var(--muted)}
+.fase .rv{margin-top:auto;display:flex;flex-wrap:wrap;gap:.3rem}
+.fase .rv span{font-size:.75rem;font-weight:600;color:var(--red-ink);background:var(--red-tint);border-radius:999px;padding:.1rem .55rem}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;gap:1.5rem}
+  nav.toc{position:static;max-height:none;background:var(--surface);border-radius:10px;padding:1rem}
+  .fases{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:460px){ .fases{grid-template-columns:1fr} .hito + ul{padding-left:1.3rem} .paso + ul{padding-left:1.3rem} }
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script></head>
+<body>
+<div class="strip"><span style="background:#423475"></span><span style="background:#d45762"></span><span style="background:#61b89a"></span><span style="background:#f0f57d"></span><span style="background:#4aa7ba"></span><span style="background:#f3972d"></span></div>
+<header class="top"><div class="in">
+<p class="eyebrow">Probabilidad y Estadística · Ruta de la unidad</p>
+<h1>Unidad 5: Hacer inferencia estadística: intervalos de confianza y pruebas de hipótesis</h1>
+<p class="lead">Esta unidad busca que los estudiantes argumenten inferencias sobre una población a partir de una muestra aleatoria, bajo el supuesto de normalidad. Se inicia estudiando cómo varía la media de una muestra de una muestra a otra, hasta reconocer que sus valores siguen un modelo normal centrado en la media de la población. Con ese modelo construye intervalos de confianza para estimar la media de la población, y luego pruebas de hipótesis para decidir si una muestra contradice lo que se afirma sobre ella. Las preguntas que orientan la unidad son las del Programa: ¿en qué condiciones estadísticas es confiable la información?, ¿qué condiciones de significación afectan la toma de decisiones?</p>
+</div></header>
+<div class="layout">
+<nav class="toc" aria-label="Contenido"><p>Contenido</p><ol><li><a href="#presentacion">Presentación de la unidad</a></li><li><a href="#tema-1--distribución-de-la-media-muestral">Tema 1: Distribución de la media muestral</a></li><li class="sub"><a href="#lección-1--población-muestra-y-variabilidad-de-muestreo">Lección 1 · Población, muestra y variabilidad de muestreo</a></li><li class="sub"><a href="#lección-2--centro-y-dispersión-de-la-media-muestral">Lección 2 · Centro y dispersión de la media muestral</a></li><li class="sub"><a href="#lección-3--forma-de-la-distribución-de-la-media-muestral">Lección 3 · Forma de la distribución de la media muestral</a></li><li class="sub"><a href="#lección-4--proporción-muestral">Lección 4 · Proporción muestral</a></li><li class="sub"><a href="#lección-5--práctica-qué-medias-muestrales-son-esperables">Lección 5 · Práctica: qué medias muestrales son esperables</a></li><li class="sub"><a href="#lección-6--ejercitación-distribución-de-la-media-muestral">Lección 6 · Ejercitación: distribución de la media muestral</a></li><li class="sub"><a href="#evaluación-tema-1">Evaluación Tema 1</a></li><li><a href="#tema-2--intervalos-de-confianza">Tema 2: Intervalos de confianza</a></li><li class="sub"><a href="#lección-1--de-la-media-muestral-al-intervalo-de-confianza">Lección 1 · De la media muestral al intervalo de confianza</a></li><li class="sub"><a href="#lección-2--nivel-de-confianza-y-margen-de-error">Lección 2 · Nivel de confianza y margen de error</a></li><li class="sub"><a href="#lección-3--tamaño-de-la-muestra-y-precisión">Lección 3 · Tamaño de la muestra y precisión</a></li><li class="sub"><a href="#lección-4--intervalo-de-confianza-para-una-proporción">Lección 4 · Intervalo de confianza para una proporción</a></li><li class="sub"><a href="#lección-5--práctica-estimar-con-intervalos-de-confianza">Lección 5 · Práctica: estimar con intervalos de confianza</a></li><li class="sub"><a href="#lección-6--ejercitación-intervalos-de-confianza">Lección 6 · Ejercitación: intervalos de confianza</a></li><li class="sub"><a href="#evaluación-tema-2">Evaluación Tema 2</a></li><li><a href="#tema-3--pruebas-de-hipótesis">Tema 3: Pruebas de hipótesis</a></li><li class="sub"><a href="#lección-1--hipótesis-nula-y-región-de-aceptación">Lección 1 · Hipótesis nula y región de aceptación</a></li><li class="sub"><a href="#lección-2--pruebas-bilaterales-y-unilaterales">Lección 2 · Pruebas bilaterales y unilaterales</a></li><li class="sub"><a href="#lección-3--errores-tipo-i-y-tipo-ii">Lección 3 · Errores tipo I y tipo II</a></li><li class="sub"><a href="#lección-4--pruebas-para-una-proporción">Lección 4 · Pruebas para una proporción</a></li><li class="sub"><a href="#lección-5--práctica-decidir-con-pruebas-de-hipótesis">Lección 5 · Práctica: decidir con pruebas de hipótesis</a></li><li class="sub"><a href="#lección-6--ejercitación-pruebas-de-hipótesis">Lección 6 · Ejercitación: pruebas de hipótesis</a></li><li class="sub"><a href="#evaluación-tema-3">Evaluación Tema 3</a></li></ol></nav>
+<main>
+<h2 id="presentacion">Presentación de la unidad</h2>
+<p><strong>OA de Conocimiento y Comprensión (PEDI):</strong> <strong>OA 4 — Inferencia Estadística</strong>: <em>Argumentar inferencias acerca de parámetros (media y varianza) o características de una población, a partir de datos de una muestra aleatoria, bajo el supuesto de normalidad y aplicando procedimientos con base en intervalos de confianza o pruebas de hipótesis.</em></p>
+<p><strong>Habilidades citadas para esta Unidad:</strong> b (Variar Parámetros), c (Decisiones Fundamentadas), d (Argumentar Conjeturas), i (Información Confiable).</p>
+<p><strong>Correspondencia con el Programa de Estudio:</strong> esta unidad cubre las actividades de la Unidad 4 del Programa, más el análisis de las medias de muestras y el teorema central del límite, que el Programa toca en la Actividad 3 de su Unidad 3.</p>
+<p><strong>Antecedente en Formación General:</strong> en 4° Medio los estudiantes construyen intervalos de confianza básicos para la media de una población (MA4M FG OAC 02). Es el único antecedente, y es parcial: las pruebas de hipótesis son exclusivas del curso diferenciado.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Tema</th>
+<th>Lecciones</th>
+<th>Evaluación</th>
+<th>Actividades del Programa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Distribución de la media muestral</td>
+<td>6</td>
+<td>Sí</td>
+<td>Unidad 3, Actividad 3 (medias de muestras)</td>
+</tr>
+<tr>
+<td>2. Intervalos de confianza</td>
+<td>6</td>
+<td>Sí</td>
+<td>Actividades 1 y 2</td>
+</tr>
+<tr>
+<td>3. Pruebas de hipótesis</td>
+<td>6</td>
+<td>Sí</td>
+<td>Actividades 3 y 4</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote><span class="tag">Nota</span><p>La desviación estándar de la población se supone conocida en toda la unidad, como en el Programa. Estimar la media con la desviación estándar desconocida requiere la distribución t de Student, que el curso no desarrolla.</p></blockquote>
+<blockquote><span class="tag">Nota</span><p>El OA nombra la varianza entre los parámetros, pero la unidad no hace inferencia sobre ella: requiere la distribución chi cuadrado y ninguna actividad del Programa la trabaja. La inferencia es sobre la media y la proporción.</p></blockquote>
+<hr />
+<h2 id="tema-1--distribución-de-la-media-muestral">Tema 1 — Distribución de la media muestral</h2>
+<p><strong>Objetivo del tema:</strong> Describir cómo varía la media de una muestra aleatoria de una muestra a otra, establecer que sus valores siguen aproximadamente un modelo normal de media \(\mu\) y desviación estándar \(\sigma / \sqrt{n}\), y usar ese modelo para juzgar qué medias muestrales son esperables.</p>
+<p><strong>OA PEDI:</strong> OA 4 — Inferencia Estadística <em>(hereda de la Unidad)</em>.</p>
+<p><strong>OA Formación General:</strong></p>
+<ul>
+<li>4° Medio: <strong>MA4M FG OAC 02</strong> (Binomial-Normal).</li>
+</ul>
+<h3 id="lecciones">Lecciones</h3>
+<section class="leccion" id="lección-1--población-muestra-y-variabilidad-de-muestreo"><h4><span class="ln">Lección 1</span>Población, muestra y variabilidad de muestreo</h4>
+<p><strong>Objetivo:</strong> Distinguir un parámetro de la población de un estadístico de la muestra, reconocer que el estadístico cambia de una muestra aleatoria a otra porque depende de qué elementos quedaron en ella, y describir esa variación con una simulación de muchas muestras del mismo tamaño.</p>
+<blockquote><span class="tag">Nota</span><p>La variabilidad de muestreo se recupera de la Lección 5 del Tema 1 de la Unidad 3, donde el porcentaje observado en una muestra al azar cambia de una muestra a otra.</p></blockquote>
+</section><section class="leccion" id="lección-2--centro-y-dispersión-de-la-media-muestral"><h4><span class="ln">Lección 2</span>Centro y dispersión de la media muestral</h4>
+<p><strong>Objetivo:</strong> Deducir que la esperanza de la media muestral es \(\mu\), aplicando la linealidad de la esperanza a la suma de los \(n\) valores, verificar con simulaciones que su desviación estándar es \(\sigma / \sqrt{n}\), e interpretar por qué las medias de muestras más grandes se concentran más cerca de \(\mu\).</p>
+<blockquote><span class="tag">Nota</span><p>La desviación estándar se verifica sin demostrarla, como la de la binomial en la Unidad 4, porque requiere la varianza de una suma de variables independientes.</p></blockquote>
+</section><section class="leccion" id="lección-3--forma-de-la-distribución-de-la-media-muestral"><h4><span class="ln">Lección 3</span>Forma de la distribución de la media muestral</h4>
+<p><strong>Objetivo:</strong> Reconocer que, si la población es normal, la media muestral sigue un modelo normal, y observar con simulaciones que, para muestras grandes, también lo sigue aproximadamente aunque la población no sea normal (teorema central del límite), para calcular la probabilidad de que la media muestral caiga en un intervalo.</p>
+</section><section class="leccion" id="lección-4--proporción-muestral"><h4><span class="ln">Lección 4</span>Proporción muestral</h4>
+<p><strong>Objetivo:</strong> Reconocer la proporción de éxitos en una muestra como la media de \(n\) ensayos de Bernoulli, establecer su esperanza \(p\) y su desviación estándar \(\sqrt{p(1-p)/n}\), y usar la aproximación normal de la Unidad 4 para calcular la probabilidad de que la proporción muestral caiga en un intervalo.</p>
+</section><section class="leccion" id="lección-5--práctica-qué-medias-muestrales-son-esperables"><h4><span class="ln">Lección 5</span>Práctica: qué medias muestrales son esperables</h4>
+<p><strong>Objetivo:</strong> Usar la distribución de la media muestral o de la proporción muestral para decidir si un resultado observado en una muestra es esperable o sorprendente bajo lo que se sabe de la población, variando el tamaño de la muestra para observar cómo cambia la decisión.</p>
+</section><section class="leccion" id="lección-6--ejercitación-distribución-de-la-media-muestral"><h4><span class="ln">Lección 6</span>Ejercitación: distribución de la media muestral</h4>
+<p><strong>Objetivo:</strong> Ejercitación integrada de las Lecciones 1 a 4.</p>
+</section><section class="leccion" id="evaluación-tema-1"><h4>Evaluación Tema 1</h4>
+<hr />
+</section><h2 id="tema-2--intervalos-de-confianza">Tema 2 — Intervalos de confianza</h2>
+<p><strong>Objetivo del tema:</strong> Estimar la media de una población con un intervalo de confianza construido desde una muestra, interpretar su nivel de confianza y decidir el tamaño de muestra que exige una precisión dada.</p>
+<p><strong>OA PEDI:</strong> OA 4 — Inferencia Estadística <em>(hereda de la Unidad)</em>.</p>
+<p><strong>OA Formación General:</strong></p>
+<ul>
+<li>4° Medio: <strong>MA4M FG OAC 02</strong> (Binomial-Normal).</li>
+</ul>
+<h3 id="lecciones-1">Lecciones</h3>
+<section class="leccion" id="lección-1--de-la-media-muestral-al-intervalo-de-confianza"><h4><span class="ln">Lección 1</span>De la media muestral al intervalo de confianza</h4>
+<p><strong>Objetivo:</strong> Construir el intervalo \(\bar{x} \pm 1.96 \, \sigma / \sqrt{n}\) reconociendo que la distancia entre \(\bar{x}\) y \(\mu\) es la misma vista desde cualquiera de los dos, e interpretar el 95 % como la proporción de intervalos que contienen a \(\mu\) entre todas las muestras posibles, y no como la probabilidad de que \(\mu\) esté en el intervalo ya calculado.</p>
+</section><section class="leccion" id="lección-2--nivel-de-confianza-y-margen-de-error"><h4><span class="ln">Lección 2</span>Nivel de confianza y margen de error</h4>
+<p><strong>Objetivo:</strong> Obtener el valor \(z_{\alpha/2}\) para los niveles de confianza de 90 %, 95 % y 99 % con la tabla de la normal estándar o la planilla, calcular el margen de error \(E = z_{\alpha/2} \, \sigma / \sqrt{n}\) e interpretar cómo cambia el ancho del intervalo al subir el nivel de confianza.</p>
+<blockquote><span class="tag">Nota</span><p>El valor \(z_{\alpha/2}\) se obtiene con lo aprendido en la Lección 4 del Tema 3 de la Unidad 4, que pasa de un porcentaje a un valor de la normal.</p></blockquote>
+</section><section class="leccion" id="lección-3--tamaño-de-la-muestra-y-precisión"><h4><span class="ln">Lección 3</span>Tamaño de la muestra y precisión</h4>
+<p><strong>Objetivo:</strong> Observar cómo el tamaño de la muestra cambia el ancho del intervalo, establecer que para reducir el margen de error a la mitad hay que cuadruplicar la muestra, y despejar el tamaño de muestra necesario para un margen de error y un nivel de confianza dados.</p>
+</section><section class="leccion" id="lección-4--intervalo-de-confianza-para-una-proporción"><h4><span class="ln">Lección 4</span>Intervalo de confianza para una proporción</h4>
+<p><strong>Objetivo:</strong> Construir e interpretar un intervalo de confianza para la proporción de una población a partir de la proporción observada en una muestra, como en las encuestas de opinión, y leer críticamente el margen de error que informan los medios.</p>
+</section><section class="leccion" id="lección-5--práctica-estimar-con-intervalos-de-confianza"><h4><span class="ln">Lección 5</span>Práctica: estimar con intervalos de confianza</h4>
+<p><strong>Objetivo:</strong> Construir e interpretar intervalos de confianza en contextos con datos reales, decidir si cumplen el propósito de quien los encarga y evaluar afirmaciones sobre su significado.</p>
+</section><section class="leccion" id="lección-6--ejercitación-intervalos-de-confianza"><h4><span class="ln">Lección 6</span>Ejercitación: intervalos de confianza</h4>
+<p><strong>Objetivo:</strong> Ejercitación integrada de las Lecciones 1 a 4.</p>
+</section><section class="leccion" id="evaluación-tema-2"><h4>Evaluación Tema 2</h4>
+<hr />
+</section><h2 id="tema-3--pruebas-de-hipótesis">Tema 3 — Pruebas de hipótesis</h2>
+<p><strong>Objetivo del tema:</strong> Plantear una hipótesis sobre la media o la proporción de una población, decidir con una muestra si se rechaza, y argumentar la decisión considerando el nivel de significación y los errores que puede cometer.</p>
+<p><strong>OA PEDI:</strong> OA 4 — Inferencia Estadística <em>(hereda de la Unidad)</em>.</p>
+<p><strong>OA Formación General:</strong> sin antecedente en Formación General.</p>
+<h3 id="lecciones-2">Lecciones</h3>
+<section class="leccion" id="lección-1--hipótesis-nula-y-región-de-aceptación"><h4><span class="ln">Lección 1</span>Hipótesis nula y región de aceptación</h4>
+<p><strong>Objetivo:</strong> Formular la hipótesis nula como la afirmación que se pone a prueba, construir alrededor de la media que ella supone el intervalo donde debería caer la media muestral con una probabilidad dada, y decidir si se rechaza según dónde cae la media observada, distinguiendo un resultado significativo (5 %) de uno altamente significativo (1 %).</p>
+</section><section class="leccion" id="lección-2--pruebas-bilaterales-y-unilaterales"><h4><span class="ln">Lección 2</span>Pruebas bilaterales y unilaterales</h4>
+<p><strong>Objetivo:</strong> Distinguir las situaciones en que interesa detectar un cambio en cualquier dirección de las que solo interesa en una, formular la hipótesis alternativa en cada caso y ubicar la región de rechazo en una o en las dos colas.</p>
+</section><section class="leccion" id="lección-3--errores-tipo-i-y-tipo-ii"><h4><span class="ln">Lección 3</span>Errores tipo I y tipo II</h4>
+<p><strong>Objetivo:</strong> Reconocer que una prueba puede rechazar una hipótesis nula verdadera (error tipo I) o no rechazar una falsa (error tipo II), identificar el nivel de significación con la probabilidad del error tipo I, y argumentar en contexto cuál de los dos errores tiene consecuencias más graves.</p>
+<blockquote><span class="tag">Nota</span><p>Los falsos positivos y falsos negativos de los tests de diagnóstico, trabajados en las Lecciones 6 y 7 del Tema 2 de la Unidad 3, sirven de puente para los dos tipos de error.</p></blockquote>
+</section><section class="leccion" id="lección-4--pruebas-para-una-proporción"><h4><span class="ln">Lección 4</span>Pruebas para una proporción</h4>
+<p><strong>Objetivo:</strong> Poner a prueba una afirmación sobre la proporción de una población, como que un dado está equilibrado o que un candidato supera el 50 % de los votos, usando la distribución de la proporción muestral, y observar cómo el tamaño de la muestra cambia la decisión.</p>
+</section><section class="leccion" id="lección-5--práctica-decidir-con-pruebas-de-hipótesis"><h4><span class="ln">Lección 5</span>Práctica: decidir con pruebas de hipótesis</h4>
+<p><strong>Objetivo:</strong> Plantear y resolver pruebas de hipótesis en contextos nuevos, relacionar la decisión con el intervalo de confianza para la misma situación, y argumentar la conclusión reconociendo que no rechazar la hipótesis nula no prueba que sea verdadera.</p>
+</section><section class="leccion" id="lección-6--ejercitación-pruebas-de-hipótesis"><h4><span class="ln">Lección 6</span>Ejercitación: pruebas de hipótesis</h4>
+<p><strong>Objetivo:</strong> Ejercitación integrada de las Lecciones 1 a 4.</p>
+</section><section class="leccion" id="evaluación-tema-3"><h4>Evaluación Tema 3</h4>
+</section>
+</main>
+</div>
+</body>
+</html>
