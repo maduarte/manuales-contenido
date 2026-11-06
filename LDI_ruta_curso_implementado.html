@@ -1,0 +1,834 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ruta del curso LDI implementado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --ground:#fcfbfe; --surface:#f3f1f8; --surface-2:#ebe7f4; --line:#e0dcea;
+  --ink:#231d3b; --muted:#625c76;
+  --purple:#423475; --purple-ink:#423475; --on-purple:#ffffff;
+  --red:#d45762; --red-ink:#a8323e; --red-tint:#fbeef0;
+  --green:#61b89a; --green-ink:#2c7a5f; --green-tint:#eaf6f1;
+  --blue:#4aa7ba; --blue-ink:#27788a;
+  --orange:#f3972d; --orange-ink:#a85f0c;
+  --yellow:#f0f57d;
+  --code-bg:#eeebf6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+    --ink:#ece9f6; --muted:#aaa4c2;
+    --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+    --red-ink:#f0939b; --red-tint:#2e1b2c;
+    --green-ink:#86d6b9; --green-tint:#18302b;
+    --blue-ink:#85cfdd; --orange-ink:#f7b667;
+    --code-bg:#2a2548;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+  --ink:#ece9f6; --muted:#aaa4c2;
+  --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+  --red-ink:#f0939b; --red-tint:#2e1b2c;
+  --green-ink:#86d6b9; --green-tint:#18302b;
+  --blue-ink:#85cfdd; --orange-ink:#f7b667;
+  --code-bg:#2a2548;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.6;margin:0}
+.strip{display:flex;height:6px}
+.strip span{flex:1}
+header.top{background:var(--purple);color:var(--on-purple);padding-block:2.4rem 2.2rem;padding-inline:16px}
+header.top .in{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin:0 0 .6rem}
+header.top h1{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.15;margin:0 0 .8rem;text-wrap:balance;font-weight:650;letter-spacing:-.01em}
+header.top .lead{max-width:68ch;margin:0;font-size:1.05rem;opacity:.93}
+.layout{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:2rem 4rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1rem);align-self:start;font-size:.88rem;max-height:calc(100vh - 2rem);overflow:auto}
+nav.toc p{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .5rem}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
+nav.toc a{color:var(--ink);text-decoration:none;display:block;padding:.3rem .55rem;border-radius:6px;line-height:1.35}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--surface-2);outline:none}
+nav.toc .sub a{padding-left:1.3rem;color:var(--muted)}
+main{min-width:0;max-width:760px}
+main h2{font-size:1.55rem;line-height:1.25;margin:3rem 0 1rem;color:var(--purple-ink);text-wrap:balance;font-weight:650}
+main h2:first-child{margin-top:0}
+main h3{font-size:1.2rem;margin:2.2rem 0 .7rem;text-wrap:balance;font-weight:620}
+main h4{font-size:1.1rem;margin:1.6rem 0 .5rem}
+p,li{max-width:70ch}
+a{color:var(--purple-ink)}
+code{font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-size:.88em;background:var(--code-bg);padding:.08em .35em;border-radius:4px;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
+ul,ol{padding-left:1.3rem}
+li{margin:.3rem 0}
+li::marker{color:var(--purple-ink)}
+.tablewrap{overflow-x:auto;margin:1.2rem 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+th{background:var(--purple);color:var(--on-purple);text-align:left;font-weight:600;padding:.55rem .7rem}
+td{padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--surface)}
+blockquote{margin:1.4rem 0;padding:1rem 1.2rem;background:var(--surface);border-radius:10px}
+blockquote p{margin:.4rem 0}
+blockquote .tag{display:inline-block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:650;margin-bottom:.3rem;color:var(--muted)}
+blockquote.capsula{background:var(--green-tint)}
+blockquote.capsula .tag{color:var(--green-ink)}
+blockquote.revision{background:var(--red-tint)}
+blockquote.revision .tag{color:var(--red-ink)}
+.hito{display:flex;gap:.7rem;align-items:baseline;margin:1.6rem 0 .4rem;font-size:1.02rem;font-weight:620;line-height:1.4}
+.hito .hid{flex:none;background:var(--purple);color:var(--on-purple);font-family:"Geist Mono",ui-monospace,monospace;font-size:.78rem;font-weight:600;padding:.15rem .5rem;border-radius:999px;position:relative;top:-.08em}
+.hito + ul{margin-top:.2rem;padding-left:3.4rem}
+.leccion{border-top:1px solid var(--line);padding-top:1.4rem;margin-top:2.6rem}
+.leccion h4{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h4 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+details{margin:1rem 0}
+summary{cursor:pointer;font-weight:600;color:var(--purple-ink);padding:.35rem 0}
+summary:focus-visible{outline:2px solid var(--purple-ink);outline-offset:3px;border-radius:4px}
+.arco{list-style:none;padding:0;counter-reset:a;display:grid;gap:.7rem}
+.arco li{counter-increment:a;position:relative;padding-left:3rem;min-height:2.2rem;max-width:none}
+.arco li::before{content:counter(a);position:absolute;left:0;top:0;background:var(--surface-2);color:var(--purple-ink);font-weight:650;border-radius:50%;width:2.2rem;height:2.2rem;display:grid;place-items:center;font-family:"Geist Mono",monospace}
+.paso{display:grid;grid-template-columns:2.4rem 1fr;gap:.9rem;margin:1.3rem 0}
+.paso .num{font-family:"Geist Mono",ui-monospace,monospace;font-weight:600;color:var(--purple-ink);background:var(--surface-2);border-radius:8px;height:2.4rem;display:grid;place-items:center}
+.paso p{margin:0}
+.paso + ul{padding-left:4.6rem}
+.fases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem;margin:1.5rem 0 2rem}
+.fase{background:var(--surface);border-radius:10px;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.35rem}
+.fase .fn{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.fase .ft{font-weight:650;color:var(--purple-ink);font-size:1.05rem}
+.fase .fp{font-family:"Geist Mono",monospace;font-size:.82rem;color:var(--muted)}
+.fase .rv{margin-top:auto;display:flex;flex-wrap:wrap;gap:.3rem}
+.fase .rv span{font-size:.75rem;font-weight:600;color:var(--red-ink);background:var(--red-tint);border-radius:999px;padding:.1rem .55rem}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;gap:1.5rem}
+  nav.toc{position:static;max-height:none;background:var(--surface);border-radius:10px;padding:1rem}
+  .fases{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:460px){ .fases{grid-template-columns:1fr} .hito + ul{padding-left:1.3rem} .paso + ul{padding-left:1.3rem} }
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script></head>
+<body>
+<div class="strip"><span style="background:#423475"></span><span style="background:#d45762"></span><span style="background:#61b89a"></span><span style="background:#f0f57d"></span><span style="background:#4aa7ba"></span><span style="background:#f3972d"></span></div>
+<header class="top"><div class="in">
+<p class="eyebrow">Límites, Derivadas e Integrales · Curso implementado</p>
+<h1>Ruta del curso LDI implementado (2021-2023)</h1>
+<p class="lead">Esta ruta describe el curso de Límites, Derivadas e Integrales que el laboratorio implementó en aulasvirtuales.cmm.uchile.cl. Para cada lección da el objetivo declarado en el curso, el problema que la abre y las ideas que recorre, en el orden en que aparecen. Sirve como punto de partida para diseñar la nueva versión del curso.</p>
+</div></header>
+<div class="layout">
+<nav class="toc" aria-label="Contenido"><p>Contenido</p><ol><li><a href="#presentacion">Presentación</a></li><li><a href="#unidad-1-representar-y-modelar-situaciones-de-cambio-por-medio-de-funciones">Unidad 1: Representar y modelar situaciones de cambio por medio de funciones</a></li><li class="sub"><a href="#actividad-1-modelando-con-funciones">Actividad 1. Modelando con funciones</a></li><li class="sub"><a href="#actividad-2-modelar-cambios-con-funciones">Actividad 2. Modelar cambios con funciones</a></li><li class="sub"><a href="#actividad-3-la-función-inversa">Actividad 3. La función inversa</a></li><li class="sub"><a href="#actividad-4-entender-y-simplificar-un-problema-a-modelar">Actividad 4. Entender y simplificar un problema a modelar</a></li><li><a href="#unidad-2-reconocer-un-patrón-infinito-y-la-noción-de-límite">Unidad 2: Reconocer un patrón infinito y la noción de límite</a></li><li class="sub"><a href="#actividad-1-comportamiento-al-infinito">Actividad 1. Comportamiento al infinito</a></li><li class="sub"><a href="#actividad-2-analizando-límites">Actividad 2. Analizando límites</a></li><li class="sub"><a href="#actividad-3-qué-son-las-sucesiones">Actividad 3. ¿Qué son las sucesiones?</a></li><li class="sub"><a href="#actividad-4-continuidad-de-funciones">Actividad 4. Continuidad de funciones</a></li><li><a href="#unidad-3-modelar-situaciones-de-cambio-con-derivadas">Unidad 3: Modelar situaciones de cambio con derivadas</a></li><li class="sub"><a href="#actividad-1-velocidad-instantánea">Actividad 1. Velocidad instantánea</a></li><li class="sub"><a href="#actividad-2-cálculo-de-derivadas">Actividad 2. Cálculo de derivadas</a></li><li class="sub"><a href="#actividad-3-derivadas">Actividad 3. Derivadas</a></li><li class="sub"><a href="#actividad-4-derivada-de-funciones-exponenciales-y-logarítmicas">Actividad 4. Derivada de funciones exponenciales y logarítmicas</a></li><li class="sub"><a href="#proyecto">Proyecto</a></li><li><a href="#unidad-4-comprender-la-integral-como-proceso-de-reversibilidad-y-cálculo-de-áreas">Unidad 4: Comprender la integral como proceso de reversibilidad y cálculo de áreas</a></li><li class="sub"><a href="#actividad-1-nociones-de-integración">Actividad 1. Nociones de integración</a></li><li class="sub"><a href="#actividad-2-integral-como-función">Actividad 2. Integral como función</a></li><li class="sub"><a href="#actividad-3-aplicaciones-de-la-integral">Actividad 3. Aplicaciones de la integral</a></li></ol></nav>
+<main>
+<h2 id="presentacion">Presentación</h2>
+<p>El curso tiene cuatro unidades con 56 lecciones en 15 actividades, más un proyecto en la Unidad 3. Cada unidad parte con una evaluación diagnóstica, cada actividad cierra con una evaluación y cada unidad termina con una evaluación de unidad. Una lección sigue casi siempre la misma secuencia: Recordemos, presentación de una situación, análisis guiado, Toma nota con la formalización, Practica lo aprendido, ¿Qué aprendimos? y Ticket de salida. GeoGebra está presente en todo el curso.</p>
+<p>La fuente es el respaldo completo del curso, del 2026-11-05, convertido a markdown en la carpeta de material previo del curso. La numeración de actividades y lecciones es la del curso implementado.</p>
+<h2 id="unidad-1-representar-y-modelar-situaciones-de-cambio-por-medio-de-funciones">Unidad 1. Representar y modelar situaciones de cambio por medio de funciones</h2>
+<p>Diagnóstico de entrada, cuatro actividades con su evaluación y una evaluación de unidad. La unidad repasa las familias de funciones, introduce GeoGebra como herramienta del curso, construye la composición y la inversa, y cierra con el ciclo de modelamiento.</p>
+<h3 id="actividad-1-modelando-con-funciones">Actividad 1. Modelando con funciones</h3>
+<section class="leccion" id="lección-1-modelos-lineales"><h4><span class="ln">Lección 1</span>Modelos lineales</h4>
+<p><strong>Objetivo:</strong> reconocer las características de las funciones lineales y afines y de sus gráficos, y usarlas para modelar situaciones en contexto.</p>
+<p><strong>Problema:</strong> un tanque con 300 litros de agua se vacía con una bomba a razón constante de 15 litros por minuto. Hay que escribir el volumen en función del tiempo y elegir su gráfico.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>"A razón de 15 litros por minuto" significa que en cada minuto el volumen baja lo mismo.</li>
+<li>Del caso concreto a la tabla y de la tabla a la expresión \(V(t) = 300 - 15t\).</li>
+<li>La razón de cambio \(\Delta V / \Delta t\) es constante, sin importar el intervalo que se tome.</li>
+<li>Función lineal (\(n = 0\)) y afín (\(n \neq 0\)): en \(f(x) = mx + n\) la razón de cambio es \(m\).</li>
+<li>La pendiente es el cociente entre la variación vertical y la horizontal; su signo da la inclinación, y rectas con igual pendiente son paralelas.</li>
+<li>Comparar dos tanques en un mismo gráfico, desfasar el inicio de uno y encontrar cuándo tienen la misma cantidad de agua.</li>
+<li>Jarrones de distinta forma que se llenan a caudal constante: la forma del recipiente decide el gráfico de la altura.</li>
+</ul>
+</section><section class="leccion" id="lección-2-modelos-cuadráticos"><h4><span class="ln">Lección 2</span>Modelos cuadráticos</h4>
+<p><strong>Objetivo:</strong> usar funciones cuadráticas para modelar situaciones en contexto, reconocer las características de su gráfico y relacionar un gráfico con la descripción de una situación.</p>
+<p><strong>Problema:</strong> la distancia de detención de un auto. Un grupo de estudiantes prepara una campaña sobre el riesgo de la velocidad y necesita un modelo que explique cuántos metros recorre un auto desde que el conductor ve un peligro hasta que se detiene.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>La distancia de detención se separa en distancia de reacción y distancia de frenado.</li>
+<li>La distancia de reacción crece en forma lineal con la velocidad, para un tiempo de reacción fijo.</li>
+<li>La distancia de frenado no puede ser lineal: si la velocidad se duplica, la distancia se cuadruplica.</li>
+<li>Con los datos (\(v = 0\) da \(d_f = 0\); 50 km/h da 16 m) se deduce \(d_f(v) = A v^2\) y se calcula \(A\).</li>
+<li>Elegir un modelo exige entender la situación, identificar las reglas que debe cumplir y usar los datos conocidos; el modelo vale bajo las condiciones en que se obtuvieron esos datos.</li>
+<li>La función cuadrática \(f(x) = Ax^2 + Bx + C\): su gráfico es una parábola, el signo de \(A\) decide si abre hacia arriba o hacia abajo, y su razón de cambio no es constante.</li>
+<li>Un gráfico cuenta una historia que tiene que ser consistente con el fenómeno: viajes, idas y vueltas, una pelota lanzada hacia arriba, paseos en bicicleta.</li>
+</ul>
+</section><section class="leccion" id="lección-3-introducción-a-geogebra"><h4><span class="ln">Lección 3</span>Introducción a GeoGebra</h4>
+<p><strong>Objetivo:</strong> usar GeoGebra para graficar familias de funciones, usar deslizadores y editar gráficos, y crear una cuenta para guardar y compartir el trabajo.</p>
+<p><strong>Problema:</strong> no hay situación en contexto. La lección es instrumental y usa como objeto de estudio las familias \((x - h)^2 + k\), \(kx^2\) y \(x^n\).</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Por qué GeoGebra: gratuito, en línea, multiplataforma y pensado para la educación.</li>
+<li>Al escribir una expresión con una letra libre, GeoGebra crea un deslizador para ese parámetro.</li>
+<li>Los parámetros \(h\) y \(k\) trasladan la parábola y fijan su vértice; \(k\) en \(kx^2\) la estira o la achata.</li>
+<li>Exportar una imagen, crear una cuenta, guardar el archivo <code>.ggb</code> en una carpeta y subirlo.</li>
+<li>Funciones potencia \(x^n\): el comportamiento cambia según \(n\) sea par o impar, y según \(x\) esté entre \(-1\) y \(1\) o fuera de ese intervalo.</li>
+<li>Cinco formas de gráfico de la familia \(x^n\), según la paridad y el signo de \(n\).</li>
+</ul>
+</section><section class="leccion" id="lección-4-analizando-funciones-con-geogebra"><h4><span class="ln">Lección 4</span>Analizando funciones con GeoGebra</h4>
+<p><strong>Objetivo:</strong> analizar funciones definidas por tramos y funciones racionales, usando GeoGebra para elaborar sus gráficos.</p>
+<p><strong>Problema:</strong> la cuenta del agua. Hay un cargo fijo de $668 y cada metro cúbico cuesta $868 hasta los 40 m³; desde el metro cúbico 41, cada uno cuesta $1 573. Hay que modelar el total a pagar y compararlo con un plan alternativo de tarifa plana.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Leer la boleta: cargo fijo, precio por metro cúbico y sobreconsumo.</li>
+<li>Una expresión vale solo en un tramo, así que su dominio queda restringido (\(0 \le x \le 40\)).</li>
+<li>Para el sobreconsumo se cobra la tarifa mayor solo por los metros cúbicos que pasan de 40.</li>
+<li>Función definida por tramos: una fórmula por tramo, con tramos que no se traslapan, para que cada \(x\) tenga una sola imagen.</li>
+<li>El comando <code>Si</code> de GeoGebra para graficar tramos, y la herramienta Intersección para comparar dos planes.</li>
+<li>Funciones de la forma \((ax + b)/(cx + d)\): qué pasa cuando \(ad = bc\), y el caso \(1/x\).</li>
+<li>Asíntotas verticales y horizontales, ceros de una función y funciones racionales \(p(x)/q(x)\).</li>
+</ul>
+</section><h3 id="actividad-2-modelar-cambios-con-funciones">Actividad 2. Modelar cambios con funciones</h3>
+<section class="leccion" id="lección-1-componiendo-con-tablas-y-máquinas"><h4><span class="ln">Lección 1</span>Componiendo con tablas y máquinas</h4>
+<p><strong>Objetivo:</strong> componer funciones presentadas en tablas y como máquinas, e interpretar los resultados en problemas en contexto.</p>
+<p><strong>Problema:</strong> Alejandra y Nicolás sueltan un globo de helio con un altímetro y quieren saber cuándo revienta, que es cuando la presión baja a 400 mbar. Tienen una tabla de presión según la altura y miden la altura según el tiempo.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Distinguir lo que se sabe de lo que falta averiguar.</li>
+<li>La notación \(p(h)\) y \(h(t)\): "la presión es función de la altura".</li>
+<li>Para obtener la presión a partir del tiempo hay que aplicar dos funciones en secuencia.</li>
+<li>La composición \((p \circ h)(t) = p(h(t))\): se lee de izquierda a derecha y se evalúa de derecha a izquierda.</li>
+<li>Un segundo caso con tres tablas: velocidad, rendimiento del auto y costo de recorrer 100 km.</li>
+<li>Las funciones como máquinas: la salida de una es la entrada de la otra.</li>
+<li>La composición frente a la suma, la resta, el producto y el cociente de funciones.</li>
+<li>El orden en que se componen dos funciones cambia el resultado.</li>
+</ul>
+</section><section class="leccion" id="lección-2-componiendo-funciones"><h4><span class="ln">Lección 2</span>Componiendo funciones</h4>
+<p><strong>Objetivo:</strong> comprender cómo el dominio de una composición depende de las funciones que se componen, y componer funciones dadas como diagramas sagitales y como expresiones algebraicas.</p>
+<p><strong>Problema:</strong> no hay situación en contexto; se trabaja con diagramas sagitales y expresiones algebraicas.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Función, dominio, codominio, imagen y recorrido, leídos en un diagrama sagital.</li>
+<li>La composición \(f \circ g\) solo se puede calcular donde la imagen de \(g\) cae en el dominio de \(f\).</li>
+<li>Dominio natural: todos los reales donde la fórmula se puede calcular.</li>
+<li>Restringir el dominio cuando la variable representa algo con sentido acotado, como un porcentaje o un lado.</li>
+<li>Restricciones típicas: raíz de índice par, denominador distinto de cero y argumento positivo del logaritmo.</li>
+<li>Dominio de \(f \circ f\) y de composiciones de raíces, logaritmos y racionales.</li>
+<li>Al componer dos funciones lineales se obtiene una función lineal; se analiza cuándo \(f \circ g = g \circ f\).</li>
+</ul>
+</section><section class="leccion" id="lección-3-componiendo-gráficos"><h4><span class="ln">Lección 3</span>Componiendo gráficos</h4>
+<p><strong>Objetivo:</strong> evaluar la composición de funciones representadas por gráficos e interpretar el resultado en un problema en contexto.</p>
+<p><strong>Problema:</strong> se retoma el globo de Alejandra y Nicolás. Con las tablas de altura según tiempo y de presión según altura hay que estimar cuándo revienta el globo.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Leer el dominio y el recorrido en un gráfico con rectas verticales y horizontales.</li>
+<li>Evaluar \(f \circ g\) leyendo dos gráficos, y estimar el recorrido de una composición.</li>
+<li>GeoGebra entrega la fórmula de una composición sin simplificar, y hay que simplificarla.</li>
+<li>Ajustar a ojo un modelo lineal a cada tabla y medir su calidad con el valor absoluto de la diferencia entre lo estimado y lo medido.</li>
+<li>Comparar modelos con un compañero y acordar criterios que cuantifiquen el error.</li>
+<li>Un modelo lineal vale solo en un rango de tiempos o de alturas.</li>
+<li>Componer los dos modelos lineales para obtener la presión en función del tiempo y estimar cuándo revienta el globo.</li>
+</ul>
+</section><h3 id="actividad-3-la-función-inversa">Actividad 3. La función inversa</h3>
+<section class="leccion" id="lección-1-qué-es-la-inversa-de-una-función"><h4><span class="ln">Lección 1</span>¿Qué es la inversa de una función?</h4>
+<p><strong>Objetivo:</strong> comprender la noción de función inversa, en particular para funciones lineales, representarla por su expresión y su gráfico, y usarla para resolver problemas en contexto.</p>
+<p><strong>Problema:</strong> un auto viaja por la carretera hacia Concepción, a 292.5 km, y se conoce la distancia recorrida en función del tiempo. La pregunta se da vuelta: ¿cuánto tiempo tarda en recorrer cierta distancia?</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Un problema inverso busca la preimagen de un valor del recorrido.</li>
+<li>Una máquina \(M\) que recibe la distancia y entrega el tiempo; solo admite distancias que el auto efectivamente recorre.</li>
+<li>La función inversa \(D^{-1}\): su dominio es el recorrido de \(D\) y su recorrido es el dominio de \(D\).</li>
+<li>Despejar la variable para obtener una fórmula de la inversa.</li>
+<li>\((f^{-1} \circ f)(x) = x\) y \((f \circ f^{-1})(x) = x\).</li>
+<li>El gráfico de una función y el de su inversa son simétricos respecto de \(y = x\).</li>
+<li>Toda función lineal con \(m \neq 0\) tiene inversa, incluso con el dominio restringido a un intervalo.</li>
+</ul>
+</section><section class="leccion" id="lección-2-cuántos-años-tiene-la-momia-una-pregunta-radiactiva"><h4><span class="ln">Lección 2</span>¿Cuántos años tiene la momia? Una pregunta radiactiva</h4>
+<p><strong>Objetivo:</strong> aplicar la noción de función inversa en un problema en contexto con una función exponencial, y determinar la inversa de funciones con exponenciales y logaritmos.</p>
+<p><strong>Problema:</strong> datación con carbono 14. Se conoce cuántos átomos de C‑14 tiene una muestra, y hay que estimar hace cuántos años murió la momia.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Los seres vivos mantienen constante su C‑14; al morir, ese carbono decae.</li>
+<li>De la tabla de datos se lee el período de semidesintegración: 5 730 años.</li>
+<li>Modelo exponencial \(C(t) = C(0)/2^{t/P}\), contrastado con los datos en GeoGebra.</li>
+<li>Encontrar la antigüedad de la momia es resolver un problema inverso, primero en forma gráfica y después despejando con logaritmos.</li>
+<li>\(\log_a x\) es la inversa de \(a^x\), con sus dominios y recorridos intercambiados.</li>
+<li>Definición general de inversa: \(f^{-1}(y) = x\) si y solo si \(y = f(x)\), cuando cada elemento del codominio tiene una única preimagen.</li>
+<li>Resolver \(g(x) = y\) entrega a la vez el recorrido de \(g\) y su inversa.</li>
+</ul>
+</section><section class="leccion" id="lección-3-invirtiendo-donde-y-cuando-se-pueda"><h4><span class="ln">Lección 3</span>Invirtiendo donde y cuando se pueda</h4>
+<p><strong>Objetivo:</strong> calcular inversas para abordar problemas en contexto, restringiendo el dominio y el codominio si hace falta, y graficar la inversa de una función.</p>
+<p><strong>Problema:</strong> Ángela y Francisca lanzan una pelota desde un puente y fotografían su trayectoria, que es una parábola. Hay alturas que la pelota alcanza dos veces, una al subir y otra al bajar.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Hay funciones cuya preimagen se ve en el gráfico pero no se puede despejar con álgebra.</li>
+<li>El gráfico de la inversa es el reflejo del gráfico de \(f\) respecto de \(y = x\).</li>
+<li>El reflejo no siempre es una función: hay inversa solo cuando el problema inverso tiene una única solución (inyectividad).</li>
+<li>Las funciones estrictamente crecientes o decrecientes son inyectivas.</li>
+<li>Las exponenciales \(a^x\) con \(a &gt; 0\), \(a \neq 1\) tienen inversa; los logaritmos se distinguen según \(a\) sea mayor o menor que 1.</li>
+<li>Restringir el dominio fuerza la inyectividad; el contexto decide cuál restricción tiene sentido (la pelota subiendo o bajando).</li>
+<li>La raíz cuadrada es la inversa de \(x^2\) en \([0, \infty[\), y por eso \(\sqrt{x^2} = |x|\).</li>
+<li>Inversa local (\(-\sqrt{x}\) en \(]-\infty, 0]\)) frente a inversa global.</li>
+</ul>
+</section><h3 id="actividad-4-entender-y-simplificar-un-problema-a-modelar">Actividad 4. Entender y simplificar un problema a modelar</h3>
+<section class="leccion" id="lección-1-empezando-a-modelar"><h4><span class="ln">Lección 1</span>Empezando a modelar</h4>
+<p><strong>Objetivo:</strong> identificar las etapas del proceso de modelamiento matemático y comprender por qué hay que simplificar el problema real.</p>
+<p><strong>Problema:</strong> ¿cuántas paltas conviene producir en un año? Pedro Tenue, productor, sabe que si se produce mucho el precio baja.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>El precio de un bien no es fijo: depende de cuánto se produce.</li>
+<li>Muchos factores influyen en la decisión: costos, clima, mercado externo.</li>
+<li>Lo que se modela es una versión simplificada de la realidad, no la realidad.</li>
+<li>Ciclo de modelamiento: entender y simplificar, matematizar, trabajar matemáticamente, interpretar y evaluar.</li>
+<li>Simplificar exige hacer supuestos, como maximizar los ingresos en vez de las ganancias.</li>
+<li>Hay que equilibrar el grado de simplificación, la exactitud del modelo y la dificultad de manejarlo; conviene partir con un modelo sencillo.</li>
+</ul>
+</section><section class="leccion" id="lección-2-la-función-que-modela-el-problema"><h4><span class="ln">Lección 2</span>La función que modela el problema</h4>
+<p><strong>Objetivo:</strong> identificar los procesos de las etapas de elaborar y trabajar un modelo matemático para resolver un problema.</p>
+<p><strong>Problema:</strong> el mismo de las paltas, ahora con datos de producción y precio promedio por año para encontrar la producción que maximiza el ingreso.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Ingreso = precio × cantidad, y para eso hace falta el precio en función de la cantidad.</li>
+<li>Ajustar a mano una recta a los datos con GeoGebra; distintos estudiantes obtienen rectas parecidas pero no iguales.</li>
+<li>Matematizar: cuantificar, elegir unidades y notación, representar y expresar relaciones con funciones.</li>
+<li>La función de ingreso resulta cuadrática, \(I(x) = -17.32x^2 + 6846.73x\).</li>
+<li>Trabajar matemáticamente: graficar el ingreso y encontrar el punto donde es máximo.</li>
+</ul>
+</section><section class="leccion" id="lección-3-evaluar-el-modelo-matemático"><h4><span class="ln">Lección 3</span>Evaluar el modelo matemático</h4>
+<p><strong>Objetivo:</strong> evaluar la pertinencia de un modelo matemático e identificar sus ventajas y limitaciones.</p>
+<p><strong>Problema:</strong> el modelo de Pedro acertó en la producción y en el ingreso, pero los productores están descontentos. Margarita Fuerte propone revisar el modelo, dejando fuera un año atípico.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Comparar lo que entrega el modelo con lo que ocurrió.</li>
+<li>Un dato atípico, explicado por el contexto internacional, cambia la recta ajustada.</li>
+<li>Construir el modelo alternativo y comparar los máximos de los dos en GeoGebra.</li>
+<li>Medir si una diferencia es grande o pequeña con la variación porcentual.</li>
+<li>Revisar los supuestos: lo que el modelo dejó fuera, como los costos, explica el descontento.</li>
+<li>Evaluar un modelo es decidir si sirve para la pregunta que se quiere responder, y volver a empezar el ciclo si no sirve.</li>
+</ul>
+</section><h2 id="unidad-2-reconocer-un-patrón-infinito-y-la-noción-de-límite">Unidad 2. Reconocer un patrón infinito y la noción de límite</h2>
+<p>Diagnóstico de entrada, cuatro actividades con su evaluación y una evaluación de unidad. La unidad parte por el comportamiento al infinito, sigue con el límite en un punto, usa las sucesiones para precisar los números reales y cierra con la continuidad y el teorema de Bolzano.</p>
+<h3 id="actividad-1-comportamiento-al-infinito">Actividad 1. Comportamiento al infinito</h3>
+<section class="leccion" id="lección-1-se-extinguirán-las-bacterias"><h4><span class="ln">Lección 1</span>¿Se extinguirán las bacterias?</h4>
+<p><strong>Objetivo:</strong> motivar el estudio del comportamiento asintótico de una función con situaciones en contexto que se modelan con funciones del tiempo.</p>
+<p><strong>Problema:</strong> una colonia de bacterias que come plástico crece 20 % por hora mientras alcanza el alimento, pero los recursos son limitados. ¿Se puede extinguir la colonia? ¿Puede crecer sin fin?</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Con recursos ilimitados el crecimiento es exponencial; con recursos limitados la velocidad de crecimiento baja a medida que la colonia crece.</li>
+<li>El modelo logístico crece en forma de S.</li>
+<li>Los parámetros del modelo: \(P_0\) es la población inicial, \(r\) la rapidez de crecimiento y \(N\) la capacidad máxima.</li>
+<li>A medida que \(t\) crece, \(P(t)\) se acerca a \(N\) tanto como se quiera.</li>
+<li>Comportamiento al infinito: qué hace una función cuando \(x\) crece o decrece sin límite; no todas las funciones tienden a un valor.</li>
+<li>Tablas de valores y gráficos de GeoGebra como herramientas para explorarlo.</li>
+</ul>
+</section><section class="leccion" id="lección-2-notación-de-límite"><h4><span class="ln">Lección 2</span>Notación de límite</h4>
+<p><strong>Objetivo:</strong> explorar numérica y gráficamente el comportamiento al infinito de funciones elementales, e introducir la notación de límite para describirlo.</p>
+<p><strong>Problema:</strong> no hay situación en contexto; se exploran tablas de valores de funciones elementales.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Seis comportamientos posibles cuando \(x \to \infty\) o \(x \to -\infty\): tender a un número, crecer sin cota o decrecer sin cota.</li>
+<li>La notación \(\lim_{x \to \infty} f(x) = L\), \(\lim_{x \to \infty} f(x) = \infty\) y sus variantes.</li>
+<li>Leer comportamientos al infinito en un gráfico.</li>
+<li>El logaritmo crece sin cota, aunque muy lento.</li>
+<li>Funciones potencia \(x^n\): el comportamiento al infinito depende de la paridad y del signo de \(n\).</li>
+</ul>
+</section><section class="leccion" id="lección-3-el-columpio-sin-fin"><h4><span class="ln">Lección 3</span>El columpio sin fin</h4>
+<p><strong>Objetivo:</strong> identificar los distintos comportamientos al infinito de funciones que oscilan.</p>
+<p><strong>Problema:</strong> una fábrica de columpios prueba sus productos con un robot que se columpia durante horas. La posición horizontal del columpio es una función del tiempo y se estudia qué pasa a muy largo plazo en distintos escenarios.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Una oscilación de amplitud constante no tiende a ningún valor y tampoco diverge.</li>
+<li>Una oscilación que se amortigua tiende a 0.</li>
+<li>Una oscilación que crece no diverge a infinito, aunque sus máximos crezcan, porque pasa por valores negativos.</li>
+<li>El gráfico se interpreta con cuidado: un modelo vale en un rango de tiempo.</li>
+<li>Clasificar gráficos según su comportamiento al infinito.</li>
+</ul>
+</section><section class="leccion" id="lección-4-precisando-la-definición-de-límite"><h4><span class="ln">Lección 4</span>Precisando la definición de límite</h4>
+<p><strong>Objetivo:</strong> construir una definición intuitiva de límite de \(f(x)\) cuando \(x\) tiende a infinito o a menos infinito.</p>
+<p><strong>Problema:</strong> no hay situación en contexto; se analiza una función cuya distancia a 1 y a 2 se reduce a la vez cuando \(x\) crece, y un diálogo entre un profesor y Sergio sobre una función conocida solo en algunos puntos.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>"\(f(x)\) se acerca a \(L\)" no basta: la distancia a 2 también se reduce aunque el límite sea 1.</li>
+<li>\(f(x)\) tiene que acercarse a \(L\) tanto como se quiera; la distancia se mide con \(|f(x) - L|\).</li>
+<li>Para cada distancia \(d\) hay un valor de \(x\) que la cumple.</li>
+<li>Tampoco basta que se acerque en algunos puntos: tiene que quedarse cerca para todo \(x\) suficientemente grande.</li>
+<li>Definición: el límite es \(L\) si para cualquier \(d &gt; 0\), la distancia entre \(f(x)\) y \(L\) es menor que \(d\) a partir de cierto \(x\).</li>
+</ul>
+</section><section class="leccion" id="lección-5-propiedades-de-los-límites"><h4><span class="ln">Lección 5</span>Propiedades de los límites</h4>
+<p><strong>Objetivo:</strong> conocer y aplicar las propiedades de los límites para calcular límites cuando \(x\) tiende a infinito.</p>
+<p><strong>Problema:</strong> no hay situación en contexto; Estrella explora límites de sumas, restas, productos y cocientes de funciones conocidas.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Explorar en tablas y gráficos el límite de la suma y de la resta de dos funciones con límite.</li>
+<li>El límite de la suma es la suma de los límites, y lo mismo para la resta.</li>
+<li>Conjeturas para el producto y el cociente, puestas en palabras en parejas.</li>
+<li>Las cuatro propiedades, con la condición de que el denominador no tienda a 0 en el cociente.</li>
+<li>Calcular límites nuevos a partir de límites ya conocidos.</li>
+</ul>
+</section><section class="leccion" id="lección-6-practicando-con-límites-al-infinito"><h4><span class="ln">Lección 6</span>Practicando con límites al infinito</h4>
+<p><strong>Objetivo:</strong> aplicar estrategias algebraicas para calcular límites al infinito.</p>
+<p><strong>Problema:</strong> no hay situación en contexto; se trabajan potencias de funciones y cocientes de polinomios.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>El límite de una potencia es la potencia del límite, por la propiedad del producto.</li>
+<li>Cuando numerador y denominador crecen sin cota, la propiedad del cociente no se puede aplicar directamente.</li>
+<li>Estrategia: dividir numerador y denominador por la potencia mayor de \(x\) y reescribir la función.</li>
+<li>Calcular el límite de cada término y armar el resultado con las propiedades.</li>
+<li>Por qué conviene dividir por la potencia mayor.</li>
+</ul>
+</section><h3 id="actividad-2-analizando-límites">Actividad 2. Analizando límites</h3>
+<section class="leccion" id="lección-1-límite-en-un-punto"><h4><span class="ln">Lección 1</span>Límite en un punto</h4>
+<p><strong>Objetivo:</strong> estudiar el comportamiento de funciones cuando \(x\) tiende a un número en el que la función no está definida.</p>
+<p><strong>Problema:</strong> la pendiente de la recta tangente. Un camino sobre una colina se dibuja como una curva; para saber si un auto puede subirla hay que conocer la pendiente en un punto, y una recta necesita dos puntos.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>La pendiente de la tangente se aproxima con pendientes de rectas secantes.</li>
+<li>A medida que el segundo punto se acerca al primero, la secante se parece a la tangente.</li>
+<li>La secante no existe cuando los dos puntos coinciden: la función pendiente \(m(x)\) no está definida en \(x = 1\).</li>
+<li>Se estudia \(m(x)\) con \(x\) cada vez más cerca de 1, por la izquierda y por la derecha.</li>
+<li>Cuanto más cerca está \(x\) de \(a\), más decimales de \(f(x)\) quedan fijos; ese número es el límite \(\lim_{x \to a} f(x) = L\).</li>
+</ul>
+</section><section class="leccion" id="lección-2-límites-laterales"><h4><span class="ln">Lección 2</span>Límites laterales</h4>
+<p><strong>Objetivo:</strong> estudiar el comportamiento de funciones con saltos cuando \(x\) tiende a un número.</p>
+<p><strong>Problema:</strong> Esteban estudia para un examen y encuentra el gráfico de una función con un salto en \(x = 2\).</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Hay dos maneras de acercarse a un número: por la izquierda (\(x \to r^-\)) y por la derecha (\(x \to r^+\)).</li>
+<li>Los límites laterales pueden ser distintos entre sí y distintos del valor de la función.</li>
+<li>Leer límites laterales en gráficos.</li>
+<li>En una función por tramos, cada límite lateral se calcula con la fórmula del tramo correspondiente.</li>
+<li>Reconocer el gráfico de una función a partir de sus límites laterales.</li>
+</ul>
+</section><section class="leccion" id="lección-3-cuándo-existe-el-límite"><h4><span class="ln">Lección 3</span>¿Cuándo existe el límite?</h4>
+<p><strong>Objetivo:</strong> estudiar la existencia del límite de una función cuando \(x\) tiende a un valor conocido.</p>
+<p><strong>Problema:</strong> no hay situación en contexto; un recurso de GeoGebra con un parámetro \(b\) mueve una de las ramas de una función por tramos.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Cuando las dos ramas no coinciden, la función no tiende a un valor específico.</li>
+<li>Para ciertos valores de \(b\) las ramas se juntan y sí hay límite.</li>
+<li>El límite existe si y solo si los dos límites laterales existen y son iguales.</li>
+<li>Los comandos <code>LímiteIzquierda</code> y <code>LímiteDerecha</code> de GeoGebra.</li>
+<li>Decidir la existencia del límite en los puntos donde cambia la fórmula de una función por tramos.</li>
+</ul>
+</section><section class="leccion" id="lección-4-límite-y-asíntotas-verticales"><h4><span class="ln">Lección 4</span>Límite y asíntotas verticales</h4>
+<p><strong>Objetivo:</strong> estudiar el comportamiento de una función cuando \(x\) tiende a un número en el que hay una asíntota vertical.</p>
+<p><strong>Problema:</strong> el viaje de Santiago a Valparaíso, unos 120 km por la Ruta 68. El tiempo de viaje depende de la velocidad promedio, \(t = 120/v\). ¿Qué pasa si la velocidad es muy pequeña?</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Construir la función tiempo según velocidad a partir de una tabla.</li>
+<li>Cuando la velocidad se acerca a 0, el tiempo crece tanto como se quiera.</li>
+<li>La velocidad 0 no tiene tiempo de viaje asociado.</li>
+<li>Divergencia a infinito: \(f(v) \to \infty\) cuando \(v \to 0^+\), y su relación con la asíntota vertical.</li>
+<li>El mismo comportamiento puede ocurrir en cualquier número y por cualquiera de los dos lados.</li>
+</ul>
+</section><section class="leccion" id="lección-5-comportamiento-de-funciones-que-oscilan-en-torno-a-un-valor"><h4><span class="ln">Lección 5</span>Comportamiento de funciones que oscilan en torno a un valor</h4>
+<p><strong>Objetivo:</strong> analizar funciones que oscilan al aproximarse a un punto por la izquierda o por la derecha.</p>
+<p><strong>Problema:</strong> no hay situación en contexto; se construye una función \(R(x)\) a partir de una función periódica \(T(x)\), con \(R(a/b) = T(b/a)\).</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Cerca de 0, \(R(x)\) oscila cada vez más rápido entre \(-1\) y 1 y no tiene límite.</li>
+<li>Al multiplicar por \(x\), la función \(P(x) = x \cdot R(x)\) queda entre \(-|x|\) y \(|x|\), y tiende a 0.</li>
+<li>Una función acotada multiplicada por otra que tiende a 0 tiende a 0.</li>
+<li>Conjeturar en un gráfico si una función oscilante tiene o no límite.</li>
+</ul>
+</section><section class="leccion" id="lección-6-operación-al-límite"><h4><span class="ln">Lección 6</span>Operación al límite</h4>
+<p><strong>Objetivo:</strong> argumentar las propiedades algebraicas del cálculo de límites y usarlas con distintos tipos de funciones.</p>
+<p><strong>Problema:</strong> no hay situación en contexto; se exploran tablas de sumas, productos y cocientes de funciones cerca de un número.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Para polinomios, racionales y raíces, cuando se puede evaluar en el punto, el límite es el valor de la función.</li>
+<li>Los decimales de \(x + 2x\) se fijan en torno a 3 cuando \(x \to 1\).</li>
+<li>Cuando una de las funciones no tiene límite, la operación tampoco lo tiene.</li>
+<li>Propiedades de la suma, la resta, el producto y el cociente cuando \(x \to r\), con la condición del denominador.</li>
+<li>Usar límites de funciones desconocidas de las que solo se sabe el límite.</li>
+<li>Cuando numerador y denominador tienden a 0, se factoriza y se simplifica antes de aplicar las propiedades.</li>
+</ul>
+</section><section class="leccion" id="lección-7-precisando-la-definición-de-límite"><h4><span class="ln">Lección 7</span>Precisando la definición de límite</h4>
+<p><strong>Objetivo:</strong> construir una definición de límite de \(f(x)\) cuando \(x\) tiende a un número conocido.</p>
+<p><strong>Problema:</strong> el gráfico de GeoGebra de una función sugiere que su límite en 0 es 3, pero una tabla con valores más cercanos a 0 muestra otra cosa.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Las tablas y los gráficos dan indicios, no pruebas.</li>
+<li>Siempre se puede acercarse más a \(r\), y el comportamiento puede cambiar; una tabla puede sugerir convergencia donde hay oscilación.</li>
+<li>Hace falta una definición que no dependa de los decimales ni de cómo se acerca \(x\).</li>
+<li>Definición con distancias: para cada \(D &gt; 0\) existe \(d &gt; 0\) tal que si \(x\) está a menos de \(d\) de \(r\), entonces \(f(x)\) está a menos de \(D\) de \(L\).</li>
+<li>Encontrar un \(d\) para cada \(D\) en ejemplos con gráfico, como \(\sqrt{x} + 1\).</li>
+</ul>
+</section><h3 id="actividad-3-qué-son-las-sucesiones">Actividad 3. ¿Qué son las sucesiones?</h3>
+<section class="leccion" id="lección-1-qué-son-las-sucesiones"><h4><span class="ln">Lección 1</span>¿Qué son las sucesiones?</h4>
+<p><strong>Objetivo:</strong> conocer el concepto de sucesión, su notación y su utilidad para describir procesos infinitos.</p>
+<p><strong>Problema:</strong> Miga la hormiga, que es asmática, lleva una hoja al hormiguero recorriendo cada vez la mitad de lo que le falta y descansando entre tramos. ¿Llega al hormiguero?</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>El recorrido de Miga se describe con una lista infinita de distancias: \(r/2, r/4, r/8, \ldots\).</li>
+<li>Sucesión, término general \(a_n\) y notación \(\{a_n\}\).</li>
+<li>Representar una sucesión en la recta numérica.</li>
+<li>Comportamientos distintos: \(1/n\) se acerca a 0 y \((n^2 + 1)/5\) crece sin cota.</li>
+<li>Interés compuesto con más períodos: un premio de 1 bitcoin al 100 % anual, capitalizado en 1, 2, …, 12 y 365 períodos.</li>
+</ul>
+</section><section class="leccion" id="lección-2-sucesiones-al-infinito"><h4><span class="ln">Lección 2</span>Sucesiones al infinito</h4>
+<p><strong>Objetivo:</strong> identificar el término general de algunas sucesiones y sus comportamientos cuando \(n\) tiende a infinito.</p>
+<p><strong>Problema:</strong> tres situaciones. Antonia dibuja pilas de círculos para artes visuales, dos amigos juegan ping-pong sobre una recta numérica, y Josefa y Francisca negocian el precio de un celular promediando sus dos últimas ofertas.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Encontrar el término general de las pilas de círculos: los números triangulares \(n(n+1)/2\).</li>
+<li>Una sucesión que crece sin cota.</li>
+<li>El ping-pong da \((-1)^n\), una sucesión que oscila y no converge.</li>
+<li>La negociación se describe con una sucesión recursiva, \(c_n = (c_{n-1} + c_{n-2})/2\), que tiende a un precio; el valor final depende de quién ofrece primero.</li>
+<li>Definición de sucesión convergente y divergente.</li>
+<li>Conjeturar el término general a partir de los primeros términos y explorarlo en la recta numérica.</li>
+</ul>
+</section><section class="leccion" id="lección-3-límite-de-sucesiones-y-números-reales"><h4><span class="ln">Lección 3</span>Límite de sucesiones y números reales</h4>
+<p><strong>Objetivo:</strong> usar el límite de sucesiones para definir algunos números reales.</p>
+<p><strong>Problema:</strong> el número \(L = 1.101001000100001\ldots\), cuyo patrón decimal no se repite. ¿Es racional o irracional? ¿Cómo se sabe que existe?</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Un número irracional tiene una expansión decimal infinita y no periódica.</li>
+<li>\(L\) se construye con una sucesión que agrega cifras en cada paso.</li>
+<li>Sucesión creciente, acotada superiormente y cota superior.</li>
+<li>Toda sucesión creciente y acotada superiormente converge, aunque no se conozca su límite.</li>
+<li>Demostrar que \(\sqrt{2}\) es irracional y obtener sus decimales por aproximaciones sucesivas.</li>
+<li>Un número real se define como el límite de las sucesivas aproximaciones decimales, con \(|a_n - \omega| \le 1/10^{n-1}\).</li>
+<li>\(0.\overline{9} = 1\), porque la sucesión que lo define converge a 1.</li>
+</ul>
+</section><section class="leccion" id="lección-4-límite-de-sucesiones"><h4><span class="ln">Lección 4</span>Límite de sucesiones</h4>
+<p><strong>Objetivo:</strong> comprender la relación entre la convergencia de sucesiones y los límites de funciones cuando \(x\) tiende a infinito, y usarla para calcular límites de sucesiones.</p>
+<p><strong>Problema:</strong> no hay situación en contexto; se comparan sucesiones con las funciones que extienden su fórmula a los reales.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Las técnicas para \(\lim_{x \to \infty} f(x)\) sirven para la versión discreta \(f(n)\).</li>
+<li>Si \(f(x)\) tiene límite \(L\), la sucesión \(a_n = f(n)\) también lo tiene.</li>
+<li>Una sucesión no tiene una única función asociada, y la recíproca no vale.</li>
+<li>Visualizar límites como \((1 + 1/n)^n\) con el gráfico de la función asociada.</li>
+<li>Definición: \(\lim a_n = L\) si para cualquier \(E &gt; 0\) existe \(N\) tal que \(|a_n - L| &lt; E\) para todo \(n \ge N\), explorada con una franja en GeoGebra.</li>
+</ul>
+</section><section class="leccion" id="lección-5-en-busca-de-los-decimales-de-y-"><h4><span class="ln">Lección 5</span>En busca de los decimales de \(\sqrt{2}\) y \(\pi\)</h4>
+<p><strong>Objetivo:</strong> aproximar números irracionales con sucesiones.</p>
+<p><strong>Problema:</strong> la calculadora y GeoGebra entregan una cantidad limitada de decimales de \(\sqrt{2}\) y \(\pi\). ¿Cómo se obtienen más?</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Método de Herón: rectángulos de área 2 que se van pareciendo a un cuadrado.</li>
+<li>La sucesión \(x_{n+1} = \frac{1}{2}(x_n + 2/x_n)\) entrega cada vez más decimales correctos.</li>
+<li>El mismo método para \(\sqrt{3}\).</li>
+<li>\(\pi\) como razón entre perímetro y diámetro, aproximado por polígonos regulares inscritos y circunscritos.</li>
+<li>Las aproximaciones por defecto y por exceso encierran a \(\pi\) y se acercan a medida que crece el número de lados.</li>
+</ul>
+</section><h3 id="actividad-4-continuidad-de-funciones">Actividad 4. Continuidad de funciones</h3>
+<section class="leccion" id="lección-1-continuidad-una-primera-aproximación-intuitiva"><h4><span class="ln">Lección 1</span>Continuidad: una primera aproximación intuitiva</h4>
+<p><strong>Objetivo:</strong> reconocer la noción de continuidad en modelos de fenómenos sencillos, asociada al trazo sin interrupciones del gráfico.</p>
+<p><strong>Problema:</strong> varias situaciones de modelamiento: una distancia recorrida en el tiempo, un plan de telefonía, la tarifa de un estacionamiento y el día que se cayó el Sistema Interconectado.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Una distancia recorrida no puede tener asíntotas ni saltos.</li>
+<li>Hay fenómenos que sí tienen saltos, como los cobros por tramos de tiempo.</li>
+<li>La notación del punto lleno y vacío en un gráfico.</li>
+<li>Los saltos tienen un significado en el contexto.</li>
+<li>En la caída del sistema eléctrico, el salto se expresa en límites laterales distintos.</li>
+<li>Primera noción: una función continua se dibuja sin levantar el lápiz.</li>
+</ul>
+</section><section class="leccion" id="lección-2-continuidad-de-funciones"><h4><span class="ln">Lección 2</span>Continuidad de funciones</h4>
+<p><strong>Objetivo:</strong> construir una definición de continuidad en un punto y en un intervalo basada en el límite, analizar la continuidad de funciones simples, deducir la de funciones más complejas y usarla para calcular límites.</p>
+<p><strong>Problema:</strong> no hay situación en contexto; un parámetro \(P\) mueve una rama de una función hasta que el gráfico queda sin salto en \(x = 4\).</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Para que no haya salto, los límites laterales tienen que coincidir entre sí y con el valor de la función.</li>
+<li>Definición: \(f\) es continua en \(r\) si \(\lim_{x \to r} f(x) = f(r)\); continuidad por la izquierda y por la derecha.</li>
+<li>La continuidad solo se pregunta en números del dominio.</li>
+<li>Continuidad en un intervalo abierto, en uno cerrado y en el dominio.</li>
+<li>La identidad y las constantes son continuas; sumas, productos, cocientes y composiciones de funciones continuas también lo son.</li>
+<li>Las funciones inversas de funciones continuas son continuas.</li>
+<li>Si una función es continua en \(r\), su límite se calcula evaluando.</li>
+</ul>
+</section><section class="leccion" id="lección-3-teorema-del-valor-intermedio-de-bolzano"><h4><span class="ln">Lección 3</span>Teorema del Valor Intermedio de Bolzano</h4>
+<p><strong>Objetivo:</strong> reconocer que la continuidad permite asegurar que una función tiene ceros, bajo ciertas condiciones.</p>
+<p><strong>Problema:</strong> la ecuación de Van der Waals para gases no ideales es una ecuación cúbica que no se resuelve con una fórmula sencilla, y hay que asegurar que tiene solución y aproximarla.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Los ceros de una función son las soluciones de \(f(x) = 0\).</li>
+<li>Si la función cambia de signo en los extremos de un intervalo, el gráfico corta el eje \(x\), siempre que sea continua.</li>
+<li>Teorema de Bolzano: si \(f\) es continua en \([a, b]\) y \(f(a)\), \(f(b)\) tienen distinto signo, hay un cero en \(]a, b[\).</li>
+<li>Sin continuidad el teorema no aplica, aunque haya cambio de signo.</li>
+<li>Aproximar soluciones achicando el intervalo, como en \(x \cdot 2^x = 7\) o en \(\cos(20^\circ)\).</li>
+<li>El montañista existencialista: subiendo un día y bajando al siguiente, pasa por el mismo punto a la misma hora; se prueba con Bolzano sobre la función diferencia.</li>
+</ul>
+</section><h2 id="unidad-3-modelar-situaciones-de-cambio-con-derivadas">Unidad 3. Modelar situaciones de cambio con derivadas</h2>
+<p>Diagnóstico de entrada, cuatro actividades con su evaluación, un proyecto y una evaluación de unidad. La unidad construye la derivada desde la velocidad instantánea, desarrolla las reglas de cálculo, las usa para estudiar funciones y optimizar, y cierra con exponenciales y logaritmos.</p>
+<h3 id="actividad-1-velocidad-instantánea">Actividad 1. Velocidad instantánea</h3>
+<section class="leccion" id="lección-1-velocidad-instantánea"><h4><span class="ln">Lección 1</span>Velocidad instantánea</h4>
+<p><strong>Objetivo:</strong> comprender la definición de velocidad instantánea de un objeto con la idea de límite, e interpretarla como la pendiente de la recta tangente al gráfico de la posición en función del tiempo.</p>
+<p><strong>Problema:</strong> caída libre. Una pelota se lanza hacia arriba desde 1.5 m y su altura sigue \(s(t) = s_0 + v_0 t - \frac{1}{2} g t^2\). ¿Qué velocidad tiene en un instante dado?</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>En un lanzamiento vertical la velocidad cambia todo el tiempo: disminuye al subir, se anula arriba y crece al bajar.</li>
+<li>La posición en caída libre es una parábola.</li>
+<li>La velocidad media entre dos instantes es la pendiente de la recta secante.</li>
+<li>Cuando un instante se acerca al otro, la secante se acerca a la tangente y la velocidad media a un valor: la velocidad instantánea.</li>
+<li>Leer en un gráfico dónde la velocidad instantánea es positiva, negativa o nula, como en el globo aerostático.</li>
+<li>Comparar velocidades instantáneas en la carrera en bicicleta de Patricio y Elizabeth.</li>
+</ul>
+</section><section class="leccion" id="lección-2-significado-de-la-derivada"><h4><span class="ln">Lección 2</span>Significado de la derivada</h4>
+<p><strong>Objetivo:</strong> comprender la derivada de una función en un punto como la razón instantánea de cambio.</p>
+<p><strong>Problema:</strong> ¿cómo cambia la superficie de una esfera, \(S(r) = 4\pi r^2\), a medida que crece su radio?</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>La razón de cambio \(\frac{S(r + \Delta r) - S(r)}{\Delta r}\) se acerca a un valor cuando \(\Delta r\) tiende a 0.</li>
+<li>La razón de cambio instantánea en \(r = 10\) se conjetura con una tabla y se calcula con el límite: \(80\pi\) cm²/cm.</li>
+<li>La derivada \(f'(x_0) = \lim_{h \to 0} \frac{f(x_0 + h) - f(x_0)}{h}\) es el concepto abstracto que reúne velocidad instantánea, razón de cambio instantánea y pendiente de la tangente.</li>
+<li>Calcular derivadas en un punto con la definición y trazar la recta tangente.</li>
+<li>Hay puntos donde la derivada no existe: tangente vertical (\(\sqrt[3]{x}\) en 0) y punta en el gráfico.</li>
+<li>El signo de la pendiente de la tangente muestra dónde la función sube o baja.</li>
+</ul>
+</section><section class="leccion" id="lección-3-función-derivada"><h4><span class="ln">Lección 3</span>Función derivada</h4>
+<p><strong>Objetivo:</strong> comprender la relación entre una función \(f\) y su función derivada \(f'\), e identificar el crecimiento y el decrecimiento de \(f\) a partir del signo de \(f'\).</p>
+<p><strong>Problema:</strong> el costo de la energía eléctrica. En el mercado eléctrico el costo de generar crece con la cantidad generada, y el costo marginal decide las tarifas.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>El costo marginal \(C(x + 1) - C(x)\) se aproxima a la pendiente de la tangente.</li>
+<li>La función derivada asigna a cada \(x\) la pendiente de la tangente en \((x, f(x))\).</li>
+<li>Interpretar el gráfico del costo marginal: dónde crece, dónde salta y qué significa en el mercado.</li>
+<li>\(f\) es creciente donde \(f' &gt; 0\) y decreciente donde \(f' &lt; 0\).</li>
+<li>En los puntos donde la función pasa de crecer a decrecer, la derivada vale 0.</li>
+<li>Reconocer el gráfico de \(f'\) a partir del de \(f\), y dibujarlo a mano.</li>
+</ul>
+</section><h3 id="actividad-2-cálculo-de-derivadas">Actividad 2. Cálculo de derivadas</h3>
+<section class="leccion" id="lección-1-funciones-derivadas-básicas"><h4><span class="ln">Lección 1</span>Funciones derivadas básicas</h4>
+<p><strong>Objetivo:</strong> determinar las derivadas de funciones sencillas y usarlas para resolver problemas.</p>
+<p><strong>Problema:</strong> no hay situación en contexto. Calcular el límite de la definición cada vez es engorroso, y se buscan fórmulas.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>La derivada de una constante es 0 y la de \(mx + n\) es \(m\), deducidas del gráfico y comprobadas con la definición.</li>
+<li>La derivada de \(x^2\) es una función lineal, \(2x\).</li>
+<li>Del patrón de \(x^2\) y \(x^3\) se conjetura \((x^n)' = nx^{n-1}\).</li>
+<li>Escribir \(1/x\) y \(\sqrt{x}\) como potencias para derivarlas.</li>
+<li>Tabla de derivadas básicas y su uso para encontrar la recta tangente.</li>
+</ul>
+</section><section class="leccion" id="lección-2-propiedades-de-derivadas"><h4><span class="ln">Lección 2</span>Propiedades de derivadas</h4>
+<p><strong>Objetivo:</strong> identificar propiedades básicas de la derivación.</p>
+<p><strong>Problema:</strong> no hay situación en contexto al inicio; después se maximiza el volumen de una caja, \(V(x) = (2 - x)x^2\).</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>La derivada de una suma es la suma de las derivadas, demostrado con la definición; lo mismo para la resta y para el producto por una constante.</li>
+<li>Con esas propiedades se deriva un polinomio y se encuentra dónde \(V'(x) = 0\).</li>
+<li>La derivada de un producto no es el producto de las derivadas.</li>
+<li>Regla del producto, deducida con la definición: \((fg)' = f'g + fg'\).</li>
+<li>Con la regla del producto se obtienen las derivadas de \(x^4\) y \(x^5\).</li>
+<li>Regla del cociente, deducida de la del producto.</li>
+<li>Elegir entre desarrollar la expresión o aplicar la regla.</li>
+</ul>
+</section><section class="leccion" id="lección-3-derivada-de-funciones-compuestas"><h4><span class="ln">Lección 3</span>Derivada de funciones compuestas</h4>
+<p><strong>Objetivo:</strong> identificar propiedades básicas de la derivación. El curso repite aquí el objetivo de la Lección 2; lo propio de esta lección es la derivada de una composición.</p>
+<p><strong>Problema:</strong> los cambios de una bicicleta. Tres engranajes unidos por una cadena: ¿cuántas vueltas da uno por cada vuelta del otro? Después, un tanque cilíndrico cuya altura de agua sube 3 cm por minuto.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>En los engranajes, las razones entre vueltas se multiplican.</li>
+<li>En el tanque, el volumen depende de la altura y la altura del tiempo; la rapidez del volumen es el producto de las dos razones.</li>
+<li>Regla de la cadena: \((f(g(x)))' = f'(g(x)) \cdot g'(x)\), justificada con la definición.</li>
+<li>Comprobar la regla en casos que también se pueden desarrollar.</li>
+<li>Identificar la función de afuera y la de adentro, y derivar paso a paso.</li>
+<li>Encontrar y corregir el error en el cálculo de otro estudiante.</li>
+</ul>
+</section><h3 id="actividad-3-derivadas">Actividad 3. Derivadas</h3>
+<section class="leccion" id="lección-1-cimas-y-valles"><h4><span class="ln">Lección 1</span>Cimas y valles</h4>
+<p><strong>Objetivo:</strong> determinar y clasificar los extremos locales de una función.</p>
+<p><strong>Problema:</strong> no hay situación en contexto; se parte por el vértice de la parábola.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>En el vértice de una parábola la derivada vale 0; con eso se deduce la fórmula del vértice.</li>
+<li>En una cúbica se buscan los \(x\) con \(f'(x) = 0\) y se estudia el signo de \(f'\) con una tabla de signos.</li>
+<li>Un máximo local ocurre cuando \(f'\) pasa de positiva a negativa; un mínimo, al revés.</li>
+<li>Una función con \(f' &gt; 0\) en todo su dominio no tiene extremos locales.</li>
+<li>También puede haber extremos donde la derivada no existe.</li>
+<li>Números críticos: donde la derivada vale 0 o no existe.</li>
+<li>Comandos de GeoGebra para derivar y resolver \(f'(x) = 0\).</li>
+</ul>
+</section><section class="leccion" id="lección-2-extremos-globales-de-una-función"><h4><span class="ln">Lección 2</span>Extremos globales de una función</h4>
+<p><strong>Objetivo:</strong> determinar los extremos de una función continua en un intervalo cerrado.</p>
+<p><strong>Problema:</strong> una caja rectangular hecha cortando cuadrados en las esquinas de una plancha de hojalata, y el trayecto de Isolina, que vuelve de pescar remando y caminando, y quiere llegar a su casa en el menor tiempo.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>El máximo de una función en un intervalo puede no coincidir con su máximo local.</li>
+<li>En un intervalo cerrado, los extremos globales están en los números críticos o en los bordes.</li>
+<li>Procedimiento: evaluar la función en los números críticos y en los bordes, y comparar.</li>
+<li>Las restricciones del contexto fijan el intervalo.</li>
+<li>Comprobar con los comandos Máximo y Mínimo de GeoGebra.</li>
+</ul>
+</section><section class="leccion" id="lección-3-concavidad-y-criterio-de-la-segunda-derivada"><h4><span class="ln">Lección 3</span>Concavidad y criterio de la segunda derivada</h4>
+<p><strong>Objetivo:</strong> usar la segunda derivada para determinar la concavidad de una función y clasificar extremos locales.</p>
+<p><strong>Problema:</strong> no hay situación en contexto; se analizan gráficos y funciones polinómicas.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Concavidad hacia arriba y hacia abajo, primero vista en la forma del gráfico.</li>
+<li>Cuando la función es cóncava hacia arriba, la pendiente de la tangente crece.</li>
+<li>\(f'' &gt; 0\) en un intervalo da concavidad hacia arriba, y \(f'' &lt; 0\) hacia abajo.</li>
+<li>Punto de inflexión: donde cambia la concavidad; ahí \(f'' = 0\) o \(f''\) no existe, pero la recíproca no vale.</li>
+<li>Criterio de la segunda derivada: en un número crítico, \(f'' &gt; 0\) indica mínimo y \(f'' &lt; 0\) indica máximo.</li>
+</ul>
+</section><section class="leccion" id="lección-4-optimización"><h4><span class="ln">Lección 4</span>Optimización</h4>
+<p><strong>Objetivo:</strong> resolver problemas de optimización en contextos geométricos usando derivadas.</p>
+<p><strong>Problema:</strong> el rectángulo de mayor área que se forma con 100 cm de hilo, y el tarro de hojalata de mayor volumen para un costo dado de material.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Identificar la cantidad que se quiere maximizar y escribirla con dos variables.</li>
+<li>La restricción del problema permite dejar la función objetivo con una sola variable.</li>
+<li>El contexto fija el dominio; conviene incluir los casos límite para trabajar en un intervalo cerrado.</li>
+<li>Encontrar los números críticos y compararlos con los bordes.</li>
+<li>Etapas generales: dibujar, identificar variables, escribir la función objetivo y la restricción, fijar el dominio, derivar e interpretar.</li>
+<li>Un alambre cortado en un cuadrado y un círculo: minimizar el área total, trabajando en pareja.</li>
+</ul>
+</section><section class="leccion" id="lección-5-practicando-con-problemas-de-optimización"><h4><span class="ln">Lección 5</span>Practicando con problemas de optimización</h4>
+<p><strong>Objetivo:</strong> resolver problemas de optimización en contextos generales.</p>
+<p><strong>Problema:</strong> tres problemas. El arriendo de un edificio de departamentos (subir el precio deja departamentos vacíos), una hoja con zona de impresión y márgenes, y el trazado más barato de una tubería para una planta de amoníaco verde.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>No hay un único camino: la elección de variables cambia la dificultad del problema.</li>
+<li>Maximizar el ingreso del edificio e interpretar el resultado en el contexto.</li>
+<li>Dos modelos distintos para el mismo problema llegan al mismo resultado.</li>
+<li>En la tubería, la solución cambia con los costos por tramo; se estudia la dependencia general y se comparan ofertas de tres empresas.</li>
+</ul>
+</section><h3 id="actividad-4-derivada-de-funciones-exponenciales-y-logarítmicas">Actividad 4. Derivada de funciones exponenciales y logarítmicas</h3>
+<section class="leccion" id="lección-1-derivada-de-funciones-exponenciales"><h4><span class="ln">Lección 1</span>Derivada de funciones exponenciales</h4>
+<p><strong>Objetivo:</strong> resolver problemas en contexto que involucran la derivada de funciones exponenciales.</p>
+<p><strong>Problema:</strong> la concentración de alcohol en la sangre después de beber. ¿En qué momento es máxima? ¿Cuándo baja del límite legal?</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Leer en el gráfico del modelo cuándo la concentración es máxima.</li>
+<li>Con la definición, \((e^x)' = e^x \cdot \lim_{h \to 0} \frac{e^h - 1}{h}\), y ese límite vale 1.</li>
+<li>La derivada de \(e^x\) es \(e^x\).</li>
+<li>Combinar con la regla de la cadena, del producto y del cociente.</li>
+<li>Volver al problema del alcohol y resolverlo con la derivada.</li>
+<li>La catenaria: la forma de un cordón colgado y la pendiente en el poste.</li>
+<li>La epidemia: el día en que los contagios pasan de acelerar a frenar es el punto de inflexión del modelo logístico.</li>
+</ul>
+</section><section class="leccion" id="lección-2-derivada-de-funciones-logarítmicas"><h4><span class="ln">Lección 2</span>Derivada de funciones logarítmicas</h4>
+<p><strong>Objetivo:</strong> conocer y aplicar la derivada de las funciones logarítmicas.</p>
+<p><strong>Problema:</strong> el seguimiento del crecimiento de un niño, Milan. Un modelo logarítmico da su estatura según la edad, y se pregunta a qué velocidad debería estar creciendo a los 10 meses.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Derivar \(e^{\ln x} = x\) con la regla de la cadena da \((\ln x)' = 1/x\).</li>
+<li>Responder la pregunta de Milan con la derivada.</li>
+<li>Argumento gráfico: el reflejo respecto de \(y = x\) invierte la pendiente; la derivada de la inversa es el recíproco.</li>
+<li>Derivadas de \(\log_a x\) y de \(a^x\).</li>
+<li>Tabla de derivadas de exponenciales y logaritmos, también compuestas.</li>
+<li>La velocidad de ascenso de un avión Cessna 172.</li>
+<li>Con logaritmos se demuestra que \((x^r)' = rx^{r-1}\) para cualquier \(r\) real.</li>
+</ul>
+</section><h3 id="proyecto">Proyecto</h3>
+<section class="leccion" id="proyecto-derivando-la-aceleración-de-gravedad"><h4><span class="ln">Proyecto</span>Derivando la aceleración de gravedad</h4>
+<p><strong>Objetivo:</strong> resolver un problema con las herramientas matemáticas y el ciclo de modelamiento estudiados en las actividades anteriores.</p>
+<p><strong>Problema:</strong> Galileo cuestionó que los objetos más pesados caigan más rápido. Los equipos diseñan un experimento para medir la distancia que recorre un objeto al caer y construyen un modelo que estime la aceleración de gravedad.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Investigar el experimento de Galileo y el concepto de aceleración.</li>
+<li>Entender y simplificar: diseñar un experimento que mida distancia y tiempo.</li>
+<li>Matematizar y trabajar matemáticamente: ajustar un modelo a los datos y derivarlo dos veces para obtener la aceleración.</li>
+<li>Interpretar y validar: comparar la estimación con el valor conocido y explicar las diferencias.</li>
+<li>Sintetizar el ciclo de modelamiento y reflexionar sobre el trabajo.</li>
+<li>Preparar un reporte y presentar los resultados.</li>
+<li>Evaluar el trabajo en equipo al cierre de cada etapa.</li>
+</ul>
+</section><h2 id="unidad-4-comprender-la-integral-como-proceso-de-reversibilidad-y-cálculo-de-áreas">Unidad 4. Comprender la integral como proceso de reversibilidad y cálculo de áreas</h2>
+<p>Diagnóstico de entrada, tres actividades con su evaluación y una evaluación de unidad. La unidad construye la integral como área bajo la curva desde la distancia recorrida, la conecta con la derivada por el Teorema Fundamental del Cálculo y la aplica a cambios netos, volúmenes y problemas en contexto.</p>
+<h3 id="actividad-1-nociones-de-integración">Actividad 1. Nociones de integración</h3>
+<section class="leccion" id="lección-1-áreas-y-distancias"><h4><span class="ln">Lección 1</span>Áreas y distancias</h4>
+<p><strong>Objetivo:</strong> constatar que la distancia recorrida por un objeto es el área bajo la curva de velocidad en función del tiempo, cuando la velocidad es constante, cuando la aceleración es constante y cuando la aceleración es constante por tramos.</p>
+<p><strong>Problema:</strong> un tren bala viaja entre Hiroshima y Okayama. Un grupo de estudiantes modela su velocidad con un gráfico de tramos: acelera, viaja a velocidad constante y frena. ¿Qué distancia recorre?</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Con velocidad constante, la distancia de la ecuación de movimiento coincide con el área del rectángulo bajo la curva.</li>
+<li>El área tiene unidades de distancia, porque multiplica velocidad por tiempo.</li>
+<li>Con aceleración constante, la velocidad es lineal (la derivada de la posición), y la distancia coincide con el área del triángulo o del trapecio.</li>
+<li>La relación vale para un intervalo cualquiera de un movimiento uniformemente acelerado.</li>
+<li>Un auto que frena ante un ceda el paso: la distancia recorrida hasta un instante \(t\) es el área en \([0, t]\).</li>
+<li>La distancia total es la suma de las áreas de los tramos.</li>
+<li>La velocidad media de un movimiento uniformemente acelerado es la altura del rectángulo con la misma área.</li>
+</ul>
+</section><section class="leccion" id="lección-2-nociones-de-integración"><h4><span class="ln">Lección 2</span>Nociones de integración</h4>
+<p><strong>Objetivo:</strong> usar sumas de Riemann para aproximar el área bajo una curva.</p>
+<p><strong>Problema:</strong> ¿cuánto mide el área bajo la parábola \(f(x) = x^2\) en el intervalo \([0, 3]\)?</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Acotar el área por debajo con rectángulos de igual base: la suma inferior.</li>
+<li>Acotarla por arriba: la suma superior.</li>
+<li>Con más rectángulos las dos sumas se acercan y encierran el área.</li>
+<li>En una función creciente la altura del rectángulo inferior es el valor en el extremo izquierdo; en una decreciente, en el derecho.</li>
+<li>En una función no monótona la altura es el mínimo o el máximo en cada subintervalo.</li>
+<li>Equipartición del intervalo y definición del área como el valor que queda entre todas las sumas inferiores y superiores.</li>
+<li>El comando <code>SumaInferior</code> de GeoGebra.</li>
+</ul>
+</section><section class="leccion" id="lección-3-la-integral-definida"><h4><span class="ln">Lección 3</span>La integral definida</h4>
+<p><strong>Objetivo:</strong> comprender la definición de integral definida, calculando el límite de la suma de Riemann como proceso de aproximación del área bajo una curva.</p>
+<p><strong>Problema:</strong> se retoma el área bajo \(x^2\) en \([0, 3]\), ahora con \(n\) rectángulos cualesquiera.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>La notación de sumatoria y sus propiedades.</li>
+<li>Escribir \(x_k\), las alturas \(h_k\) y la suma inferior en términos de \(n\).</li>
+<li>\(I_n\) y \(S_n\) son sucesiones que dependen de \(n\); sus límites coinciden en 9.</li>
+<li>Suma de Riemann para una función continua en \([a, b]\), con un punto cualquiera de cada subintervalo.</li>
+<li>La integral definida es el límite de las sumas de Riemann cuando \(n\) tiende a infinito.</li>
+<li>Leer integrales en un gráfico como áreas, y asociar sumas de Riemann con su integral.</li>
+</ul>
+</section><h3 id="actividad-2-integral-como-función">Actividad 2. Integral como función</h3>
+<section class="leccion" id="lección-1-antiderivadas"><h4><span class="ln">Lección 1</span>Antiderivadas</h4>
+<p><strong>Objetivo:</strong> comprender el concepto de antiderivada y relacionarlo con el área bajo la curva.</p>
+<p><strong>Problema:</strong> no hay situación en contexto. Si el borde derecho del intervalo se deja variable, el área bajo la curva pasa a ser una función \(F_a(x)\).</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Para \(f(t) = t\), el área en \([a, x]\) es \(x^2/2 - a^2/2\), y su derivada es \(f(x)\).</li>
+<li>Lo mismo pasa con \(t^2\) y \(t^3\), calculando el límite de las sumas superiores.</li>
+<li>Para \(\sqrt{t}\) se obtiene el área como complemento del área bajo \(t^2\).</li>
+<li>En todos los casos, la derivada de la función área es la función original.</li>
+<li>Antiderivada: \(F\) es antiderivada de \(f\) si \(F' = f\); la familia de antiderivadas difiere en una constante.</li>
+<li>La antiderivada de \(x^n\) es \(\frac{x^{n+1}}{n+1} + C\).</li>
+</ul>
+</section><section class="leccion" id="lección-2-propiedades-de-las-antiderivadas"><h4><span class="ln">Lección 2</span>Propiedades de las antiderivadas</h4>
+<p><strong>Objetivo:</strong> calcular antiderivadas usando sus propiedades algebraicas.</p>
+<p><strong>Problema:</strong> no hay situación en contexto; se buscan antiderivadas de \(kx^n\) y de sumas de funciones.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Proponer la forma de una antiderivada, derivarla y ajustar los coeficientes.</li>
+<li>Conjeturar una antiderivada y comprobarla derivando.</li>
+<li>La antiderivada de \(k \cdot f\) es \(k\) veces la antiderivada de \(f\).</li>
+<li>La antiderivada de una suma o resta es la suma o resta de las antiderivadas.</li>
+<li>Reescribir raíces y fracciones como potencias antes de antiderivar.</li>
+<li>Tabla de antiderivadas de otras funciones, como \(1/(x + a)^2\).</li>
+</ul>
+</section><section class="leccion" id="lección-3-teorema-fundamental-del-cálculo"><h4><span class="ln">Lección 3</span>Teorema Fundamental del Cálculo</h4>
+<p><strong>Objetivo:</strong> establecer la relación entre la antiderivada y la integral definida.</p>
+<p><strong>Problema:</strong> el volumen de un túnel cuya sección transversal es una parábola, y el área entre dos curvas.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>El área en \([x, x + h]\) se aproxima por un rectángulo de altura \(f(x)\); de ahí se deduce que la derivada de \(F(x) = \int_a^x f(t)\,dt\) es \(f(x)\).</li>
+<li>Teorema Fundamental del Cálculo: toda función continua tiene antiderivada, y derivar la integral devuelve la función.</li>
+<li>Segundo teorema: \(\int_a^b f(x)\,dx = F(b) - F(a)\) para cualquier antiderivada \(F\).</li>
+<li>Calcular integrales con antiderivadas es mucho más simple que con sumas de Riemann.</li>
+<li>Si la función toma valores negativos, la integral deja de ser un área.</li>
+<li>El área entre dos curvas es la integral de la diferencia entre la de arriba y la de abajo.</li>
+</ul>
+</section><h3 id="actividad-3-aplicaciones-de-la-integral">Actividad 3. Aplicaciones de la integral</h3>
+<section class="leccion" id="lección-1-interpretación-física-de-la-integral"><h4><span class="ln">Lección 1</span>Interpretación física de la integral</h4>
+<p><strong>Objetivo:</strong> interpretar el área bajo la curva en un gráfico de razón de cambio y aplicar la integral en esos contextos.</p>
+<p><strong>Problema:</strong> cuatro situaciones: una bala disparada hacia arriba, la energía generada por un parque eólico en el norte, el agua que entra a un embalse y la eliminación de urea en un tratamiento de diálisis.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>La integral de la velocidad es el desplazamiento; cuando la velocidad es negativa, la integral es negativa aunque el área sea positiva.</li>
+<li>La energía es el área bajo la curva de potencia, y se mide en megawatt-hora.</li>
+<li>Estimar el volumen que entra al embalse a partir de mediciones del caudal, uniendo los puntos con segmentos.</li>
+<li>Si \(F' = f\), la integral de \(f\) en \([a, b]\) es el cambio neto de \(F\).</li>
+<li>Interpretar en contexto lo que significa una integral, como la urea eliminada en una hora de diálisis.</li>
+</ul>
+</section><section class="leccion" id="lección-2-volumen"><h4><span class="ln">Lección 2</span>Volumen</h4>
+<p><strong>Objetivo:</strong> usar integrales para calcular el volumen de cuerpos geométricos.</p>
+<p><strong>Problema:</strong> una tomografía entrega las áreas de secciones transversales de un órgano cada 1.5 cm. ¿Cuál es su volumen?</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Aproximar el volumen entre dos secciones consecutivas y sumar.</li>
+<li>Reemplazar cada rebanada por un cilindro y pasar al límite: \(V = \int_a^b A(x)\,dx\).</li>
+<li>Comprobar las fórmulas del volumen del cilindro, la pirámide y la esfera.</li>
+<li>Sólidos de revolución: \(V = \pi \int_a^b [f(x)]^2\,dx\).</li>
+<li>El cono y el sólido que genera \(\sqrt{x}\) al girar.</li>
+</ul>
+</section><section class="leccion" id="lección-3-aplicaciones-de-la-integral"><h4><span class="ln">Lección 3</span>Aplicaciones de la integral</h4>
+<p><strong>Objetivo:</strong> utilizar integrales para calcular el volumen de cuerpos geométricos. El curso repite aquí el objetivo de la Lección 2, aunque la lección trabaja problemas de aplicación en distintos contextos.</p>
+<p><strong>Problema:</strong> cuatro problemas: el costo de producir un producto a partir de su costo marginal, la distancia recorrida por un cohete a partir de una tabla de velocidades, el volumen de un bernegal (vasija canaria de barro) y la forma que toma el agua en un recipiente que gira.</p>
+<p><strong>Ideas que recorre:</strong></p>
+<ul>
+<li>Con el costo marginal y un dato conocido se encuentra la constante de la antiderivada y la función costo.</li>
+<li>La distancia del cohete se estima uniendo puntos con segmentos y también ajustando un polinomio en GeoGebra.</li>
+<li>El volumen del bernegal se calcula ajustando una función a sus radios y usando el volumen de revolución.</li>
+<li>El agua que gira forma un paraboloide, y el volumen de agua se conserva.</li>
+</ul>
+</section>
+</main>
+</div>
+</body>
+</html>
