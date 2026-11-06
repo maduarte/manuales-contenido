@@ -1,0 +1,338 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decisiones estructurales LDI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --ground:#fcfbfe; --surface:#f3f1f8; --surface-2:#ebe7f4; --line:#e0dcea;
+  --ink:#231d3b; --muted:#625c76;
+  --purple:#423475; --purple-ink:#423475; --on-purple:#ffffff;
+  --red:#d45762; --red-ink:#a8323e; --red-tint:#fbeef0;
+  --green:#61b89a; --green-ink:#2c7a5f; --green-tint:#eaf6f1;
+  --blue:#4aa7ba; --blue-ink:#27788a;
+  --orange:#f3972d; --orange-ink:#a85f0c;
+  --yellow:#f0f57d;
+  --code-bg:#eeebf6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+    --ink:#ece9f6; --muted:#aaa4c2;
+    --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+    --red-ink:#f0939b; --red-tint:#2e1b2c;
+    --green-ink:#86d6b9; --green-tint:#18302b;
+    --blue-ink:#85cfdd; --orange-ink:#f7b667;
+    --code-bg:#2a2548;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+  --ink:#ece9f6; --muted:#aaa4c2;
+  --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+  --red-ink:#f0939b; --red-tint:#2e1b2c;
+  --green-ink:#86d6b9; --green-tint:#18302b;
+  --blue-ink:#85cfdd; --orange-ink:#f7b667;
+  --code-bg:#2a2548;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.6;margin:0}
+.strip{display:flex;height:6px}
+.strip span{flex:1}
+header.top{background:var(--purple);color:var(--on-purple);padding-block:2.4rem 2.2rem;padding-inline:16px}
+header.top .in{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin:0 0 .6rem}
+header.top h1{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.15;margin:0 0 .8rem;text-wrap:balance;font-weight:650;letter-spacing:-.01em}
+header.top .lead{max-width:68ch;margin:0;font-size:1.05rem;opacity:.93}
+.layout{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:2rem 4rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1rem);align-self:start;font-size:.88rem;max-height:calc(100vh - 2rem);overflow:auto}
+nav.toc p{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .5rem}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
+nav.toc a{color:var(--ink);text-decoration:none;display:block;padding:.3rem .55rem;border-radius:6px;line-height:1.35}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--surface-2);outline:none}
+nav.toc .sub a{padding-left:1.3rem;color:var(--muted)}
+main{min-width:0;max-width:760px}
+main h2{font-size:1.55rem;line-height:1.25;margin:3rem 0 1rem;color:var(--purple-ink);text-wrap:balance;font-weight:650}
+main h2:first-child{margin-top:0}
+main h3{font-size:1.2rem;margin:2.2rem 0 .7rem;text-wrap:balance;font-weight:620}
+main h4{font-size:1.1rem;margin:1.6rem 0 .5rem}
+p,li{max-width:70ch}
+a{color:var(--purple-ink)}
+code{font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-size:.88em;background:var(--code-bg);padding:.08em .35em;border-radius:4px;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
+ul,ol{padding-left:1.3rem}
+li{margin:.3rem 0}
+li::marker{color:var(--purple-ink)}
+.tablewrap{overflow-x:auto;margin:1.2rem 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+th{background:var(--purple);color:var(--on-purple);text-align:left;font-weight:600;padding:.55rem .7rem}
+td{padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--surface)}
+blockquote{margin:1.4rem 0;padding:1rem 1.2rem;background:var(--surface);border-radius:10px}
+blockquote p{margin:.4rem 0}
+blockquote .tag{display:inline-block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:650;margin-bottom:.3rem;color:var(--muted)}
+blockquote.capsula{background:var(--green-tint)}
+blockquote.capsula .tag{color:var(--green-ink)}
+blockquote.revision{background:var(--red-tint)}
+blockquote.revision .tag{color:var(--red-ink)}
+.hito{display:flex;gap:.7rem;align-items:baseline;margin:1.6rem 0 .4rem;font-size:1.02rem;font-weight:620;line-height:1.4}
+.hito .hid{flex:none;background:var(--purple);color:var(--on-purple);font-family:"Geist Mono",ui-monospace,monospace;font-size:.78rem;font-weight:600;padding:.15rem .5rem;border-radius:999px;position:relative;top:-.08em}
+.hito + ul{margin-top:.2rem;padding-left:3.4rem}
+.leccion{border-top:1px solid var(--line);padding-top:1.4rem;margin-top:2.6rem}
+.leccion h4{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h4 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+details{margin:1rem 0}
+summary{cursor:pointer;font-weight:600;color:var(--purple-ink);padding:.35rem 0}
+summary:focus-visible{outline:2px solid var(--purple-ink);outline-offset:3px;border-radius:4px}
+.arco{list-style:none;padding:0;counter-reset:a;display:grid;gap:.7rem}
+.arco li{counter-increment:a;position:relative;padding-left:3rem;min-height:2.2rem;max-width:none}
+.arco li::before{content:counter(a);position:absolute;left:0;top:0;background:var(--surface-2);color:var(--purple-ink);font-weight:650;border-radius:50%;width:2.2rem;height:2.2rem;display:grid;place-items:center;font-family:"Geist Mono",monospace}
+.paso{display:grid;grid-template-columns:2.4rem 1fr;gap:.9rem;margin:1.3rem 0}
+.paso .num{font-family:"Geist Mono",ui-monospace,monospace;font-weight:600;color:var(--purple-ink);background:var(--surface-2);border-radius:8px;height:2.4rem;display:grid;place-items:center}
+.paso p{margin:0}
+.paso + ul{padding-left:4.6rem}
+.fases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem;margin:1.5rem 0 2rem}
+.fase{background:var(--surface);border-radius:10px;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.35rem}
+.fase .fn{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.fase .ft{font-weight:650;color:var(--purple-ink);font-size:1.05rem}
+.fase .fp{font-family:"Geist Mono",monospace;font-size:.82rem;color:var(--muted)}
+.fase .rv{margin-top:auto;display:flex;flex-wrap:wrap;gap:.3rem}
+.fase .rv span{font-size:.75rem;font-weight:600;color:var(--red-ink);background:var(--red-tint);border-radius:999px;padding:.1rem .55rem}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;gap:1.5rem}
+  nav.toc{position:static;max-height:none;background:var(--surface);border-radius:10px;padding:1rem}
+  .fases{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:460px){ .fases{grid-template-columns:1fr} .hito + ul{padding-left:1.3rem} .paso + ul{padding-left:1.3rem} }
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script></head>
+<body>
+<div class="strip"><span style="background:#423475"></span><span style="background:#d45762"></span><span style="background:#61b89a"></span><span style="background:#f0f57d"></span><span style="background:#4aa7ba"></span><span style="background:#f3972d"></span></div>
+<header class="top"><div class="in">
+<p class="eyebrow">Límites, Derivadas e Integrales · Diseño del curso nuevo</p>
+<h1>Decisiones estructurales del curso LDI</h1>
+<p class="lead">El curso nuevo de Límites, Derivadas e Integrales parte del curso implementado entre 2021 y 2023, que tiene 56 lecciones en 15 actividades. El criterio es modificar su ruta lo menos posible y eliminar las lecciones que no hacen falta, en vez de rediseñar el curso.</p>
+</div></header>
+<div class="layout">
+<nav class="toc" aria-label="Contenido"><p>Contenido</p><ol><li><a href="#presentacion">Presentación</a></li><li><a href="#cantidad-de-lecciones">Cantidad de lecciones</a></li><li class="sub"><a href="#cuenta-de-base">Cuenta de base</a></li><li class="sub"><a href="#camino-de-mínimo-cambio">Camino de mínimo cambio</a></li><li><a href="#decisiones-que-cambian-la-cantidad-de-lecciones">Decisiones que cambian la cantidad de lecciones</a></li><li><a href="#decisiones-sobre-los-contenidos">Decisiones sobre los contenidos</a></li><li><a href="#decisiones-sobre-la-forma-de-las-lecciones">Decisiones sobre la forma de las lecciones</a></li><li><a href="#decisiones-que-conviene-fijar-desde-el-comienzo">Decisiones que conviene fijar desde el comienzo</a></li></ol></nav>
+<main>
+<h2 id="presentacion">Presentación</h2>
+<p>El tamaño objetivo es de unas 80 lecciones. Esa cifra incluye una lección de práctica y una de ejercitación por tema, y una o dos evaluaciones por unidad. Las lecciones de construcción se ajustan para llegar a ese total.</p>
+<p>Esta página reúne las decisiones que hay que tomar antes de armar la ruta. Las primeras son las que más mueven la cantidad de lecciones. Todas están por decidir.</p>
+<h2 id="cantidad-de-lecciones">Cantidad de lecciones</h2>
+<h3 id="cuenta-de-base">Cuenta de base</h3>
+<p>Cada tema suma dos lecciones fijas, una de práctica y una de ejercitación. Por eso la cantidad de temas decide cuántas lecciones de construcción caben en las 80.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Temas</th>
+<th>Práctica y ejercitación</th>
+<th>Evaluaciones</th>
+<th>Construcción</th>
+<th>Por tema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>15, uno por actividad del curso implementado</td>
+<td>30</td>
+<td>4 a 8</td>
+<td>42 a 46</td>
+<td>unas 3</td>
+</tr>
+<tr>
+<td>12</td>
+<td>24</td>
+<td>4 a 8</td>
+<td>48 a 52</td>
+<td>unas 4</td>
+</tr>
+<tr>
+<td>10</td>
+<td>20</td>
+<td>4 a 8</td>
+<td>52 a 56</td>
+<td>unas 5</td>
+</tr>
+</tbody>
+</table></div>
+<p>El programa asigna 5, 10, 12 y 11 semanas a las cuatro unidades. Repartidas en esa proporción, 80 lecciones dan unas 11, 21, 25 y 23 lecciones por unidad. El curso implementado tiene 13, 21, 13 y 9 lecciones, más el proyecto de la Unidad 3: tiene más lecciones de las que le corresponden en la Unidad 1 y menos en la Unidad 3 y la Unidad 4.</p>
+<h3 id="camino-de-mínimo-cambio">Camino de mínimo cambio</h3>
+<p>Esta propuesta conserva las 15 actividades como temas y llega a unas 80 lecciones eliminando siete lecciones y reordenando otras cuatro. Está para discutir.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Cambio</th>
+<th>Lecciones</th>
+<th>Efecto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Eliminar la Actividad 4 de la Unidad 1, "Entender y simplificar un problema a modelar"</td>
+<td>3</td>
+<td>−5, con su práctica y su ejercitación. El proyecto de la Unidad 3 vuelve a explicar el ciclo de modelamiento en su Etapa 2.1.</td>
+</tr>
+<tr>
+<td>Eliminar la Lección 5 de la Actividad 2 de la Unidad 2, funciones que oscilan en torno a un valor</td>
+<td>1</td>
+<td>−1</td>
+</tr>
+<tr>
+<td>Eliminar la Lección 7 de la Actividad 2 de la Unidad 2, definición formal de límite en un punto</td>
+<td>1</td>
+<td>−1. Se conserva la versión al infinito.</td>
+</tr>
+<tr>
+<td>Eliminar las Lecciones 3 y 5 de la Actividad 3 de la Unidad 2, números reales y decimales de \(\sqrt{2}\) y \(\pi\)</td>
+<td>2</td>
+<td>−2. Se conservan las Lecciones 1, 2 y 4, que la Unidad 4 necesita: las sumas inferior y superior se tratan como sucesiones.</td>
+</tr>
+<tr>
+<td>Usar "Practicando con límites al infinito" como lección de práctica de su tema</td>
+<td>1</td>
+<td>−1</td>
+</tr>
+<tr>
+<td>Usar "Practicando con problemas de optimización" como lección de práctica de su tema</td>
+<td>1</td>
+<td>−1</td>
+</tr>
+<tr>
+<td>Juntar la Actividad 4 de la Unidad 3, derivadas de exponenciales y logaritmos, con la Actividad 2, cálculo de derivadas</td>
+<td>2</td>
+<td>−2. Las lecciones se conservan y el tema pasa a tener cinco.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Resultado, con una evaluación en la Unidad 1 y la Unidad 3 y dos en la Unidad 2 y la Unidad 4:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Unidad</th>
+<th>Construcción</th>
+<th>Práctica y ejercitación</th>
+<th>Evaluaciones</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Funciones</td>
+<td>10</td>
+<td>6</td>
+<td>1</td>
+<td>17</td>
+</tr>
+<tr>
+<td>2. Límites</td>
+<td>16</td>
+<td>8</td>
+<td>2</td>
+<td>26</td>
+</tr>
+<tr>
+<td>3. Derivadas</td>
+<td>12</td>
+<td>6</td>
+<td>1</td>
+<td>19</td>
+</tr>
+<tr>
+<td>4. Integrales</td>
+<td>9</td>
+<td>6</td>
+<td>2</td>
+<td>17</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>47</strong></td>
+<td><strong>26</strong></td>
+<td><strong>6</strong></td>
+<td><strong>79</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>Las dos lecciones "Practicando" quedan contadas como práctica, no como construcción. Con el proyecto como lección aparte, el total llega a 80.</p>
+<p>El total cuadra, pero el reparto sigue desbalanceado: la Unidad 2 tiene 26 lecciones y la Unidad 4 tiene 17, cuando según las semanas del programa les corresponden unas 21 y 23. Reforzar la Unidad 3 y la Unidad 4 sin pasar de 80 obliga a recortar más en la Unidad 1 o en la Unidad 2, por ejemplo con las decisiones 4, 5 o 6.</p>
+<h2 id="decisiones-que-cambian-la-cantidad-de-lecciones">Decisiones que cambian la cantidad de lecciones</h2>
+<section class="leccion" id="decisión-1-geogebra-transversal"><h4><span class="ln">Decisión 1</span>GeoGebra transversal</h4>
+<p>En el curso implementado, GeoGebra ocupa dos lecciones al comienzo de la Unidad 1. La Lección 3 es solo herramienta: cuenta, deslizadores, guardar y subir archivos. La Lección 4 enseña funciones por tramos y racionales usando GeoGebra, así que también es una lección de contenido.</p>
+<ul>
+<li><strong>Opciones:</strong> dos lecciones al comienzo, como hoy; una sola lección de herramienta, con la Lección 4 convertida en contenido; o ninguna lección propia, enseñando cada comando cuando se necesita.</li>
+<li><strong>Qué pesa:</strong> el OA 2, el OA 4 y el OA 5 piden trabajar en forma manuscrita y con herramientas tecnológicas digitales, así que lo digital es obligatorio. Usar GeoGebra en todo el curso exige las dos lecciones del comienzo y supone que los estudiantes trabajan en computador.</li>
+</ul>
+</section><section class="leccion" id="decisión-2-ciclo-de-modelamiento"><h4><span class="ln">Decisión 2</span>Ciclo de modelamiento</h4>
+<p>Hoy es la Actividad 4 de la Unidad 1, con tres lecciones sobre la producción de paltas.</p>
+<ul>
+<li><strong>Opciones:</strong> conservarla; o eliminarla y trabajar el modelamiento en la Unidad 3 y la Unidad 4, donde el OA 3 y el OA 5 piden evaluar la necesidad de ajustar el modelo.</li>
+<li><strong>Qué pesa:</strong> eliminarla libera cinco lecciones de la Unidad 1, que es la que tiene más lecciones de las que le corresponden.</li>
+</ul>
+</section><section class="leccion" id="decisión-3-proyecto"><h4><span class="ln">Decisión 3</span>Proyecto</h4>
+<p>La Unidad 3 tiene el proyecto "Derivando la aceleración de gravedad", con tres etapas.</p>
+<ul>
+<li><strong>Opciones:</strong> conservarlo como evaluación de la unidad; conservarlo como lección aparte; extenderlo a un proyecto por unidad; o eliminarlo.</li>
+</ul>
+</section><section class="leccion" id="decisión-4-sucesiones"><h4><span class="ln">Decisión 4</span>Sucesiones</h4>
+<p>Hoy son la Actividad 3 de la Unidad 2, con cinco lecciones: definición, comportamiento al infinito, números reales como límite, límite de sucesiones y aproximación de \(\sqrt{2}\) y \(\pi\).</p>
+<ul>
+<li><strong>Opciones:</strong> conservar las cinco; conservar solo las tres que la Unidad 4 necesita; o reducirlas a una lección que conecte \(f(n)\) con \(f(x)\).</li>
+<li><strong>Qué pesa:</strong> el OA 2 no nombra las sucesiones, pero las sumas de Riemann de la Unidad 4 se tratan como sucesiones y se calcula su límite.</li>
+</ul>
+</section><section class="leccion" id="decisión-5-definición-formal-de-límite"><h4><span class="ln">Decisión 5</span>Definición formal de límite</h4>
+<p>Hay dos lecciones "Precisando la definición de límite", una al infinito y otra en un punto, que trabajan con distancias de manera cercana a la definición con épsilon y delta.</p>
+<ul>
+<li><strong>Opciones:</strong> conservar las dos; conservar una; o quedarse solo con la noción intuitiva.</li>
+<li><strong>Qué pesa:</strong> esta decisión fija el nivel de rigor del curso completo.</li>
+</ul>
+</section><section class="leccion" id="decisión-6-repaso-de-familias-de-funciones"><h4><span class="ln">Decisión 6</span>Repaso de familias de funciones</h4>
+<p>Funciones lineales, cuadráticas, potencias, por tramos y racionales ocupan cuatro lecciones de la Unidad 1, y el OA 1 solo pide composición e inversa.</p>
+<ul>
+<li><strong>Opciones:</strong> conservar las lecciones; o llevar el repaso a las diapositivas "Recordemos" y al diagnóstico.</li>
+<li><strong>Qué pesa:</strong> la lección de modelos lineales trabaja la razón de cambio constante, que la Unidad 3 retoma para construir la derivada.</li>
+</ul>
+</section><section class="leccion" id="decisión-7-diagnósticos"><h4><span class="ln">Decisión 7</span>Diagnósticos</h4>
+<p>El curso implementado tiene una evaluación diagnóstica por unidad. Hay que decidir si cuentan dentro de las 80 lecciones.</p>
+</section><h2 id="decisiones-sobre-los-contenidos">Decisiones sobre los contenidos</h2>
+<section class="leccion" id="decisión-8-funciones-trigonométricas"><h4><span class="ln">Decisión 8</span>Funciones trigonométricas</h4>
+<p>El curso implementado casi no las usa: aparecen en el columpio, en \(\cos 20°\) y en los polígonos con que se aproxima \(\pi\). No se derivan ni se integran. Hay que decidir si entran entre las funciones que se derivan e integran, porque eso cambia la Unidad 3 y la Unidad 4.</p>
+</section><section class="leccion" id="decisión-9-exponencial-y-logaritmo"><h4><span class="ln">Decisión 9</span>Exponencial y logaritmo</h4>
+<p>Hoy aparecen en la inversa de la Unidad 1, con la datación de la momia, y en una actividad propia de derivadas en la Unidad 3. No se integran. Hay que decidir si sus derivadas van junto con las demás reglas de cálculo y si se integran en la Unidad 4.</p>
+</section><section class="leccion" id="decisión-10-volumen"><h4><span class="ln">Decisión 10</span>Volumen</h4>
+<p>El OA 5 habla del área bajo la curva. Los volúmenes por secciones y de revolución ocupan una lección entera y van más allá del OA. Hay que decidir si se conservan.</p>
+</section><section class="leccion" id="decisión-11-sumas-de-riemann"><h4><span class="ln">Decisión 11</span>Sumas de Riemann</h4>
+<p>Hoy se calculan con sumatoria y con fórmulas cerradas para sumas de potencias. La alternativa es aproximar con GeoGebra y calcular el límite en un solo caso. Depende de las decisiones 1 y 5.</p>
+</section><section class="leccion" id="decisión-12-demostraciones"><h4><span class="ln">Decisión 12</span>Demostraciones</h4>
+<p>El curso implementado deduce las reglas del producto, del cociente y de la cadena, la derivada de \(e^x\) y el Teorema Fundamental del Cálculo. Hay que decidir qué se demuestra y qué se presenta como regla, porque eso cambia el largo de la Unidad 3 y la Unidad 4.</p>
+</section><section class="leccion" id="decisión-13-funciones-que-oscilan"><h4><span class="ln">Decisión 13</span>Funciones que oscilan</h4>
+<p>Una lección de la Unidad 2 estudia funciones que oscilan cerca de un punto, y usa el teorema del sándwich sin nombrarlo. Hay que decidir si se conserva.</p>
+</section><h2 id="decisiones-sobre-la-forma-de-las-lecciones">Decisiones sobre la forma de las lecciones</h2>
+<section class="leccion" id="decisión-14-estructura-de-cada-lección"><h4><span class="ln">Decisión 14</span>Estructura de cada lección</h4>
+<p>El curso implementado usa la secuencia Recordemos, situación, Aprendamos juntos, Toma nota, Practica lo aprendido, ¿Qué aprendimos? y Ticket de salida. Probabilidad y Estadística usa Activación, Contexto, Construcción, Sistematización, Práctica y Ticket. Usar la estructura de Probabilidad y Estadística permite reutilizar sus herramientas de diseño y revisión.</p>
+</section><section class="leccion" id="decisión-15-contexto-por-tema-o-por-lección"><h4><span class="ln">Decisión 15</span>Contexto por tema o por lección</h4>
+<p>Hoy cada lección trae su propia situación: bacterias, columpio, momia, tren bala. En la Unidad 4 de Probabilidad y Estadística, un mismo contexto avanza a lo largo de todo un tema. También hay que decidir cuánto se reutiliza del curso implementado y de las diez situaciones de aprendizaje de Aula360.</p>
+</section><section class="leccion" id="decisión-16-fuente-de-la-ejercitación"><h4><span class="ln">Decisión 16</span>Fuente de la ejercitación</h4>
+<p>En Probabilidad y Estadística, las lecciones de ejercitación se apoyan en preguntas liberadas de la PAES. LDI no entra en la PAES, así que hay que decidir de dónde salen los ejercicios.</p>
+</section><section class="leccion" id="decisión-17-trabajo-manuscrito-en-la-plataforma"><h4><span class="ln">Decisión 17</span>Trabajo manuscrito en la plataforma</h4>
+<p>En el curso implementado, los estudiantes suben fotos de sus desarrollos y sus archivos de GeoGebra.</p>
+<ul>
+<li><strong>Opciones:</strong> conservar esas entregas, que corrige el docente; o usar solo preguntas que se corrigen solas y dejar el trabajo manuscrito para la sala.</li>
+</ul>
+</section><h2 id="decisiones-que-conviene-fijar-desde-el-comienzo">Decisiones que conviene fijar desde el comienzo</h2>
+<section class="leccion" id="decisión-18-notación"><h4><span class="ln">Decisión 18</span>Notación</h4>
+<p>El curso implementado usa coma decimal y Probabilidad y Estadística usa punto. Hay que fijar también cómo se escriben los intervalos, si se usa \(f'\) o \(dy/dx\) y cómo se anotan los límites laterales.</p>
+</section><section class="leccion" id="decisión-19-personajes-recurrentes"><h4><span class="ln">Decisión 19</span>Personajes recurrentes</h4>
+<p>Hay que decidir si el curso tiene personajes que se repiten o si cada situación trae los suyos.</p>
+</section><section class="leccion" id="decisión-20-calculadora"><h4><span class="ln">Decisión 20</span>Calculadora</h4>
+<p>Hay que decidir si se permite la calculadora en las lecciones y en las evaluaciones.</p>
+</section>
+</main>
+</div>
+</body>
+</html>

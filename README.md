@@ -10,5 +10,6 @@ Material de apoyo para escribir guiones de lección. Se lee como sitio web (GitH
 | `U4_ruta.html` | Ruta de la Unidad 4 (variables aleatorias) | Se genera desde la ruta del proyecto |
 | `U5_ruta.html` | Ruta de la Unidad 5 (inferencia estadística) | Se genera desde la ruta del proyecto |
 | `LDI_ruta_curso_implementado.html` | Ruta del curso LDI implementado (Límites, Derivadas e Integrales) | Se genera desde la ruta del proyecto |
+| `LDI_decisiones_estructurales.html` | Decisiones estructurales del curso LDI nuevo | Se genera desde el proyecto |
 
 Los cambios se hacen en local; aquí se publica solo el HTML.
