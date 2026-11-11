@@ -11,5 +11,6 @@ Material de apoyo para escribir guiones de lección. Se lee como sitio web (GitH
 | `U5_ruta.html` | Ruta de la Unidad 5 (inferencia estadística) | Se genera desde la ruta del proyecto |
 | `LDI_ruta_curso_implementado.html` | Ruta del curso LDI implementado (Límites, Derivadas e Integrales) | Se genera desde la ruta del proyecto |
 | `LDI_decisiones_estructurales.html` | Decisiones estructurales del curso LDI nuevo | Se genera desde el proyecto |
+| `lecciones/` | Lecciones en construcción: una vista HTML por lección, como la verá el estudiante | La publica el skill producir-guion en cada entrega |
 
 Los cambios se hacen en local; aquí se publica solo el HTML.

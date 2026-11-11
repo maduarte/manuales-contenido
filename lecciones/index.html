@@ -1,0 +1,39 @@
+﻿<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lecciones en construcción</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap">
+<style>
+:root{--ground:#fcfbfe;--card:#ffffff;--line:#e0dcea;--ink:#231d3b;--muted:#625c76;--purple:#423475;--shadow:0 1px 2px rgba(35,29,59,.05)}
+@media (prefers-color-scheme:dark){:root{--ground:#16132a;--card:#1f1b36;--line:#35305a;--ink:#ece9f6;--muted:#aaa4c2;--purple:#b9adf0;--shadow:none}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font:16px/1.55 "Geist",system-ui,-apple-system,"Segoe UI",sans-serif}
+.strip{display:flex;height:6px}.strip span{flex:1}
+main{max-width:640px;margin:0 auto;padding:56px 16px 48px}
+.eyebrow{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .6rem}
+.eyebrow a{color:var(--muted)}
+h1{font-size:clamp(1.6rem,5vw,2.1rem);line-height:1.15;margin:0 0 .5rem;font-weight:650;letter-spacing:-.01em;text-wrap:balance}
+.sub{color:var(--muted);margin:0 0 2rem;max-width:52ch}
+.list{display:grid;gap:.7rem}
+a.card{display:grid;grid-template-columns:.9rem 1fr auto;gap:.9rem;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1rem 1.1rem;text-decoration:none;color:var(--ink);box-shadow:var(--shadow);transition:border-color .15s,transform .15s}
+a.card:hover,a.card:focus-visible{border-color:var(--c);transform:translateY(-1px);outline:none}
+a.card i{width:.9rem;height:.9rem;border-radius:50%;background:var(--c)}
+a.card b{display:block;font-weight:600;line-height:1.3}
+a.card span{display:block;color:var(--muted);font-size:.88rem;margin-top:.1rem}
+a.card em{font-style:normal;color:var(--muted);font-size:1.1rem}
+.vacio{color:var(--muted)}
+footer{margin-top:2rem;font-size:.85rem;color:var(--muted)}
+footer a{color:var(--muted)}
+@media (prefers-reduced-motion:reduce){a.card{transition:none}}
+</style></head><body>
+<div class="strip"><span style="background:#423475"></span><span style="background:#d45762"></span><span style="background:#61b89a"></span><span style="background:#f0f57d"></span><span style="background:#4aa7ba"></span><span style="background:#f3972d"></span></div>
+<main>
+<p class="eyebrow"><a href="../index.html">Manuales para guionistas</a></p>
+<h1>Lecciones en construcción</h1>
+<p class="sub">Cada página muestra una lección tal como la verá el estudiante, mientras se escribe. Las respuestas aparecen al comprobar.</p>
+<div class="list">
+<a class="card" style="--c:#4aa7ba" href="U4T1L1.html"><i></i><div><b>U4T1L1 · Variable aleatoria: un número para cada resultado</b><span>Entrega 1: Contexto y Construcción · actualizada el 2026-11-11</span></div><em aria-hidden="true">→</em></a>
+</div>
+<footer><a href="https://github.com/maduarte/manuales-contenido">Código fuente en GitHub</a></footer>
+</main>
+<script type="application/json" id="datos-lecciones">[{"codigo": "U4T1L1", "titulo": "Variable aleatoria: un número para cada resultado", "estado": "Entrega 1: Contexto y Construcción", "fecha": "2026-11-11"}]</script>
+</body></html>
