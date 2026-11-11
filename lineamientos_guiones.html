@@ -1,0 +1,203 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lineamientos para guiones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --ground:#fcfbfe; --surface:#f3f1f8; --surface-2:#ebe7f4; --line:#e0dcea;
+  --ink:#231d3b; --muted:#625c76;
+  --purple:#423475; --purple-ink:#423475; --on-purple:#ffffff;
+  --red:#d45762; --red-ink:#a8323e; --red-tint:#fbeef0;
+  --green:#61b89a; --green-ink:#2c7a5f; --green-tint:#eaf6f1;
+  --blue:#4aa7ba; --blue-ink:#27788a;
+  --orange:#f3972d; --orange-ink:#a85f0c;
+  --yellow:#f0f57d;
+  --code-bg:#eeebf6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+    --ink:#ece9f6; --muted:#aaa4c2;
+    --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+    --red-ink:#f0939b; --red-tint:#2e1b2c;
+    --green-ink:#86d6b9; --green-tint:#18302b;
+    --blue-ink:#85cfdd; --orange-ink:#f7b667;
+    --code-bg:#2a2548;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+  --ink:#ece9f6; --muted:#aaa4c2;
+  --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+  --red-ink:#f0939b; --red-tint:#2e1b2c;
+  --green-ink:#86d6b9; --green-tint:#18302b;
+  --blue-ink:#85cfdd; --orange-ink:#f7b667;
+  --code-bg:#2a2548;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.6;margin:0}
+.strip{display:flex;height:6px}
+.strip span{flex:1}
+header.top{background:var(--purple);color:var(--on-purple);padding-block:2.4rem 2.2rem;padding-inline:16px}
+header.top .in{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin:0 0 .6rem}
+header.top h1{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.15;margin:0 0 .8rem;text-wrap:balance;font-weight:650;letter-spacing:-.01em}
+header.top .lead{max-width:68ch;margin:0;font-size:1.05rem;opacity:.93}
+.layout{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:2rem 4rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1rem);align-self:start;font-size:.88rem;max-height:calc(100vh - 2rem);overflow:auto}
+nav.toc p{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .5rem}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
+nav.toc a{color:var(--ink);text-decoration:none;display:block;padding:.3rem .55rem;border-radius:6px;line-height:1.35}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--surface-2);outline:none}
+nav.toc .sub a{padding-left:1.3rem;color:var(--muted)}
+main{min-width:0;max-width:760px}
+main h2{font-size:1.55rem;line-height:1.25;margin:3rem 0 1rem;color:var(--purple-ink);text-wrap:balance;font-weight:650}
+main h2:first-child{margin-top:0}
+main h3{font-size:1.2rem;margin:2.2rem 0 .7rem;text-wrap:balance;font-weight:620}
+main h4{font-size:1.1rem;margin:1.6rem 0 .5rem}
+p,li{max-width:70ch}
+a{color:var(--purple-ink)}
+code{font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-size:.88em;background:var(--code-bg);padding:.08em .35em;border-radius:4px;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
+ul,ol{padding-left:1.3rem}
+li{margin:.3rem 0}
+li::marker{color:var(--purple-ink)}
+.tablewrap{overflow-x:auto;margin:1.2rem 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+th{background:var(--purple);color:var(--on-purple);text-align:left;font-weight:600;padding:.55rem .7rem}
+td{padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--surface)}
+blockquote{margin:1.4rem 0;padding:1rem 1.2rem;background:var(--surface);border-radius:10px}
+blockquote p{margin:.4rem 0}
+blockquote .tag{display:inline-block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:650;margin-bottom:.3rem;color:var(--muted)}
+blockquote.capsula{background:var(--green-tint)}
+blockquote.capsula .tag{color:var(--green-ink)}
+blockquote.revision{background:var(--red-tint)}
+blockquote.revision .tag{color:var(--red-ink)}
+.hito{display:flex;gap:.7rem;align-items:baseline;margin:1.6rem 0 .4rem;font-size:1.02rem;font-weight:620;line-height:1.4}
+.hito .hid{flex:none;background:var(--purple);color:var(--on-purple);font-family:"Geist Mono",ui-monospace,monospace;font-size:.78rem;font-weight:600;padding:.15rem .5rem;border-radius:999px;position:relative;top:-.08em}
+.hito + ul{margin-top:.2rem;padding-left:3.4rem}
+.leccion{border-top:1px solid var(--line);padding-top:1.4rem;margin-top:2.6rem}
+.leccion h4{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h4 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+details{margin:1rem 0}
+summary{cursor:pointer;font-weight:600;color:var(--purple-ink);padding:.35rem 0}
+summary:focus-visible{outline:2px solid var(--purple-ink);outline-offset:3px;border-radius:4px}
+.arco{list-style:none;padding:0;counter-reset:a;display:grid;gap:.7rem}
+.arco li{counter-increment:a;position:relative;padding-left:3rem;min-height:2.2rem;max-width:none}
+.arco li::before{content:counter(a);position:absolute;left:0;top:0;background:var(--surface-2);color:var(--purple-ink);font-weight:650;border-radius:50%;width:2.2rem;height:2.2rem;display:grid;place-items:center;font-family:"Geist Mono",monospace}
+.paso{display:grid;grid-template-columns:2.4rem 1fr;gap:.9rem;margin:1.3rem 0}
+.paso .num{font-family:"Geist Mono",ui-monospace,monospace;font-weight:600;color:var(--purple-ink);background:var(--surface-2);border-radius:8px;height:2.4rem;display:grid;place-items:center}
+.paso p{margin:0}
+.paso + ul{padding-left:4.6rem}
+.fases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem;margin:1.5rem 0 2rem}
+.fase{background:var(--surface);border-radius:10px;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.35rem}
+.fase .fn{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.fase .ft{font-weight:650;color:var(--purple-ink);font-size:1.05rem}
+.fase .fp{font-family:"Geist Mono",monospace;font-size:.82rem;color:var(--muted)}
+.fase .rv{margin-top:auto;display:flex;flex-wrap:wrap;gap:.3rem}
+.fase .rv span{font-size:.75rem;font-weight:600;color:var(--red-ink);background:var(--red-tint);border-radius:999px;padding:.1rem .55rem}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;gap:1.5rem}
+  nav.toc{position:static;max-height:none;background:var(--surface);border-radius:10px;padding:1rem}
+  .fases{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:460px){ .fases{grid-template-columns:1fr} .hito + ul{padding-left:1.3rem} .paso + ul{padding-left:1.3rem} }
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+
+<style>
+.imprimir{margin-top:1rem;font:inherit;font-weight:600;padding:.5rem 1.1rem;border-radius:8px;border:2px solid currentColor;background:transparent;color:inherit;cursor:pointer}
+.imprimir:hover{background:rgba(255,255,255,.15)}
+ul.check{list-style:none;padding-left:0}
+ul.check li{position:relative;padding-left:1.8rem;margin:.35rem 0}
+ul.check li::before{content:"";position:absolute;left:0;top:.2em;width:1em;height:1em;border:2px solid #423475;border-radius:3px}
+@media print{
+  @page{size:letter;margin:1.2cm 1.4cm}
+  .imprimir,nav.toc,.strip{display:none!important}
+  .layout{display:block!important;max-width:none!important;padding:0!important;margin:0!important}
+  header.top{background:none!important;color:#000!important;padding:0 0 .3rem!important}
+  header.top *{color:#000!important}
+  body{font-size:9.2pt;line-height:1.3;background:#fff!important}
+  h1{font-size:15pt;margin:0 0 .2rem}
+  .lead{font-size:9.2pt;margin:.2rem 0}
+  .eyebrow{margin:0}
+  h2{font-size:11.5pt;margin:.55rem 0 .2rem;color:#423475!important;break-after:avoid}
+  ul{margin:.1rem 0;padding-left:1.1rem}
+  li{margin:.1rem 0;break-inside:avoid}
+  ul.check li{padding-left:1.4rem;margin:.08rem 0}
+  ul.check li::before{width:.8em;height:.8em;border-width:1.5px}
+}
+</style>
+</head>
+<body>
+<div class="strip"><span style="background:#423475"></span><span style="background:#d45762"></span><span style="background:#61b89a"></span><span style="background:#f0f57d"></span><span style="background:#4aa7ba"></span><span style="background:#f3972d"></span></div>
+<header class="top"><div class="in">
+<p class="eyebrow">Rutas Digitales · Resumen para guionistas</p>
+<h1>Lineamientos para guiones de lecciones de construcción</h1>
+<p class="lead">Una lección de construcción lleva al estudiante a producir un concepto nuevo respondiendo una secuencia de preguntas. En general, solo cuando el concepto ha sido construido, se presenta su definición matemática formal, su notación y fórmula, si aplica. Este resumen reúne los lineamientos esenciales del diseño pedagógico, del lenguaje usado, y del rigor matemático a tener en cuenta cuando se diseña una lección.</p>
+<button type="button" class="imprimir" onclick="window.print()">Imprimir</button>
+</div></header>
+<div class="layout">
+<nav class="toc" aria-label="Contenido"><p>Contenido</p><ol><li><a href="#diseno">Diseño pedagógico</a></li><li><a href="#lenguaje">Lenguaje</a></li><li><a href="#rigor">Rigor matemático</a></li><li><a href="#checklist">Checklist antes de entregar</a></li></ol></nav>
+<main>
+<h2 id="diseno">Diseño pedagógico</h2>
+<ul>
+<li><strong>Un problema claro desde el inicio.</strong> La lección propone una problemática y lleva al estudiante a sortear obstáculos de aprendizaje que le permiten desarrollar el concepto de la clase. El Contexto lo deja planteado e idealmente se resuelve hacia el final de la lección.</li>
+<li><strong>Una cadena de ideas que lo resuelve.</strong> Las ideas se enuncian como propuestas de exploración o preguntas “¿qué pasará si...?” e incluyen los caminos que fallan si ello lleva a develar propiedades relevantes. Cada pregunta sirve a andamiar una idea de esta cadena.</li>
+<li><strong>Hitos que salen de la cadena.</strong> Un hito formalmente agrupa ideas y es algo que el estudiante logra, no un rótulo de contenido. Cada tarea de la Ruta cae en un hito.</li>
+<li><strong>Hacer una tabla de ítems antes de escribir contenido.</strong> La lección se redacta sobre una tabla de hitos e ítems aprobada, con el propósito de cada ítem. El contexto y los datos se fijan una vez, consistentes con la tabla.</li>
+<li><strong>Componentes.</strong> Activación (Recordemos y hasta 3 preguntas) · Contexto · Construcción (hasta 15 preguntas) · Sistematización · Práctica (hasta 5, en otro contexto y con menos andamiaje) · Ticket. Numeración correlativa en toda la lección.</li>
+<li><strong>Escalera de dificultad.</strong> Primero se modela, después se practica con guía y al final se trabaja solo; lo cualitativo antes que el cálculo y lo formal.</li>
+<li><strong>Contexto creíble y adulto.</strong> Situaciones reales, de preferencia actividades sencillas, pero creíbles de ocurrir en la realidad, con datos verificados; cada error planteado es uno que alguien cometería de verdad. Si un contexto sirve a varias lecciones, se mantiene.</li>
+<li><strong>Cápsulas después del hallazgo.</strong> Una por idea fuerza: nombre, definición, fórmula y ejemplo con los números de la lección.</li>
+<li><strong>Recordemos recuperado</strong> de Sistematizaciones anteriores; nunca trae un concepto que el curso no ha enseñado. Se pueden resumir.</li>
+<li><strong>Exploremos solo si agrega algo</strong> (un caso borde, otro camino, un distractor cierto que responde otra cosa) y nunca responde la pregunta siguiente.</li>
+<li><strong>Recursos interactivos</strong> con dos frases de introducción: qué hacer y cómo usarlo.</li>
+<li><strong>Preguntas abiertas</strong>: máximo 1 o 2 por lección.</li>
+</ul>
+<h2 id="lenguaje">Lenguaje</h2>
+<ul>
+<li><strong>Enunciados que dicen la tarea.</strong> Empiezan con la instrucción (“Calcula…”, “Indica…”), nunca con un título. Nombran su sujeto y dicen qué se espera de vuelta. Hay baja comprensión lectora: la tarea se explicita, no se insinúa.</li>
+<li><strong>Varias tareas en una pregunta</strong> solo si sirven a un propósito, están encadenadas, usan los mismos datos y son hasta cuatro pasos, rotulados <strong>a.</strong>, <strong>b.</strong>, <strong>c.</strong></li>
+<li><strong>Diálogos breves y chilenos</strong>, de tres a cinco turnos, solo para presentar el problema, contraponer ideas, proponer un camino o revelar un error. Ningún personaje explica el contenido (pero puede cerrar ideas si ya han sido establecidas formalmente en cápsulas) y el diálogo se corta antes del hallazgo. Escribir números en palabras.</li>
+<li><strong>Cápsulas en registro formal</strong>, en positivo y en directo: se dice qué es algo, no qué no es. Debe tener un lenguaje matemático correcto, sin ambigüedades ni simplificaciones que induzcan a errores.</li>
+<li><strong>Alternativas</strong> de largo parejo y estructura paralela; la correcta nunca es la más larga. Orden: natural si existe; si no, de la más corta a la más larga; si no, alfabético. Tres bastan. Nunca “todas las anteriores”.</li>
+<li><strong>Desplegables</strong> de dos o tres opciones que calcen en la frase.</li>
+<li><strong>Léxico estable.</strong> Un término por objeto, el del curso antes que el técnico, personas con nombre (no códigos). Nada de vocabulario de diseño (“hito”, “andamiaje”) en el texto del estudiante.</li>
+<li><strong>Notación consistente</strong> con la de la lección y las anteriores, en LaTeX; las sumas que importan van en display con sus términos a la vista.</li>
+</ul>
+<h2 id="rigor">Rigor matemático</h2>
+<ul>
+<li><strong>Cada clave se verifica antes de entregar</strong>, incluidas las que dependen de un recurso interactivo o de una imagen. Una sola clave mala derriba la cadena que viene después.</li>
+<li><strong>Las propiedades se enuncian en su generalidad correcta.</strong> Antes de escribir una propiedad en una cápsula, se busca si hay un caso de la propia lección que la contradiga y se repara. Una condición suficiente no se presenta como necesaria y viceversa, a menos que realmente haya equivalencia.</li>
+<li><strong>Los supuestos se adoptan en el relato y por una razón</strong>, después de mostrar que la evidencia no alcanza. Se formula el supuesto que sostiene la deducción, no una consecuencia más débil.</li>
+<li><strong>Un Exploremos o una cápsula prueban lo que afirman.</strong> Un argumento incompleto enseña a razonar mal aunque la conclusión sea cierta.</li>
+<li><strong>Los distractores son falsos de verdad</strong>: verificables contra los datos, sin traslape entre ellos y sin una segunda respuesta correcta.</li>
+<li><strong>Relato y matemática coinciden.</strong> El mecanismo descrito justifica el modelo (no hay probabilidad sin azar declarado), los datos del contexto calzan con los cálculos y todo objeto comparado tiene origen en el relato.</li>
+<li><strong>Sin tecnicismos ni contenidos que el curso aún no enseña.</strong> Si un procedimiento tiene nombre técnico, se justifica en lenguaje corriente.</li>
+</ul>
+<h2 id="checklist">Checklist antes de entregar</h2>
+<ul class="check">
+<li>El problema queda planteado en el Contexto y el último hito lo resuelve.</li>
+<li>Numeración correlativa, sin duplicados, con referencias cruzadas al día.</li>
+<li>Cada enunciado parte con la tarea y nombra su sujeto.</li>
+<li>Ningún diálogo explica contenido ni anticipa el hallazgo.</li>
+<li>Cada cápsula llega después de que el estudiante produjo la idea, y trae un ejemplo con los números de la lección.</li>
+<li>Todas las claves recalculadas, también tras reordenar alternativas, y cada distractor recoge un error real.</li>
+<li>Ninguna letra concentra más de la mitad de las claves; se usan al menos tres posiciones.</li>
+<li>Ningún término, concepto o dato aparece sin haberse enseñado o presentado antes.</li>
+<li>Cada IPP dice qué mostrar, cuándo y con qué texto; ninguna respuesta queda visible antes de tiempo.</li>
+<li>Ortografía y concordancia revisadas.</li>
+<li>Las instrucciones para diseño (IPD) son claras y llevan una imagen de referencia.</li>
+<li>Las imágenes, tablas, recursos tienen código de referencia, por ejemplo, IMG_P01_ANS para la imagen que se muestra en la respuesta de la pregunta 1.</li>
+</ul>
+</main>
+</div>
+</body>
+</html>
