@@ -1,4 +1,4 @@
-# Manuales para guionistas
+# Recursos para el equipo de contenido
 
 Material de apoyo para escribir guiones de lección. Se lee como sitio web (GitHub Pages) desde `index.html`.
 
