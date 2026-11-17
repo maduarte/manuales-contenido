@@ -12,5 +12,6 @@ Material de apoyo para escribir guiones de lección. Se lee como sitio web (GitH
 | `LDI_ruta_curso_implementado.html` | Ruta del curso LDI implementado (Límites, Derivadas e Integrales) | Se genera desde la ruta del proyecto |
 | `LDI_decisiones_estructurales.html` | Decisiones estructurales del curso LDI nuevo | Se genera desde el proyecto |
 | `lecciones/` | Lecciones en construcción: una vista HTML por lección, como la verá el estudiante | La publica el skill producir-guion en cada entrega |
+| `revision/` | Índice de los artifacts de revisión de cada lección (tabla de propósitos y vista comentable) | Lo publica `02_Herramientas/publicar_indice_artifacts.py` |
 
 Los cambios se hacen en local; aquí se publica solo el HTML.
