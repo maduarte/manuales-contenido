@@ -116,16 +116,22 @@ html{scroll-behavior:smooth}
 <header class="top"><div class="in">
 <p class="eyebrow">Probabilidad y Estadística · Ruta de la unidad</p>
 <h1>Unidad 4: Modelando con variables aleatorias: distribuciones binomial y normal</h1>
-<p class="lead">Esta unidad busca que los estudiantes modelen fenómenos o situaciones cotidianas del ámbito científico y social mediante variables aleatorias, y que tomen decisiones a partir de esos modelos. Se inicia definiendo la variable aleatoria y su distribución, con la esperanza y la desviación estándar como resumen del modelo. Luego construye el modelo binomial desde los ensayos repetidos, y avanza hacia las variables continuas y el modelo normal. Cierra aproximando la distribución binomial por la normal, que conecta los dos modelos de la unidad.</p>
+<p class="lead">Esta unidad busca que los estudiantes modelen situaciones del ámbito científico y social con variables aleatorias, y que tomen decisiones con esos modelos. La unidad define la variable aleatoria y la resume con su distribución, su esperanza y su desviación estándar; luego construye el modelo binomial, pasa a las variables continuas y al modelo normal, y cierra aproximando la binomial por la normal.</p>
 </div></header>
 <div class="layout">
 <nav class="toc" aria-label="Contenido"><p>Contenido</p><ol><li><a href="#presentacion">Presentación de la unidad</a></li><li><a href="#tema-1--variables-aleatorias-discretas">Tema 1: Variables aleatorias discretas</a></li><li class="sub"><a href="#lección-1--variable-aleatoria-un-número-para-cada-resultado">Lección 1 · Variable aleatoria: un número para cada resultado</a></li><li class="sub"><a href="#lección-2--distribución-de-probabilidad">Lección 2 · Distribución de probabilidad</a></li><li class="sub"><a href="#lección-3--esperanza-valor-en-torno-al-que-se-estabiliza-el-promedio">Lección 3 · Esperanza: valor en torno al que se estabiliza el promedio</a></li><li class="sub"><a href="#lección-4--varianza-y-desviación-estándar-de-una-variable-aleatoria">Lección 4 · Varianza y desviación estándar de una variable aleatoria</a></li><li class="sub"><a href="#lección-5--práctica-modelar-y-decidir-con-variables-discretas">Lección 5 · Práctica: modelar y decidir con variables discretas</a></li><li class="sub"><a href="#lección-6--ejercitación-variables-aleatorias-discretas">Lección 6 · Ejercitación: variables aleatorias discretas</a></li><li class="sub"><a href="#evaluación-tema-1">Evaluación Tema 1</a></li><li><a href="#tema-2--modelo-binomial">Tema 2: Modelo binomial</a></li><li class="sub"><a href="#lección-1--ensayos-de-bernoulli-y-probabilidad-de-una-secuencia">Lección 1 · Ensayos de Bernoulli y probabilidad de una secuencia</a></li><li class="sub"><a href="#lección-2--modelo-binomial-contar-secuencias-y-multiplicar">Lección 2 · Modelo binomial: contar secuencias y multiplicar</a></li><li class="sub"><a href="#lección-3--cuándo-una-situación-es-binomial">Lección 3 · Cuándo una situación es binomial</a></li><li class="sub"><a href="#lección-4--variar-y-forma-esperanza-y-desviación-estándar">Lección 4 · Variar \(n\) y \(p\): forma, esperanza y desviación estándar</a></li><li class="sub"><a href="#lección-5--práctica-decidir-con-el-modelo-binomial">Lección 5 · Práctica: decidir con el modelo binomial</a></li><li class="sub"><a href="#lección-6--ejercitación-modelo-binomial">Lección 6 · Ejercitación: modelo binomial</a></li><li class="sub"><a href="#evaluación-tema-2">Evaluación Tema 2</a></li><li><a href="#tema-3--variables-continuas-y-modelo-normal">Tema 3: Variables continuas y modelo normal</a></li><li class="sub"><a href="#lección-1--variables-continuas-del-histograma-a-la-densidad">Lección 1 · Variables continuas: del histograma a la densidad</a></li><li class="sub"><a href="#lección-2--modelo-normal-parámetros-y-">Lección 2 · Modelo normal: parámetros \(\mu\) y \(\sigma\)</a></li><li class="sub"><a href="#lección-3--estandarización-y-cálculo-de-probabilidades">Lección 3 · Estandarización y cálculo de probabilidades</a></li><li class="sub"><a href="#lección-4--del-porcentaje-al-valor-umbrales-y-percentiles">Lección 4 · Del porcentaje al valor: umbrales y percentiles</a></li><li class="sub"><a href="#lección-5--de-la-binomial-a-la-normal">Lección 5 · De la binomial a la normal</a></li><li class="sub"><a href="#lección-6--práctica-modelar-y-decidir-con-el-modelo-normal">Lección 6 · Práctica: modelar y decidir con el modelo normal</a></li><li class="sub"><a href="#lección-7--ejercitación-modelo-normal-y-aproximación">Lección 7 · Ejercitación: modelo normal y aproximación</a></li><li class="sub"><a href="#evaluación-tema-3">Evaluación Tema 3</a></li></ol></nav>
 <main>
 <h2 id="presentacion">Presentación de la unidad</h2>
+<p><strong>De dónde sale la distribución.</strong> Cada tema obtiene la distribución de una manera distinta, y esa diferencia es contenido de la unidad, no sólo orden de las lecciones:</p>
+<ul>
+<li><strong>Tema 1, se estima con frecuencias.</strong> La distribución es el valor en que se estabilizan las frecuencias relativas de un registro largo, y se toma como modelo después de declararlo.</li>
+<li><strong>Tema 2, se deduce de supuestos.</strong> La distribución de la cantidad de éxitos sale de supuestos sobre cada ensayo (la misma probabilidad de éxito y ensayos independientes) y de un conteo, sin un registro de esa cantidad. Usa la regla multiplicativa y el árbol (Unidad 3, Tema 2) y las combinaciones (Unidad 3, Tema 3).</li>
+<li><strong>Tema 3, se ajusta una familia.</strong> Se elige la familia normal y se ajustan sus parámetros a los datos.</li>
+</ul>
 <p><strong>OA de Conocimiento y Comprensión (PEDI):</strong> <strong>OA 3 — Modelos Probabilísticos</strong>: <em>Modelar fenómenos o situaciones cotidianas del ámbito científico y del ámbito social, que requieran el cálculo de probabilidades y la aplicación de las distribuciones binomial y normal.</em></p>
 <p><strong>Habilidades citadas para esta Unidad:</strong> b (Variar Parámetros), e (Construir Modelos), i (Información Confiable).</p>
-<p><strong>Correspondencia con el Programa de Estudio:</strong> esta unidad cubre las actividades de la Unidad 3 del Programa. El cálculo de probabilidades del mismo OA se trabajó en la Unidad 3 del curso.</p>
-<p><strong>Antecedente en Formación General:</strong> los estudiantes trabajaron la variable aleatoria finita en 2° Medio (MA2M OA 10). El modelo binomial, el modelo normal y la variable aleatoria continua corresponden a 4° Medio (MA4M FG OAC 02), así que no se suponen conocidos.</p>
+<p><strong>Correspondencia con el Programa de Estudio:</strong> la unidad cubre las actividades de la Unidad 3 del Programa. La Unidad 3 del curso trabajó la otra parte del OA, el cálculo de probabilidades.</p>
+<p><strong>Antecedente en Formación General:</strong> la variable aleatoria finita viene de 2° Medio (MA2M OA 10). El modelo binomial, el normal y la variable continua son de 4° Medio (MA4M FG OAC 02), y la unidad no los supone conocidos, porque el electivo puede cursarse en 3° Medio.</p>
 <div class="tablewrap"><table>
 <thead>
 <tr>
@@ -140,7 +146,7 @@ html{scroll-behavior:smooth}
 <td>1. Variables aleatorias discretas</td>
 <td>6</td>
 <td>Sí</td>
-<td>Sin actividad propia: es la base de MA2M OA 10 que suponen las demás</td>
+<td>Sin actividad propia: el Programa supone esta base, de MA2M OA 10</td>
 </tr>
 <tr>
 <td>2. Modelo binomial</td>
@@ -156,76 +162,642 @@ html{scroll-behavior:smooth}
 </tr>
 </tbody>
 </table></div>
-<blockquote><span class="tag">Nota</span><p>El análisis de las medias de muestras y el teorema central del límite, que el Programa toca en la Actividad 3, se trabajan en la Unidad 5, de inferencia.</p></blockquote>
-<blockquote><span class="tag">Nota</span><p>La linealidad es contenido transversal de la unidad, sin lección propia. Entra con la esperanza (Tema 1, Lección 3), incluida la esperanza de una suma de variables, se extiende a la desviación estándar (Tema 1, Lección 4) y se retoma para deducir la esperanza binomial (Tema 2, Lección 4) y para estandarizar (Tema 3, Lección 3).</p></blockquote>
+<p><strong>Contextos:</strong> situaciones adultas y razonables de modelar, sin contextos escolares salvo que sean muy propios del colegio. Tienen prioridad los negocios de ventas sencillas, que dan variables naturales (unidades, ingreso, ganancia) y decisiones reales (precio, stock, promociones).</p>
+<p><strong>Linealidad:</strong> es contenido transversal, sin lección propia. El Tema 1 la establece para la esperanza, incluida la de una suma (Lección 3), y la extiende a la desviación estándar (Lección 4); el Tema 2 la usa para deducir la esperanza binomial (Lección 4) y el Tema 3 para estandarizar (Lección 3).</p>
+<blockquote><span class="tag">Nota</span><p>Las medias de muestras y el teorema central del límite, que el Programa toca en la Actividad 3, van en la Unidad 5.</p></blockquote>
 <hr />
 <h2 id="tema-1--variables-aleatorias-discretas">Tema 1 — Variables aleatorias discretas</h2>
-<p><strong>Objetivo del tema:</strong> Modelar experimentos aleatorios mediante variables aleatorias discretas, describiéndolas con su distribución de probabilidad, su esperanza y su desviación estándar, para tomar decisiones.</p>
-<p><strong>OA PEDI:</strong> OA 3 — Modelos Probabilísticos <em>(hereda de la Unidad)</em>.</p>
-<p><strong>OA Formación General:</strong></p>
+<p><strong>Objetivo del tema:</strong> Modelar experimentos aleatorios con variables aleatorias discretas, describiéndolas con su distribución de probabilidad, su esperanza y su desviación estándar, para tomar decisiones.</p>
+<p><strong>OA PEDI:</strong> OA 3 — Modelos Probabilísticos <em>(hereda de la Unidad)</em>. <strong>OA Formación General:</strong> 2° Medio, <strong>MA2M OA 10</strong> (Variable Aleatoria).</p>
+<h3 id="principio-de-diseño-del-tema">Principio de diseño del tema</h3>
+<p>En este tema vamos a utilizar un modelo de probabilidades para hacer cálculos sobre situaciones aleatorias, de manera análoga a lo que en la Unidad 2 se calculó con datos. Cada concepto se construye como el valor en que se estabiliza un cálculo que el estudiante ya sabe hacer sobre unas repeticiones: las frecuencias relativas se estabilizan en la distribución, la media en la esperanza y la varianza muestral en la varianza. El argumento es el de la Lección 3 del Tema 1 de la Unidad 3, y el tema lo usa sin volver a construirlo.</p>
 <ul>
-<li>2° Medio: <strong>MA2M OA 10</strong> (Variable Aleatoria).</li>
+<li><strong>Dato frente a modelo.</strong> Las Lecciones 2 a 5 ponen lado a lado lo registrado en unas repeticiones, que cambia de una serie a otra, y lo que dice el modelo, que es fijo.</li>
+<li><strong>Léxico: se observan resultados, se registran cantidades.</strong> La variable aleatoria es una función de los resultados, y los valores que toma son los números que asigna: su recorrido como función. Se dice "valores que toma", no "valores posibles".</li>
+<li><strong>Variables finitas.</strong> El tema trabaja sólo con variables finitas. La Práctica muestra, sin profundizar, que existen variables discretas no acotadas y continuas; las continuas se desarrollan en el Tema 3.</li>
+<li><strong>Problema y cadena de ideas.</strong> Cada lección parte de un problema y avanza por una cadena de ideas que lo resuelven, incluidos los caminos que fallan cuando su fracaso aporta. Los hitos salen de esa cadena.</li>
 </ul>
+<p><strong>Contexto del tema.</strong> Las Lecciones 1 a 4 transcurren en una cocinería de barrio que vende colaciones. La dueña, Patricia, cocina sin sacar cuentas; su hijo Carlos, que cursa el electivo de Probabilidad y Estadística, analiza para ese ramo los datos de la cocinería, y su análisis avanza lección a lección: qué registrar (L1), con qué probabilidad se pide cada cosa (L2), cuánto deja un pedido en promedio (L3) y cuánto varía de una semana a otra lo que gana el repartidor (L4). El choque entre el saber práctico de la madre y el análisis del hijo da los diálogos, sin ridiculizar a ninguno. Carlos tiene avatar en el servidor (<code>per_carlos.png</code>); el de Patricia hay que crearlo. La Lección 5, de práctica, cambia de contexto: un negocio de arriendo de carritos de completos.</p>
 <h3 id="lecciones">Lecciones</h3>
 <section class="leccion" id="lección-1--variable-aleatoria-un-número-para-cada-resultado"><h4><span class="ln">Lección 1</span>Variable aleatoria: un número para cada resultado</h4>
-<p><strong>Objetivo:</strong> Definir una variable aleatoria como una regla que asigna un número a cada resultado del espacio muestral de un experimento, interpretar \(X = x\) como un evento, y distinguir las variables finitas, las discretas no acotadas y las continuas según los valores que pueden tomar.</p>
+<p><strong>Objetivo:</strong> Definir una variable aleatoria como una función que asigna un número a cada resultado del espacio muestral de un experimento aleatorio, e interpretar \(X = x\) como un evento, reconociendo que sobre un mismo experimento se pueden registrar distintas cantidades.</p>
+<p><strong>Problema:</strong> el hijo quiere saber cuántos charquicanes se venden, y el único registro escrito son las boletas, que muestran sólo el monto de cada pedido. Un mismo monto puede venir de un pedido con charquicán o de uno con pollo arvejado, así que con las boletas no puede saberlo, y tiene que decidir qué registrar de ahora en adelante.</p>
+<p><strong>Cadena de ideas:</strong></p>
+<ol type="1">
+<li><strong>El resultado es el pedido.</strong> Los pedidos posibles se listan con un diagrama de árbol. El pedido lo elige el cliente, pero Patricia y Carlos no saben nada del cliente que llega y no pueden anticipar qué pedirá: para ellos, observar el pedido de un cliente que llega es un experimento aleatorio, y los 18 pedidos son su espacio muestral. La aleatoriedad depende de quién observa: quien elige no tiene incertidumbre, y por eso la configuración de un perfil no era aleatoria en la Lección 1 del Tema 2 de la Unidad 3, donde quien elegía era quien obtenía el resultado.</li>
+<li><strong>Un mismo pedido tiene varias cantidades asociadas:</strong> el monto, que le importa a la caja, y la cantidad de ítems, que le importa al empaque.</li>
+<li><strong>Del monto no se puede saber el pedido.</strong> Se intenta contar los charquicanes a partir de los montos de las boletas, pero falla: varios pedidos tienen el mismo monto, unos con charquicán y otros con pollo arvejado, y un mismo monto reúne pedidos de dos y de tres ítems.</li>
+<li><strong>Cada cantidad es una función de los pedidos.</strong> La variable aleatoria asigna un número a cada pedido, por ejemplo \(X(\text{pollo arvejado, fruta, sin bebestible}) = 6500\). La función no tiene nada de azar; la variable es aleatoria porque el pedido lo es.</li>
+<li><strong>Cada valor reúne un conjunto de pedidos.</strong> El evento \(X = x\) es el conjunto de pedidos a los que la función asigna \(x\). Es la preimagen de \(x\) por la variable, y la lección usa esa palabra: \(X = x\) y \(a &lt; X \le b\) son la notación abreviada con que la probabilidad escribe la preimagen de un valor y la de un intervalo. La notación \(X^{-1}\) no se usa, para no sugerir que la variable tiene inversa. Esos eventos reúnen todos los pedidos sin repetir ninguno, y las condiciones como \(X \ge a\) también son eventos.</li>
+<li><strong>El experimento aleatorio es el mismo, pero las cantidades registradas pueden cambiar.</strong> Se observan siempre los pedidos; lo que cambia es la cantidad que se registra, y cada una es una variable distinta: el monto para la caja, la cantidad de ítems para el empaque y la cantidad de charquicanes, que vale 1 o 0, para el análisis del hijo.</li>
+</ol>
+<p><strong>Lineamientos de contexto:</strong> un experimento de resultados no numéricos, con un espacio muestral que se pueda listar y en que varios resultados compartan el valor de una cantidad. Sugerido: cada pedido lleva una comida y puede sumar un postre y un bebestible.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Comida</th>
+<th>Postre</th>
+<th>Bebestible</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Charquicán, 5000</td>
+<td>Sin postre, 0</td>
+<td>Sin bebestible, 0</td>
+</tr>
+<tr>
+<td>Pollo arvejado con papas, 5500</td>
+<td>Fruta picada, 1000</td>
+<td>Bebida, 1000</td>
+</tr>
+<tr>
+<td></td>
+<td>Leche asada, 1500</td>
+<td>Jugo, 1500</td>
+</tr>
+</tbody>
+</table></div>
+<p>Hay 18 pedidos y 8 montos, entre 5000 y 8500; cuatro pedidos cuestan 6500, y en 7000 se juntan pedidos de dos y de tres ítems. Los precios pueden cambiar si conservan sus diferencias, de las que dependen los empates. La comida obligatoria es una simplificación que el relato declara. El menú se presenta sin precios, y el árbol de pedidos se construye sin ellos: el resultado es el pedido, no su monto. Los precios entran al relato cuando hacen falta, después de que el hijo encuentra las boletas.</p>
+<details open>
+<summary>Hitos y tareas</summary>
+
+<p class="hito"><span class="hid">H1</span><span>Separar el pedido de las cantidades que se registran de él</span></p>
+<ul>
+<li>Para la Activación: recordar espacio muestral, evento, diagrama de árbol y función.</li>
+<li>Listar los pedidos con un árbol, sin precios.</li>
+<li>Declarar el experimento aleatorio desde quien observa: para Patricia y Carlos el pedido del cliente que llega no se puede anticipar, y los 18 pedidos son su espacio muestral.</li>
+<li>Con los precios, que el relato entrega junto con las boletas, asociar a cada pedido su monto y su cantidad de ítems.</li>
+<li>Constatar que del monto no se puede saber el pedido.</li>
+</ul>
+<p class="hito"><span class="hid">H2</span><span>Definir la variable aleatoria como una función de los resultados</span></p>
+<ul>
+<li>Definir la variable aleatoria como función de los resultados y escribirla con notación de función.</li>
+<li>Distinguir la variable \(X\) de sus valores \(x\), y reconocer que el azar está en el resultado, no en la función.</li>
+<li>Listar los valores que toma una variable, que pueden ser menos que los resultados.</li>
+</ul>
+<p class="hito"><span class="hid">H3</span><span>Leer \(X = x\) como un evento</span></p>
+<ul>
+<li>Reconocer el conjunto de resultados con un mismo valor como la preimagen de ese valor por la variable, también para un intervalo, y escribirlo como el evento \(X = x\) o \(a &lt; X \le b\).</li>
+<li>Describir eventos dados por condiciones, como \(X \ge a\) o \(X &lt; a\), también sobre dos variables, y pasar de un conjunto de resultados a la condición que lo describe.</li>
+<li>Reconocer el evento imposible (un número que la variable no toma) y el evento seguro.</li>
+<li>Organizar en una tabla los valores que toma la variable con la cantidad de resultados de cada evento \(X = x\), y verificar que suman el total.</li>
+</ul>
+<p class="hito"><span class="hid">H4</span><span>Decidir qué cantidad registrar según la pregunta</span></p>
+<ul>
+<li>Reconocer que sobre un mismo experimento se registran distintas variables.</li>
+<li>Elegir la cantidad que responde una pregunta, incluida una que vale 1 o 0, y argumentar por qué el monto no basta.</li>
+</ul>
+</details>
+
+<p><strong>Recupera:</strong> espacio muestral y eventos (Unidad 3, Tema 1, Lección 2), diagrama de árbol y la distinción entre una elección deliberada y una situación aleatoria (Unidad 3, Tema 2, Lección 1) y función, con dominio, recorrido, imagen y preimagen, de la Formación General. La diapositiva de función se escribe para esta lección, porque ninguna Sistematización del curso la trabaja.</p>
 </section><section class="leccion" id="lección-2--distribución-de-probabilidad"><h4><span class="ln">Lección 2</span>Distribución de probabilidad</h4>
 <p><strong>Objetivo:</strong> Construir la distribución de probabilidad de una variable aleatoria finita en tabla y en gráfico de barras, verificar que sea consistente con las reglas de asignación y calcular a partir de ella probabilidades de eventos como \(X \le a\) o \(a \le X \le b\).</p>
+<p><strong>Problema:</strong> la dueña quiere ofrecer despacho gratis desde cierto monto, y el hijo tiene que estimar qué proporción de los pedidos quedaría con despacho gratis según dónde se ponga ese monto.</p>
+<p><strong>Cadena de ideas:</strong></p>
+<ol type="1">
+<li><strong>Los montos no son igualmente probables.</strong> Se intenta darle la misma probabilidad a cada uno de los 8 montos, pero falla: cada monto reúne una cantidad distinta de pedidos.</li>
+<li><strong>Los totales de cada componente no bastan.</strong> El análisis del hijo busca saber en qué proporción comprar ingredientes, postres y bebestibles, y para eso anota durante dos semanas cada pedido completo en una planilla, una fila por cliente. Para el despacho necesita la frecuencia de cada pedido. Empieza por sumar cada columna, que es rápido y da la frecuencia relativa de cada componente, pero esos totales no dicen cuántas veces se pidió cada pedido: se sabe cuántos pedidos llevan leche asada, pero no con qué comida. La madre aporta lo que ve al servir: con el pollo arvejado se pide mucha más leche asada que con el charquicán. Las compras quedan como el motivo de la planilla, sin que la lección las resuelva.</li>
+<li><strong>Contar los pedidos completos.</strong> El hijo pasa la planilla al computador y arma un contador: se marca una comida, un postre o un bebestible, y muestra cuántos de los 400 pedidos los llevan. Con él completa la tabla de los 18 pedidos con lo observado. Nota: los pedidos no se estiman multiplicando las frecuencias de sus componentes; ese contraste desvía la atención de lo central, que es construir las probabilidades contando.</li>
+<li><strong>La frecuencia relativa de cada pedido estima su probabilidad.</strong> Del conteo sale la tabla de los 18 resultados con su frecuencia relativa, que estima la probabilidad de cada pedido porque, con muchos pedidos registrados, la frecuencia relativa se estabiliza. La estabilización supone repeticiones bajo las mismas condiciones, y aquí eso es un supuesto que los personajes declaran: los clientes registrados se comportan como uno cualquiera, del que no se sabe nada, así que cada cliente tiene la misma probabilidad que cualquier otro de pedir cada pedido, sin importar quién sea ni qué pidieron los demás. El supuesto no dice que los 18 pedidos sean igual de probables, y tiene un límite que la lección deja a la vista: de un cliente conocido, como una vecina que siempre pide lo mismo, se sabe más.</li>
+<li><strong>La probabilidad de un monto es la suma de las probabilidades de sus pedidos.</strong> Se marcan los pedidos del evento \(\{X = x\}\) y se suman sus probabilidades, con un recurso que hace la suma. La distribución del monto agrupa los pedidos de cada monto, en tabla y en gráfico de barras, y las probabilidades suman 1 porque los eventos \(X = x\) reúnen todos los pedidos sin repetir ninguno.</li>
+<li><strong>La distribución responde la pregunta.</strong> \(P(X \ge a)\) se obtiene sumando las probabilidades de los montos que cumplen la condición, y la respuesta cambia entre "desde 7000" y "sobre 7000", porque las dos difieren en \(P(X = 7000)\).</li>
+</ol>
+<p><strong>Lineamientos de contexto:</strong> la cocinería de la Lección 1, con un registro de pedidos completos en que unas opciones se piden más que otras y en que el postre depende de la comida. Los totales por componente y las frecuencias de los pedidos salen del mismo registro. Sugerido: 400 pedidos de dos semanas. El despacho es a domicilio: Patricia le paga 1000 pesos por despacho al repartidor, Tomi, y se los cobra al cliente, salvo en el despacho gratis; la Lección 3 parte de ese acuerdo.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Comida</th>
+<th>Postre</th>
+<th>Sin bebestible</th>
+<th>Bebida</th>
+<th>Jugo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Charquicán</td>
+<td>Sin postre</td>
+<td>61</td>
+<td>36</td>
+<td>23</td>
+</tr>
+<tr>
+<td>Charquicán</td>
+<td>Fruta picada</td>
+<td>44</td>
+<td>28</td>
+<td>18</td>
+</tr>
+<tr>
+<td>Charquicán</td>
+<td>Leche asada</td>
+<td>15</td>
+<td>9</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Pollo arvejado</td>
+<td>Sin postre</td>
+<td>39</td>
+<td>25</td>
+<td>16</td>
+</tr>
+<tr>
+<td>Pollo arvejado</td>
+<td>Fruta picada</td>
+<td>10</td>
+<td>6</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Pollo arvejado</td>
+<td>Leche asada</td>
+<td>31</td>
+<td>16</td>
+<td>13</td>
+</tr>
+</tbody>
+</table></div>
+<p>Los componentes suman 240 charquicanes y 160 pollos arvejados; 200 sin postre, 110 con fruta y 90 con leche asada; 200 sin bebestible, 120 con bebida y 80 con jugo. El bebestible se pide parecido con cualquier comida, y el postre no: la leche asada va en 60 de los 160 pedidos con pollo arvejado y en 30 de los 240 con charquicán. La distribución del monto queda en 61, 39, 80, 73, 75, 33, 26 y 13 pedidos para los montos de 5000 a 8500; \(P(X \ge 7000) = 147/400\) y \(P(X &gt; 7000) = 72/400\).</p>
+<details open>
+<summary>Hitos y tareas</summary>
+
+<p class="hito"><span class="hid">H1</span><span>Reconocer que los montos no son igualmente probables</span></p>
+<ul>
+<li>Para la Activación: recordar la frecuencia relativa como estimación de la probabilidad y el principio aditivo.</li>
+<li>Descartar la equiprobabilidad de los montos con la tabla de la Lección 1, que muestra cuántos pedidos reúne cada monto.</li>
+</ul>
+<p class="hito"><span class="hid">H2</span><span>Estimar la probabilidad de cada pedido con lo observado</span></p>
+<ul>
+<li>Calcular la frecuencia relativa de cada componente, que es la que sirve para las compras.</li>
+<li>Reconocer que los totales de cada componente no dicen cuántas veces se pidió cada pedido, y contar los pedidos completos con el contador.</li>
+<li>Construir la tabla de los 18 pedidos con su frecuencia relativa.</li>
+<li>Declarar el supuesto que permite tomar la frecuencia relativa de cada pedido como estimación de su probabilidad: cada cliente se comporta como uno cualquiera, sin importar quién sea ni qué pidieron los demás.</li>
+</ul>
+<p class="hito"><span class="hid">H3</span><span>Construir la distribución de la variable y verificarla</span></p>
+<ul>
+<li>Agrupar los pedidos por monto, sumar sus frecuencias relativas y organizar la distribución en tabla y en gráfico de barras.</li>
+<li>Verificar que las probabilidades estén entre 0 y 1 y sumen 1, y argumentar por qué suman 1.</li>
+<li>Para la Práctica: construir la distribución de la cantidad de ítems con los mismos 18 pedidos, y detectar una tabla que no es una distribución.</li>
+</ul>
+<p class="hito"><span class="hid">H4</span><span>Calcular probabilidades de eventos descritos con la variable</span></p>
+<ul>
+<li>Calcular \(P(X \ge a)\) para el despacho gratis y distinguirla de \(P(X &gt; a)\).</li>
+<li>Recomendar desde qué monto ofrecer el despacho gratis para que lo tenga a lo más cierta proporción de los pedidos, justificando con la distribución.</li>
+<li>Para la Práctica: calcular probabilidades de otros eventos, como \(X &lt; 6000\), \(6000 \le X \le 7500\), el evento contrario del despacho gratis, un evento imposible y \(Y \ge 2\).</li>
+</ul>
+</details>
+
+<p><strong>Recupera:</strong> frecuencia relativa como estimación de la probabilidad (Unidad 3, Tema 1, Lección 3) y principio aditivo (Unidad 3, Tema 1, Lección 4). La diferencia entre \(&lt;\) y \(\le\) vuelve en el Tema 3: en una variable continua no importa (Lección 1), y la corrección de continuidad la compensa (Lección 5).</p>
+<blockquote><span class="tag">Nota</span><p>Que el postre que se pide dependa de la comida deja una semilla, sin desarrollarla aquí: es lo contrario de la condición de independencia del modelo binomial (Tema 2, Lección 3), y la Lección 3 lo retoma para mostrar que la esperanza de una suma no exige independencia. La lección no usa probabilidades condicionales; quedan para la Práctica de la Lección 5 o para el Tema 2.</p></blockquote>
 </section><section class="leccion" id="lección-3--esperanza-valor-en-torno-al-que-se-estabiliza-el-promedio"><h4><span class="ln">Lección 3</span>Esperanza: valor en torno al que se estabiliza el promedio</h4>
-<p><strong>Objetivo:</strong> Construir la esperanza de una variable aleatoria discreta desde la estabilización de la frecuencia relativa: escribir el promedio de muchas repeticiones como la suma de cada valor por su frecuencia relativa y, como cada frecuencia relativa se estabiliza en la probabilidad de su valor, reconocer que el promedio se estabiliza en \(\sum x \cdot P(X = x)\). Distinguir la esperanza de la media muestral, establecer su linealidad, tanto al trasladar y cambiar de escala la variable, \(E(aX + b) = aE(X) + b\), como al sumar variables, \(E(X + Y) = E(X) + E(Y)\), y usarla para evaluar la ganancia o pérdida esperada de un juego.</p>
-<blockquote><span class="tag">Nota</span><p>La estabilización de la frecuencia relativa se recupera de la Lección 3 del Tema 1 de la Unidad 3, donde el valor en que se estabiliza define la probabilidad. Aquí no se vuelve a construir: se usa como argumento.</p></blockquote>
+<p><strong>Objetivo:</strong> Calcular la esperanza de una variable aleatoria discreta e interpretarla como el valor en torno al cual se estabiliza el promedio de muchas repeticiones. Usar su linealidad para evaluar la ganancia o pérdida esperada de una decisión.</p>
+<p><strong>Problema:</strong> Han pasado unos meses desde que Patricia empezó con el despacho, y muchos clientes con pedidos de 7000 pesos agregan un ítem de 1000 para llegar a 8000 y no pagar el despacho; a Patricia eso le cuesta el ítem extra y además le paga 1000 a Tomi. Cambia la política: todos los pedidos tienen despacho, cada cliente paga el 15 % del monto de su pedido y Patricia le paga a Tomi 1000 pesos por despacho. Carlos le asegura que el cambio cubre a Tomi: el 15 % va de 750 a 1275, y "en promedio, (750 + 1275)/2 = 1012.5, más que los 1000". Lo que Patricia gana o pierde en cada despacho, \(G = 0.15X - 1000\), cambia de un pedido a otro.</p>
+<p><strong>Cadena de ideas:</strong></p>
+<ol type="1">
+<li><strong>Pedido a pedido no hay respuesta.</strong> Patricia gana en los pedidos grandes y pierde en los chicos, y el pedido no se puede anticipar.</li>
+<li><strong>Los totales de dos días no se pueden comparar si los días tienen distinta cantidad de pedidos.</strong> En sus primeros días con las reglas nuevas, el lunes (20 despachos) Patricia perdió 800 pesos y el jueves (30 despachos) 750: casi lo mismo. Por pedido, en cambio, perdió 40 el lunes y 25 el jueves. Dividir por la cantidad de pedidos escribe la ganancia por despacho como la suma de cada valor de \(G\) por su frecuencia relativa en ese día.</li>
+<li><strong>La cuenta de Carlos no pondera.</strong> Promediar 750 y 1275 da lo mismo que promediar los 8 valores de \(G\) (12.5 de ganancia), y ese promedio le da a cada valor la misma frecuencia relativa, 1/8. Anuncia una ganancia que los dos días desmienten.</li>
+<li><strong>La ganancia por despacho cambia de un día a otro</strong>, y juntando los dos días (−1550 en 50 despachos, −31 por despacho) da otro valor; la pregunta pasa a ser qué ocurre con muchos días.</li>
+<li><strong>La ganancia por despacho se estabiliza en \(\sum g \cdot P(G = g)\)</strong>, porque cada frecuencia relativa se estabiliza en su probabilidad. Ese valor es la esperanza: −38.125 pesos, que no es un valor que tome \(G\).</li>
+<li><strong>La esperanza calculada es una estimación.</strong> Las probabilidades salen de la planilla de la Lección 2, así que esta esperanza coincide con la ganancia por despacho de esas dos semanas; otro registro daría un valor cercano y no igual.</li>
+<li><strong>No hace falta rehacer la distribución.</strong> \(E(X) = 6412.5\), y \(0.15 \cdot 6412.5 - 1000 = -38.125\) coincide con \(E(G)\), como pasaba con la media de unos datos en la Unidad 2: \(E(aX + b) = aE(X) + b\). Con el 15 %, Patricia pierde en promedio 38.125 pesos por despacho, aunque la cuenta de Carlos dijera lo contrario.</li>
+<li><strong>La esperanza da el umbral de la decisión.</strong> Para cubrir en promedio los 1000 de Tomi, Patricia tiene que cobrar al menos \(1000/6412.5 \approx 15.6\) %; con el 16 %, \(E(0.16X - 1000) = 26\). El 15 % alcanzaría solo si el monto esperado fuera al menos \(1000/0.15 \approx 6667\).</li>
+<li><strong>La esperanza de una suma es la suma de las esperanzas.</strong> \(E(X)\) también sale de los totales de cada columna de la planilla: \(5200 + 612.5 + 600 = 6412.5\). Funciona aunque el postre dependa de la comida, porque el promedio de las sumas es la suma de los promedios.</li>
+</ol>
+<p><strong>Lineamientos de contexto:</strong> la cocinería, con la distribución del monto de la Lección 2 (61, 39, 80, 73, 75, 33, 26 y 13 pedidos de 400, para los montos de 5000 a 8500). Al final de la Lección 2, el despacho queda así: bajo 6000 no hay; de 6000 a 7500 el cliente le paga 1000 pesos a Tomi; desde 8000 es gratis y Patricia le paga 1000 pesos a Tomi. Los pedidos de 7000 que pueden llegar a 8000 agregando un ítem de 1000 son los de pollo arvejado (47 de 75); los de charquicán ya llevan postre y bebestible. No todos los pedidos se despachan: muchos clientes almuerzan en la cocinería o pasan a buscar su pedido, y Tomi hace unos 25 despachos al día (unos 120 mil pesos semanales). Supuesto que el relato declara: en los primeros días con las reglas nuevas, las frecuencias relativas de los pedidos se parecen a las de la planilla (que se anotó antes de que hubiera despacho), y un cobro proporcional al monto ya no premia llegar a 8000; por eso la distribución de los montos se supone igual a la de la planilla. El menú y las reglas del despacho se presentan como un volante de dos caras que se da vuelta, y las reglas nuevas, como una imagen con el mismo diseño. La planilla tiene 400 pedidos en los 10 días hábiles de las dos semanas, de 20 a 30 despachos por día. Un recurso exploratorio muestra una tarjeta por monto, con los pedidos que lo dan y un selector de cantidad, y calcula la ganancia total de Patricia en el día y la ganancia por despacho. Otro recurso simula muchos días de 20 a 30 despachos y muestra la ganancia por despacho de cada día y la acumulada.</p>
+<details open>
+<summary>Hitos y tareas</summary>
+
+<p class="hito"><span class="hid">H1</span><span>Reconocer que la decisión necesita un promedio que no cambie</span></p>
+<ul>
+<li>Para la Activación: recordar la media desde una tabla de frecuencias, sus transformaciones lineales y la estabilización de la frecuencia relativa.</li>
+<li>Escribir lo que gana o pierde Patricia en función del monto, \(G = 0.15X - 1000\), calcularlo pedido a pedido y constatar que gana en unos y pierde en otros.</li>
+<li>Comparar dos días con distinta cantidad de pedidos, reconocer que los totales no se pueden comparar y escribir la ganancia por despacho como la suma de cada valor por su frecuencia relativa.</li>
+<li>Reconocer que la cuenta de Carlos le da a cada valor la misma frecuencia relativa.</li>
+<li>Juntar dos días y observar con la simulación que la ganancia por despacho cambia de un día a otro y que la acumulada varía cada vez menos.</li>
+</ul>
+<p class="hito"><span class="hid">H2</span><span>Definir la esperanza como el valor en que se estabiliza el promedio</span></p>
+<ul>
+<li>Argumentar por qué el promedio se estabiliza en \(\sum x \cdot P(X = x)\) y definir la esperanza.</li>
+<li>Calcular la esperanza desde la distribución, aunque no sea un valor que tome la variable.</li>
+<li>Distinguir la esperanza, fija en el modelo, de la media de unas repeticiones, que cambia, y reconocer la esperanza calculada con la planilla como una estimación.</li>
+</ul>
+<p class="hito"><span class="hid">H3</span><span>Decidir con la linealidad de la esperanza</span></p>
+<ul>
+<li>Calcular \(E(X)\), constatar que \(0.15\,E(X) - 1000 = E(G)\) y establecer \(E(aX + b) = aE(X) + b\) desde lo visto con datos.</li>
+<li>Decidir que con el 15 % Patricia pierde en promedio, y determinar el porcentaje mínimo que cubre a Tomi y el umbral del monto esperado.</li>
+<li>Interpretar la diferencia como lo que gana o pierde Patricia por despacho en promedio a largo plazo, no en un despacho.</li>
+</ul>
+<p class="hito"><span class="hid">H4</span><span>Establecer la esperanza de una suma</span></p>
+<ul>
+<li>Calcular \(E(X)\) con los totales de cada componente y constatar que coincide.</li>
+<li>Establecer \(E(X + Y) = E(X) + E(Y)\) con promedios, sin exigir independencia.</li>
+<li>Para la Práctica: calcular la esperanza de una variable que vale 1 o 0, como la cantidad de leches asadas de un pedido, y reconocer que es una probabilidad.</li>
+<li>Para la Práctica: calcular con la distribución la esperanza de una variable que no es lineal en \(X\), como lo que Patricia pagaba por despacho con la política de la Lección 2 (solo en los despachos gratis, desde 8000), con la planilla y si los pedidos de 7000 con pollo arvejado suben a 8000.</li>
+</ul>
+</details>
+
+<p><strong>Recupera:</strong> estabilización de la frecuencia relativa (Unidad 3, Tema 1, Lección 3), media desde una tabla de frecuencias y transformaciones lineales de la media (Unidad 2, Tema 2, Lección 2). <strong>Nota:</strong> la esperanza se calcula sólo en variables finitas, y la de una suma se justifica sin distribución conjunta, que el curso no desarrolla.</p>
 </section><section class="leccion" id="lección-4--varianza-y-desviación-estándar-de-una-variable-aleatoria"><h4><span class="ln">Lección 4</span>Varianza y desviación estándar de una variable aleatoria</h4>
-<p><strong>Objetivo:</strong> Calcular la varianza y la desviación estándar de una variable aleatoria discreta e interpretarlas como la dispersión de sus valores en torno a la esperanza, establecer que la traslación no cambia la desviación estándar y que el cambio de escala la multiplica por \(|a|\), y comparar situaciones que tienen la misma esperanza y distinto riesgo.</p>
+<p><strong>Objetivo:</strong> Calcular la varianza y la desviación estándar de una variable aleatoria discreta desde su distribución, usando las propiedades de traslación y escala. Interpretar estas medidas como la dispersión de los valores en torno a la esperanza e identificar sus valores típicos, para comparar decisiones que tienen distinta esperanza y distinto riesgo.</p>
+<p><strong>Problema:</strong> ya va a cumplirse un año desde que Patricia cambió las reglas del despacho (Lección 3). Desde entonces le paga ella a Tomi, el repartidor: cada viernes, 1000 pesos por cada despacho de la semana. Su pago cambia mucho de una semana a otra, porque las semanas con feriado son flojas y en las de lluvia casi nadie pasa a buscar su pedido: hay semanas de unos 80 000 pesos y otras de unos 160 000. Le pide a Patricia un sueldo fijo, igual a lo que gana en promedio, 120 000 pesos. Patricia no puede pagarle eso fijo, porque en las semanas flojas perdería plata, y le ofrece 55 000 pesos fijos a la semana más 500 por despacho. Con la oferta, Tomi ganaría 5000 pesos menos en promedio. La pregunta es cuánto menos varía su pago con la oferta, y si eso compensa los 5000.</p>
+<p><strong>Enfoque:</strong> la lección no reconstruye la varianza, que la Unidad 2 ya construyó: trae su fórmula y lo que mide, y la adapta a la variable aleatoria. La diferencia que la lección hace visible es que en la Unidad 2 todo era muestral y la variación se medía en torno a la media de los datos; la de una variable se mide en torno a la esperanza.</p>
+<p><strong>Cadena de ideas:</strong></p>
+<ol type="1">
+<li><strong>La esperanza no responde la pregunta de Tomi.</strong> Por linealidad, el pago actual le deja 120 000 pesos a la semana en promedio y la oferta, 115 000. Tomi pregunta por cuánto se aleja de ese promedio el pago de cada semana, y eso se mide con la varianza y la desviación estándar de la Unidad 2.</li>
+<li><strong>La fórmula de la Unidad 2 se reescribe con frecuencias relativas.</strong> La varianza muestral de las 50 semanas registradas divide por 49; escrita con frecuencias relativas divide por 50, como la Lección 3 reescribió la media, y con tantos datos la diferencia es pequeña.</li>
+<li><strong>La variación de unos datos se mide en torno a su propia media, y esa media cambia.</strong> Las primeras 10 semanas y las últimas 10 tienen medias distintas y desviaciones estándar distintas, y ninguno de los dos tramos describe por sí solo lo que Tomi puede esperar.</li>
+<li><strong>La varianza de la variable se mide en torno a la esperanza.</strong> Con muchas semanas, las frecuencias relativas se estabilizan en las probabilidades y la media en la esperanza, por el argumento de la Lección 3, y la varianza en \(\sigma^2 = \sum (n - \mu)^2 \cdot P(N = n)\). Su raíz, la desviación estándar, está en despachos: una semana típica se aleja unos 24 despachos de los 120 esperados.</li>
+<li><strong>El fijo no empareja el pago.</strong> Tomi cree que con un fijo su pago varía menos. Las desviaciones de \(55\,000 + 500N\) respecto de su esperanza son las de \(N\) multiplicadas por 500, porque el fijo se cancela: la desviación estándar de la oferta es la mitad de la actual por el pago por despacho más bajo, no por el fijo. Es la propiedad de transformación de la Unidad 2, adaptada a la variable.</li>
+<li><strong>La decisión es de Tomi.</strong> La oferta cuesta 5000 pesos en promedio y reduce la variación a la mitad: la semana típica va de 96 000 a 144 000 con el pago actual y de 103 000 a 127 000 con la oferta. En la semana más floja la oferta le deja 15 000 pesos más, y en la mejor, 25 000 menos.</li>
+</ol>
+<p><strong>Lineamientos de contexto:</strong> un solo registro de una variable de conteo, y dos formas de pago que son transformaciones lineales de ella, una con parte fija y otra sin ella. Sugerido: el cuaderno en que Patricia anota cada viernes los despachos de la semana desde que cambió las reglas del despacho (antes, el cliente le pagaba a Tomi), 50 semanas con 37 valores distintos, de 73 a 166 despachos. Con tantos valores, cada cuenta toma mucho, y Carlos agrupa las semanas en intervalos de 20, como en un histograma (Unidad 1), y cuenta cada semana con el centro de su barra. El estudiante calcula en el Contexto cuánto gana Tomi en promedio antes de que Patricia haga su oferta.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Despachos de la semana</th>
+<th>70 a 89</th>
+<th>90 a 109</th>
+<th>110 a 129</th>
+<th>130 a 149</th>
+<th>150 a 169</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Centro de la barra, \(n\)</td>
+<td>80</td>
+<td>100</td>
+<td>120</td>
+<td>140</td>
+<td>160</td>
+</tr>
+<tr>
+<td>Semanas (de 50)</td>
+<td>7</td>
+<td>9</td>
+<td>17</td>
+<td>11</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Primeras 10 semanas</td>
+<td>1</td>
+<td>3</td>
+<td>5</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Últimas 10 semanas</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>2</td>
+</tr>
+</tbody>
+</table></div>
+<p>\(E(N) = 120\), lo que calza con la Lección 3 (unos 24 despachos al día y 480 al mes); varianza muestral \(28\,800 / 49 \approx 587.8\), y con frecuencias relativas 576; \(\sigma = 24\) despachos. Las primeras 10 semanas tienen media 112 y desviación estándar 16, y las últimas 10, media 124 y desviación estándar 28. Pago actual \(1000N\): esperanza 120 000 y desviación estándar 24 000. Oferta \(55\,000 + 500N\): esperanza 115 000 y desviación estándar 12 000. En la lección se dice "1000 por despacho" y "un monto fijo a la semana", porque en la Lección 3 "1000 fijos" significaba 1000 por despacho.</p>
+<details open>
+<summary>Hitos y tareas</summary>
+
+<p class="hito"><span class="hid">H1</span><span>Reconocer que la esperanza no responde la pregunta de Tomi</span></p>
+<ul>
+<li>Para la Activación: recordar la varianza y la desviación estándar de unos datos y sus transformaciones (Unidad 2), y la esperanza con su linealidad (Lección 3).</li>
+<li>En el Contexto, calcular la esperanza de \(N\) y la del pago actual, que es lo que Tomi pide como sueldo fijo; en la Construcción, la esperanza de la oferta con la linealidad.</li>
+<li>Reconocer que la pregunta de Tomi es cuánto se aleja el pago de cada semana de su promedio, y recordar que eso se mide con la varianza y la desviación estándar.</li>
+</ul>
+<p class="hito"><span class="hid">H2</span><span>Adaptar la varianza a la variable</span></p>
+<ul>
+<li>Calcular la varianza muestral de las semanas registradas con la fórmula de la Unidad 2, y reescribirla con frecuencias relativas.</li>
+<li>Contrastar dos tramos de semanas, cada uno con su media y su desviación estándar.</li>
+<li>Reconocer que con muchas semanas la varianza se estabiliza en \(\sum (n - \mu)^2 \cdot P(N = n)\), en torno a la esperanza y con probabilidades, y definir la varianza y la desviación estándar de la variable.</li>
+<li>Interpretar la desviación estándar en las unidades de la variable, como la distancia de una semana típica a la esperanza.</li>
+</ul>
+<p class="hito"><span class="hid">H3</span><span>Adaptar las transformaciones</span></p>
+<ul>
+<li>Verificar con las desviaciones que la parte fija se cancela y que el pago por despacho las multiplica, y establecer \(\sigma(aN + b) = |a| \cdot \sigma(N)\) y \(V(aN + b) = a^2 V(N)\).</li>
+<li>Calcular la desviación estándar de otras formas de pago sin rehacer la distribución, y reconocer qué reduce la variación del pago.</li>
+</ul>
+<p class="hito"><span class="hid">H4</span><span>Decidir con esperanza y desviación estándar</span></p>
+<ul>
+<li>Comparar las formas de pago por su esperanza y su desviación estándar, con la semana típica de cada una.</li>
+<li>Argumentar una decisión según el riesgo que se acepta.</li>
+</ul>
+</details>
+
+<p><strong>Recupera:</strong> varianza muestral y desviación estándar (Unidad 2, Tema 1, Lección 4), transformaciones lineales de la media y la desviación estándar (Unidad 2, Tema 2) y esperanza con su linealidad (Lección 3). <strong>Nota:</strong> la Unidad 2 escribe \(s^2\) para la varianza muestral, que divide por \(n - 1\), y \(\sigma^2\) para la que divide por \(n\); la lección usa \(\sigma^2\) para la variable. La varianza de una suma no se trabaja, porque requiere independencia; por eso la desviación estándar binomial se verifica sin demostrarla (Tema 2, Lección 4).</p>
 </section><section class="leccion" id="lección-5--práctica-modelar-y-decidir-con-variables-discretas"><h4><span class="ln">Lección 5</span>Práctica: modelar y decidir con variables discretas</h4>
-<p><strong>Objetivo:</strong> Modelar una situación nueva con una variable aleatoria discreta, construir su distribución y fundamentar una decisión en su esperanza y su desviación estándar, variando los parámetros del modelo para observar cómo cambia la decisión.</p>
+<p><strong>Objetivo:</strong> Modelar una situación nueva con variables aleatorias discretas para tomar una decisión: elegir qué cantidad observar, tomar como modelo una distribución histórica que los registros propios no contradicen, escribir como función de lo observado la variable con que se decide y construir su distribución, calcular su esperanza con la distribución cuando no es de la forma \(aW + b\), y fundamentar la decisión en la esperanza y la desviación estándar.</p>
+<p><strong>Problema:</strong> Gloria y Ricardo se conocieron en el electivo de Probabilidad y Estadística del colegio. Hace un año le compraron a don Lucho su negocio de arriendo de carritos de completos para eventos. El arriendo incluye el carrito, los insumos para 100 completos y una persona del staff que los prepara y sirve. Tienen tres carritos, y Ricardo quiere comprar dos más, porque "salieron los tres casi todos los sábados". El crédito les alcanza para uno. Tienen que decidir si compran un cuarto carrito de completos o un carro de churros, que algunos clientes han pedido.</p>
+<p><strong>Enfoque:</strong> en las Lecciones 1 a 4 la variable venía dada por el relato. Aquí el estudiante decide qué observar y escribe la variable con que se decide como función de lo observado. La distribución sale de un registro largo, como en todo el tema, pero el registro no es el propio: es la historia del dueño anterior, y antes de usarla se compara con el año propio. Es el contraste entre dato y modelo de las Lecciones 2 a 4, ahora como una decisión de los personajes.</p>
+<p><strong>Cadena de ideas:</strong></p>
+<ol type="1">
+<li><strong>El registro que está a mano no responde la pregunta.</strong> El cuaderno anota los carritos arrendados, que nunca pasan de tres, así que no dice cuántos carritos más se habrían arrendado. La decisión necesita los pedidos de cada sábado, también los rechazados.</li>
+<li><strong>Una distribución de un registro largo sirve de modelo si los datos propios no la contradicen.</strong> La historia de don Lucho da la proporción de sábados con cada cantidad de pedidos. El año propio se le parece, pero no es igual: otro año daría otras frecuencias. Que se parezcan no prueba que la historia sea exacta, pero el año propio no muestra que las preferencias de los clientes hayan cambiado, y eso sustenta un modelo basado en el registro de don Lucho. Por ser más largo, ese registro cambia menos que un año, y se toma como distribución de los pedidos.</li>
+<li><strong>La variable con que se decide es una función de los pedidos.</strong> Los carritos arrendados, los pedidos rechazados y los arriendos de un cuarto carrito se escriben como funciones de los pedidos \(W\), y la distribución de cada una sale juntando los valores de \(W\) que dan el mismo valor. Los pedidos son los arrendados más los rechazados, y la esperanza de esa suma es la suma de las esperanzas (Lección 3).</li>
+<li><strong>La linealidad no vale para una función que no es de la forma \(aW + b\).</strong> Ricardo calcula que el cuarto carrito saldría \(E(W) - 3 = 0.8\) veces por sábado. Con la distribución de \(Y\), los arriendos del cuarto carrito, sale 0.6: el cuarto carrito atiende a lo más un pedido, y los sábados con menos de cuatro pedidos no sale.</li>
+<li><strong>Cada carrito que se agrega sale menos que el anterior.</strong> El quinto sale en el 30 % de los sábados. Dos carritos más dejan en promedio 54 000 pesos por sábado, la suma de 36 000 y 18 000, y el quinto tarda casi el doble que el cuarto en recuperar lo que cuesta (67 sábados frente a 34). Con crédito para uno, conviene comprar uno.</li>
+<li><strong>Con esperanzas parecidas, la desviación estándar mide el riesgo.</strong> El carro de churros deja más en promedio que el cuarto carrito (40 500 frente a 36 000), pero varía más y no sale en más de la mitad de los sábados. Con una cuota mensual fija, Gloria prefiere lo que sale más seguido. La decisión depende del riesgo que aceptan quienes deciden.</li>
+</ol>
+<p><strong>Lineamientos de contexto:</strong> un negocio que tiene un registro de lo que se vendió y otro de lo que se pidió, con una capacidad que hace distintos los dos. Una distribución histórica larga y un registro propio más corto que se le parece. Una decisión que depende de una función no lineal de lo observado, y otra alternativa con esperanza parecida y distinta desviación estándar. Sugerido:</p>
+<ul>
+<li><strong>El negocio.</strong> Gloria toma las reservas por WhatsApp y compra los insumos; Ricardo lleva los carritos en la camioneta, los instala y los retira. Los clientes son sobre todo fiestas de gente joven (cumpleaños, fiestas de fin de año y de graduación). Casi todos los eventos son los sábados, y la lección analiza los sábados. El staff son estudiantes que trabajan los fines de semana, y hay más de los que necesitan tres carritos: un carrito nuevo solo exige comprarlo.</li>
+<li><strong>La historia de don Lucho.</strong> Trabajó 34 años con carritos, los últimos diez con tres. En esos diez años anotó cada pedido de cada sábado, también los que rechazaba, porque pensaba comprar un cuarto carrito y nunca se decidió. Al vender el negocio les dejó un resumen: en qué proporción de los sábados recibió cada cantidad de pedidos. El resumen no dice cuántos sábados fueron.</li>
+<li><strong>El año propio.</strong> 50 sábados, porque cerraron dos en las vacaciones de febrero. Gloria cuenta los pedidos en el WhatsApp, donde a los clientes sin carrito les contesta que ese sábado no le quedan. Se compara un año completo porque los pedidos cambian con la temporada.</li>
+<li><strong>Supuestos que el relato declara.</strong> Toman la historia como distribución de los pedidos, como en la Lección 2, después de compararla con su año. Un cliente rechazado habría arrendado el cuarto carrito si existiera.</li>
+</ul>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Pedidos de carrito en un sábado, \(W\)</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Historia de don Lucho (proporción de los sábados)</td>
+<td>0.05</td>
+<td>0.10</td>
+<td>0.25</td>
+<td>0.30</td>
+<td>0.20</td>
+<td>0.10</td>
+</tr>
+<tr>
+<td>Año de Gloria y Ricardo (sábados, de 50)</td>
+<td>3</td>
+<td>5</td>
+<td>12</td>
+<td>15</td>
+<td>11</td>
+<td>4</td>
+</tr>
+</tbody>
+</table></div>
+<p>Con la historia, \(E(W) = 3.8\); el promedio del año propio es 3.76. En el cuaderno de arriendos del año salieron 1, 2 y 3 carritos en 3, 5 y 42 sábados. Todas las demás variables son funciones de \(W\), con la distribución de la historia:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Como función de \(W\)</th>
+<th>Distribución</th>
+<th>Esperanza</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\(A\), carritos arrendados</td>
+<td>\(W\) si \(W \le 3\); 3 si \(W &gt; 3\)</td>
+<td>1, 2, 3 con 0.05, 0.10, 0.85</td>
+<td>2.8</td>
+</tr>
+<tr>
+<td>\(R\), pedidos rechazados</td>
+<td>0 si \(W \le 3\); \(W - 3\) si \(W &gt; 3\)</td>
+<td>0, 1, 2, 3 con 0.4, 0.3, 0.2, 0.1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>\(Y\), arriendos del cuarto carrito</td>
+<td>1 si \(W \ge 4\); 0 si no</td>
+<td>0, 1 con 0.4, 0.6</td>
+<td>0.6</td>
+</tr>
+<tr>
+<td>\(Z\), arriendos del quinto carrito</td>
+<td>1 si \(W \ge 5\); 0 si no</td>
+<td>0, 1 con 0.7, 0.3</td>
+<td>0.3</td>
+</tr>
+<tr>
+<td>\(Y + Z\), arriendos de dos carritos más</td>
+<td>0, 1 o 2</td>
+<td>0, 1, 2 con 0.4, 0.3, 0.3</td>
+<td>0.9</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Precios.</strong> El arriendo de un carrito vale 160 000 con todo incluido y les cuesta 100 000 (60 000 en insumos, 30 000 de staff y 10 000 en bencina): deja 60 000. Un carro de churros con todo incluido se arrienda en 145 000 y cuesta 55 000: deja 90 000. Los dos carros cuestan 1 200 000 nuevos. Los churros los piden sobre todo para matrimonios y eventos familiares; don Lucho también anotaba esos pedidos, aunque nunca tuvo churros: \(V\), los pedidos de churros de un sábado, vale 0, 1 y 2 con proporciones 0.55, 0.30 y 0.15. En el año propio hubo pedidos de churros en 22 de los 50 sábados. \(U\), los arriendos de un carro de churros, vale 1 si \(V \ge 1\).</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Lo que deja en un sábado</th>
+<th>Esperanza</th>
+<th>Desviación estándar</th>
+<th>Sábados en que deja 0</th>
+<th>En un mes de 4 sábados</th>
+<th>Sábados para recuperar 1 200 000</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cuarto carrito, \(60\,000\,Y\)</td>
+<td>36 000</td>
+<td>≈ 29 394</td>
+<td>40 %</td>
+<td>144 000</td>
+<td>34</td>
+</tr>
+<tr>
+<td>Quinto carrito, \(60\,000\,Z\)</td>
+<td>18 000</td>
+<td>≈ 27 495</td>
+<td>70 %</td>
+<td>72 000</td>
+<td>67</td>
+</tr>
+<tr>
+<td>Carro de churros, \(90\,000\,U\)</td>
+<td>40 500</td>
+<td>≈ 44 774</td>
+<td>55 %</td>
+<td>162 000</td>
+<td>30</td>
+</tr>
+</tbody>
+</table></div>
+<p>La Activación retoma la amasandería de don Raúl, del Ticket de la Lección 4. El Ticket es un taller de pantallas: una reparación deja 15 000 con probabilidad 0.9 y −5000 si la pantalla falla; la Activación de la Lección 1 del Tema 2 lo retoma como ensayo con dos resultados. Las cifras se verifican con <code>datos_U4T1L5.py</code>, en la carpeta de la lección.</p>
+<details open>
+<summary>Hitos y tareas</summary>
+
+<p class="hito"><span class="hid">H1</span><span>Elegir qué observar y con qué distribución decidir</span></p>
+<ul>
+<li>Para la Activación: recordar la variable como función de los resultados, la distribución que se obtiene juntando valores, la esperanza con su linealidad y la desviación estándar con sus transformaciones (Lecciones 1 a 4).</li>
+<li>En la Activación, interpretar la esperanza como el valor en torno al cual se estabiliza el promedio de muchas repeticiones, y la varianza y la desviación estándar como la dispersión en torno a la esperanza, con los valores típicos (Lecciones 3 y 4).</li>
+<li>Reconocer que los carritos arrendados nunca pasan de la capacidad y no dicen cuántos carritos más se habrían arrendado, y elegir observar los pedidos.</li>
+<li>Comparar las frecuencias relativas del año propio con la historia, y su promedio con la esperanza de la historia.</li>
+<li>Reconocer que otro año daría otras frecuencias, que en un año cada sábado mueve una frecuencia en 0.02, y que el parecido no prueba que la historia sea exacta: solo no muestra un cambio.</li>
+</ul>
+<p class="hito"><span class="hid">H2</span><span>Escribir la variable con que se decide como función de los pedidos</span></p>
+<ul>
+<li>Escribir los arrendados y los rechazados como funciones de los pedidos, reconocer que los pedidos son su suma, y que son 3 más los rechazados solo cuando salen los tres carritos; construir la distribución de los rechazados juntando valores.</li>
+<li>Elegir qué variable responde cada pregunta de los socios: pedidos, arrendados, rechazados o completos preparados.</li>
+<li>Calcular las esperanzas de los arrendados y los rechazados, y verificar que suman la esperanza de los pedidos.</li>
+<li>Escribir los arriendos del cuarto carrito como función de los pedidos y construir su distribución.</li>
+</ul>
+<p class="hito"><span class="hid">H3</span><span>Decidir con la esperanza</span></p>
+<ul>
+<li>Calcular la esperanza de los arriendos del cuarto carrito con su distribución, y explicar por qué no es la esperanza de los pedidos menos 3.</li>
+<li>Escribir los arriendos del quinto carrito, calcular su esperanza, y reconocer que cada carrito que se agrega sale en menos sábados y que el cuarto no cambia por agregar el quinto.</li>
+<li>Construir la distribución de los arriendos de dos carritos más y verificar que su esperanza es la suma de las esperanzas.</li>
+<li>Calcular con la linealidad lo que deja en promedio cada carrito, en cuántos sábados recupera lo que cuesta, y decidir cuántos comprar.</li>
+</ul>
+<p class="hito"><span class="hid">H4</span><span>Decidir con la desviación estándar</span></p>
+<ul>
+<li>Escribir los arriendos de un carro de churros como función de sus pedidos, construir su distribución y calcular lo que deja en promedio.</li>
+<li>Calcular la desviación estándar de los arriendos del cuarto carrito y del carro de churros, y con las transformaciones, la de lo que deja cada uno.</li>
+<li>Leer en las distribuciones en qué proporción de los sábados no deja nada cada carro, y calcular lo que deja cada uno en promedio en un mes.</li>
+<li>Argumentar una recomendación según el riesgo que se acepta.</li>
+<li>Reconocer, sin profundizar, una variable discreta no acotada y una continua.</li>
+</ul>
+</details>
+
+<p><strong>Recupera:</strong> variable aleatoria como función y distribución que se obtiene juntando valores (Lecciones 1 y 2), esperanza, su linealidad y la esperanza de una suma (Lección 3), desviación estándar y sus transformaciones (Lección 4), y estabilización de la frecuencia relativa (Unidad 3, Tema 1, Lección 3).</p>
+<blockquote><span class="tag">Nota</span><p>La variación de parámetros (habilidad b) queda en la Lección 4 del Tema 2.</p></blockquote>
 </section><section class="leccion" id="lección-6--ejercitación-variables-aleatorias-discretas"><h4><span class="ln">Lección 6</span>Ejercitación: variables aleatorias discretas</h4>
-<p><strong>Objetivo:</strong> Ejercitación integrada de las Lecciones 1 a 4.</p>
+<p><strong>Objetivo:</strong> Ejercitación integrada de las Lecciones 1 a 4: un bloque por lección y un bloque final en que cada ejercicio recorre el modelo completo, de la variable a la decisión.</p>
 </section><section class="leccion" id="evaluación-tema-1"><h4>Evaluación Tema 1</h4>
 <hr />
 </section><h2 id="tema-2--modelo-binomial">Tema 2 — Modelo binomial</h2>
 <p><strong>Objetivo del tema:</strong> Construir el modelo binomial a partir de ensayos repetidos, reconocer las condiciones que una situación debe cumplir para que el modelo la represente, y usarlo para calcular probabilidades y tomar decisiones.</p>
-<p><strong>OA PEDI:</strong> OA 3 — Modelos Probabilísticos <em>(hereda de la Unidad)</em>.</p>
-<p><strong>OA Formación General:</strong></p>
-<ul>
-<li>2° Medio: <strong>MA2M OA 11</strong> (Combinatoria Simple), antecedente del conteo de secuencias.</li>
-<li>4° Medio: <strong>MA4M FG OAC 02</strong> (Binomial-Normal).</li>
-</ul>
+<p><strong>OA PEDI:</strong> OA 3 — Modelos Probabilísticos <em>(hereda de la Unidad)</em>. <strong>OA Formación General:</strong> 2° Medio, <strong>MA2M OA 11</strong> (Combinatoria Simple), para contar secuencias; 4° Medio, <strong>MA4M FG OAC 02</strong> (Binomial-Normal).</p>
+<p><strong>Cambio respecto del Tema 1.</strong> Hasta aquí la distribución se leía de un registro. Desde este tema se deduce de supuestos, y la Lección 1 tiene que hacer visible ese cambio con un motivo dentro de la historia. Hay dos motivos creíbles: no hay registro de la cantidad que interesa, o hay que conocer su distribución antes de observarla (algo nuevo, que nunca ha pasado); y el modelo pide estimar menos, porque en vez de una frecuencia por cada valor basta estimar la probabilidad de éxito \(p\).</p>
 <h3 id="lecciones-1">Lecciones</h3>
 <section class="leccion" id="lección-1--ensayos-de-bernoulli-y-probabilidad-de-una-secuencia"><h4><span class="ln">Lección 1</span>Ensayos de Bernoulli y probabilidad de una secuencia</h4>
 <p><strong>Objetivo:</strong> Reconocer un ensayo de Bernoulli como un experimento con dos resultados de interés, definir qué se llama éxito según la pregunta que se quiere responder, calcular su esperanza y su varianza, y determinar la probabilidad de una secuencia particular de ensayos independientes con igual probabilidad de éxito.</p>
 </section><section class="leccion" id="lección-2--modelo-binomial-contar-secuencias-y-multiplicar"><h4><span class="ln">Lección 2</span>Modelo binomial: contar secuencias y multiplicar</h4>
 <p><strong>Objetivo:</strong> Construir el modelo binomial reconociendo que todas las secuencias con \(k\) éxitos tienen la misma probabilidad y contándolas con combinaciones, identificar los parámetros \(n\) y \(p\), y calcular la distribución completa de la cantidad de éxitos.</p>
-<blockquote><span class="tag">Nota</span><p>El triángulo de Pascal se incluye aquí como forma de organizar los conteos de secuencias, sin lección propia. Por decidir si es indispensable.</p></blockquote>
+<blockquote><span class="tag">Nota</span><p>El triángulo de Pascal entra aquí para organizar los conteos de secuencias, sin lección propia. Por decidir si es indispensable.</p></blockquote>
 </section><section class="leccion" id="lección-3--cuándo-una-situación-es-binomial"><h4><span class="ln">Lección 3</span>Cuándo una situación es binomial</h4>
 <p><strong>Objetivo:</strong> Declarar las condiciones que una situación debe cumplir para que el modelo binomial la represente (cantidad fija de ensayos, dos resultados de interés, independencia entre ensayos y la misma probabilidad de éxito en cada uno), decidir con argumentos si una situación las cumple e identificar qué condición falla cuando no las cumple, como en las extracciones sin reposición o cuando no se fija de antemano la cantidad de ensayos.</p>
+<p><strong>Ejemplo del cumpleaños:</strong> Miguel está de cumpleaños y celebra con tres compañeros de trabajo en la cocinería. Si Miguel quiere torta, todos comen torta, porque la torta se compra completa; si quiere flan, cada compañero elige por su cuenta entre leche asada y flan, porque se venden por unidad. Con la probabilidad de que Miguel quiera torta en 0.4, y la de que cada compañero elija flan en 0.5:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Cantidad de personas</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Comen torta</td>
+<td>0.6</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td>Binomial con \(n = 4\) y \(p = 0.4\)</td>
+<td>0.1296</td>
+<td>0.3456</td>
+<td>0.3456</td>
+<td>0.1536</td>
+<td>0.0256</td>
+</tr>
+<tr>
+<td>Comen flan</td>
+<td>0.4</td>
+<td>0.075</td>
+<td>0.225</td>
+<td>0.225</td>
+<td>0.075</td>
+</tr>
+</tbody>
+</table></div>
+<p>Las dos cantidades dejan de ser binomiales porque las elecciones dependen de la de Miguel, pero fallan de manera distinta. En la cantidad que come torta, cada persona come torta con la misma probabilidad, 0.4, y aun así sólo hay 0 o 4 personas: falla únicamente la independencia. En la cantidad que come flan fallan las dos condiciones, porque además Miguel elige flan con probabilidad 0.6 y cada compañero con 0.3. El ejemplo muestra que la independencia y la misma probabilidad son condiciones distintas, que pueden fallar por separado.</p>
 </section><section class="leccion" id="lección-4--variar-y-forma-esperanza-y-desviación-estándar"><h4><span class="ln">Lección 4</span>Variar \(n\) y \(p\): forma, esperanza y desviación estándar</h4>
 <p><strong>Objetivo:</strong> Observar cómo cambia la forma de la distribución binomial al variar \(n\) y \(p\), deducir que su esperanza es \(np\) sumando las esperanzas de los \(n\) ensayos de Bernoulli, verificar que su desviación estándar es \(\sqrt{np(1-p)}\), e interpretar estos valores en contexto.</p>
-<blockquote><span class="tag">Nota</span><p>La desviación estándar se verifica sin demostrarla, porque requiere la varianza de una suma de variables independientes, que la unidad no desarrolla.</p></blockquote>
+<blockquote><span class="tag">Nota</span><p>La desviación estándar se verifica sin demostrarla, porque requiere la varianza de una suma de variables independientes.</p></blockquote>
 </section><section class="leccion" id="lección-5--práctica-decidir-con-el-modelo-binomial"><h4><span class="ln">Lección 5</span>Práctica: decidir con el modelo binomial</h4>
-<p><strong>Objetivo:</strong> Modelar situaciones nuevas con el modelo binomial, calcular probabilidades de eventos como "al menos \(k\)", "a lo más \(k\)" y "entre \(a\) y \(b\)" sumando términos o descontando del total, con apoyo de la planilla de cálculo cuando hay muchos términos, y fundamentar una decisión evaluando la probabilidad de un resultado observado.</p>
+<p><strong>Objetivo:</strong> Modelar situaciones nuevas con el modelo binomial, calcular probabilidades de eventos como "al menos \(k\)", "a lo más \(k\)" y "entre \(a\) y \(b\)" sumando términos o restando del total, con apoyo de la planilla de cálculo cuando hay muchos términos, y fundamentar una decisión evaluando la probabilidad de un resultado observado.</p>
 </section><section class="leccion" id="lección-6--ejercitación-modelo-binomial"><h4><span class="ln">Lección 6</span>Ejercitación: modelo binomial</h4>
 <p><strong>Objetivo:</strong> Ejercitación integrada de las Lecciones 1 a 4.</p>
 </section><section class="leccion" id="evaluación-tema-2"><h4>Evaluación Tema 2</h4>
 <hr />
 </section><h2 id="tema-3--variables-continuas-y-modelo-normal">Tema 3 — Variables continuas y modelo normal</h2>
 <p><strong>Objetivo del tema:</strong> Modelar situaciones con variables aleatorias continuas, calcular probabilidades como áreas, aplicar el modelo normal para tomar decisiones y usarlo para aproximar la distribución binomial.</p>
-<p><strong>OA PEDI:</strong> OA 3 — Modelos Probabilísticos <em>(hereda de la Unidad)</em>.</p>
-<p><strong>OA Formación General:</strong></p>
+<p><strong>OA PEDI:</strong> OA 3 — Modelos Probabilísticos <em>(hereda de la Unidad)</em>. <strong>OA Formación General:</strong> 4° Medio, <strong>MA4M FG OAC 02</strong> (Binomial-Normal).</p>
+<h3 id="notas-para-cuando-se-diseñe-el-tema">Notas para cuando se diseñe el tema</h3>
+<p>Estas notas recogen una reestructuración acordada en principio y no aplicada todavía. Las lecciones de abajo conservan el orden anterior hasta que el tema se diseñe lección a lección.</p>
 <ul>
-<li>4° Medio: <strong>MA4M FG OAC 02</strong> (Binomial-Normal).</li>
+<li><p><strong>Orden nuevo.</strong> El tema define primero qué es una variable continua, después presenta la normal como la forma a la que tienden las binomiales, y recién entonces estudia sus propiedades y calcula con ella. Así la pregunta "¿qué es ser normal?" tiene respuesta antes de calcular.</p></li>
+<li><p><strong>Énfasis en que la transformación conserva la normalidad.</strong> La transformación a puntuación \(z\) mantiene el perfil de la curva, y la normal queda descrita por su simetría, \(\mu\) y \(\sigma\). La L2 hace un guiño a esa descripción y la L3 lo retoma al transformar.</p></li>
+<li><p><strong>Matiz que hay que cuidar al redactar.</strong> Una transformación \(aX + b\) conserva la forma de cualquier distribución, porque solo desplaza y estira el eje: una binomial asimétrica sigue igual de asimétrica. Lo propio de la normal es que la transformada sigue siendo normal, con parámetros \(a\mu + b\) y \(|a|\sigma\) que salen de la linealidad del Tema 1, y que todas las normales son la normal estándar desplazada y estirada. Por eso basta una sola tabla, la de \(Z\). La lección debe cerrar explícitamente el error de creer que cualquier distribución se vuelve normal al estandarizarla.</p></li>
+<li><p><strong>Lecciones propuestas:</strong></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>L</th>
+<th>Lección</th>
+<th>Contenido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Variables continuas: del histograma a la densidad</td>
+<td>Sin cambios</td>
+</tr>
+<tr>
+<td>2</td>
+<td>De la binomial a la normal: qué es ser normal</td>
+<td>Los histogramas binomiales se acercan a una campana al aumentar \(n\). La normal se define como esa campana, descrita por su simetría, \(\mu\) y \(\sigma\), con \(\mu = np\) y \(\sigma = \sqrt{np(1-p)}\) para la binomial. Absorbe la antigua L2: efecto de variar \(\mu\) y \(\sigma\), y porcentajes aproximados a 1, 2 y 3 desviaciones estándar. No calcula probabilidades</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Transformar una normal y estandarizar</td>
+<td>Una transformación lineal de una normal es normal, con el mismo perfil y parámetros nuevos; todas las normales son la estándar desplazada y estirada; puntuación \(z\)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Calcular probabilidades con la normal estándar</td>
+<td>Tabla y planilla. Incluye la aproximación de probabilidades binomiales, con la corrección de continuidad como regla y la regla práctica sobre \(np\) y \(n(1-p)\), porque para calcularla hace falta estandarizar</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Del porcentaje al valor: umbrales y percentiles</td>
+<td>Sin cambios</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Práctica: modelar y decidir con el modelo normal</td>
+<td>Sin cambios</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Ejercitación</td>
+<td>Lecciones 1 a 5</td>
+</tr>
+</tbody>
+</table></div></li>
+<li><p><strong>Por decidir:</strong> si la aproximación binomial va en la L4, junto al cálculo, o en la Práctica; y si los porcentajes a 1, 2 y 3 desviaciones estándar se quedan en la L2, como primera lectura de la curva, o pasan a la L3.</p></li>
 </ul>
 <h3 id="lecciones-2">Lecciones</h3>
 <section class="leccion" id="lección-1--variables-continuas-del-histograma-a-la-densidad"><h4><span class="ln">Lección 1</span>Variables continuas: del histograma a la densidad</h4>
-<p><strong>Objetivo:</strong> Reconocer que en una variable continua la probabilidad se asigna a intervalos, interpretándola como un área a partir de histogramas de frecuencia relativa con intervalos cada vez más finos, establecer que la probabilidad de un valor exacto es 0 y calcular probabilidades como áreas bajo una función de densidad de forma simple, distinguiendo la altura de la curva de una probabilidad.</p>
+<p><strong>Objetivo:</strong> Reconocer que el modelo de una variable continua asigna probabilidad a intervalos y no a valores, interpretar esa probabilidad como un área a partir de histogramas de frecuencia relativa con intervalos cada vez más finos, establecer que la probabilidad de un valor exacto es 0, y calcular probabilidades como áreas bajo una función de densidad de forma simple, distinguiendo la altura de la curva de una probabilidad.</p>
 </section><section class="leccion" id="lección-2--modelo-normal-parámetros-y-"><h4><span class="ln">Lección 2</span>Modelo normal: parámetros \(\mu\) y \(\sigma\)</h4>
 <p><strong>Objetivo:</strong> Describir la curva normal por su simetría y por el efecto de variar \(\mu\) y \(\sigma\), interpretados como su esperanza y su desviación estándar, y estimar probabilidades con los porcentajes aproximados de los intervalos a una, dos y tres desviaciones estándar de la media.</p>
 </section><section class="leccion" id="lección-3--estandarización-y-cálculo-de-probabilidades"><h4><span class="ln">Lección 3</span>Estandarización y cálculo de probabilidades</h4>
-<p><strong>Objetivo:</strong> Transformar un valor de una variable normal en su puntuación \(z\), apoyándose en la linealidad de la esperanza y de la desviación estándar vista en el Tema 1, interpretarla como la cantidad de desviaciones estándar que lo separan de la media, y calcular probabilidades de intervalos con la tabla de la normal estándar y con la planilla de cálculo.</p>
+<p><strong>Objetivo:</strong> Transformar un valor de una variable normal en su puntuación \(z\), apoyándose en la linealidad de la esperanza y de la desviación estándar vista en el Tema 1, interpretar la puntuación \(z\) como la cantidad de desviaciones estándar que separan el valor de la media, y calcular probabilidades de intervalos con la tabla de la normal estándar y con la planilla de cálculo.</p>
 </section><section class="leccion" id="lección-4--del-porcentaje-al-valor-umbrales-y-percentiles"><h4><span class="ln">Lección 4</span>Del porcentaje al valor: umbrales y percentiles</h4>
 <p><strong>Objetivo:</strong> Determinar el valor de una variable normal que corresponde a una probabilidad acumulada dada, e interpretarlo como un umbral o un percentil en contexto.</p>
 </section><section class="leccion" id="lección-5--de-la-binomial-a-la-normal"><h4><span class="ln">Lección 5</span>De la binomial a la normal</h4>
 <p><strong>Objetivo:</strong> Observar que los histogramas de una distribución binomial se acercan a una curva normal al aumentar \(n\), determinar los parámetros de esa normal a partir de \(n\) y \(p\), y calcular probabilidades binomiales aproximadas, aplicando la corrección de continuidad como regla y verificando con la regla práctica sobre \(np\) y \(n(1-p)\) que la aproximación es adecuada.</p>
-<blockquote><span class="tag">Nota</span><p>La corrección de continuidad se presenta como regla, con una imagen que muestra por qué se suma o resta 0.5, sin construirla.</p></blockquote>
+<blockquote><span class="tag">Nota</span><p>La corrección de continuidad se presenta como regla, con una imagen que muestra por qué se suma o se resta 0.5.</p></blockquote>
 </section><section class="leccion" id="lección-6--práctica-modelar-y-decidir-con-el-modelo-normal"><h4><span class="ln">Lección 6</span>Práctica: modelar y decidir con el modelo normal</h4>
 <p><strong>Objetivo:</strong> Evaluar si el modelo normal es razonable para unos datos, estimar sus parámetros y fundamentar una decisión en las probabilidades calculadas, reconociendo los límites del modelo.</p>
 </section><section class="leccion" id="lección-7--ejercitación-modelo-normal-y-aproximación"><h4><span class="ln">Lección 7</span>Ejercitación: modelo normal y aproximación</h4>
