@@ -1,0 +1,318 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LDI · Ficha U2 A1 L05</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --ground:#fcfbfe; --surface:#f3f1f8; --surface-2:#ebe7f4; --line:#e0dcea;
+  --ink:#231d3b; --muted:#625c76;
+  --purple:#423475; --purple-ink:#423475; --on-purple:#ffffff;
+  --red:#d45762; --red-ink:#a8323e; --red-tint:#fbeef0;
+  --green:#61b89a; --green-ink:#2c7a5f; --green-tint:#eaf6f1;
+  --blue:#4aa7ba; --blue-ink:#27788a;
+  --orange:#f3972d; --orange-ink:#a85f0c;
+  --yellow:#f0f57d;
+  --code-bg:#eeebf6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+    --ink:#ece9f6; --muted:#aaa4c2;
+    --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+    --red-ink:#f0939b; --red-tint:#2e1b2c;
+    --green-ink:#86d6b9; --green-tint:#18302b;
+    --blue-ink:#85cfdd; --orange-ink:#f7b667;
+    --code-bg:#2a2548;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+  --ink:#ece9f6; --muted:#aaa4c2;
+  --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+  --red-ink:#f0939b; --red-tint:#2e1b2c;
+  --green-ink:#86d6b9; --green-tint:#18302b;
+  --blue-ink:#85cfdd; --orange-ink:#f7b667;
+  --code-bg:#2a2548;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.6;margin:0}
+.strip{display:flex;height:6px}
+.strip span{flex:1}
+header.top{background:var(--purple);color:var(--on-purple);padding-block:2.4rem 2.2rem;padding-inline:16px}
+header.top .in{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin:0 0 .6rem}
+header.top h1{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.15;margin:0 0 .8rem;text-wrap:balance;font-weight:650;letter-spacing:-.01em}
+header.top .lead{max-width:68ch;margin:0;font-size:1.05rem;opacity:.93}
+.layout{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:2rem 4rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1rem);align-self:start;font-size:.88rem;max-height:calc(100vh - 2rem);overflow:auto}
+nav.toc p{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .5rem}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
+nav.toc a{color:var(--ink);text-decoration:none;display:block;padding:.3rem .55rem;border-radius:6px;line-height:1.35}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--surface-2);outline:none}
+nav.toc .sub a{padding-left:1.3rem;color:var(--muted)}
+main{min-width:0;max-width:760px}
+main h2{font-size:1.55rem;line-height:1.25;margin:3rem 0 1rem;color:var(--purple-ink);text-wrap:balance;font-weight:650}
+main h2:first-child{margin-top:0}
+main h3{font-size:1.2rem;margin:2.2rem 0 .7rem;text-wrap:balance;font-weight:620}
+main h4{font-size:1.1rem;margin:1.6rem 0 .5rem}
+p,li{max-width:70ch}
+a{color:var(--purple-ink)}
+code{font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-size:.88em;background:var(--code-bg);padding:.08em .35em;border-radius:4px;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
+ul,ol{padding-left:1.3rem}
+li{margin:.3rem 0}
+li::marker{color:var(--purple-ink)}
+.tablewrap{overflow-x:auto;margin:1.2rem 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+th{background:var(--purple);color:var(--on-purple);text-align:left;font-weight:600;padding:.55rem .7rem}
+td{padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--surface)}
+blockquote{margin:1.4rem 0;padding:1rem 1.2rem;background:var(--surface);border-radius:10px}
+blockquote p{margin:.4rem 0}
+blockquote .tag{display:inline-block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:650;margin-bottom:.3rem;color:var(--muted)}
+blockquote.capsula{background:var(--green-tint)}
+blockquote.capsula .tag{color:var(--green-ink)}
+blockquote.revision{background:var(--red-tint)}
+blockquote.revision .tag{color:var(--red-ink)}
+.hito{display:flex;gap:.7rem;align-items:baseline;margin:1.6rem 0 .4rem;font-size:1.02rem;font-weight:620;line-height:1.4}
+.hito .hid{flex:none;background:var(--purple);color:var(--on-purple);font-family:"Geist Mono",ui-monospace,monospace;font-size:.78rem;font-weight:600;padding:.15rem .5rem;border-radius:999px;position:relative;top:-.08em}
+.hito + ul{margin-top:.2rem;padding-left:3.4rem}
+.leccion{border-top:1px solid var(--line);padding-top:1.4rem;margin-top:2.6rem}
+.leccion h4{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h4 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+details{margin:1rem 0}
+summary{cursor:pointer;font-weight:600;color:var(--purple-ink);padding:.35rem 0}
+summary:focus-visible{outline:2px solid var(--purple-ink);outline-offset:3px;border-radius:4px}
+.arco{list-style:none;padding:0;counter-reset:a;display:grid;gap:.7rem}
+.arco li{counter-increment:a;position:relative;padding-left:3rem;min-height:2.2rem;max-width:none}
+.arco li::before{content:counter(a);position:absolute;left:0;top:0;background:var(--surface-2);color:var(--purple-ink);font-weight:650;border-radius:50%;width:2.2rem;height:2.2rem;display:grid;place-items:center;font-family:"Geist Mono",monospace}
+.paso{display:grid;grid-template-columns:2.4rem 1fr;gap:.9rem;margin:1.3rem 0}
+.paso .num{font-family:"Geist Mono",ui-monospace,monospace;font-weight:600;color:var(--purple-ink);background:var(--surface-2);border-radius:8px;height:2.4rem;display:grid;place-items:center}
+.paso p{margin:0}
+.paso + ul{padding-left:4.6rem}
+.fases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem;margin:1.5rem 0 2rem}
+.fase{background:var(--surface);border-radius:10px;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.35rem}
+.fase .fn{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.fase .ft{font-weight:650;color:var(--purple-ink);font-size:1.05rem}
+.fase .fp{font-family:"Geist Mono",monospace;font-size:.82rem;color:var(--muted)}
+.fase .rv{margin-top:auto;display:flex;flex-wrap:wrap;gap:.3rem}
+.fase .rv span{font-size:.75rem;font-weight:600;color:var(--red-ink);background:var(--red-tint);border-radius:999px;padding:.1rem .55rem}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;gap:1.5rem}
+  nav.toc{position:static;max-height:none;background:var(--surface);border-radius:10px;padding:1rem}
+  .fases{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:460px){ .fases{grid-template-columns:1fr} .hito + ul{padding-left:1.3rem} .paso + ul{padding-left:1.3rem} }
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+
+header.top a{color:inherit;text-underline-offset:.2em}
+.enl{display:flex;flex-wrap:wrap;gap:.45rem;margin:.5rem 0 1rem}
+.enl a{display:inline-flex;align-items:center;gap:.45rem;border:1px solid var(--line);border-radius:999px;padding:.28rem .75rem;font-size:.86rem;line-height:1.35;text-decoration:none;color:var(--ink);background:var(--ground)}
+.enl a:hover,.enl a:focus-visible{border-color:var(--c);outline:none}
+.enl i{width:.6rem;height:.6rem;border-radius:50%;background:var(--c);flex:none}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.7rem;margin:1rem 0 1.6rem}
+a.card{display:grid;grid-template-columns:.8rem 1fr;gap:.8rem;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem;text-decoration:none;color:var(--ink);transition:border-color .15s,transform .15s}
+a.card:hover,a.card:focus-visible{border-color:var(--c);transform:translateY(-1px);outline:none}
+a.card i{width:.8rem;height:.8rem;border-radius:50%;background:var(--c);margin-top:.3rem}
+a.card b{display:block;font-weight:600;line-height:1.3}
+a.card span{display:block;color:var(--muted);font-size:.86rem;margin-top:.2rem;line-height:1.4}
+main h3.tema{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:1.6rem 0 .3rem}
+.lecs{margin:0 0 1rem;border-top:1px solid var(--line)}
+.lec{padding:.75rem 0;border-bottom:1px solid var(--line)}
+.lec p{margin:0;max-width:none}
+.lec .cod{font-family:"Geist Mono",ui-monospace,monospace;font-size:.8rem;font-weight:600;color:var(--purple-ink);margin-right:.45rem}
+.lec small{display:block;color:var(--muted);font-size:.84rem;margin-top:.1rem}
+.lec .enl{margin:.5rem 0 0}
+.leccion h3{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h3 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+table.meta th{background:var(--surface-2);color:var(--ink);width:11rem}
+.nota{color:var(--muted);font-size:.9rem}
+@media (prefers-reduced-motion:reduce){a.card{transition:none}}
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script></head>
+<body>
+<div class="strip"><span style="background:#423475"></span><span style="background:#d45762"></span><span style="background:#61b89a"></span><span style="background:#f0f57d"></span><span style="background:#4aa7ba"></span><span style="background:#f3972d"></span></div>
+<header class="top"><div class="in">
+<p class="eyebrow"><a href="../index.html">LDI</a> · Ficha de una lección implementada</p>
+<h1>U2 A1 L5 · Propiedades de los límites</h1>
+<p class="lead">Lección 5 de la Actividad 1 de la Unidad 2 del curso implementado, base de U2T1L5 en el curso nuevo.</p>
+</div></header>
+<div class="layout">
+<nav class="toc" aria-label="Contenido"><p>Contenido</p><ol><li><a href="#qué-logra-la-clase">Qué logra la clase</a></li><li class="sub"><a href="#logro">Logro</a></li><li class="sub"><a href="#lo-que-queda-para-otras-lecciones">Lo que queda para otras lecciones</a></li><li class="sub"><a href="#cómo-lo-logra">Cómo lo logra</a></li><li><a href="#diagnóstico-de-la-versión-implementada">Diagnóstico de la versión implementada</a></li><li class="sub"><a href="#secuencia">Secuencia</a></li><li class="sub"><a href="#hallazgos">Hallazgos</a></li><li class="sub"><a href="#errores">Errores</a></li><li><a href="#recursos">Recursos</a></li><li><a href="#se-conserva-y-sale">Se conserva y sale</a></li><li><a href="#para-decidir">Para decidir</a></li></ol></nav>
+<main>
+<div class="enl"><a style="--c:#4aa7ba" href="../../LDI_ruta_curso_implementado.html#lección-5-propiedades-de-los-límites"><i></i>Lección en el curso implementado</a><a style="--c:#423475" href="../ruta_U2.html#U2T1L5"><i></i>Propuesta nueva · U2T1L5</a></div><div class="tablewrap"><table>
+<tbody>
+<tr>
+<td>Guion de Drive</td>
+<td><code>LDI_U2_A1_Clase 5</code></td>
+</tr>
+<tr>
+<td>Objetivo declarado</td>
+<td>Conocer y aplicar las propiedades de los límites para calcular límites cuando \(x\) tiende al infinito.</td>
+</tr>
+<tr>
+<td>Objetivo propuesto</td>
+<td>Calcular límites al infinito de sumas, restas, productos y cocientes de funciones cuyos límites se conocen, y reconocer cuándo esas propiedades no se pueden usar.</td>
+</tr>
+<tr>
+<td>Veredicto</td>
+<td><strong>Remodelar</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="qué-logra-la-clase">Qué logra la clase</h2>
+<p>Nivel de aplicación. Usa los límites de las funciones conocidas de la L2 y, para argumentar la propiedad de la suma, la definición de la L4 con números.</p>
+<h3 id="logro">Logro</h3>
+<p>Al terminar, el estudiante calcula límites al infinito de expresiones armadas con funciones cuyos límites conoce: las constantes; \(\frac{1}{x^n}\), con \(n\) entero positivo, en las dos direcciones; \(a^x\), con \(0 &lt; a &lt; 1\) cuando \(x \to \infty\) y con \(a &gt; 1\) cuando \(x \to -\infty\).</p>
+<p>El límite de una función constante \(a\) es \(a\). Si \(\lim_{x \to \infty} f(x) = F\) y \(\lim_{x \to \infty} g(x) = G\), con \(F\) y \(G\) números, entonces:</p>
+<ul>
+<li><strong>Propiedad de la suma:</strong> \(\lim_{x \to \infty} \left( f(x) + g(x) \right) = F + G\).</li>
+<li><strong>Propiedad de la resta:</strong> \(\lim_{x \to \infty} \left( f(x) - g(x) \right) = F - G\).</li>
+<li><strong>Propiedad del producto:</strong> \(\lim_{x \to \infty} \left( f(x) \cdot g(x) \right) = F \cdot G\). En particular, \(\lim_{x \to \infty} \left( a \cdot g(x) \right) = a \cdot G\).</li>
+<li><strong>Propiedad del cociente:</strong> \(\lim_{x \to \infty} \dfrac{f(x)}{g(x)} = \dfrac{F}{G}\), si \(G \neq 0\).</li>
+</ul>
+<p>Las cuatro propiedades valen también cuando \(x \to -\infty\).</p>
+<p>Sabe que las propiedades piden dos condiciones: que el límite de cada función sea un número y, en el cociente, que \(G \neq 0\). Cuando una condición no se cumple, el límite puede existir o no, y se estudia de otra forma:</p>
+<ul>
+<li><strong>Si el límite de alguna función no es un número</strong>, porque diverge a infinito o a menos infinito, o porque oscila sin acercarse a un número (L3). Ante \(x^2 - x\) se puede escribir "\(\infty - \infty = 0\)", pero \(\infty\) no es un número. Con tablas: \(x^2 - x\) diverge a infinito (vale 90 en \(x = 10\) y 9900 en \(x = 100\)), \((x + 3) - x\) tiende a 3 y \(x - x\) vale 0, aunque en los tres casos las dos funciones divergen a infinito.</li>
+<li><strong>Si \(G = 0\) en un cociente.</strong> Con \(F = G = 0\), tres cocientes dan límites distintos: \(\dfrac{\frac{1}{x}}{\frac{1}{x^2}} = x\) diverge a infinito, \(\dfrac{\frac{1}{x^2}}{\frac{1}{x}} = \frac{1}{x}\) tiende a 0 y \(\dfrac{\frac{2}{x}}{\frac{1}{x}} = 2\).</li>
+</ul>
+<h3 id="lo-que-queda-para-otras-lecciones">Lo que queda para otras lecciones</h3>
+<ul>
+<li>Los cocientes en que el numerador y el denominador divergen, como los de polinomios, y la estrategia de dividir por la potencia mayor: L6 de la Actividad 1 del curso implementado. La resta de dos funciones que divergen se cierra en esta clase, porque ninguna lección la retoma.</li>
+<li>Las mismas propiedades para el límite en un punto: Actividad 2, L6.</li>
+</ul>
+<h3 id="cómo-lo-logra">Cómo lo logra</h3>
+<p>Las propiedades se nombran siempre "propiedad de la suma", "de la resta", "del producto" y "del cociente", y los límites de sumas y restas se escriben con paréntesis.</p>
+<ol type="1">
+<li><strong>Activación.</strong> Un resumen de los límites de \(\frac{1}{x^n}\) y \(a^x\) en las dos direcciones, con las frases de la L2. Se vuelve a mostrar con un botón "Ver tabla" en las preguntas que lo necesitan.</li>
+<li><strong>Sin Contexto.</strong> La clase trabaja directamente sobre funciones (decisión 2 del plan).</li>
+<li><strong>Construcción, suma y resta.</strong> \(2 + \frac{1}{x^2}\): una tabla con los valores correctos y el gráfico, que es el de \(\frac{1}{x^2}\) desplazado 2 unidades hacia arriba. Conjetura: el límite de la suma es la suma de los límites. Un segundo ejemplo, \(a(x) = 6 + 0.11^x\) y \(b(x) = 3 - \frac{1}{x^2}\), pone a prueba la suma y la resta en una sola pregunta.</li>
+<li><strong>Construcción, la otra dirección.</strong> ¿Cuál es el límite de \(a(x) + b(x)\) cuando \(x \to -\infty\)? Lo esperable es que el estudiante copie 9. Una tabla lo refuta: \(a(-1) \approx 15.09\), \(a(-2) \approx 88.64\), \(a(-5) \approx 62\,098\), mientras \(b\) se acerca a 3. Como \(a\) diverge, la propiedad de la suma no se puede usar. Es el primer caso en que una condición no se cumple.</li>
+<li><strong>Construcción, por qué vale la suma.</strong> Un argumento con números, sin demostración formal (decisión del docente, 2026-11-18), sobre \(a(x)\), \(b(x)\) y \(d = 0.1\). Para todos los \(x\) mayores que 2, la distancia entre \(0.11^x\) y 0 es menor que 0.05, y para todos los \(x\) mayores que 5, la distancia entre \(\frac{1}{x^2}\) y 0 también. Para todos los \(x\) mayores que 5 se cumplen las dos cosas, así que la distancia entre \(a(x) + b(x)\) y 9 es menor que 0.1: en la recta numérica, dos desplazamientos de menos de 0.05 dan uno de menos de 0.1. La cápsula dice que lo mismo pasa con cualquier distancia, repartida en dos mitades, una para cada función.</li>
+<li><strong>Construcción, producto y cociente.</strong> Estrella conjetura que las propiedades valen también para el producto y el cociente, sin condiciones. El estudiante pone a prueba la conjetura con la tabla y GeoGebra, y en parejas escribe una sola respuesta para los dos: el límite del producto es el producto de los límites, y el del cociente, el cociente de los límites.</li>
+<li><strong>Construcción, obstáculo: cuándo no se pueden usar.</strong> Estrella aplica la propiedad de la resta a \(x^2 - x\) y escribe \(\infty - \infty = 0\). La tabla muestra que \(x^2 - x\) diverge a infinito, y \((x + 3) - x\) y \(x - x\) muestran que \(\infty - \infty\) no tiene un valor fijo. Después, los tres cocientes con \(F = G = 0\), resueltos con una tabla en \(x\) = 10, 100 y 1000, muestran por qué la propiedad del cociente pide \(G \neq 0\). La respuesta esperable es "0 dividido por 0 no se puede, así que no tiene límite"; el segundo y el tercer cociente la refutan. Cierre: si una condición no se cumple, la propiedad no dice cuál es el límite; el límite puede existir o no.</li>
+<li><strong>Sistematización.</strong> Diapositivas con el límite de una constante, las cuatro propiedades, sus condiciones y la versión para \(x \to -\infty\), con una línea que recuerda el columpio de la L3 como función sin límite que no diverge.</li>
+<li><strong>Práctica.</strong> Seis preguntas: \(\lim_{x \to \infty} \left( f(x) - g(x) \right)\) de la primera Práctica actual; los ítems 3 y 5 de la segunda; el par \(\lim_{x \to -\infty} (3 + 2^x) = 3\) y \(3 + 0.5^x\), que diverge cuando \(x \to -\infty\) (vale 35 en \(x = -5\) y 1027 en \(x = -10\)); y el reconocimiento con \(h(x) = \frac{1-x^2}{x^2}\): ¿se puede usar la propiedad del cociente para calcular su límite cuando \(x \to \infty\)? No, porque el numerador y el denominador divergen. Su cálculo queda para la L6.</li>
+<li><strong>Ticket.</strong> Los ítems 1 y 3 de la pregunta 1 actual, la pregunta de \(t\) y \(s\), y una pregunta nueva: marca los límites que se pueden calcular con las propiedades: \(\lim_{x \to \infty} \left( (4 - 0.5^x) \cdot \frac{1}{x} \right)\); \(\lim_{x \to -\infty} (4 + 0.5^x)\); \(\lim_{x \to -\infty} \left( 2^x + \frac{1}{x} \right)\); \(\lim_{x \to \infty} \dfrac{\frac{3}{x}}{\frac{1}{x^2}}\). Clave: el primero y el tercero.</li>
+</ol>
+<h2 id="diagnóstico-de-la-versión-implementada">Diagnóstico de la versión implementada</h2>
+<p>La clase implementada funciona: conjetura con tablas y gráficos, formula y practica, y el Ticket mide lo que se enseña. Le faltan los casos en que las propiedades no se pueden usar, y tiene errores de datos y de claves.</p>
+<h3 id="secuencia">Secuencia</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Qué hace</th>
+<th>Preguntas</th>
+<th>En PyE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recordemos</td>
+<td>Límites de \(x^n\), \(\frac{1}{x^n}\) y \(a^x\) con tres GeoGebra</td>
+<td>3</td>
+<td>Activación</td>
+</tr>
+<tr>
+<td>Aprendamos juntos (1)</td>
+<td>\(2 + \frac{1}{x^2}\): tabla, gráfico y conjetura; cápsula: el límite de la suma es la suma de los límites</td>
+<td>1</td>
+<td>Construcción</td>
+</tr>
+<tr>
+<td>Aprendamos juntos (2)</td>
+<td>\(a(x) = 6 + 0.11^x\) y \(b(x) = 3 - \frac{1}{x^2}\): sus límites, conjetura y comprobación de la suma y la resta</td>
+<td>6</td>
+<td>Construcción</td>
+</tr>
+<tr>
+<td>Toma nota: suma y resta</td>
+<td>La propiedad, con una justificación a partir de la definición</td>
+<td>—</td>
+<td>Cápsula</td>
+</tr>
+<tr>
+<td>Practica lo aprendido (1)</td>
+<td>Justificar dos límites y calcular tres con suma y resta</td>
+<td>2</td>
+<td>Práctica</td>
+</tr>
+<tr>
+<td>Aprendamos juntos (3)</td>
+<td>Estrella conjetura el producto y el cociente; tabla y GeoGebra; formular las propiedades en parejas</td>
+<td>4</td>
+<td>Construcción</td>
+</tr>
+<tr>
+<td>Toma nota: propiedades</td>
+<td>Las cuatro propiedades, el caso de una constante y \(x \to -\infty\)</td>
+<td>—</td>
+<td>Cápsula</td>
+</tr>
+<tr>
+<td>Practica lo aprendido (2)</td>
+<td>Cinco límites con las cuatro propiedades</td>
+<td>5 huecos</td>
+<td>Práctica</td>
+</tr>
+<tr>
+<td>¿Qué aprendimos?</td>
+<td>Cuatro frases con desplegables</td>
+<td>4 huecos</td>
+<td>Sistematización</td>
+</tr>
+<tr>
+<td>Ticket de salida</td>
+<td>Tres límites con las propiedades; suma y resta de dos funciones dadas por su gráfico</td>
+<td>5 huecos</td>
+<td>Ticket</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="hallazgos">Hallazgos</h3>
+<ul>
+<li><strong>No hay obstáculo ni casos en que las propiedades no se puedan usar.</strong> La condición \(G \neq 0\) se enuncia sin mostrar por qué, y la condición de que cada función tenga límite nunca se pone a prueba.</li>
+<li><strong>La justificación de la suma no usa la definición de la L4.</strong> Dice que la suma "se parezca" a \(F + G\). Le falta repartir la distancia \(d\) en dos mitades, tomar el mayor de los dos números y decir que la distancia de la suma es a lo más la suma de las distancias, el único paso que ninguna lección anterior entrega.</li>
+<li><strong>Estrella entrega la condición del cociente.</strong> Dice que "como ninguno de los límites es igual a cero" podría calcular el cociente, así que la pregunta en parejas se responde copiando esa frase.</li>
+<li><strong>\(x \to -\infty\) no se trabaja.</strong> Es una línea al final de la Toma nota. La Activación recupera el comportamiento de \(a^x\) con base entre 0 y 1, y después ninguna pregunta lo usa.</li>
+<li><strong>La primera Práctica usa la estrategia de la L6.</strong> \(h(x) = \frac{1-x^2}{x^2}\) es un cociente cuyo numerador y denominador divergen, y la pista ("separa en dos fracciones") anticipa la clase siguiente.</li>
+<li><strong>La suma se trabaja con dos ejemplos casi iguales</strong>, y la conjetura y la comprobación se repiten en las preguntas 3 a 6 del segundo cuestionario.</li>
+<li><strong>Léxico.</strong> Las retroalimentaciones dicen que los valores "se parecen mucho a 0" y hablan de "\(x\) muy grandes", en lugar de la frase del curso. También usan "hipótesis" por "conjetura", "comprobar" con una tabla, "obviamente", "nuestra definición de límite en palabras" y "álgebra de límites al infinito".</li>
+</ul>
+<h3 id="errores">Errores</h3>
+<ul>
+<li><strong>Recordemos, pregunta 3.</strong> En el guion y en Moodle, la clave para \(a^x\) con \(0 &lt; a &lt; 1\) cuando \(x \to -\infty\) es "diverge a menos infinito". La correcta es "diverge a infinito": \(a^x\) es siempre positiva y crece sin cota hacia la izquierda (\(0.5^{-50} = 2^{50}\)). El guion no ofrece esa opción; en Moodle es la opción 1. En Moodle, además, los cuatro enunciados perdieron "cuando \(x\) tiende a…".</li>
+<li><strong>Tabla de la suma.</strong> Dice \(g(x) = \frac{1}{x^2}\), pero sus valores son los de \(\frac{2}{1+x^2}\) (0.076923 es \(\frac{2}{26}\)). Además, la fila \(x = 1\) suma mal: dice 1 en Moodle y 2 en el guion, y vale 3. Con \(\frac{1}{x^2}\), en \(x\) = 1, 5, 10, 50, 100 y 500, la columna de \(g\) es 1, 0.04, 0.01, 0.0004, 0.0001 y 0.000004, y la de la suma, 3, 2.04, 2.01, 2.0004, 2.0001 y 2.000004.</li>
+<li><strong><code>fcngdcpu</code> define otra \(b\):</strong> \(3 - \frac{4}{1+x^2}\), con el mismo límite pero otros valores (\(b(1)\) vale 2 en la lección y 1 en el recurso).</li>
+<li><strong>Recordemos.</strong> Opciones repetidas ("tiene límite igual a 0" dos veces en Moodle; \(\{-1, 0, -1\}\) en el guion). En "\(n \geq 0\) impar" sobra el 0: debe decir \(n &gt; 0\), como en las preguntas de \(n\) par.</li>
+<li><strong>Montaje en Moodle.</strong> En la pregunta 4 del segundo cuestionario, la alternativa correcta aparece escrita tres veces. En la Sistematización, el desplegable de la resta no se convirtió y se ve el texto "{&lt; - &gt;, +}". Hay que verificarlo en la plataforma.</li>
+<li><strong>Estrella.</strong> Escribe \(\lim f(x) = 2\) donde va \(g\), y "\(G\) es el límite de \(f(x)\)" donde va \(g(x)\), con un paréntesis de más en "= 5)" y "= 2)". Dice que la tabla no distingue "entre 5 y 4,999992", pero \(f(x) = 5 + 0.25^x\) es siempre mayor que 5 (\(f(10) = 5.00000095\)).</li>
+<li><strong>Límites sin paréntesis</strong> en la Construcción, las dos Prácticas y el Ticket, por ejemplo \(\lim_{x \to \infty} \frac{2}{x} + 3\). Al pie de la letra, el límite toma solo el primer término. Se escribe \(\lim_{x \to \infty} \left( \frac{2}{x} + 3 \right)\).</li>
+<li><strong>Redacción y notación.</strong> "los valores de la función \(\frac{1}{x^2} = 0\) se parecen…"; \(\lim_{\to \infty}\), sin la variable; "Los que se puede conjeturar"; "medida que \(x\) tiende" (falta "a"); "las hipótesis planteada"; "cada una de las funciones … tienen límite"; "se da cuenta que"; "hacer click"; "lado lado izquierdo"; "los siguiente límites"; "se conocen cómo"; "Al respecto, complete" (trata de usted); decimales con coma (0,11; 0,5; 0,9).</li>
+<li>Se verificaron y están correctas las claves de las dos Prácticas, la tabla y los límites de Estrella (truncados a 5 decimales) y el Ticket (en su gráfico, \(t \to 1\) y \(s \to -1\)).</li>
+</ul>
+<h2 id="recursos">Recursos</h2>
+<ul>
+<li><strong>GeoGebra:</strong> <code>wh42752x</code> (\(x^n\)), <code>ne3mjjg3</code> (\(\frac{1}{x^n}\)), <code>kedz3f8f</code> (\(a^x\)), <code>fk7d8hsw</code> (\(2 + \frac{1}{x^2}\)), <code>fcngdcpu</code> (\(a(x) \pm b(x)\), con otra \(b\)) y <code>mgwg9u6e</code> (producto y cociente de Estrella). Los tres de la Construcción definen sus funciones solo para \(x &gt; 0\), así que no sirven para \(x \to -\infty\). <code>wh42752x</code> sale, porque la L2 ya trabajó \(x^n\).</li>
+<li><strong>Imágenes:</strong> la igualdad de la justificación de la suma, que hay que rehacer con la distancia \(\lvert f(x) - F \rvert\), y el gráfico de \(t\) y \(s\) del Ticket.</li>
+<li><strong>Personaje:</strong> Estrella, que aparece también en la Práctica de la L1.</li>
+</ul>
+<h2 id="se-conserva-y-sale">Se conserva y sale</h2>
+<ul>
+<li><strong>Se conserva:</strong> el resumen de \(\frac{1}{x^n}\) y \(a^x\), corregido; el ejemplo de \(2 + \frac{1}{x^2}\), con la tabla corregida; \(a(x)\) y \(b(x)\), en una sola pregunta; la conjetura de Estrella con su tabla; la Toma nota de las cuatro propiedades, con sus condiciones; seis preguntas de las Prácticas; parte del Ticket. Todo con los límites entre paréntesis.</li>
+<li><strong>Sale:</strong> la pregunta de \(x^n\) en la Activación; las preguntas repetidas de conjetura y comprobación; la frase de Estrella sobre los límites distintos de cero; la pista de \(h(x)\) y los dos ítems que la usan; "se parecen mucho", "hipótesis", "obviamente" y "álgebra de límites al infinito".</li>
+</ul>
+<h2 id="para-decidir">Para decidir</h2>
+<p>Sin decisiones pendientes.</p>
+
+</main>
+</div>
+</body>
+</html>

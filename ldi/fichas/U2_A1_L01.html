@@ -1,0 +1,313 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LDI · Ficha U2 A1 L01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --ground:#fcfbfe; --surface:#f3f1f8; --surface-2:#ebe7f4; --line:#e0dcea;
+  --ink:#231d3b; --muted:#625c76;
+  --purple:#423475; --purple-ink:#423475; --on-purple:#ffffff;
+  --red:#d45762; --red-ink:#a8323e; --red-tint:#fbeef0;
+  --green:#61b89a; --green-ink:#2c7a5f; --green-tint:#eaf6f1;
+  --blue:#4aa7ba; --blue-ink:#27788a;
+  --orange:#f3972d; --orange-ink:#a85f0c;
+  --yellow:#f0f57d;
+  --code-bg:#eeebf6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+    --ink:#ece9f6; --muted:#aaa4c2;
+    --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+    --red-ink:#f0939b; --red-tint:#2e1b2c;
+    --green-ink:#86d6b9; --green-tint:#18302b;
+    --blue-ink:#85cfdd; --orange-ink:#f7b667;
+    --code-bg:#2a2548;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+  --ink:#ece9f6; --muted:#aaa4c2;
+  --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+  --red-ink:#f0939b; --red-tint:#2e1b2c;
+  --green-ink:#86d6b9; --green-tint:#18302b;
+  --blue-ink:#85cfdd; --orange-ink:#f7b667;
+  --code-bg:#2a2548;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.6;margin:0}
+.strip{display:flex;height:6px}
+.strip span{flex:1}
+header.top{background:var(--purple);color:var(--on-purple);padding-block:2.4rem 2.2rem;padding-inline:16px}
+header.top .in{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin:0 0 .6rem}
+header.top h1{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.15;margin:0 0 .8rem;text-wrap:balance;font-weight:650;letter-spacing:-.01em}
+header.top .lead{max-width:68ch;margin:0;font-size:1.05rem;opacity:.93}
+.layout{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:2rem 4rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1rem);align-self:start;font-size:.88rem;max-height:calc(100vh - 2rem);overflow:auto}
+nav.toc p{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .5rem}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
+nav.toc a{color:var(--ink);text-decoration:none;display:block;padding:.3rem .55rem;border-radius:6px;line-height:1.35}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--surface-2);outline:none}
+nav.toc .sub a{padding-left:1.3rem;color:var(--muted)}
+main{min-width:0;max-width:760px}
+main h2{font-size:1.55rem;line-height:1.25;margin:3rem 0 1rem;color:var(--purple-ink);text-wrap:balance;font-weight:650}
+main h2:first-child{margin-top:0}
+main h3{font-size:1.2rem;margin:2.2rem 0 .7rem;text-wrap:balance;font-weight:620}
+main h4{font-size:1.1rem;margin:1.6rem 0 .5rem}
+p,li{max-width:70ch}
+a{color:var(--purple-ink)}
+code{font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-size:.88em;background:var(--code-bg);padding:.08em .35em;border-radius:4px;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
+ul,ol{padding-left:1.3rem}
+li{margin:.3rem 0}
+li::marker{color:var(--purple-ink)}
+.tablewrap{overflow-x:auto;margin:1.2rem 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+th{background:var(--purple);color:var(--on-purple);text-align:left;font-weight:600;padding:.55rem .7rem}
+td{padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--surface)}
+blockquote{margin:1.4rem 0;padding:1rem 1.2rem;background:var(--surface);border-radius:10px}
+blockquote p{margin:.4rem 0}
+blockquote .tag{display:inline-block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:650;margin-bottom:.3rem;color:var(--muted)}
+blockquote.capsula{background:var(--green-tint)}
+blockquote.capsula .tag{color:var(--green-ink)}
+blockquote.revision{background:var(--red-tint)}
+blockquote.revision .tag{color:var(--red-ink)}
+.hito{display:flex;gap:.7rem;align-items:baseline;margin:1.6rem 0 .4rem;font-size:1.02rem;font-weight:620;line-height:1.4}
+.hito .hid{flex:none;background:var(--purple);color:var(--on-purple);font-family:"Geist Mono",ui-monospace,monospace;font-size:.78rem;font-weight:600;padding:.15rem .5rem;border-radius:999px;position:relative;top:-.08em}
+.hito + ul{margin-top:.2rem;padding-left:3.4rem}
+.leccion{border-top:1px solid var(--line);padding-top:1.4rem;margin-top:2.6rem}
+.leccion h4{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h4 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+details{margin:1rem 0}
+summary{cursor:pointer;font-weight:600;color:var(--purple-ink);padding:.35rem 0}
+summary:focus-visible{outline:2px solid var(--purple-ink);outline-offset:3px;border-radius:4px}
+.arco{list-style:none;padding:0;counter-reset:a;display:grid;gap:.7rem}
+.arco li{counter-increment:a;position:relative;padding-left:3rem;min-height:2.2rem;max-width:none}
+.arco li::before{content:counter(a);position:absolute;left:0;top:0;background:var(--surface-2);color:var(--purple-ink);font-weight:650;border-radius:50%;width:2.2rem;height:2.2rem;display:grid;place-items:center;font-family:"Geist Mono",monospace}
+.paso{display:grid;grid-template-columns:2.4rem 1fr;gap:.9rem;margin:1.3rem 0}
+.paso .num{font-family:"Geist Mono",ui-monospace,monospace;font-weight:600;color:var(--purple-ink);background:var(--surface-2);border-radius:8px;height:2.4rem;display:grid;place-items:center}
+.paso p{margin:0}
+.paso + ul{padding-left:4.6rem}
+.fases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem;margin:1.5rem 0 2rem}
+.fase{background:var(--surface);border-radius:10px;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.35rem}
+.fase .fn{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.fase .ft{font-weight:650;color:var(--purple-ink);font-size:1.05rem}
+.fase .fp{font-family:"Geist Mono",monospace;font-size:.82rem;color:var(--muted)}
+.fase .rv{margin-top:auto;display:flex;flex-wrap:wrap;gap:.3rem}
+.fase .rv span{font-size:.75rem;font-weight:600;color:var(--red-ink);background:var(--red-tint);border-radius:999px;padding:.1rem .55rem}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;gap:1.5rem}
+  nav.toc{position:static;max-height:none;background:var(--surface);border-radius:10px;padding:1rem}
+  .fases{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:460px){ .fases{grid-template-columns:1fr} .hito + ul{padding-left:1.3rem} .paso + ul{padding-left:1.3rem} }
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+
+header.top a{color:inherit;text-underline-offset:.2em}
+.enl{display:flex;flex-wrap:wrap;gap:.45rem;margin:.5rem 0 1rem}
+.enl a{display:inline-flex;align-items:center;gap:.45rem;border:1px solid var(--line);border-radius:999px;padding:.28rem .75rem;font-size:.86rem;line-height:1.35;text-decoration:none;color:var(--ink);background:var(--ground)}
+.enl a:hover,.enl a:focus-visible{border-color:var(--c);outline:none}
+.enl i{width:.6rem;height:.6rem;border-radius:50%;background:var(--c);flex:none}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.7rem;margin:1rem 0 1.6rem}
+a.card{display:grid;grid-template-columns:.8rem 1fr;gap:.8rem;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem;text-decoration:none;color:var(--ink);transition:border-color .15s,transform .15s}
+a.card:hover,a.card:focus-visible{border-color:var(--c);transform:translateY(-1px);outline:none}
+a.card i{width:.8rem;height:.8rem;border-radius:50%;background:var(--c);margin-top:.3rem}
+a.card b{display:block;font-weight:600;line-height:1.3}
+a.card span{display:block;color:var(--muted);font-size:.86rem;margin-top:.2rem;line-height:1.4}
+main h3.tema{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:1.6rem 0 .3rem}
+.lecs{margin:0 0 1rem;border-top:1px solid var(--line)}
+.lec{padding:.75rem 0;border-bottom:1px solid var(--line)}
+.lec p{margin:0;max-width:none}
+.lec .cod{font-family:"Geist Mono",ui-monospace,monospace;font-size:.8rem;font-weight:600;color:var(--purple-ink);margin-right:.45rem}
+.lec small{display:block;color:var(--muted);font-size:.84rem;margin-top:.1rem}
+.lec .enl{margin:.5rem 0 0}
+.leccion h3{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h3 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+table.meta th{background:var(--surface-2);color:var(--ink);width:11rem}
+.nota{color:var(--muted);font-size:.9rem}
+@media (prefers-reduced-motion:reduce){a.card{transition:none}}
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script></head>
+<body>
+<div class="strip"><span style="background:#423475"></span><span style="background:#d45762"></span><span style="background:#61b89a"></span><span style="background:#f0f57d"></span><span style="background:#4aa7ba"></span><span style="background:#f3972d"></span></div>
+<header class="top"><div class="in">
+<p class="eyebrow"><a href="../index.html">LDI</a> · Ficha de una lección implementada</p>
+<h1>U2 A1 L1 · ¿Se extinguirán las bacterias?</h1>
+<p class="lead">Lección 1 de la Actividad 1 de la Unidad 2 del curso implementado, base de U2T1L1 en el curso nuevo.</p>
+</div></header>
+<div class="layout">
+<nav class="toc" aria-label="Contenido"><p>Contenido</p><ol><li><a href="#qué-logra-la-clase">Qué logra la clase</a></li><li class="sub"><a href="#logro">Logro</a></li><li class="sub"><a href="#lo-que-queda-para-otras-lecciones">Lo que queda para otras lecciones</a></li><li class="sub"><a href="#cómo-lo-logra">Cómo lo logra</a></li><li><a href="#diagnóstico-de-la-versión-implementada">Diagnóstico de la versión implementada</a></li><li class="sub"><a href="#secuencia">Secuencia</a></li><li class="sub"><a href="#hallazgos">Hallazgos</a></li><li class="sub"><a href="#errores">Errores</a></li><li><a href="#recursos">Recursos</a></li><li><a href="#se-conserva-y-sale">Se conserva y sale</a></li><li><a href="#para-decidir">Para decidir</a></li></ol></nav>
+<main>
+<div class="enl"><a style="--c:#4aa7ba" href="../../LDI_ruta_curso_implementado.html#lección-1-se-extinguirán-las-bacterias"><i></i>Lección en el curso implementado</a><a style="--c:#423475" href="../ruta_U2.html#U2T1L1"><i></i>Propuesta nueva · U2T1L1</a></div><div class="tablewrap"><table>
+<tbody>
+<tr>
+<td>Guion de Drive</td>
+<td><code>LDI_U2_A1_Clase 1</code></td>
+</tr>
+<tr>
+<td>Objetivo declarado</td>
+<td>Motivar el estudio del comportamiento asintótico de una función a partir del análisis de situaciones en contexto y cuyo modelamiento involucra funciones que dependen del tiempo.</td>
+</tr>
+<tr>
+<td>Objetivo propuesto</td>
+<td>Reconocer en tablas y gráficos que una función puede acercarse tanto como se quiera a un valor cuando la variable crece, incluso si crece en todo momento, y describir ese comportamiento al infinito.</td>
+</tr>
+<tr>
+<td>Veredicto</td>
+<td><strong>Remodelar a fondo</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="qué-logra-la-clase">Qué logra la clase</h2>
+<p>Nivel de noción e intuición. Las Lecciones 1 a 3 de la Actividad 1 observan casos, describen qué ocurre y, desde la L2, cómo se anota. La precisión llega en la L4.</p>
+<h3 id="logro">Logro</h3>
+<p>Al terminar, el estudiante sabe que <strong>una función puede acercarse tanto como se quiera a un valor cuando la variable crece</strong>. La colonia lo hace creciendo en todos los valores que observa y quedando siempre bajo ese valor. Otras funciones lo hacen bajando hacia el valor; las que lo cruzan una y otra vez son de la L3. Esto contradice lo que trae de la Unidad 1, donde una población que crece siempre termina superando cualquier valor.</p>
+<p>Reconoce ese comportamiento en tres registros:</p>
+<ul>
+<li><strong>En una tabla con pasos iguales de la variable:</strong> la diferencia entre los valores y un número se achica hacia 0. En la colonia, \(3135 - P(t)\) vale 2635, 727.2, 53.3 y 1.2 en \(t\) = 0, 30, 60 y 100.</li>
+<li><strong>En un gráfico:</strong> hacia la derecha, la curva queda tan cerca como se quiera de una recta horizontal.</li>
+<li><strong>En una función dada por su expresión</strong>, como \(4 - 0.3^x\) y \(2 + 0.3^x\).</li>
+</ul>
+<p>En el contexto, lo describe con sus palabras: la población se acerca a la cantidad de bacterias que el alimento puede mantener, que se llama <strong>capacidad de carga</strong> del ambiente.</p>
+<p>Conoce el nombre <strong>comportamiento al infinito</strong> para lo que hace una función cuando la variable crece, y sabe que acercarse a un valor es uno de esos comportamientos. Lo describe con la frase del curso: desde cierto momento, todos los valores de la función quedan tan cerca del número como queramos. La lee con un número elegido: desde las 78 horas, la colonia queda a menos de 10 bacterias de 3135, y desde las 102 horas, a menos de 1. La frase es una descripción intuitiva; la L4 la precisa.</p>
+<p>Sabe además dos cosas que lo protegen de conclusiones apresuradas:</p>
+<ul>
+<li><strong>Una función que crece cada vez más lento puede superar cualquier valor</strong>. En una ventana corta parece aplanarse y, con valores de \(x\) más grandes, supera cualquier techo que se le ponga.</li>
+<li><strong>Una tabla o un gráfico permiten formular una conjetura.</strong> Muestran solo algunos valores, redondeados, y GeoGebra tiene limitaciones de cómputo: desde \(t = 158\) muestra 3135.00, aunque en el modelo \(P(t)\) nunca llega a 3135.</li>
+</ul>
+<h3 id="lo-que-queda-para-otras-lecciones">Lo que queda para otras lecciones</h3>
+<p>Lecciones de la Actividad 1 del curso implementado:</p>
+<ul>
+<li>La notación de límite, el nombre asíntota horizontal, los demás comportamientos con su nombre y el caso en que la variable tiende a menos infinito: L2.</li>
+<li>Las funciones que oscilan: L3, "El columpio sin fin".</li>
+<li>Qué significa con precisión "tan cerca como queramos": L4.</li>
+<li>Calcular límites con propiedades y estrategias algebraicas: L5 y L6.</li>
+</ul>
+<h3 id="cómo-lo-logra">Cómo lo logra</h3>
+<ol type="1">
+<li><strong>Activación.</strong> Se recupera de la Unidad 1 que un crecimiento de un porcentaje fijo se modela con una exponencial. Entre los gráficos del Recordemos están \(4 - 0.3^x\) y \(2 + 0.3^x\). Esos dos gráficos se retoman en el paso 6.</li>
+<li><strong>Contexto.</strong> La colonia crecería 10 % por hora si el alimento sobrara. Cada hora llega la misma cantidad de plástico, así que con más bacterias la colonia crece cada vez más lento. Queda abierta una pregunta: ¿llegará la colonia a superar cualquier cantidad? La capacidad de carga todavía no se nombra.</li>
+<li><strong>Construcción, predicción y obstáculo.</strong> Se muestran solo las filas de 0 a 15 horas, donde cada aumento es mayor que el anterior (desde la hora 17 los aumentos empiezan a bajar), y se pide predecir cuántas bacterias habrá a las 100 horas. Un diálogo contrapone dos ideas. Un personaje extrapola: si sigue subiendo así, habrá más de 5000 (con el último aumento se llega a unas 7600). El otro duda, porque cada hora llega la misma cantidad de alimento.</li>
+<li><strong>Construcción, observación.</strong> La tabla completa, con pasos iguales (0, 10, 20, …, 120) y la columna \(3135 - P(t)\), lleva a una conjetura: la población crece en todos los valores observados, queda bajo 3135 y la diferencia con 3135 se achica hacia 0. Recién aquí se nombra la capacidad de carga, explicada. En el laboratorio aparece un error esperable: "llega a 3135 y se queda ahí", porque GeoGebra muestra 3135.00 desde las 158 horas. La columna de la diferencia lo responde. Con GeoGebra, el estudiante lee desde qué hora la colonia queda a menos de 10 bacterias de 3135 y desde cuál a menos de 1. Una cápsula sobre las limitaciones de GeoGebra deja dicho que lo observado es una conjetura y que la afirmación es sobre el modelo, no sobre la colonia, que tiene bacterias enteras.</li>
+<li><strong>Construcción, nombre.</strong> Una cápsula nombra el comportamiento al infinito, presenta acercarse a un valor como uno de sus casos y da la frase para describirlo, solo para la variable que crece.</li>
+<li><strong>Construcción, separación del contexto.</strong> El mismo comportamiento se observa en \(4 - 0.3^x\), que se acerca a 4 subiendo, y en \(2 + 0.3^x\), que se acerca a 2 bajando. En los dos, la diferencia con el número se achica hacia 0.</li>
+<li><strong>Construcción, contraste.</strong> Mirando \(10 \log x\) hasta \(x = 120\), el estudiante le propone un techo, por ejemplo 25, y comprueba en GeoGebra que la función lo supera desde \(x \approx 316\). Prueba con 40, que supera desde \(x = 10\,000\). La colonia, en cambio, no supera nunca 3135. Se describe con palabras (supera cualquier valor); su nombre llega en la L2.</li>
+<li><strong>Sistematización.</strong> Diapositivas con las ideas en términos generales.</li>
+<li><strong>Práctica.</strong> Tres funciones nuevas en tabla, con pasos iguales, o en gráfico: una que se acerca a un valor subiendo, otra que se acerca bajando y otra que supera cualquier valor. En cada una, el estudiante decide si se acerca a un valor y lo justifica con la diferencia.</li>
+<li><strong>Ticket.</strong> Una tabla o un gráfico nuevo: decidir si la función parece acercarse a un valor y justificarlo con la diferencia. Uno de los casos crece cada vez más lento sin acercarse a ningún valor.</li>
+</ol>
+<h2 id="diagnóstico-de-la-versión-implementada">Diagnóstico de la versión implementada</h2>
+<p>Llega hasta la conjetura sobre la logística y su nombre. No separa el comportamiento del contexto y gasta la mitad de la Construcción en los parámetros del modelo.</p>
+<h3 id="secuencia">Secuencia</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Qué hace</th>
+<th>Preguntas</th>
+<th>En PyE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recordemos</td>
+<td>Asociar cuatro gráficos con \(1+3^x\), \(2+0.3^x\), \(-2-3^x\) y \(4-0.3^x\); escribir la expresión de un crecimiento de 50 % por unidad</td>
+<td>2</td>
+<td>Activación</td>
+</tr>
+<tr>
+<td>Presentando una situación (video 1 en el guion)</td>
+<td>Bacterias que comen plástico y crecen 20 % por hora; con recursos limitados la velocidad baja; modelo logístico en forma de S, sin su expresión; preguntas: ¿se extinguen?, ¿crecen indefinidamente?</td>
+<td>—</td>
+<td>Contexto</td>
+</tr>
+<tr>
+<td>Analizando la situación (1)</td>
+<td>GeoGebra con deslizadores: describir el crecimiento; efecto de \(P_0\), \(r\) y \(N\) en la curva y qué representa cada uno</td>
+<td>6</td>
+<td>Construcción</td>
+</tr>
+<tr>
+<td>Analizando la situación (2)</td>
+<td>Con \(N = 3135\), \(P_0 = 500\) y \(r = 1.1\): tabla de \(P(t)\) de 0 a 60 horas con un punto móvil; qué pasa después de \(t = 30\); avanzar y hacer zoom hasta \(t = 400\); conjetura: \(P(t)\) se acerca a 3135 sin alcanzarlo</td>
+<td>3</td>
+<td>Construcción</td>
+</tr>
+<tr>
+<td>Toma nota (video 2 en el guion)</td>
+<td>\(P(t)\) se acerca a \(N\) tanto como se quiera con \(t\) suficientemente grande; no todas las funciones tienden a un valor; comportamiento al infinito cuando \(x\) crece o decrece</td>
+<td>—</td>
+<td>Cápsula</td>
+</tr>
+<tr>
+<td>Practica lo aprendido</td>
+<td>Estrella y dos pósters: \(g\), una oscilación amortiguada que tiende a 0, y \(h\), que crece cada vez más lento, como un logaritmo</td>
+<td>2</td>
+<td>Práctica</td>
+</tr>
+<tr>
+<td>¿Qué aprendimos?</td>
+<td>Cinco frases con desplegables</td>
+<td>6 huecos</td>
+<td>Sistematización</td>
+</tr>
+<tr>
+<td>Ticket de salida</td>
+<td>Qué significa acercarse tanto como se quiera a la capacidad de carga (seis opciones, tres correctas); definir comportamiento al infinito; ordenar cuatro pasos para estudiarlo</td>
+<td>3</td>
+<td>Ticket</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="hallazgos">Hallazgos</h3>
+<ul>
+<li><strong>Los parámetros desvían la clase.</strong> Seis preguntas abiertas estudian cómo \(P_0\), \(r\) y \(N\) cambian la curva, y para el comportamiento al infinito solo importa \(N\). La expresión del modelo quedó fuera, así que los parámetros son deslizadores sin significado algebraico. La idea de la clase está en tres preguntas: la tabla, qué pasa después de \(t = 30\) y el zoom hasta \(t = 400\).</li>
+<li><strong>El modelo responde la pregunta del título, y la clase no da la respuesta.</strong> Con \(0 &lt; P_0 &lt; N\) y \(r &gt; 1\), la logística crece siempre y se acerca a \(N &gt; 0\), así que la colonia no se extingue.</li>
+<li><strong>No hay obstáculo, y el material para uno está debilitado.</strong> Las preguntas piden describir lo que se ve. El Contexto anuncia que la velocidad baja, y \(N\) se presenta como la cantidad máxima antes de la tabla. Además, la Unidad 1 implementada ya mostró un modelo logístico que se acerca a 30 000 (los peces de la evaluación de la Actividad 3) y la asíntota horizontal de \(\frac{1}{x}\) (A1 L4). La lección sí trae el material para los dos obstáculos de la clase remodelada: la tabla de \(P(t)\) y el gráfico de \(h\), que en la ventana del póster (\(x\) entre 0 y 120) se ve tan aplanado como la logística en su tramo final.</li>
+<li><strong>"Crecer indefinidamente" tiene dos sentidos.</strong> La clase pregunta "¿Podrá la colonia crecer indefinidamente?" y el Ticket marca como correcta "la población no puede crecer indefinidamente". En sentido literal es falso, porque \(P(t)\) crece en todo momento; la clase quiere decir que no supera cualquier valor. La L2 usa la misma expresión para la divergencia a infinito.</li>
+<li><strong>La Práctica usa casos de otras lecciones.</strong> \(g\) es el caso de la L3 y \(h\), el logaritmo de la L2. Los pósters de Estrella son decorativos.</li>
+<li><strong>Cápsulas.</strong> La Toma nota adelanta el caso en que \(x\) decrece, que es de la L2. Su frase central dice "considerando un valor de \(t\) suficientemente grande": con "un valor", la cumple también una función que se acerca al número solo en algunos puntos, como la oscilación de la L3. La cápsula de los valores decimales es una digresión, pero su idea de fondo sirve: la afirmación es sobre el modelo.</li>
+<li><strong>Sistematización.</strong> Es un cuestionario de frases para completar, y tres de las cinco frases hablan de la logística.</li>
+<li><strong>Ticket.</strong> La pregunta 1 evalúa el contexto y no el concepto, y sus tres distractores se descartan sin pensar (crecimiento exponencial sin fin, recursos ilimitados, crecimiento lineal). La pregunta 3 entrega un procedimiento en cuatro pasos. La pregunta 2, abierta, sí mide la idea.</li>
+</ul>
+<h3 id="errores">Errores</h3>
+<ul>
+<li><strong>El porcentaje no calza con el parámetro.</strong> El Contexto dice que la colonia crece 20 % por hora mientras el alimento alcanza; en el modelo eso es \(r = 1.2\), y la clase usa \(r = 1.1\). La tabla corresponde a \(r = 1.1\) (verificada con \(P(t) = \frac{N}{1 + \frac{N - P_0}{P_0} r^{-t}}\)). Con \(r = 1.2\), en \(t\) = 0, 5, 10, 15, 20, 25, 30, 40, 50 y 60, sería 500, 1005.5, 1693.6, 2336.0, 2756.1, 2970.9, 3066.9, 3123.8, 3133.2 y 3134.7.</li>
+<li><strong>\(r\) se llama "tasa de reproducción", y no es el porcentaje de cada hora.</strong> Es el factor de crecimiento sin límite de recursos (\(r = 2\) es duplicarse cada hora). Con \(P_0 = 500\) y \(N = 3135\), la primera hora crece 8.3 % con \(r = 1.1\) y 16.3 % con \(r = 1.2\).</li>
+<li><strong>\(N\) se llama "máximo" en tres lugares:</strong> la definición del parámetro, la retroalimentación de la pregunta 6 y el hueco 4 ("tamaño máximo"). Un máximo se alcanza, y \(P(t)\) nunca alcanza \(N\). En el hueco 5, el respaldo de Moodle acepta "que alcanza" además de "al que se aproxima"; el guion marca solo la segunda. Hay que verificarlo en la plataforma.</li>
+<li><strong>Ticket, pregunta 1.</strong> La opción f, marcada correcta, es falsa en sentido literal (ver Hallazgos). La opción c, también correcta, dice que "el crecimiento de la población tiene una cota superior"; la cota es de la población.</li>
+<li><strong>Ticket, pregunta 3.</strong> El cuarto paso pide "verificar que la función se acerca tanto como se quiera", y la clase acaba de decir que GeoGebra solo permite conjeturarlo.</li>
+<li><strong>Pregunta sin enunciado.</strong> La pregunta 3 del segundo cuestionario da solo una instrucción ("usa el deslizador…") y un recuadro.</li>
+<li><strong>Guion y Moodle.</strong> Los dos videos no quedaron en Moodle; su narración aparece como texto. En los dos faltan la expresión del modelo, la pregunta por \(P(0)\) y la cápsula sobre \(r\).</li>
+<li><strong>Redacción y notación.</strong> "esta función logística nuestra" (es "muestra"); "que se están en la tabla"; "qué es lo ocurre"; "prueba para valores de \(t&gt;30\)?"; "usa el deslizador 'Zoom' y ver qué ocurre" (es "mira"); "Geogebra"; "no sea influenciado incorrectamente por ellas"; "relacionala" y "Utilizalos", sin tilde; "cuanto \(t\) crece" (es "cuando"); "que puede subsistir el ambiente" (falta "en"); LaTeX roto en el guion (`\(P_0)\`, `\(N)\`); decimales con coma (500,00; \(0,3^x\); 3081,66); "Comportamiento al finito" en la instrucción del video 2.</li>
+</ul>
+<h2 id="recursos">Recursos</h2>
+<ul>
+<li><strong>GeoGebra:</strong> <code>mfwgy2ec</code> (deslizadores de \(P_0\), \(r\) y \(N\)), <code>phszqddr</code> (punto móvil sobre la curva con los parámetros fijos), <code>fgsuydne</code> (deslizador de \(t\) y zoom hasta \(t = 400\)), <code>yvh8twf5</code> (\(g\)) y <code>hmpqp3ba</code> (\(h\)). Se reutilizan <code>phszqddr</code> y <code>fgsuydne</code>, y <code>hmpqp3ba</code>. El contraste del paso 7 usa \(10 \log x\) en vez de \(h\), que coincide con \(5 \ln x\) y supone el número \(e\); <code>hmpqp3ba</code> se rehace con esa función.</li>
+<li><strong>Imágenes:</strong> los cuatro gráficos exponenciales del Recordemos e IPD 1 a 6 (bacteria, colonia en placa de Petri, objetos de plástico, gráfico exponencial por horas, curva en S, curva con su asíntota). Las curvas en S y con asíntota se reutilizan, redibujadas en la paleta MatCon.</li>
+<li><strong>Videos.</strong> El video 1 narraba el Contexto: cinco colonias que pasan a seis con el 20 %, flechas de plástico que dejan de alcanzar a todas y la curva en S trazada a mano. Pasa al Contexto como texto con una o dos imágenes. El video 2 mostraba la curva acercándose a la recta y \(f(x)\) con \(x\) que pasa de 0 a 9 999 999 999 999. Esa idea entra mejor como la columna de la diferencia, porque una tabla de valores grandes muestra el número redondeado como si se alcanzara.</li>
+<li><strong>Personaje:</strong> Estrella aparece en la Práctica y vuelve en la L5 de la actividad.</li>
+</ul>
+<h2 id="se-conserva-y-sale">Se conserva y sale</h2>
+<ul>
+<li><strong>Se conserva:</strong> las bacterias como contexto de apoyo; la tabla de \(P(t)\), rehecha con pasos iguales y la columna de la diferencia; el zoom hasta \(t = 400\) y la conjetura; la cápsula sobre las limitaciones de GeoGebra; de la cápsula de los decimales, una frase (la afirmación es sobre el modelo); la frase central de la Toma nota, corregida; la pregunta abierta del Ticket.</li>
+<li><strong>Sale:</strong> el cuestionario de los parámetros, salvo una pregunta posterior a la tabla que lea \(N\) en el gráfico; el caso en que \(x\) decrece; \(g\); los pasos del Ticket; los pósters de Estrella; los videos.</li>
+</ul>
+<h2 id="para-decidir">Para decidir</h2>
+<ul>
+<li><strong>Si se muestra la expresión</strong> \(P(t) = \frac{3135}{1 + 5.27 \cdot 1.1^{-t}}\). Con ella, el estudiante puede argumentar que \(1.1^{-t}\) se achica y nunca es 0, y que \(P(t)\) crece siempre. Sin ella, la evidencia son los valores observados.</li>
+<li><strong>Qué supone la clase de la Unidad 1 nueva:</strong> una exponencial de base entre 0 y 1, que crecer 10 % es multiplicar por 1.1, y el manejo de zoom y redondeo en GeoGebra. La asíntota de \(\frac{1}{x}\) sale de la Unidad 1 (decisión del 2026-11-18). Si la Unidad 1 nueva conserva el modelo logístico de los peces, el obstáculo del paso 3 pierde fuerza.</li>
+<li><strong>Código de la lección nueva.</strong> El plan la llama U2T2L1; si las actividades pasan a ser temas, es la U2T1L1.</li>
+</ul>
+
+</main>
+</div>
+</body>
+</html>

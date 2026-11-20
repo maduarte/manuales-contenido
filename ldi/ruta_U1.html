@@ -1,0 +1,467 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LDI · Ruta nueva de la Unidad 1 · Funciones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --ground:#fcfbfe; --surface:#f3f1f8; --surface-2:#ebe7f4; --line:#e0dcea;
+  --ink:#231d3b; --muted:#625c76;
+  --purple:#423475; --purple-ink:#423475; --on-purple:#ffffff;
+  --red:#d45762; --red-ink:#a8323e; --red-tint:#fbeef0;
+  --green:#61b89a; --green-ink:#2c7a5f; --green-tint:#eaf6f1;
+  --blue:#4aa7ba; --blue-ink:#27788a;
+  --orange:#f3972d; --orange-ink:#a85f0c;
+  --yellow:#f0f57d;
+  --code-bg:#eeebf6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+    --ink:#ece9f6; --muted:#aaa4c2;
+    --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+    --red-ink:#f0939b; --red-tint:#2e1b2c;
+    --green-ink:#86d6b9; --green-tint:#18302b;
+    --blue-ink:#85cfdd; --orange-ink:#f7b667;
+    --code-bg:#2a2548;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+  --ink:#ece9f6; --muted:#aaa4c2;
+  --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+  --red-ink:#f0939b; --red-tint:#2e1b2c;
+  --green-ink:#86d6b9; --green-tint:#18302b;
+  --blue-ink:#85cfdd; --orange-ink:#f7b667;
+  --code-bg:#2a2548;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.6;margin:0}
+.strip{display:flex;height:6px}
+.strip span{flex:1}
+header.top{background:var(--purple);color:var(--on-purple);padding-block:2.4rem 2.2rem;padding-inline:16px}
+header.top .in{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin:0 0 .6rem}
+header.top h1{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.15;margin:0 0 .8rem;text-wrap:balance;font-weight:650;letter-spacing:-.01em}
+header.top .lead{max-width:68ch;margin:0;font-size:1.05rem;opacity:.93}
+.layout{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:2rem 4rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1rem);align-self:start;font-size:.88rem;max-height:calc(100vh - 2rem);overflow:auto}
+nav.toc p{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .5rem}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
+nav.toc a{color:var(--ink);text-decoration:none;display:block;padding:.3rem .55rem;border-radius:6px;line-height:1.35}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--surface-2);outline:none}
+nav.toc .sub a{padding-left:1.3rem;color:var(--muted)}
+main{min-width:0;max-width:760px}
+main h2{font-size:1.55rem;line-height:1.25;margin:3rem 0 1rem;color:var(--purple-ink);text-wrap:balance;font-weight:650}
+main h2:first-child{margin-top:0}
+main h3{font-size:1.2rem;margin:2.2rem 0 .7rem;text-wrap:balance;font-weight:620}
+main h4{font-size:1.1rem;margin:1.6rem 0 .5rem}
+p,li{max-width:70ch}
+a{color:var(--purple-ink)}
+code{font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-size:.88em;background:var(--code-bg);padding:.08em .35em;border-radius:4px;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
+ul,ol{padding-left:1.3rem}
+li{margin:.3rem 0}
+li::marker{color:var(--purple-ink)}
+.tablewrap{overflow-x:auto;margin:1.2rem 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+th{background:var(--purple);color:var(--on-purple);text-align:left;font-weight:600;padding:.55rem .7rem}
+td{padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--surface)}
+blockquote{margin:1.4rem 0;padding:1rem 1.2rem;background:var(--surface);border-radius:10px}
+blockquote p{margin:.4rem 0}
+blockquote .tag{display:inline-block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:650;margin-bottom:.3rem;color:var(--muted)}
+blockquote.capsula{background:var(--green-tint)}
+blockquote.capsula .tag{color:var(--green-ink)}
+blockquote.revision{background:var(--red-tint)}
+blockquote.revision .tag{color:var(--red-ink)}
+.hito{display:flex;gap:.7rem;align-items:baseline;margin:1.6rem 0 .4rem;font-size:1.02rem;font-weight:620;line-height:1.4}
+.hito .hid{flex:none;background:var(--purple);color:var(--on-purple);font-family:"Geist Mono",ui-monospace,monospace;font-size:.78rem;font-weight:600;padding:.15rem .5rem;border-radius:999px;position:relative;top:-.08em}
+.hito + ul{margin-top:.2rem;padding-left:3.4rem}
+.leccion{border-top:1px solid var(--line);padding-top:1.4rem;margin-top:2.6rem}
+.leccion h4{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h4 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+details{margin:1rem 0}
+summary{cursor:pointer;font-weight:600;color:var(--purple-ink);padding:.35rem 0}
+summary:focus-visible{outline:2px solid var(--purple-ink);outline-offset:3px;border-radius:4px}
+.arco{list-style:none;padding:0;counter-reset:a;display:grid;gap:.7rem}
+.arco li{counter-increment:a;position:relative;padding-left:3rem;min-height:2.2rem;max-width:none}
+.arco li::before{content:counter(a);position:absolute;left:0;top:0;background:var(--surface-2);color:var(--purple-ink);font-weight:650;border-radius:50%;width:2.2rem;height:2.2rem;display:grid;place-items:center;font-family:"Geist Mono",monospace}
+.paso{display:grid;grid-template-columns:2.4rem 1fr;gap:.9rem;margin:1.3rem 0}
+.paso .num{font-family:"Geist Mono",ui-monospace,monospace;font-weight:600;color:var(--purple-ink);background:var(--surface-2);border-radius:8px;height:2.4rem;display:grid;place-items:center}
+.paso p{margin:0}
+.paso + ul{padding-left:4.6rem}
+.fases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem;margin:1.5rem 0 2rem}
+.fase{background:var(--surface);border-radius:10px;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.35rem}
+.fase .fn{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.fase .ft{font-weight:650;color:var(--purple-ink);font-size:1.05rem}
+.fase .fp{font-family:"Geist Mono",monospace;font-size:.82rem;color:var(--muted)}
+.fase .rv{margin-top:auto;display:flex;flex-wrap:wrap;gap:.3rem}
+.fase .rv span{font-size:.75rem;font-weight:600;color:var(--red-ink);background:var(--red-tint);border-radius:999px;padding:.1rem .55rem}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;gap:1.5rem}
+  nav.toc{position:static;max-height:none;background:var(--surface);border-radius:10px;padding:1rem}
+  .fases{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:460px){ .fases{grid-template-columns:1fr} .hito + ul{padding-left:1.3rem} .paso + ul{padding-left:1.3rem} }
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+
+header.top a{color:inherit;text-underline-offset:.2em}
+.enl{display:flex;flex-wrap:wrap;gap:.45rem;margin:.5rem 0 1rem}
+.enl a{display:inline-flex;align-items:center;gap:.45rem;border:1px solid var(--line);border-radius:999px;padding:.28rem .75rem;font-size:.86rem;line-height:1.35;text-decoration:none;color:var(--ink);background:var(--ground)}
+.enl a:hover,.enl a:focus-visible{border-color:var(--c);outline:none}
+.enl i{width:.6rem;height:.6rem;border-radius:50%;background:var(--c);flex:none}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.7rem;margin:1rem 0 1.6rem}
+a.card{display:grid;grid-template-columns:.8rem 1fr;gap:.8rem;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem;text-decoration:none;color:var(--ink);transition:border-color .15s,transform .15s}
+a.card:hover,a.card:focus-visible{border-color:var(--c);transform:translateY(-1px);outline:none}
+a.card i{width:.8rem;height:.8rem;border-radius:50%;background:var(--c);margin-top:.3rem}
+a.card b{display:block;font-weight:600;line-height:1.3}
+a.card span{display:block;color:var(--muted);font-size:.86rem;margin-top:.2rem;line-height:1.4}
+main h3.tema{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:1.6rem 0 .3rem}
+.lecs{margin:0 0 1rem;border-top:1px solid var(--line)}
+.lec{padding:.75rem 0;border-bottom:1px solid var(--line)}
+.lec p{margin:0;max-width:none}
+.lec .cod{font-family:"Geist Mono",ui-monospace,monospace;font-size:.8rem;font-weight:600;color:var(--purple-ink);margin-right:.45rem}
+.lec small{display:block;color:var(--muted);font-size:.84rem;margin-top:.1rem}
+.lec .enl{margin:.5rem 0 0}
+.leccion h3{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h3 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+table.meta th{background:var(--surface-2);color:var(--ink);width:11rem}
+.nota{color:var(--muted);font-size:.9rem}
+@media (prefers-reduced-motion:reduce){a.card{transition:none}}
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script></head>
+<body>
+<div class="strip"><span style="background:#423475"></span><span style="background:#d45762"></span><span style="background:#61b89a"></span><span style="background:#f0f57d"></span><span style="background:#4aa7ba"></span><span style="background:#f3972d"></span></div>
+<header class="top"><div class="in">
+<p class="eyebrow"><a href="index.html">LDI</a> · Ruta nueva, en construcción</p>
+<h1>Unidad 1 · Funciones</h1>
+<p class="lead">La unidad elige la familia de funciones por cómo cambia la cantidad, y después construye la composición y la inversa. Sigue la propuesta de reestructuración de la unidad: el Tema 1 es nuevo, y los Temas 2 y 3 remodelan las Actividades 2 y 3 del curso implementado. Las funciones por tramos y las racionales pasan a la Unidad 2. El ciclo de modelamiento de las paltas sale de la unidad.</p>
+</div></header>
+<div class="layout">
+<nav class="toc" aria-label="Contenido"><p>Contenido</p><ol><li><a href="#presentacion">Presentación</a></li><li><a href="#tema-1--modelos-de-cambio">Tema 1 · Modelos de cambio</a></li><li class="sub"><a href="#U1T1L1">U1T1L1 · Cambio constante</a></li><li class="sub"><a href="#U1T1L2">U1T1L2 · Un cambio que cambia</a></li><li class="sub"><a href="#U1T1L3">U1T1L3 · Cambio multiplicativo</a></li><li class="sub"><a href="#U1T1L4">U1T1L4 · Variar los parámetros</a></li><li class="sub"><a href="#U1T1L5">U1T1L5 · Qué modelo describe la situación</a></li><li class="sub"><a href="#U1T1L6">U1T1L6 · Ejercitación de modelos de cambio</a></li><li><a href="#tema-2--composición">Tema 2 · Composición</a></li><li class="sub"><a href="#U1T2L1">U1T2L1 · Componer con tablas y máquinas</a></li><li class="sub"><a href="#U1T2L2">U1T2L2 · Dominio de una composición</a></li><li class="sub"><a href="#U1T2L3">U1T2L3 · Componer gráficos</a></li><li class="sub"><a href="#U1T2L4">U1T2L4 · Modelar con la composición</a></li><li class="sub"><a href="#U1T2L5">U1T2L5 · Ejercitación de composición</a></li><li><a href="#tema-3--inversa">Tema 3 · Inversa</a></li><li class="sub"><a href="#U1T3L1">U1T3L1 · Problema inverso</a></li><li class="sub"><a href="#U1T3L2">U1T3L2 · Logaritmo, la inversa de la exponencial</a></li><li class="sub"><a href="#U1T3L3">U1T3L3 · Invertir donde se pueda</a></li><li class="sub"><a href="#U1T3L4">U1T3L4 · Problemas inversos en contexto</a></li><li class="sub"><a href="#U1T3L5">U1T3L5 · Ejercitación de inversa</a></li><li><a href="#decisiones-abiertas-que-afectan-esta-ruta">Decisiones abiertas que afectan esta ruta</a></li></ol></nav>
+<main>
+<h2 id="presentacion">Presentación</h2><p><strong>Programa:</strong> Representar y modelar situaciones de cambio por medio de funciones. <strong>OA 1.</strong> Habilidades b (variar parámetros) y g (elaborar representaciones). 5 semanas.</p>
+
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Código</th>
+<th>Lección</th>
+<th>Tipo</th>
+<th>Viene de</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#U1T1L1">U1T1L1</a></td>
+<td>Cambio constante</td>
+<td>Construcción</td>
+<td>A1 L1</td>
+</tr>
+<tr>
+<td><a href="#U1T1L2">U1T1L2</a></td>
+<td>Un cambio que cambia</td>
+<td>Construcción</td>
+<td>A1 L2</td>
+</tr>
+<tr>
+<td><a href="#U1T1L3">U1T1L3</a></td>
+<td>Cambio multiplicativo</td>
+<td>Construcción</td>
+<td>Nueva</td>
+</tr>
+<tr>
+<td><a href="#U1T1L4">U1T1L4</a></td>
+<td>Variar los parámetros</td>
+<td>Construcción</td>
+<td>A1 L3</td>
+</tr>
+<tr>
+<td><a href="#U1T1L5">U1T1L5</a></td>
+<td>Qué modelo describe la situación</td>
+<td>Práctica (aplicación)</td>
+<td>Nueva, con material de A1 L1 y L2</td>
+</tr>
+<tr>
+<td><a href="#U1T1L6">U1T1L6</a></td>
+<td>Ejercitación de modelos de cambio</td>
+<td>Ejercitación</td>
+<td>Nueva</td>
+</tr>
+<tr>
+<td><a href="#U1T2L1">U1T2L1</a></td>
+<td>Componer con tablas y máquinas</td>
+<td>Construcción</td>
+<td>A2 L1</td>
+</tr>
+<tr>
+<td><a href="#U1T2L2">U1T2L2</a></td>
+<td>Dominio de una composición</td>
+<td>Construcción</td>
+<td>A2 L2</td>
+</tr>
+<tr>
+<td><a href="#U1T2L3">U1T2L3</a></td>
+<td>Componer gráficos</td>
+<td>Construcción</td>
+<td>A2 L3</td>
+</tr>
+<tr>
+<td><a href="#U1T2L4">U1T2L4</a></td>
+<td>Modelar con la composición</td>
+<td>Práctica (aplicación)</td>
+<td>A2 L3</td>
+</tr>
+<tr>
+<td><a href="#U1T2L5">U1T2L5</a></td>
+<td>Ejercitación de composición</td>
+<td>Ejercitación</td>
+<td>Nueva</td>
+</tr>
+<tr>
+<td><a href="#U1T3L1">U1T3L1</a></td>
+<td>Problema inverso</td>
+<td>Construcción</td>
+<td>A3 L1</td>
+</tr>
+<tr>
+<td><a href="#U1T3L2">U1T3L2</a></td>
+<td>Logaritmo, la inversa de la exponencial</td>
+<td>Construcción</td>
+<td>A3 L2</td>
+</tr>
+<tr>
+<td><a href="#U1T3L3">U1T3L3</a></td>
+<td>Invertir donde se pueda</td>
+<td>Construcción</td>
+<td>A3 L3</td>
+</tr>
+<tr>
+<td><a href="#U1T3L4">U1T3L4</a></td>
+<td>Problemas inversos en contexto</td>
+<td>Práctica (aplicación)</td>
+<td>Nueva</td>
+</tr>
+<tr>
+<td><a href="#U1T3L5">U1T3L5</a></td>
+<td>Ejercitación de inversa</td>
+<td>Ejercitación</td>
+<td>Nueva</td>
+</tr>
+</tbody>
+</table></div>
+<p>16 lecciones, más el diagnóstico y la evaluación de la unidad.</p>
+<p>Cada lección trae su tipo, su nivel y su origen; el objetivo; el punto de partida; y la secuencia de ideas en el orden en que se presentan, escritas como afirmaciones. La secuencia ordena la presentación y no es un procedimiento para el estudiante. Solo la Lección 1 del Tema 2 tiene ficha; las demás se describen desde el curso implementado y se ajustan al hacer su ficha.</p>
+<h2 id="tema-1--modelos-de-cambio">Tema 1 · Modelos de cambio</h2>
+<p>El tema elige la familia de funciones por cómo cambia la cantidad cuando la variable avanza en pasos iguales. Reelabora la función afín y la cuadrática, que el estudiante conoce hasta 2° medio, y presenta la potencia y la exponencial, que el Plan Común trabaja en 3° y 4° medio. La afín suma lo mismo en cada paso, en la cuadrática las diferencias cambian siempre en la misma cantidad, y la exponencial multiplica por lo mismo. Esa comparación prepara el límite al infinito de la Unidad 2 y la derivada de la Unidad 3, que es una razón de cambio que cambia.</p>
+<section class="leccion" id="U1T1L1"><h3><span class="ln">U1T1L1</span>Cambio constante</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-1-modelos-lineales"><i></i>Curso implementado · A1 L1</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · reelaboración · viene de A1 L1 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Reconocer en una tabla que una cantidad que cambia lo mismo por cada unidad de la variable se modela con una función afín, calcular su razón de cambio como cociente aunque los pasos de la tabla sean desiguales, e interpretar la pendiente y el valor inicial en el contexto.</p>
+<p><strong>Punto de partida.</strong> Un tanque con 300 litros se vacía con una bomba a 15 litros por minuto.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>"15 litros por minuto" significa que en cada minuto el volumen baja lo mismo. En una tabla con pasos iguales del tiempo, las diferencias del volumen son iguales.</li>
+<li><strong>Obstáculo.</strong> En una tabla con pasos desiguales (0, 2, 5 y 10 minutos), las diferencias del volumen son distintas, y se concluye que el tanque no se vacía al mismo ritmo. Lo que se mantiene es el cociente entre la diferencia del volumen y la del tiempo.</li>
+<li>Ese cociente, \(\frac{\Delta V}{\Delta t}\), es la razón de cambio. En el tanque vale \(-15\) litros por minuto en cualquier intervalo.</li>
+<li>Una cantidad con razón de cambio constante se modela con \(f(x) = mx + n\): \(m\) es la razón de cambio y \(n\) es el valor inicial. El tanque queda descrito por \(V(t) = 300 - 15t\).</li>
+<li>En el gráfico, la razón de cambio es la pendiente de la recta. Una pendiente negativa indica que la cantidad baja.</li>
+<li>El modelo vale mientras el tanque tiene agua: de 0 a 20 minutos.</li>
+<li>Contraste: un jarrón que se ensancha hacia arriba se llena con caudal constante. El volumen tiene razón de cambio constante y la altura no, así que la altura no se modela con una función afín. Esa razón de cambio que cambia es la de la L2.</li>
+</ol>
+</section><section class="leccion" id="U1T1L2"><h3><span class="ln">U1T1L2</span>Un cambio que cambia</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-2-modelos-cuadráticos"><i></i>Curso implementado · A1 L2</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · reelaboración · viene de A1 L2 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Calcular la razón de cambio media de una cantidad en distintos intervalos, reconocer en una tabla con pasos iguales que sus diferencias aumentan siempre en la misma cantidad y modelarla con una función cuadrática, y reconocer en una potencia \(a x^n\) que al duplicar \(x\) el valor se multiplica por \(2^n\).</p>
+<p><strong>Punto de partida.</strong> Un grupo prepara una campaña sobre la velocidad: cuántos metros recorre un auto desde que el conductor ve un peligro hasta que se detiene.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>La distancia de detención es la suma de la distancia de reacción y la distancia de frenado.</li>
+<li>Con un tiempo de reacción de 1 segundo, la distancia de reacción es \(\frac{v}{3.6}\) m, unos 0.28 m por cada km/h: es un cambio constante, como en la L1.</li>
+<li><strong>Obstáculo.</strong> A 50 km/h la distancia de frenado es 16 m, y se espera que a 100 km/h sea 32 m. Es 64 m: al duplicar la velocidad, la distancia de frenado se cuadruplica.</li>
+<li>El cociente \(\frac{\Delta d}{\Delta v}\) en un intervalo se llama razón de cambio media. La de la distancia de frenado depende del intervalo: 0.32 m por km/h entre 0 y 50 km/h, y 0.96 m por km/h entre 50 y 100 km/h.</li>
+<li>En una tabla con pasos de 10 km/h (0, 0.64, 2.56, 5.76, 10.24 y 16 m), las diferencias entre valores consecutivos aumentan siempre 1.28 m.</li>
+<li>Diferencias que cambian siempre en la misma cantidad, distinta de 0, en pasos iguales son la marca de una función cuadrática, \(f(x) = ax^2 + bx + c\): aumentan si \(a &gt; 0\) y disminuyen si \(a &lt; 0\). Su gráfico es una parábola, que abre hacia arriba si \(a &gt; 0\) y hacia abajo si \(a &lt; 0\). La distancia de detención, \(d(v) = 0.0064\,v^2 + \frac{v}{3.6}\), es cuadrática.</li>
+<li>La distancia de frenado, \(0.0064\,v^2\), es además una potencia. En una potencia \(f(x) = a x^n\), al duplicar \(x\) el valor se multiplica por \(2^n\): la distancia de frenado se multiplica por \(2^2 = 4\). La distancia de detención no cumple esa regla, por su parte afín.</li>
+<li>Las familias se traslapan: \(a x^2\) es cuadrática y potencia, y \(mx\) es afín y potencia con \(n = 1\).</li>
+<li>El modelo vale para las condiciones en que se midieron los datos, como un pavimento seco.</li>
+</ol>
+</section><section class="leccion" id="U1T1L3"><h3><span class="ln">U1T1L3</span>Cambio multiplicativo</h3><div class="enl"><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · noción e intuición · nueva</em></p>
+<p><strong>Objetivo.</strong> Reconocer en una tabla con pasos iguales que el cociente entre valores consecutivos es constante, traducir un aumento o una disminución de un porcentaje fijo a ese factor y modelar la cantidad con una función exponencial, y mostrar con una tabla que la función que queda por encima con valores pequeños de la variable puede quedar por debajo con valores más grandes.</p>
+<p><strong>Punto de partida.</strong> Un auto de 10 millones de pesos pierde valor. La contabilidad lo deprecia en una cantidad fija por año; en el mercado pierde el 15 % de su valor cada año.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Perder una cantidad fija por año es un cambio constante (L1): con 1.5 millones por año, el auto vale 0 a los 6.7 años.</li>
+<li>Perder el 15 % cada año es multiplicar por 0.85 cada año: 10, 8.5, 7.225 y 6.14 millones. Las diferencias no son iguales; lo que se mantiene es el cociente entre un valor y el anterior.</li>
+<li>Una cantidad que se multiplica por el mismo número \(b\) en cada paso se modela con \(f(x) = a \cdot b^x\): \(a\) es el valor inicial y \(b\) es el factor por paso. Con \(a &gt; 0\): si \(b &gt; 1\) la cantidad crece, y si \(0 &lt; b &lt; 1\), decrece y nunca llega a 0.</li>
+<li>Un crecimiento de un porcentaje fijo también es exponencial: una colonia de bacterias con alimento de sobra que crece 10 % por hora se multiplica por 1.1 cada hora.</li>
+<li>La exponencial y la potencia de la L2 se distinguen por lo que se mantiene: en \(a \cdot b^x\), sumar 1 a \(x\) multiplica el valor por \(b\); en \(a x^n\), multiplicar \(x\) por 2 multiplica el valor por \(2^n\).</li>
+<li><strong>Obstáculo.</strong> En una tabla de \(x = 2\) a \(x = 9\), \(x^3\) queda siempre por encima de \(2^x\), y se concluye que la potencia crece más. Desde \(x = 10\), \(2^x\) queda por encima (1024 contra 1000) y la diferencia aumenta: 4096 contra 1728 en \(x = 12\).</li>
+<li>Una tabla muestra solo una ventana de valores, y con valores más grandes la conclusión puede cambiar.</li>
+</ol>
+</section><section class="leccion" id="U1T1L4"><h3><span class="ln">U1T1L4</span>Variar los parámetros</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-3-introducción-a-geogebra"><i></i>Curso implementado · A1 L3</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · noción e intuición · viene de A1 L3 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Describir, con deslizadores de GeoGebra, qué le hace cada parámetro al gráfico de las funciones afín, cuadrática, potencia y exponencial, relacionar \(m\) y \(b\) con la rapidez del cambio, y elegir parámetros que ajusten un modelo a datos dados.</p>
+<p><strong>Punto de partida.</strong> Los modelos de las L1 a L3 tienen que ajustarse a otros datos: otro tanque, otro auto, otra tasa de depreciación.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Al escribir en GeoGebra una expresión con una letra libre, se crea un deslizador para esa letra.</li>
+<li>En \(mx + n\), \(m\) cambia la razón de cambio y \(n\) mueve la recta hacia arriba o hacia abajo.</li>
+<li>En \(a(x - h)^2 + k\), \(h\) y \(k\) trasladan la parábola y fijan su vértice; \(a\) la estira o la achata y decide hacia dónde abre.</li>
+<li>En \(a \cdot b^x\), \(a\) es el valor en \(x = 0\) y \(b\) decide qué tan rápido cambia: con \(a &gt; 0\), crece si \(b &gt; 1\) y decrece si \(0 &lt; b &lt; 1\). Un \(a\) negativo refleja el gráfico respecto del eje \(x\).</li>
+<li>En \(x^n\), con \(n\) entero positivo, la forma del gráfico depende de la paridad de \(n\), y entre \(-1\) y 1 la potencia mayor queda más cerca de 0.</li>
+<li>El significado de cada parámetro guía el ajuste: el valor inicial se lee en los datos, y la razón de cambio o el factor, en cómo cambian los datos.</li>
+</ol>
+<p>Crear una cuenta de GeoGebra y guardar archivos va en un instructivo aparte.</p>
+</section><section class="leccion" id="U1T1L5"><h3><span class="ln">U1T1L5</span>Qué modelo describe la situación</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-1-modelos-lineales"><i></i>Curso implementado · A1 L1</a><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-2-modelos-cuadráticos"><i></i>Curso implementado · A1 L2</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Práctica (aplicación) · nueva, con material de A1 L1 y L2</em></p>
+<p><strong>Objetivo.</strong> Decidir qué familia de funciones (afín, cuadrática, potencia o exponencial) modela una situación dada por una tabla, un gráfico o una descripción, justificar la elección con el tipo de cambio, revisar que un gráfico sea consistente con la historia que cuenta, y usar el modelo para estimar un valor que no está en los datos, dentro del intervalo en que vale.</p>
+<p><strong>Situaciones.</strong> Suscriptores de un servicio que crecen un porcentaje fijo por mes, el costo de un viaje en taxi, el área de una pizza según su diámetro, gráficos que cuentan una historia (un viaje de ida y vuelta) y el llenado de un jarrón con base cilíndrica y cuello angosto.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>En una tabla con pasos iguales, el tipo de cambio se lee en las diferencias o en los cocientes entre valores consecutivos.</li>
+<li>En una tabla con pasos desiguales, una razón de cambio constante delata un modelo afín. Para decidir entre las demás familias hacen falta pasos iguales.</li>
+<li>En una descripción, el tipo de cambio se lee en la frase: "lo mismo por cada", "el mismo porcentaje", "si se duplica".</li>
+<li>El área de la pizza según su diámetro se justifica con las diferencias, como cuadrática, o con lo que pasa al duplicar el diámetro, como potencia. Las dos justificaciones son correctas.</li>
+<li>Un gráfico cuenta una historia que tiene que ser consistente con la situación.</li>
+<li>Con el modelo elegido se estima un valor que no está en los datos, como los suscriptores del mes 12, y la estimación vale mientras el modelo valga.</li>
+<li>Mientras el agua llena la base cilíndrica del jarrón, la altura es afín; en el cuello deja de serlo. El modelo vale en un intervalo.</li>
+</ol>
+</section><section class="leccion" id="U1T1L6"><h3><span class="ln">U1T1L6</span>Ejercitación de modelos de cambio</h3><div class="enl"><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Ejercitación · nueva</em></p>
+<p><strong>Objetivo.</strong> Ejercitar la lectura del tipo de cambio en tablas, gráficos y descripciones, el cálculo de razones de cambio medias, la escritura de funciones afines, cuadráticas, potencias y exponenciales a partir de datos, y el efecto de sus parámetros.</p>
+<p><strong>Contenido.</strong> Un bloque por lección de construcción y un bloque final con situaciones en que la familia no está indicada. Los ejercicios se toman de las prácticas y evaluaciones de la Actividad 1 del curso implementado y se completan con ejercicios nuevos de la L3.</p>
+</section><h2 id="tema-2--composición">Tema 2 · Composición</h2>
+<p>El tema encadena funciones: cuando una cantidad depende de otra que a su vez depende de una tercera. Cierra modelando con la composición, que es la Actividad 4 del programa.</p>
+<section class="leccion" id="U1T2L1"><h3><span class="ln">U1T2L1</span>Componer con tablas y máquinas</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-1-componiendo-con-tablas-y-máquinas"><i></i>Curso implementado · A2 L1</a><a style="--c:#61b89a" href="fichas/U1_A2_L01.html"><i></i>Ficha · A2 L1</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · noción e intuición · viene de A2 L1 · <a href="fichas/U1_A2_L01.html">ficha U1_A2_L01</a></em></p>
+<p><strong>Objetivo.</strong> Calcular una cantidad que depende de otra a través de una tercera, evaluando en cadena dos funciones dadas en tablas, como máquinas o por su expresión; anotar la cadena como composición; distinguir la composición de la suma de funciones; y reconocer que \(f \circ g\) y \(g \circ f\) pueden ser distintas.</p>
+<p><strong>Punto de partida.</strong> Alejandra y Nicolás sueltan un globo de helio con un altímetro. El globo revienta cuando la presión baja a 400 mbar. Tienen una tabla de la presión según la altura y otra de la altura según el tiempo. En la tabla de la presión, el dato de 3000 m es 701 mbar; el curso implementado trae 657, que no sigue el patrón del resto de la tabla.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>La presión depende de la altura y la altura depende del tiempo. Para conocer la presión en un instante hay que usar las dos tablas.</li>
+<li>Para evaluar la cadena se aplica primero la altura, y su resultado entra en la tabla de la presión: a los 25 minutos el globo está a 5000 m y la presión es 540 mbar, así que \(p(h(25)) = 540\).</li>
+<li><strong>Obstáculo.</strong> A los 10 minutos el globo está a 2150 m, que no está en la tabla de la presión, y se usa la presión de la altura más cercana (795 mbar, a 2000 m) como si fuera la de 2150 m. La presión a 2150 m existe y se puede estimar entre las de 2000 y 3000 m, pero la función dada por la tabla la entrega solo en las siete alturas registradas.</li>
+<li>Para componer con tablas, la salida de la función que se aplica primero tiene que estar entre las entradas de la otra. Calcular la presión a cualquier altura pide un modelo, y eso es de la L4.</li>
+<li>La cadena es una función nueva, \(p \circ h\), con \((p \circ h)(t) = p(h(t))\). En \(p \circ h\), la función escrita a la derecha, \(h\), es la que se aplica primero.</li>
+<li>Vista como máquinas, la salida de una es la entrada de la otra: con \(f(x) = x^2\) y \(g(x) = 3x - 1\), \((f \circ g)(x) = (3x - 1)^2\). Al revés, \((3x - 1)^2\) se escribe como \(f(g(x))\) con esas dos funciones.</li>
+<li>Al componer, la salida de una función es la entrada de la otra; al sumar o multiplicar, las dos funciones reciben la misma entrada.</li>
+<li>El orden importa: \(x^2 + 10\) y \((x + 10)^2\) son las dos composiciones de \(x^2\) con \(x + 10\).</li>
+<li>Hay funciones que deshacen a otras: \(x + 10\) compuesta con \(x - 10\) devuelve \(x\). La inversa es del Tema 3.</li>
+</ol>
+</section><section class="leccion" id="U1T2L2"><h3><span class="ln">U1T2L2</span>Dominio de una composición</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-2-componiendo-funciones"><i></i>Curso implementado · A2 L2</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · precisión · viene de A2 L2 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Determinar para qué valores de \(x\) se puede calcular \(f \circ g\), comprobando que \(x\) esté en el dominio de \(g\) y que \(g(x)\) quede en el dominio de \(f\), y escribir la expresión de composiciones de funciones conocidas.</p>
+<p><strong>Punto de partida.</strong> Diagramas sagitales y expresiones algebraicas, sin contexto.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>En un diagrama sagital se leen el dominio, el codominio y el recorrido de una función.</li>
+<li>\(f \circ g\) se puede calcular en \(x\) solo si \(x\) está en el dominio de \(g\) y \(g(x)\) está en el dominio de \(f\). En el globo de la L1, \(p\) es la función de la tabla, y su dominio son las siete alturas registradas.</li>
+<li>El dominio natural de una fórmula es el conjunto de los reales donde se puede calcular. Las restricciones habituales son la raíz de índice par, el denominador distinto de 0 y el argumento positivo del logaritmo.</li>
+<li>En un contexto, el dominio se restringe a lo que tiene sentido, como un porcentaje entre 0 y 100.</li>
+<li>El dominio de \(f \circ g\) puede ser más chico que el de \(g\): con \(f(x) = \sqrt{x}\) y \(g(x) = x - 3\), la composición se calcula solo para \(x \ge 3\).</li>
+<li>Al componer dos funciones afines se obtiene una función afín. En general \(f \circ g\) y \(g \circ f\) son distintas, y hay pares en que coinciden.</li>
+</ol>
+</section><section class="leccion" id="U1T2L3"><h3><span class="ln">U1T2L3</span>Componer gráficos</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-3-componiendo-gráficos"><i></i>Curso implementado · A2 L3</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · noción e intuición · viene de A2 L3 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Evaluar una composición leyendo los gráficos de las dos funciones, estimar su recorrido, y reconocer las traslaciones y los estiramientos de la L4 del Tema 1 como composiciones con funciones afines.</p>
+<p><strong>Punto de partida.</strong> Los gráficos de dos funciones, sin fórmula.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>En un gráfico, el dominio se lee en el eje horizontal y el recorrido en el vertical.</li>
+<li>Para evaluar \(f(g(a))\) se lee \(g(a)\) en el gráfico de \(g\) y ese valor se busca en el eje horizontal del gráfico de \(f\).</li>
+<li>El recorrido de \(f \circ g\) es el conjunto de valores que toma \(f\) en los valores de \(g\) que están en el dominio de \(f\).</li>
+<li>\(f(x - h)\) es la composición de \(f\) con \(x - h\), y traslada el gráfico \(h\) unidades a la derecha. \(f(x) + k\) es la composición de \(x + k\) con \(f\), y lo traslada hacia arriba.</li>
+<li>\(a \cdot f(x)\) estira el gráfico en vertical. \(f\left(\frac{x}{c}\right)\), con \(c &gt; 1\), lo estira en horizontal: lo que \(f\) hace entre 0 y 1, \(f\left(\frac{x}{c}\right)\) lo hace entre 0 y \(c\).</li>
+<li>GeoGebra entrega la fórmula de una composición sin simplificar, y hay que simplificarla.</li>
+</ol>
+</section><section class="leccion" id="U1T2L4"><h3><span class="ln">U1T2L4</span>Modelar con la composición</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-3-componiendo-gráficos"><i></i>Curso implementado · A2 L3</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Práctica (aplicación) · viene de A2 L3 y de la Actividad 4 del programa</em></p>
+<p><strong>Objetivo.</strong> Estimar cuándo revienta el globo de la L1 ajustando un modelo a cada tabla y componiéndolos, explicar por qué esa estimación es una extrapolación que cambia con el modelo elegido, y decidir en qué orden se componen dos funciones en una situación donde el orden cambia el resultado.</p>
+<p><strong>Situaciones.</strong> El globo de la L1, que quedó sin responder. Dos descuentos en una tienda: un 10 % y un cupón de 2000 pesos.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>La altura según el tiempo cambia más o menos lo mismo por minuto, y se modela con una función afín de pendiente cercana a 180 m por minuto.</li>
+<li>La presión según la altura baja cerca de un 12 % cada 1000 m, y se modela con una función exponencial (Tema 1, L3).</li>
+<li>Componer los dos modelos da la presión según el tiempo, y en GeoGebra se lee cuándo llega a 400 mbar: unos 38 minutos.</li>
+<li>400 mbar está fuera de la tabla, así que la respuesta es una extrapolación. Con un modelo afín para la presión, la estimación baja a unos 32 minutos: el modelo elegido cambia la respuesta.</li>
+<li>La tienda rebaja el 10 % del precio de etiqueta, y el cupón se descuenta en caja sobre lo que queda: el precio final es \(0.9x - 2000\). En el orden inverso sería \(0.9(x - 2000) = 0.9x - 1800\). Los dos órdenes son composiciones distintas de \(d(x) = 0.9x\) y \(c(x) = x - 2000\), y siempre difieren en 200 pesos.</li>
+</ol>
+</section><section class="leccion" id="U1T2L5"><h3><span class="ln">U1T2L5</span>Ejercitación de composición</h3><div class="enl"><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Ejercitación · nueva</em></p>
+<p><strong>Objetivo.</strong> Ejercitar la evaluación de composiciones en tablas, máquinas, gráficos y expresiones, el cálculo de su dominio, y la escritura de una función como composición de dos más simples.</p>
+<p><strong>Contenido.</strong> Un bloque por lección de construcción y un bloque final mixto. Los ejercicios se toman de las prácticas y evaluaciones de la Actividad 2 del curso implementado.</p>
+</section><h2 id="tema-3--inversa">Tema 3 · Inversa</h2>
+<p>El tema da vuelta la pregunta: se conoce el resultado de una función y se busca el valor que lo produce.</p>
+<section class="leccion" id="U1T3L1"><h3><span class="ln">U1T3L1</span>Problema inverso</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-1-qué-es-la-inversa-de-una-función"><i></i>Curso implementado · A3 L1</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · noción e intuición · viene de A3 L1 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Resolver problemas en que se conoce el valor de una función afín y se busca el valor de la variable que lo produce, escribir la función inversa con su dominio y su recorrido, distinguir \(D^{-1}(d)\) de \(\frac{1}{D(d)}\), comprobar que componer una función con su inversa devuelve la entrada, y dibujar el gráfico de la inversa como reflejo respecto de la recta \(y = x\).</p>
+<p><strong>Punto de partida.</strong> Un auto viaja hacia Concepción, a 292.5 km. La distancia recorrida es \(D(t) = 1.5t\), en km, con \(t\) en minutos entre 0 y 195. La pregunta se da vuelta: cuánto tarda en recorrer cierta distancia.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Un problema inverso busca la preimagen de un valor del recorrido.</li>
+<li>Una máquina que recibe la distancia y entrega el tiempo deshace lo que hace \(D\). Solo admite distancias que el auto recorre.</li>
+<li>Esa máquina es la función inversa \(D^{-1}\): recibe una distancia \(d\) y entrega un tiempo. Su dominio es el recorrido de \(D\) y su recorrido es el dominio de \(D\). Su fórmula se obtiene despejando la variable.</li>
+<li><strong>Obstáculo.</strong> Se interpreta \(D^{-1}(100)\) como \(\frac{1}{D(100)}\), porque \(2^{-1} = \frac{1}{2}\). \(D^{-1}(100)\) es el tiempo en que el auto recorre 100 km, unos 66.7 minutos, y \(\frac{1}{D(100)} = \frac{1}{150}\) trata 100 como un tiempo.</li>
+<li>Componer una función con su inversa devuelve la entrada: \(D^{-1}(D(t)) = t\) y \(D(D^{-1}(d)) = d\).</li>
+<li>El gráfico de la inversa es el reflejo del gráfico de la función respecto de la recta \(y = x\).</li>
+<li>Toda función afín con \(m \neq 0\) tiene inversa, también cuando su dominio es un intervalo.</li>
+</ol>
+</section><section class="leccion" id="U1T3L2"><h3><span class="ln">U1T3L2</span>Logaritmo, la inversa de la exponencial</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-2-cuántos-años-tiene-la-momia-una-pregunta-radiactiva"><i></i>Curso implementado · A3 L2</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · noción e intuición · viene de A3 L2 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Estimar la antigüedad de una muestra a partir de su carbono 14, resolviendo el problema inverso de un modelo exponencial primero en el gráfico y después con logaritmos, y reconocer el logaritmo como la función inversa de la exponencial.</p>
+<p><strong>Punto de partida.</strong> Se sabe cuánto carbono 14 tiene una momia y se quiere saber hace cuántos años murió.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Al morir un ser vivo, su carbono 14 decae: cada 5730 años queda la mitad. Es un cambio multiplicativo (Tema 1, L3), y el modelo es \(C(t) = C_0 \cdot \left(\frac{1}{2}\right)^{t/5730}\). El exponente \(\frac{t}{5730}\) estira el gráfico en horizontal (Tema 2, L3): lo que \(\left(\frac{1}{2}\right)^t\) hace en 1 año, \(C\) lo hace en 5730.</li>
+<li>La antigüedad de la momia es la preimagen de la cantidad medida: un problema inverso.</li>
+<li>En el gráfico, el problema inverso se resuelve leyendo desde el eje vertical.</li>
+<li>Con logaritmos se despeja \(t\), porque \(\log_a x\) es la inversa de \(a^x\): \(\log_a(a^x) = x\) y \(a^{\log_a x} = x\).</li>
+<li>El dominio del logaritmo es el recorrido de la exponencial, los reales positivos, y su recorrido es el dominio de la exponencial.</li>
+<li>En general, \(f^{-1}(y) = x\) cuando \(y = f(x)\), siempre que cada \(y\) del recorrido venga de un solo \(x\). Esa condición es la de la L3.</li>
+</ol>
+</section><section class="leccion" id="U1T3L3"><h3><span class="ln">U1T3L3</span>Invertir donde se pueda</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-3-invirtiendo-donde-y-cuando-se-pueda"><i></i>Curso implementado · A3 L3</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · precisión · viene de A3 L3 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Decidir si una función tiene inversa comprobando que cada valor del recorrido venga de un solo valor del dominio, y restringir el dominio según el contexto para obtener una inversa cuando no la tiene.</p>
+<p><strong>Punto de partida.</strong> Ángela y Francisca lanzan una pelota desde un puente. Su altura sigue una parábola, y hay alturas que la pelota alcanza dos veces.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li><strong>Obstáculo.</strong> Se espera, como con el auto de la L1, un solo instante para cada altura, y aparecen dos: uno al subir y otro al bajar. El reflejo del gráfico respecto de \(y = x\) no es el gráfico de una función.</li>
+<li>Una función tiene inversa cuando cada valor del recorrido viene de un solo valor del dominio. Esa propiedad se llama inyectividad.</li>
+<li>Una función estrictamente creciente o estrictamente decreciente es inyectiva. Una función inyectiva puede no ser creciente ni decreciente, como \(\frac{1}{x}\) en su dominio.</li>
+<li>Restringir el dominio vuelve inyectiva a la función. El contexto decide cuál restricción tiene sentido: la pelota subiendo o la pelota bajando.</li>
+<li>La raíz cuadrada es la inversa de \(x^2\) en \([0, \infty[\), y por eso \(\sqrt{x^2} = \lvert x \rvert\). En \(]-\infty, 0]\) la inversa es \(-\sqrt{x}\).</li>
+<li>Las exponenciales \(a^x\), con \(a &gt; 0\) y \(a \neq 1\), son inyectivas en todos los reales, así que sus inversas, los logaritmos, existen sin restringir el dominio.</li>
+</ol>
+</section><section class="leccion" id="U1T3L4"><h3><span class="ln">U1T3L4</span>Problemas inversos en contexto</h3><div class="enl"><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Práctica (aplicación) · nueva</em></p>
+<p><strong>Objetivo.</strong> Resolver problemas en contexto que piden invertir un modelo afín, exponencial o cuadrático, decidiendo si la inversa existe y en qué dominio.</p>
+<p><strong>Situaciones.</strong> A qué velocidad iba un auto que dejó una marca de frenado de 40 m, con el modelo de la L2 del Tema 1 (unos 79 km/h). En cuántos años se duplica un depósito al 6 % anual. La conversión entre grados Celsius y Fahrenheit.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Cada pregunta se reconoce como problema inverso: se conoce el resultado y se busca la variable.</li>
+<li>La distancia de frenado es inyectiva si se restringe a velocidades mayores o iguales que 0, y esa restricción la da el contexto.</li>
+<li>El tiempo de duplicación se obtiene con el logaritmo y no depende del monto inicial. El modelo \(a \cdot 1.06^t\) da unos 11.9 años; si el interés se abona una vez al año, el depósito se duplica al año 12.</li>
+<li>La conversión de temperaturas es afín y su inversa es la conversión al revés.</li>
+</ol>
+</section><section class="leccion" id="U1T3L5"><h3><span class="ln">U1T3L5</span>Ejercitación de inversa</h3><div class="enl"><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Ejercitación · nueva</em></p>
+<p><strong>Objetivo.</strong> Ejercitar el cálculo de inversas de funciones afines, exponenciales y logarítmicas, la decisión de si una función es inyectiva, la restricción del dominio, y la lectura de la inversa en gráficos y tablas.</p>
+<p><strong>Contenido.</strong> Un bloque por lección de construcción y un bloque final que mezcla composición e inversa. Los ejercicios se toman de las prácticas y evaluaciones de la Actividad 3 del curso implementado.</p>
+</section><h2 id="decisiones-abiertas-que-afectan-esta-ruta">Decisiones abiertas que afectan esta ruta</h2>
+<ol type="1">
+<li><strong>Organización del Tema 1 por tipo de cambio.</strong> Es la propuesta de reestructuración de la unidad y no está decidida.</li>
+<li><strong>Cantidad de lecciones.</strong> Con práctica y ejercitación en cada tema, la unidad tiene 16 lecciones, dos más que las 14 de la propuesta de reestructuración.</li>
+<li><strong>Ciclo de modelamiento de las paltas.</strong> Sale de esta unidad; falta decidir si va a la Unidad 3 o sale del curso.</li>
+<li><strong>Contexto de la práctica del Tema 2.</strong> La ruta usa el globo de la L1, que el curso implementado ya resuelve con modelos. La alternativa del programa es el recorrido de frenado con cambio de unidades.</li>
+<li><strong>Potencia y exponencial.</strong> El Plan Común las trabaja en 3° y 4° medio, así que un estudiante de 3° medio las ve por primera vez en las L2 y L3.</li>
+</ol>
+
+</main>
+</div>
+</body>
+</html>

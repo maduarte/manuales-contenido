@@ -1,0 +1,621 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LDI · Ruta nueva de la Unidad 2 · Límites</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --ground:#fcfbfe; --surface:#f3f1f8; --surface-2:#ebe7f4; --line:#e0dcea;
+  --ink:#231d3b; --muted:#625c76;
+  --purple:#423475; --purple-ink:#423475; --on-purple:#ffffff;
+  --red:#d45762; --red-ink:#a8323e; --red-tint:#fbeef0;
+  --green:#61b89a; --green-ink:#2c7a5f; --green-tint:#eaf6f1;
+  --blue:#4aa7ba; --blue-ink:#27788a;
+  --orange:#f3972d; --orange-ink:#a85f0c;
+  --yellow:#f0f57d;
+  --code-bg:#eeebf6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+    --ink:#ece9f6; --muted:#aaa4c2;
+    --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+    --red-ink:#f0939b; --red-tint:#2e1b2c;
+    --green-ink:#86d6b9; --green-tint:#18302b;
+    --blue-ink:#85cfdd; --orange-ink:#f7b667;
+    --code-bg:#2a2548;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+  --ink:#ece9f6; --muted:#aaa4c2;
+  --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+  --red-ink:#f0939b; --red-tint:#2e1b2c;
+  --green-ink:#86d6b9; --green-tint:#18302b;
+  --blue-ink:#85cfdd; --orange-ink:#f7b667;
+  --code-bg:#2a2548;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.6;margin:0}
+.strip{display:flex;height:6px}
+.strip span{flex:1}
+header.top{background:var(--purple);color:var(--on-purple);padding-block:2.4rem 2.2rem;padding-inline:16px}
+header.top .in{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin:0 0 .6rem}
+header.top h1{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.15;margin:0 0 .8rem;text-wrap:balance;font-weight:650;letter-spacing:-.01em}
+header.top .lead{max-width:68ch;margin:0;font-size:1.05rem;opacity:.93}
+.layout{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:2rem 4rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1rem);align-self:start;font-size:.88rem;max-height:calc(100vh - 2rem);overflow:auto}
+nav.toc p{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .5rem}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
+nav.toc a{color:var(--ink);text-decoration:none;display:block;padding:.3rem .55rem;border-radius:6px;line-height:1.35}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--surface-2);outline:none}
+nav.toc .sub a{padding-left:1.3rem;color:var(--muted)}
+main{min-width:0;max-width:760px}
+main h2{font-size:1.55rem;line-height:1.25;margin:3rem 0 1rem;color:var(--purple-ink);text-wrap:balance;font-weight:650}
+main h2:first-child{margin-top:0}
+main h3{font-size:1.2rem;margin:2.2rem 0 .7rem;text-wrap:balance;font-weight:620}
+main h4{font-size:1.1rem;margin:1.6rem 0 .5rem}
+p,li{max-width:70ch}
+a{color:var(--purple-ink)}
+code{font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-size:.88em;background:var(--code-bg);padding:.08em .35em;border-radius:4px;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
+ul,ol{padding-left:1.3rem}
+li{margin:.3rem 0}
+li::marker{color:var(--purple-ink)}
+.tablewrap{overflow-x:auto;margin:1.2rem 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+th{background:var(--purple);color:var(--on-purple);text-align:left;font-weight:600;padding:.55rem .7rem}
+td{padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--surface)}
+blockquote{margin:1.4rem 0;padding:1rem 1.2rem;background:var(--surface);border-radius:10px}
+blockquote p{margin:.4rem 0}
+blockquote .tag{display:inline-block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:650;margin-bottom:.3rem;color:var(--muted)}
+blockquote.capsula{background:var(--green-tint)}
+blockquote.capsula .tag{color:var(--green-ink)}
+blockquote.revision{background:var(--red-tint)}
+blockquote.revision .tag{color:var(--red-ink)}
+.hito{display:flex;gap:.7rem;align-items:baseline;margin:1.6rem 0 .4rem;font-size:1.02rem;font-weight:620;line-height:1.4}
+.hito .hid{flex:none;background:var(--purple);color:var(--on-purple);font-family:"Geist Mono",ui-monospace,monospace;font-size:.78rem;font-weight:600;padding:.15rem .5rem;border-radius:999px;position:relative;top:-.08em}
+.hito + ul{margin-top:.2rem;padding-left:3.4rem}
+.leccion{border-top:1px solid var(--line);padding-top:1.4rem;margin-top:2.6rem}
+.leccion h4{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h4 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+details{margin:1rem 0}
+summary{cursor:pointer;font-weight:600;color:var(--purple-ink);padding:.35rem 0}
+summary:focus-visible{outline:2px solid var(--purple-ink);outline-offset:3px;border-radius:4px}
+.arco{list-style:none;padding:0;counter-reset:a;display:grid;gap:.7rem}
+.arco li{counter-increment:a;position:relative;padding-left:3rem;min-height:2.2rem;max-width:none}
+.arco li::before{content:counter(a);position:absolute;left:0;top:0;background:var(--surface-2);color:var(--purple-ink);font-weight:650;border-radius:50%;width:2.2rem;height:2.2rem;display:grid;place-items:center;font-family:"Geist Mono",monospace}
+.paso{display:grid;grid-template-columns:2.4rem 1fr;gap:.9rem;margin:1.3rem 0}
+.paso .num{font-family:"Geist Mono",ui-monospace,monospace;font-weight:600;color:var(--purple-ink);background:var(--surface-2);border-radius:8px;height:2.4rem;display:grid;place-items:center}
+.paso p{margin:0}
+.paso + ul{padding-left:4.6rem}
+.fases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem;margin:1.5rem 0 2rem}
+.fase{background:var(--surface);border-radius:10px;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.35rem}
+.fase .fn{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.fase .ft{font-weight:650;color:var(--purple-ink);font-size:1.05rem}
+.fase .fp{font-family:"Geist Mono",monospace;font-size:.82rem;color:var(--muted)}
+.fase .rv{margin-top:auto;display:flex;flex-wrap:wrap;gap:.3rem}
+.fase .rv span{font-size:.75rem;font-weight:600;color:var(--red-ink);background:var(--red-tint);border-radius:999px;padding:.1rem .55rem}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;gap:1.5rem}
+  nav.toc{position:static;max-height:none;background:var(--surface);border-radius:10px;padding:1rem}
+  .fases{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:460px){ .fases{grid-template-columns:1fr} .hito + ul{padding-left:1.3rem} .paso + ul{padding-left:1.3rem} }
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+
+header.top a{color:inherit;text-underline-offset:.2em}
+.enl{display:flex;flex-wrap:wrap;gap:.45rem;margin:.5rem 0 1rem}
+.enl a{display:inline-flex;align-items:center;gap:.45rem;border:1px solid var(--line);border-radius:999px;padding:.28rem .75rem;font-size:.86rem;line-height:1.35;text-decoration:none;color:var(--ink);background:var(--ground)}
+.enl a:hover,.enl a:focus-visible{border-color:var(--c);outline:none}
+.enl i{width:.6rem;height:.6rem;border-radius:50%;background:var(--c);flex:none}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.7rem;margin:1rem 0 1.6rem}
+a.card{display:grid;grid-template-columns:.8rem 1fr;gap:.8rem;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem;text-decoration:none;color:var(--ink);transition:border-color .15s,transform .15s}
+a.card:hover,a.card:focus-visible{border-color:var(--c);transform:translateY(-1px);outline:none}
+a.card i{width:.8rem;height:.8rem;border-radius:50%;background:var(--c);margin-top:.3rem}
+a.card b{display:block;font-weight:600;line-height:1.3}
+a.card span{display:block;color:var(--muted);font-size:.86rem;margin-top:.2rem;line-height:1.4}
+main h3.tema{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:1.6rem 0 .3rem}
+.lecs{margin:0 0 1rem;border-top:1px solid var(--line)}
+.lec{padding:.75rem 0;border-bottom:1px solid var(--line)}
+.lec p{margin:0;max-width:none}
+.lec .cod{font-family:"Geist Mono",ui-monospace,monospace;font-size:.8rem;font-weight:600;color:var(--purple-ink);margin-right:.45rem}
+.lec small{display:block;color:var(--muted);font-size:.84rem;margin-top:.1rem}
+.lec .enl{margin:.5rem 0 0}
+.leccion h3{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h3 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+table.meta th{background:var(--surface-2);color:var(--ink);width:11rem}
+.nota{color:var(--muted);font-size:.9rem}
+@media (prefers-reduced-motion:reduce){a.card{transition:none}}
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script></head>
+<body>
+<div class="strip"><span style="background:#423475"></span><span style="background:#d45762"></span><span style="background:#61b89a"></span><span style="background:#f0f57d"></span><span style="background:#4aa7ba"></span><span style="background:#f3972d"></span></div>
+<header class="top"><div class="in">
+<p class="eyebrow"><a href="index.html">LDI</a> · Ruta nueva, en construcción</p>
+<h1>Unidad 2 · Límites</h1>
+<p class="lead">La unidad parte por el comportamiento de una función cuando la variable crece sin cota, sigue con el límite en un punto, usa las sucesiones como versión discreta del límite al infinito y cierra con la continuidad. Conserva las cuatro actividades del curso implementado como temas y sigue el camino de mínimo cambio de <a href="../LDI_decisiones_estructurales.html">las decisiones estructurales</a>: salen las funciones que oscilan cerca de un punto (A2 L5), la definición con distancias del límite en un punto (A2 L7), los números reales como límite (A3 L3) y los decimales de \(\sqrt{2}\) y \(\pi\) (A3 L5). De la Unidad 1 llegan las funciones racionales y sus asíntotas, y las funciones por tramos.</p>
+</div></header>
+<div class="layout">
+<nav class="toc" aria-label="Contenido"><p>Contenido</p><ol><li><a href="#presentacion">Presentación</a></li><li><a href="#tema-1--comportamiento-al-infinito">Tema 1 · Comportamiento al infinito</a></li><li class="sub"><a href="#U2T1L1">U2T1L1 · ¿Se extinguirán las bacterias?</a></li><li class="sub"><a href="#U2T1L2">U2T1L2 · Notación de límite</a></li><li class="sub"><a href="#U2T1L3">U2T1L3 · Columpio sin fin</a></li><li class="sub"><a href="#U2T1L4">U2T1L4 · Precisando la definición de límite</a></li><li class="sub"><a href="#U2T1L5">U2T1L5 · Propiedades de los límites</a></li><li class="sub"><a href="#U2T1L6">U2T1L6 · Potencias de funciones y cocientes de polinomios</a></li><li class="sub"><a href="#U2T1L7">U2T1L7 · Comportamiento a largo plazo en modelos</a></li><li class="sub"><a href="#U2T1L8">U2T1L8 · Ejercitación de límites al infinito</a></li><li><a href="#tema-2--límite-en-un-punto">Tema 2 · Límite en un punto</a></li><li class="sub"><a href="#U2T2L1">U2T2L1 · Límite en un punto</a></li><li class="sub"><a href="#U2T2L2">U2T2L2 · Límites laterales</a></li><li class="sub"><a href="#U2T2L3">U2T2L3 · ¿Cuándo existe el límite?</a></li><li class="sub"><a href="#U2T2L4">U2T2L4 · Límite y asíntotas verticales</a></li><li class="sub"><a href="#U2T2L5">U2T2L5 · Operaciones con límites en un punto</a></li><li class="sub"><a href="#U2T2L6">U2T2L6 · Límites en un punto en situaciones</a></li><li class="sub"><a href="#U2T2L7">U2T2L7 · Ejercitación de límites en un punto</a></li><li><a href="#tema-3--sucesiones">Tema 3 · Sucesiones</a></li><li class="sub"><a href="#U2T3L1">U2T3L1 · ¿Qué son las sucesiones?</a></li><li class="sub"><a href="#U2T3L2">U2T3L2 · Sucesiones al infinito</a></li><li class="sub"><a href="#U2T3L3">U2T3L3 · Límite de sucesiones</a></li><li class="sub"><a href="#U2T3L4">U2T3L4 · Sucesiones que se acercan a un valor</a></li><li class="sub"><a href="#U2T3L5">U2T3L5 · Ejercitación de sucesiones</a></li><li><a href="#tema-4--continuidad">Tema 4 · Continuidad</a></li><li class="sub"><a href="#U2T4L1">U2T4L1 · Continuidad, una primera aproximación</a></li><li class="sub"><a href="#U2T4L2">U2T4L2 · Continuidad de funciones</a></li><li class="sub"><a href="#U2T4L3">U2T4L3 · Teorema de Bolzano</a></li><li class="sub"><a href="#U2T4L4">U2T4L4 · ¿Cuándo se igualan dos cantidades?</a></li><li class="sub"><a href="#U2T4L5">U2T4L5 · Ejercitación de continuidad</a></li><li><a href="#decisiones-abiertas-que-afectan-esta-ruta">Decisiones abiertas que afectan esta ruta</a></li></ol></nav>
+<main>
+<h2 id="presentacion">Presentación</h2><p><strong>Programa:</strong> Reconocer un patrón infinito y la noción de límite. <strong>OA 2.</strong> Habilidades a (estrategias para problemas no rutinarios), d (argumentar) y g (representar). 10 semanas.</p>
+
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Código</th>
+<th>Lección</th>
+<th>Tipo</th>
+<th>Viene de</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#U2T1L1">U2T1L1</a></td>
+<td>¿Se extinguirán las bacterias?</td>
+<td>Construcción</td>
+<td>A1 L1</td>
+</tr>
+<tr>
+<td><a href="#U2T1L2">U2T1L2</a></td>
+<td>Notación de límite</td>
+<td>Construcción</td>
+<td>A1 L2</td>
+</tr>
+<tr>
+<td><a href="#U2T1L3">U2T1L3</a></td>
+<td>Columpio sin fin</td>
+<td>Construcción</td>
+<td>A1 L3</td>
+</tr>
+<tr>
+<td><a href="#U2T1L4">U2T1L4</a></td>
+<td>Precisando la definición de límite</td>
+<td>Construcción</td>
+<td>A1 L4</td>
+</tr>
+<tr>
+<td><a href="#U2T1L5">U2T1L5</a></td>
+<td>Propiedades de los límites</td>
+<td>Construcción</td>
+<td>A1 L5</td>
+</tr>
+<tr>
+<td><a href="#U2T1L6">U2T1L6</a></td>
+<td>Potencias de funciones y cocientes de polinomios</td>
+<td>Construcción</td>
+<td>A1 L6</td>
+</tr>
+<tr>
+<td><a href="#U2T1L7">U2T1L7</a></td>
+<td>Comportamiento a largo plazo en modelos</td>
+<td>Práctica (aplicación)</td>
+<td>Nueva</td>
+</tr>
+<tr>
+<td><a href="#U2T1L8">U2T1L8</a></td>
+<td>Ejercitación de límites al infinito</td>
+<td>Ejercitación</td>
+<td>Nueva</td>
+</tr>
+<tr>
+<td><a href="#U2T2L1">U2T2L1</a></td>
+<td>Límite en un punto</td>
+<td>Construcción</td>
+<td>A2 L1</td>
+</tr>
+<tr>
+<td><a href="#U2T2L2">U2T2L2</a></td>
+<td>Límites laterales</td>
+<td>Construcción</td>
+<td>A2 L2</td>
+</tr>
+<tr>
+<td><a href="#U2T2L3">U2T2L3</a></td>
+<td>¿Cuándo existe el límite?</td>
+<td>Construcción</td>
+<td>A2 L3</td>
+</tr>
+<tr>
+<td><a href="#U2T2L4">U2T2L4</a></td>
+<td>Límite y asíntotas verticales</td>
+<td>Construcción</td>
+<td>A2 L4 y U1 A1 L4</td>
+</tr>
+<tr>
+<td><a href="#U2T2L5">U2T2L5</a></td>
+<td>Operaciones con límites en un punto</td>
+<td>Construcción</td>
+<td>A2 L6</td>
+</tr>
+<tr>
+<td><a href="#U2T2L6">U2T2L6</a></td>
+<td>Límites en un punto en situaciones</td>
+<td>Práctica (aplicación)</td>
+<td>Nueva</td>
+</tr>
+<tr>
+<td><a href="#U2T2L7">U2T2L7</a></td>
+<td>Ejercitación de límites en un punto</td>
+<td>Ejercitación</td>
+<td>Nueva</td>
+</tr>
+<tr>
+<td><a href="#U2T3L1">U2T3L1</a></td>
+<td>¿Qué son las sucesiones?</td>
+<td>Construcción</td>
+<td>A3 L1</td>
+</tr>
+<tr>
+<td><a href="#U2T3L2">U2T3L2</a></td>
+<td>Sucesiones al infinito</td>
+<td>Construcción</td>
+<td>A3 L2</td>
+</tr>
+<tr>
+<td><a href="#U2T3L3">U2T3L3</a></td>
+<td>Límite de sucesiones</td>
+<td>Construcción</td>
+<td>A3 L4</td>
+</tr>
+<tr>
+<td><a href="#U2T3L4">U2T3L4</a></td>
+<td>Sucesiones que se acercan a un valor</td>
+<td>Práctica (aplicación)</td>
+<td>Nueva, con material de A3 L5</td>
+</tr>
+<tr>
+<td><a href="#U2T3L5">U2T3L5</a></td>
+<td>Ejercitación de sucesiones</td>
+<td>Ejercitación</td>
+<td>Nueva</td>
+</tr>
+<tr>
+<td><a href="#U2T4L1">U2T4L1</a></td>
+<td>Continuidad, una primera aproximación</td>
+<td>Construcción</td>
+<td>A4 L1 y U1 A1 L4</td>
+</tr>
+<tr>
+<td><a href="#U2T4L2">U2T4L2</a></td>
+<td>Continuidad de funciones</td>
+<td>Construcción</td>
+<td>A4 L2</td>
+</tr>
+<tr>
+<td><a href="#U2T4L3">U2T4L3</a></td>
+<td>Teorema de Bolzano</td>
+<td>Construcción</td>
+<td>A4 L3</td>
+</tr>
+<tr>
+<td><a href="#U2T4L4">U2T4L4</a></td>
+<td>¿Cuándo se igualan dos cantidades?</td>
+<td>Práctica (aplicación)</td>
+<td>Nueva</td>
+</tr>
+<tr>
+<td><a href="#U2T4L5">U2T4L5</a></td>
+<td>Ejercitación de continuidad</td>
+<td>Ejercitación</td>
+<td>Nueva</td>
+</tr>
+</tbody>
+</table></div>
+<p>25 lecciones, más el diagnóstico y dos evaluaciones: una al cerrar el Tema 2 y otra al cerrar la unidad.</p>
+<p>Cada lección trae su tipo, su nivel y su origen; el objetivo; el punto de partida; y la secuencia de ideas en el orden en que se presentan, escritas como afirmaciones. La secuencia ordena la presentación y no es un procedimiento para el estudiante. Las lecciones del Tema 1 tienen ficha revisada; las demás se describen desde el curso implementado y se ajustan al hacer su ficha.</p>
+<p><strong>Lenguaje del curso.</strong> Los valores de \(f(x)\) que se acercan a un número se describen con la frase "desde cierto momento, todos los valores de \(f(x)\) quedan tan cerca del número como queramos"; los que divergen, con "tan arriba" o "tan abajo como queramos". La divergencia se anota \(\lim f(x) = \infty\) o \(\lim f(x) = -\infty\) y se lee "tiende a infinito" o "diverge a infinito". "Converger" queda para los límites que son números, y <em>diverger</em> va siempre con su complemento ("diverge a infinito"). Cuando los valores no se acercan a un número ni divergen a infinito o a menos infinito, la función no tiene límite. Desde la primera lección, la cercanía se lee con un número elegido; la L4 del Tema 1 la precisa para cualquier distancia. Las propiedades se argumentan con números, tablas y la recta numérica, sin demostraciones formales.</p>
+<h2 id="tema-1--comportamiento-al-infinito">Tema 1 · Comportamiento al infinito</h2>
+<p>El tema estudia qué hacen los valores de una función cuando la variable crece o decrece sin cota. Las Lecciones 1 a 3 son de noción e intuición, la 4 es de precisión, y la 5 y la 6 calculan.</p>
+<section class="leccion" id="U2T1L1"><h3><span class="ln">U2T1L1</span>¿Se extinguirán las bacterias?</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-1-se-extinguirán-las-bacterias"><i></i>Curso implementado · A1 L1</a><a style="--c:#61b89a" href="fichas/U2_A1_L01.html"><i></i>Ficha · A1 L1</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · noción e intuición · viene de A1 L1 · ficha revisada</em></p>
+<p><strong>Objetivo.</strong> Reconocer en tablas, gráficos y expresiones que una función puede acercarse tanto como se quiera a un valor cuando la variable crece, incluso si crece en todo momento; leer con un número elegido desde qué valor de la variable queda a menos de una distancia dada; y distinguir ese comportamiento del de una función que crece cada vez más lento y supera cualquier valor.</p>
+<p><strong>Punto de partida.</strong> Una colonia de bacterias que come plástico crecería 10 % por hora si el alimento sobrara, pero cada hora llega la misma cantidad de plástico. ¿Puede la colonia superar cualquier cantidad?</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li><strong>Obstáculo.</strong> Con las filas de 0 a 15 horas, donde cada aumento es mayor que el anterior, se predice que la colonia supera cualquier cantidad. Lo esperable viene de la Unidad 1: una población que crece termina superando cualquier valor.</li>
+<li>Con la tabla completa, en pasos iguales hasta 120 horas, la población crece en todos los valores observados, queda bajo 3135 y la diferencia \(3135 - P(t)\) se achica hacia 0.</li>
+<li>3135 es la cantidad de bacterias que el alimento puede mantener: la capacidad de carga.</li>
+<li>Lo que muestran una tabla o un gráfico es una conjetura sobre el modelo: GeoGebra muestra 3135.00 desde las 158 horas, y en el modelo la colonia nunca llega a 3135.</li>
+<li>La cercanía se lee con un número elegido: desde las 78 horas la colonia queda a menos de 10 bacterias de 3135, y desde las 102 horas a menos de 1.</li>
+<li>Lo que hace una función cuando la variable crece se llama comportamiento al infinito. Acercarse a un valor es uno de esos comportamientos: desde cierto momento, todos los valores quedan tan cerca del número como queramos.</li>
+<li>Sin contexto, \(4 - 0.3^x\) se acerca a 4 subiendo y \(2 + 0.3^x\) se acerca a 2 bajando.</li>
+<li>Una función que crece cada vez más lento puede superar cualquier valor: \(10 \log x\) parece aplanarse, y supera 25 desde \(x \approx 316\) y 40 desde \(x = 10\,000\).</li>
+</ol>
+</section><section class="leccion" id="U2T1L2"><h3><span class="ln">U2T1L2</span>Notación de límite</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-2-notación-de-límite"><i></i>Curso implementado · A1 L2</a><a style="--c:#61b89a" href="fichas/U2_A1_L02.html"><i></i>Ficha · A1 L2</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · noción e intuición · viene de A1 L2 · ficha revisada</em></p>
+<p><strong>Objetivo.</strong> Reconocer en tablas, gráficos y funciones conocidas tres comportamientos al infinito (acercarse tanto como se quiera a un número, diverger a infinito y diverger a menos infinito), cuando \(x\) tiende a infinito y cuando tiende a menos infinito, y anotarlos con la notación del curso.</p>
+<p><strong>Punto de partida.</strong> Tablas de funciones sin contexto.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Hacia la derecha, \(\frac{1}{x^2}\) se acerca a 0, \(\frac{x^2 + 1}{x^2 - 1}\) se acerca a 1, \(x^2\) diverge a infinito y \(-x^3\) diverge a menos infinito.</li>
+<li>La altura se lee con un número elegido: para \(x &gt; 1000\), los valores de \(x^2\) superan 1 000 000.</li>
+<li>Cuando \(x\) toma valores negativos cada vez más lejos de 0, aparecen los mismos tres comportamientos: \(1 + 2^{-x}\) diverge a infinito, \(2^x\) se acerca a 0 y \(x^3\) diverge a menos infinito.</li>
+<li><strong>Obstáculo.</strong> Se lee el gráfico de izquierda a derecha, como al decidir si una función es creciente: "\(1 + 2^{-x}\) es decreciente, así que hacia menos infinito sus valores bajan". La tabla lo refuta (en \(x = -10\) vale 1025). Lo que pasa cuando \(x \to -\infty\) se lee recorriendo el gráfico hacia la izquierda.</li>
+<li>La notación: \(\lim_{x \to \infty} f(x) = L\), y la recta \(y = L\) es la asíntota horizontal; \(\lim_{x \to \infty} f(x) = \infty\) y \(\lim_{x \to \infty} f(x) = -\infty\); y lo mismo con \(x \to -\infty\).</li>
+<li>\(\infty\) no es un número. \(\lim f(x) = \infty\) dice que, desde cierto momento, todos los valores quedan tan arriba como queramos.</li>
+<li>Las potencias \(x^n\) con \(n\) entero: con \(n\) positivo, el comportamiento depende de la paridad; con \(n\) negativo, el límite es 0 en las dos direcciones; con \(n = 0\), la función es la constante 1.</li>
+<li>El logaritmo crece cada vez más lento y diverge a infinito: el de base 10 supera cualquier número \(M\) cuando \(x\) pasa de \(10^M\).</li>
+</ol>
+</section><section class="leccion" id="U2T1L3"><h3><span class="ln">U2T1L3</span>Columpio sin fin</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-3-el-columpio-sin-fin"><i></i>Curso implementado · A1 L3</a><a style="--c:#61b89a" href="fichas/U2_A1_L03.html"><i></i>Ficha · A1 L3</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · noción e intuición · viene de A1 L3 · ficha revisada</em></p>
+<p><strong>Objetivo.</strong> Decidir, mirando a la vez los máximos y los mínimos del gráfico, si una función que oscila tiende a un número, diverge a infinito o a menos infinito, o no tiene límite, y describir con palabras los comportamientos que no cumplen ninguna de las frases de la L2, como superar cualquier número sin diverger a infinito.</p>
+<p><strong>Punto de partida.</strong> Una fábrica prueba sus columpios con un robot que se columpia durante horas. La posición horizontal del columpio es una función del tiempo, y hay cuatro ensayos.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Una función oscila cuando sube y baja una y otra vez, alternando máximos y mínimos. El columpio oscila en torno a 0.</li>
+<li>A ritmo constante, la posición oscila entre −1.5 y 1.5 y no cumple ninguna de las tres frases de la L2: no tiene límite. Los comportamientos que no tienen símbolo se describen con palabras.</li>
+<li><strong>Obstáculo.</strong> Frenado por el roce, el columpio pasa por 0 una y otra vez, y se concluye que no tiene límite porque la colonia de la L1 no cruzaba su valor. Los máximos y los mínimos se acercan a 0, así que la posición tiende a 0, cruzándolo.</li>
+<li>Para decidir se miran a la vez los máximos y los mínimos: si se acercan a un mismo número, la función tiende a ese número.</li>
+<li>Con un empujón y después mantenido a 1 m, los máximos bajan hacia 1 y los mínimos suben hacia −1. Los máximos bajan y la función no tiene límite.</li>
+<li>Impulsado, los máximos superan cualquier número y los mínimos vuelven a valores negativos. La función supera cualquier número y no diverge a infinito, porque nunca llega un momento desde el cual todos sus valores queden sobre 0.</li>
+<li>El modelo vale en un intervalo de tiempo: el columpio real se detiene y sus cuerdas lo limitan.</li>
+</ol>
+</section><section class="leccion" id="U2T1L4"><h3><span class="ln">U2T1L4</span>Precisando la definición de límite</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-4-precisando-la-definición-de-límite"><i></i>Curso implementado · A1 L4</a><a style="--c:#61b89a" href="fichas/U2_A1_L04.html"><i></i>Ficha · A1 L4</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · precisión · viene de A1 L4 · ficha revisada</em></p>
+<p><strong>Objetivo.</strong> Encontrar, para una distancia dada, un número desde el cual la distancia entre \(f(x)\) y \(L\) es menor que esa distancia, y reconocer que ese número depende de la distancia; escribir con la distancia qué significa que el límite de \(f(x)\) sea \(L\) cuando \(x\) tiende a infinito o a menos infinito; y explicar con contraejemplos por qué no basta que los valores se acerquen cada vez más a \(L\), ni que la curva entre a la franja alrededor de \(L\).</p>
+<p><strong>Punto de partida.</strong> La frase de las L1 a L3 y la distancia en la recta numérica.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Qué tan cerca está \(f(x)\) de \(L\) se mide con la distancia \(\lvert f(x) - L \rvert\).</li>
+<li>Acercarse cada vez más no basta: para \(x &gt; 0\), los valores de \(\frac{x - 1}{x}\) se acercan cada vez más a 1 y también a 2. La distancia a 1 queda tan pequeña como queramos; la distancia a 2 queda siempre sobre 1.</li>
+<li>Para cada distancia \(d\) hay un número desde el cual la distancia entre \(f(x)\) y \(L\) es menor que \(d\), y ese número depende de \(d\). Para \(\frac{x - 1}{x}\), sirve todo \(x &gt; \frac{1}{d}\). En el gráfico, eso es que la curva queda dentro de la franja entre \(y = L - d\) e \(y = L + d\).</li>
+<li><strong>Obstáculo.</strong> Con una curva que oscila alrededor de 1 cada vez menos, dada por su gráfico en GeoGebra, y \(d = 0.3\), Sergio propone el \(x\) donde la curva entra a la franja (0.95). La curva vuelve a salir, y recién desde 2.81 no sale más.</li>
+<li>Tampoco basta quedar cerca en algunos valores de \(x\): el columpio a ritmo constante de la L3 vuelve a 1.5 una y otra vez, y entre medio baja a −1.5.</li>
+<li>La definición: para cada distancia \(d &gt; 0\) hay un número tal que, para todos los \(x\) mayores que ese número, la distancia entre \(f(x)\) y \(L\) es menor que \(d\). Para \(x \to -\infty\) vale lo mismo con todos los \(x\) menores que ese número.</li>
+</ol>
+</section><section class="leccion" id="U2T1L5"><h3><span class="ln">U2T1L5</span>Propiedades de los límites</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-5-propiedades-de-los-límites"><i></i>Curso implementado · A1 L5</a><a style="--c:#61b89a" href="fichas/U2_A1_L05.html"><i></i>Ficha · A1 L5</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · cálculo · viene de A1 L5 · ficha revisada</em></p>
+<p><strong>Objetivo.</strong> Calcular límites al infinito de sumas, restas, productos y cocientes de funciones cuyos límites se conocen, usando las propiedades de los límites; argumentar con números por qué vale la propiedad de la suma; y reconocer cuándo esas propiedades no se pueden usar.</p>
+<p><strong>Punto de partida.</strong> Los límites de las constantes, de \(\frac{1}{x^n}\) y de \(a^x\) que dejó la L2.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Con tablas y gráficos se conjetura que el límite de una suma es la suma de los límites, y lo mismo para la resta.</li>
+<li><strong>Obstáculo.</strong> Con \(a(x) = 6 + 0.11^x\) y \(b(x) = 3 - \frac{1}{x^2}\), se copia el 9 también para \(x \to -\infty\). La tabla lo refuta: cuando \(x \to -\infty\), \(a\) diverge a infinito, y la propiedad no se puede usar.</li>
+<li>La propiedad de la suma se argumenta con números: si cada función queda a menos de 0.05 de su límite, la suma queda a menos de 0.1 de la suma de los límites.</li>
+<li>El límite del producto es el producto de los límites, y el del cociente, el cociente de los límites si el límite del denominador no es 0.</li>
+<li>Las propiedades piden que el límite de cada función sea un número. \(x^2 - x\) diverge a infinito, \((x + 3) - x\) tiende a 3 y \(x - x\) vale 0, aunque en los tres las dos funciones divergen a infinito: "\(\infty - \infty\)" no tiene un valor fijo.</li>
+<li>Con los dos límites iguales a 0, \(\frac{1/x}{1/x^2}\) diverge a infinito, \(\frac{1/x^2}{1/x}\) tiende a 0 y \(\frac{2/x}{1/x}\) vale 2. Por eso el cociente pide un denominador con límite distinto de 0.</li>
+<li>Si una condición no se cumple, la propiedad no dice cuál es el límite; el límite puede existir o no.</li>
+</ol>
+</section><section class="leccion" id="U2T1L6"><h3><span class="ln">U2T1L6</span>Potencias de funciones y cocientes de polinomios</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-6-practicando-con-límites-al-infinito"><i></i>Curso implementado · A1 L6</a><a style="--c:#61b89a" href="fichas/U2_A1_L06.html"><i></i>Ficha · A1 L6</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · cálculo · viene de A1 L6 · ficha revisada</em></p>
+<p><strong>Objetivo.</strong> Calcular límites al infinito de la potencia de una función que tiene límite y de cocientes de dos polinomios, reescribiendo el cociente de modo que se puedan usar las propiedades de la L5.</p>
+<p><strong>Punto de partida.</strong> El cociente \(\frac{1 - x^2}{x^2}\), que la L5 dejó sin calcular.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Si \(n\) es un entero positivo, el límite de \(\left(f(x)\right)^n\) es \(F^n\), por la propiedad del producto; si además \(F \neq 0\), el de \(\frac{1}{\left(f(x)\right)^n}\) es \(\frac{1}{F^n}\).</li>
+<li><strong>Obstáculo.</strong> Para \(\frac{3x^2 + 1}{x^2}\) se predice "no tiene límite", 4 o 1. La tabla muestra que tiende a 3: la propiedad del cociente no se puede usar y el límite existe.</li>
+<li>"\(\frac{\infty}{\infty}\)" no tiene un valor fijo: \(\frac{x^2}{x}\) diverge a infinito y \(\frac{x}{x^2}\) tiende a 0.</li>
+<li>Se reescribe dividiendo el numerador y el denominador por \(x^n\), con \(n\) el grado del denominador. La expresión nueva vale lo mismo para \(x \neq 0\).</li>
+<li>En \(\frac{3x^2 - 5x + 2}{4x^2 - 2x + 7}\), dividir por \(x\) deja un numerador y un denominador que vuelven a diverger, y dividir por \(x^3\) los deja a los dos tendiendo a 0. Con el grado del denominador, el denominador nuevo tiende a su coeficiente principal, que no es 0.</li>
+<li>Si los grados son iguales, el límite es el cociente de los coeficientes principales. Si el numerador tiene grado menor, el límite es 0 y la recta \(y = 0\) es la asíntota horizontal. Si tiene grado mayor, el cociente diverge a infinito o a menos infinito, según los signos: \(\lim_{x \to \infty} \frac{x^2 + 1}{x + 1} = \infty\).</li>
+</ol>
+</section><section class="leccion" id="U2T1L7"><h3><span class="ln">U2T1L7</span>Comportamiento a largo plazo en modelos</h3><div class="enl"><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Práctica (aplicación) · nueva</em></p>
+<p><strong>Objetivo.</strong> Calcular el límite al infinito de modelos de situaciones, interpretarlo en el contexto y leer con un número elegido desde cuándo el modelo queda cerca de su límite.</p>
+<p><strong>Situaciones.</strong> Un café que se enfría en una sala a 20 °C, \(T(t) = 20 + 70 \cdot 0.9^t\), con \(t\) en minutos. El costo promedio por unidad al fabricar \(x\) unidades, con un costo fijo de 5000 y 300 por unidad: \(\frac{5000 + 300x}{x}\). El mismo costo promedio cuando producir cada unidad adicional cuesta cada vez más: \(\frac{5000 + 300x + 0.5x^2}{x}\).</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>La temperatura del café tiende a 20 °C, la temperatura de la sala. Queda a menos de 1 °C de 20 desde los 40.3 minutos.</li>
+<li>El costo promedio por unidad tiende a 300, lo que cuesta fabricar cada unidad sin contar el costo fijo: el costo fijo se reparte entre más unidades. Queda a menos de 10 pesos de 300 cuando se fabrican más de 500 unidades.</li>
+<li>Con el término \(0.5x^2\), el costo promedio por unidad diverge a infinito: producir más no siempre abarata cada unidad.</li>
+<li>El límite describe el modelo. Que el modelo valga para valores muy grandes de la variable lo decide el contexto.</li>
+</ol>
+</section><section class="leccion" id="U2T1L8"><h3><span class="ln">U2T1L8</span>Ejercitación de límites al infinito</h3><div class="enl"><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Ejercitación · nueva</em></p>
+<p><strong>Objetivo.</strong> Ejercitar la lectura de comportamientos al infinito en tablas y gráficos, la notación, el uso de las propiedades con sus condiciones y el cálculo de límites de potencias y cocientes de polinomios.</p>
+<p><strong>Contenido.</strong> Un bloque por lección de construcción y un bloque final en que el estudiante decide qué herramienta usar. Los ejercicios se toman de las prácticas y de la evaluación de la Actividad 1 del curso implementado.</p>
+</section><h2 id="tema-2--límite-en-un-punto">Tema 2 · Límite en un punto</h2>
+<p>El tema estudia qué hacen los valores de una función cuando \(x\) se acerca a un número. La frase del curso cambia una parte: "cuando \(x\) está suficientemente cerca de \(a\), sin ser \(a\), todos los valores de \(f(x)\) quedan tan cerca de \(L\) como queramos". El tema queda en el nivel de noción y cálculo; su definición con distancias sale del curso (decisión 5).</p>
+<section class="leccion" id="U2T2L1"><h3><span class="ln">U2T2L1</span>Límite en un punto</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-1-límite-en-un-punto"><i></i>Curso implementado · A2 L1</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · noción e intuición · viene de A2 L1 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Reconocer en tablas y gráficos que los valores de una función pueden acercarse tanto como se quiera a un número cuando \(x\) se acerca a \(a\), aunque la función no esté definida en \(a\); leer esa cercanía con un número elegido; y anotarla como \(\lim_{x \to a} f(x) = L\).</p>
+<p><strong>Punto de partida.</strong> Un camino sobre una colina se dibuja como la curva \(f(x) = 2x - 0.8x^2\). Para saber si un auto puede subirla hay que conocer su pendiente en el punto donde \(x = 1\), y una recta necesita dos puntos.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>La pendiente en un punto se aproxima con pendientes de rectas secantes. Al acercar el segundo punto, las secantes se parecen cada vez más a una recta, que se llama recta tangente a la curva en ese punto.</li>
+<li>La pendiente de la secante entre \((1, f(1))\) y \((x, f(x))\) es una función \(m(x)\), y no está definida en \(x = 1\), donde los dos puntos coinciden. Su fórmula no se simplifica todavía; eso es de la L5.</li>
+<li><strong>Obstáculo.</strong> Como \(m(1)\) no se puede calcular, se concluye que no hay pendiente en ese punto. Los valores de \(m(x)\) se pueden calcular tan cerca de 1 como se quiera, por la izquierda y por la derecha, y se acercan a 0.4.</li>
+<li>Ese número es el límite, \(\lim_{x \to 1} m(x) = 0.4\). Lo que importa es lo que pasa cerca de 1, no en 1.</li>
+<li>La cercanía se lee con un número elegido: para que \(m(x)\) quede a menos de 0.001 de 0.4, basta tomar \(x\) a menos de 0.001 de 1, sin ser 1.</li>
+<li>Que los decimales se vayan fijando no sirve para describir el límite: con valores como 1.99 y 1.999 por un lado y 2.01 y 2.001 por el otro, el límite es 2 y ningún decimal queda fijo.</li>
+<li>Cuando la función está definida en el número, el límite puede coincidir con su valor, como \(\lim_{x \to 2} \sqrt{x} = \sqrt{2}\).</li>
+</ol>
+</section><section class="leccion" id="U2T2L2"><h3><span class="ln">U2T2L2</span>Límites laterales</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-2-límites-laterales"><i></i>Curso implementado · A2 L2</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · noción e intuición · viene de A2 L2 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Calcular los límites por la izquierda y por la derecha de una función en un número, leyéndolos en un gráfico o con la fórmula de cada tramo, y distinguirlos del valor de la función en ese número.</p>
+<p><strong>Punto de partida.</strong> Esteban estudia para un examen y encuentra el gráfico de una función con un salto en \(x = 2\).</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Hay dos maneras de acercarse a un número: por la izquierda, \(x \to a^-\), y por la derecha, \(x \to a^+\).</li>
+<li>Los dos límites laterales pueden ser distintos entre sí y distintos del valor de la función.</li>
+<li>Una función por tramos tiene una fórmula para cada tramo, y los tramos no se traslapan, para que cada \(x\) tenga un solo valor.</li>
+<li>Cada límite lateral se calcula con la fórmula del tramo que queda a ese lado del número.</li>
+<li>En un gráfico, el punto lleno marca el valor de la función en ese número, y el punto vacío, un valor al que la función se acerca sin tomarlo en ese número.</li>
+<li>A partir de los límites laterales y del valor de la función se dibuja un gráfico posible.</li>
+</ol>
+</section><section class="leccion" id="U2T2L3"><h3><span class="ln">U2T2L3</span>¿Cuándo existe el límite?</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-3-cuándo-existe-el-límite"><i></i>Curso implementado · A2 L3</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · precisión · viene de A2 L3 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Decidir si existe el límite de una función en un número comparando sus límites laterales, y encontrar el valor de un parámetro que hace que los gráficos de los dos tramos de una función se junten en ese número.</p>
+<p><strong>Punto de partida.</strong> Un recurso de GeoGebra con un parámetro \(b\) que mueve el gráfico de uno de los tramos de una función por tramos.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Cuando los gráficos de los dos tramos no se juntan en el número, los valores de la función no se acercan a un solo número.</li>
+<li>Para un valor de \(b\) los gráficos se juntan y el límite existe.</li>
+<li>El límite existe si y solo si los dos límites laterales existen y son iguales.</li>
+<li><strong>Obstáculo.</strong> Se concluye que el límite no existe porque la función no está definida en el número, o que el límite es el valor de la función. El límite no depende del valor de la función en el número.</li>
+<li>Los comandos <code>LímiteIzquierda</code> y <code>LímiteDerecha</code> de GeoGebra calculan los límites laterales.</li>
+</ol>
+</section><section class="leccion" id="U2T2L4"><h3><span class="ln">U2T2L4</span>Límite y asíntotas verticales</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-4-límite-y-asíntotas-verticales"><i></i>Curso implementado · A2 L4</a><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-4-analizando-funciones-con-geogebra"><i></i>Curso implementado · U1 A1 L4</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · noción e intuición · viene de A2 L4 y de U1 A1 L4 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Reconocer en tablas, gráficos y funciones racionales que los valores de una función pueden diverger a infinito o a menos infinito cuando \(x\) se acerca a un número, anotarlo con límites laterales, relacionarlo con la asíntota vertical, y distinguir una asíntota vertical de un hueco en los números donde el denominador vale 0.</p>
+<p><strong>Punto de partida.</strong> El viaje de Santiago a Valparaíso, de unos 120 km. El tiempo de viaje depende de la velocidad promedio: \(t(v) = \frac{120}{v}\).</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Cuando la velocidad está suficientemente cerca de 0, todos los tiempos de viaje quedan tan arriba como queramos. La velocidad 0 no tiene tiempo de viaje.</li>
+<li>La altura se lee con un número elegido: el viaje dura más de 24 horas si la velocidad es menor que 5 km/h.</li>
+<li>Se anota \(\lim_{v \to 0^+} t(v) = \infty\), y la recta vertical \(v = 0\) es una asíntota vertical.</li>
+<li>Lo mismo ocurre en cualquier número y por cualquiera de los dos lados: \(\frac{1}{x}\) diverge a menos infinito por la izquierda de 0 y a infinito por la derecha, y \(\frac{1}{x^2}\) diverge a infinito por los dos lados.</li>
+<li>En una función racional \(\frac{p(x)}{q(x)}\), las asíntotas verticales se buscan donde el denominador vale 0.</li>
+<li><strong>Obstáculo.</strong> Se concluye que en todo número donde el denominador vale 0 hay una asíntota vertical. \(\frac{x^2 - 1}{x - 1}\) no está definida en 1, y sus valores se acercan a 2: tiene un hueco y no una asíntota. Ese cálculo es de la L5.</li>
+</ol>
+</section><section class="leccion" id="U2T2L5"><h3><span class="ln">U2T2L5</span>Operaciones con límites en un punto</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-6-operación-al-límite"><i></i>Curso implementado · A2 L6</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · cálculo · viene de A2 L6 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Calcular límites en un punto con las propiedades de la suma, la resta, el producto y el cociente, evaluando la función cuando se puede, y factorizando y simplificando cuando el numerador y el denominador tienden a 0.</p>
+<p><strong>Punto de partida.</strong> Tablas de sumas, productos y cocientes de funciones cerca de un número.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Para polinomios, funciones racionales y raíces, cuando la función está definida en el número y cerca de él, el límite es el valor de la función. La razón llega con la continuidad, en el Tema 4.</li>
+<li>Las propiedades de la suma, la resta, el producto y el cociente valen cuando \(x \to a\), con las mismas condiciones del Tema 1: límites que son números y, en el cociente, un denominador con límite distinto de 0.</li>
+<li>Si una de las funciones no tiene límite, la propiedad no se puede usar, y la operación puede tener límite o no.</li>
+<li><strong>Obstáculo.</strong> Ante \(\frac{x^2 - 1}{x - 1}\) en \(x = 1\) se escribe "\(\frac{0}{0}\), no existe" o "da 0". Se factoriza: para \(x \neq 1\), la expresión vale \(x + 1\), y el límite es 2.</li>
+<li>Simplificar está permitido porque el límite mira los \(x\) cercanos a 1 y distintos de 1.</li>
+<li>La pendiente de la secante de la L1 se calcula con esta estrategia: para \(x \neq 1\), \(m(x) = 1.2 - 0.8x\), y su límite en 1 es 0.4.</li>
+</ol>
+</section><section class="leccion" id="U2T2L6"><h3><span class="ln">U2T2L6</span>Límites en un punto en situaciones</h3><div class="enl"><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Práctica (aplicación) · nueva</em></p>
+<p><strong>Objetivo.</strong> Calcular límites laterales y límites en un punto en modelos de situaciones, decidir si hay salto o asíntota vertical, e interpretar el resultado en el contexto.</p>
+<p><strong>Situaciones.</strong> El costo, en millones de pesos, de eliminar el \(p\) % de un contaminante de un río: \(C(p) = \frac{5p}{100 - p}\). El precio de enviar un paquete, que cambia por tramos de peso.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Cuando \(p\) se acerca a 100 por la izquierda, el costo diverge a infinito: en el modelo, eliminar todo el contaminante no tiene un costo finito.</li>
+<li>El costo supera los 100 millones desde que \(p\) pasa de 95.24 %.</li>
+<li>En el envío, en cada cambio de tramo de peso los límites laterales son distintos y el límite no existe. El precio en ese peso exacto lo fija la regla de la empresa.</li>
+</ol>
+</section><section class="leccion" id="U2T2L7"><h3><span class="ln">U2T2L7</span>Ejercitación de límites en un punto</h3><div class="enl"><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Ejercitación · nueva</em></p>
+<p><strong>Objetivo.</strong> Ejercitar la lectura de límites laterales en gráficos, la decisión de si el límite existe, la búsqueda de asíntotas verticales y el cálculo de límites con propiedades, factorización y simplificación.</p>
+<p><strong>Contenido.</strong> Un bloque por lección de construcción y un bloque final mixto con límites al infinito y en un punto. Los ejercicios se toman de las prácticas y de la evaluación de la Actividad 2 del curso implementado.</p>
+</section><h2 id="tema-3--sucesiones">Tema 3 · Sucesiones</h2>
+<p>El tema describe procesos que se repiten infinitas veces y estudia hacia dónde van. Es la versión discreta del límite al infinito, y la Unidad 4 la necesita: las sumas con que se aproxima un área se tratan como sucesiones.</p>
+<section class="leccion" id="U2T3L1"><h3><span class="ln">U2T3L1</span>¿Qué son las sucesiones?</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-1-qué-son-las-sucesiones"><i></i>Curso implementado · A3 L1</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · noción e intuición · viene de A3 L1 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Describir un proceso que se repite infinitas veces con una sucesión, escribir sus primeros términos y su término general, y representarla en la recta numérica.</p>
+<p><strong>Punto de partida.</strong> Miga, la hormiga, lleva una hoja al hormiguero recorriendo cada vez la mitad de lo que le falta, y descansa un minuto entre un avance y el siguiente. ¿Llega al hormiguero?</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>El recorrido de Miga se describe con una lista infinita: lo que le falta después de cada avance es \(\frac{r}{2}, \frac{r}{4}, \frac{r}{8}, \ldots\)</li>
+<li>Una sucesión es una lista infinita de números, \(a_1, a_2, a_3, \ldots\) Su término general \(a_n\) da el término en la posición \(n\), y se anota \(\{a_n\}\).</li>
+<li>En la recta numérica, los términos de \(\frac{1}{n}\) se amontonan cerca de 0 y los de \(\frac{n^2 + 1}{5}\) se alejan sin cota.</li>
+<li>Lo que le falta a Miga se acerca a 0 sin llegar nunca a 0: Miga no llega en ningún avance, y queda tan cerca del hormiguero como se quiera.</li>
+<li>Un depósito al 100 % anual, capitalizado en 1, 2, 12 y 365 períodos, entrega una sucesión de montos que crece y se acerca a un valor.</li>
+</ol>
+</section><section class="leccion" id="U2T3L2"><h3><span class="ln">U2T3L2</span>Sucesiones al infinito</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-2-sucesiones-al-infinito"><i></i>Curso implementado · A3 L2</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · noción e intuición · viene de A3 L2 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Proponer un término general que calce con los primeros términos de una sucesión, sabiendo que pocos términos admiten más de una regla, y decidir si una sucesión converge a un número, diverge a infinito o a menos infinito, o no tiene límite, en sucesiones dadas por su término general y en una definida por recurrencia.</p>
+<p><strong>Punto de partida.</strong> Tres situaciones: pilas de círculos que se dibujan para artes visuales, una pelota de ping-pong sobre una recta numérica y una negociación por el precio de un celular, en que cada oferta es el promedio de las dos anteriores.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Las pilas de círculos tienen 1, 3, 6 y 10 círculos.</li>
+<li><strong>Obstáculo.</strong> Se conjetura un término general con los primeros términos y se da por seguro. 1, 2, 4 sigue con 8 si cada término duplica al anterior, y con 7 si las diferencias aumentan en 1: con pocos términos hay más de una regla, y la que vale la decide la situación. En las pilas, cada una agrega una fila con un círculo más, así que el término \(n\) es \(1 + 2 + \cdots + n = \frac{n(n + 1)}{2}\).</li>
+<li>Los números triangulares divergen a infinito.</li>
+<li>El ping-pong da \((-1)^n\), que oscila entre −1 y 1: no tiene límite.</li>
+<li>La negociación se describe con una recurrencia, \(c_n = \frac{c_{n-1} + c_{n-2}}{2}\), que se acerca a un precio. Ese precio depende de quién ofrece primero.</li>
+<li>Una sucesión converge a un número si, desde cierto término, todos sus términos quedan tan cerca del número como queramos, y diverge a infinito si, desde cierto término, todos quedan tan arriba como queramos.</li>
+</ol>
+</section><section class="leccion" id="U2T3L3"><h3><span class="ln">U2T3L3</span>Límite de sucesiones</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-4-límite-de-sucesiones"><i></i>Curso implementado · A3 L4</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · cálculo · viene de A3 L4 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Calcular límites de sucesiones con los límites al infinito de las funciones que extienden su fórmula a los reales, encontrar el límite de una sucesión definida por recurrencia con la misma recurrencia, y leer en una franja qué significa que una sucesión converja a \(L\).</p>
+<p><strong>Punto de partida.</strong> Sucesiones como \(\frac{3n^2 + 1}{n^2}\) junto a la función \(\frac{3x^2 + 1}{x^2}\).</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Las estrategias del Tema 1 sirven para \(f(n)\): si \(\lim_{x \to \infty} f(x) = L\), la sucesión \(a_n = f(n)\) también tiende a \(L\).</li>
+<li>La recíproca no vale: la posición del columpio a ritmo constante de la L3 del Tema 1, mirada una vez por período, vale siempre 1.5, así que esa sucesión tiende a 1.5, y la posición no tiene límite.</li>
+<li>Dividir por \(n^2\) es lo mismo que multiplicar por \(\frac{1}{n^2}\).</li>
+<li><strong>Obstáculo.</strong> En \(\left(1 + \frac{1}{n}\right)^n\), los montos de la L1, se usa la propiedad de la potencia del Tema 1 y se obtiene 1. Esa propiedad pide un exponente fijo, y aquí cambia con \(n\). La tabla muestra que la sucesión se acerca a 2.718…, el número \(e\).</li>
+<li>Si una sucesión definida por recurrencia converge a \(L\), \(L\) cumple la misma recurrencia: \(a_{n+1} = \frac{a_n}{2} + 1\) se acerca a 2, y \(L = \frac{L}{2} + 1\) da \(L = 2\). La ecuación da el candidato; que la sucesión converja se ve en la tabla.</li>
+<li>La definición de la L4 del Tema 1 se traduce: para cada distancia \(d &gt; 0\) hay un término desde el cual todos los términos quedan a menos de \(d\) de \(L\). En GeoGebra es una franja alrededor de \(L\).</li>
+</ol>
+</section><section class="leccion" id="U2T3L4"><h3><span class="ln">U2T3L4</span>Sucesiones que se acercan a un valor</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-5-en-busca-de-los-decimales-de-y-"><i></i>Curso implementado · A3 L5</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Práctica (aplicación) · nueva, con material de A3 L5</em></p>
+<p><strong>Objetivo.</strong> Usar sucesiones definidas por recurrencia para modelar una dosis repetida de un medicamento y para aproximar \(\sqrt{2}\), encontrar su límite con la recurrencia, y decidir cuántos términos hacen falta para una precisión dada.</p>
+<p><strong>Situaciones.</strong> Una persona toma 100 mg de un medicamento cada 8 horas, y entre una dosis y la siguiente el cuerpo elimina el 75 % del medicamento: \(q_{n+1} = 0.25\,q_n + 100\). El método de Herón para \(\sqrt{2}\): \(x_{n+1} = \frac{1}{2}\left(x_n + \frac{2}{x_n}\right)\).</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>La cantidad de medicamento justo después de cada dosis (100, 125, 131.25 mg…) sube y se acerca a 133.3 mg, el nivel en que lo que se elimina iguala lo que entra. La recurrencia lo confirma: \(L = 0.25L + 100\).</li>
+<li>Desde la cuarta dosis, la cantidad queda a menos de 1 mg de 133.3 mg (132.8 mg).</li>
+<li>El método de Herón parte de un rectángulo de área 2 y lo va acercando a un cuadrado. La recurrencia da \(L = \frac{1}{2}\left(L + \frac{2}{L}\right)\), o sea \(L^2 = 2\).</li>
+<li>Partiendo de 1, el cuarto término, 1.4142157, tiene 5 decimales correctos de \(\sqrt{2}\), y el quinto tiene 11: más de los que muestra una calculadora.</li>
+</ol>
+</section><section class="leccion" id="U2T3L5"><h3><span class="ln">U2T3L5</span>Ejercitación de sucesiones</h3><div class="enl"><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Ejercitación · nueva</em></p>
+<p><strong>Objetivo.</strong> Ejercitar la escritura de términos generales, la decisión de si una sucesión converge a un número, diverge a infinito o a menos infinito, o no tiene límite, y el cálculo de límites de sucesiones con las estrategias del Tema 1.</p>
+<p><strong>Contenido.</strong> Un bloque por lección de construcción y un bloque final mixto. Los ejercicios se toman de las prácticas y de la evaluación de la Actividad 3 del curso implementado, sin los de números reales y decimales de \(\pi\).</p>
+</section><h2 id="tema-4--continuidad">Tema 4 · Continuidad</h2>
+<p>El tema nombra la propiedad de las funciones que no tienen saltos, la define con el límite y la usa para asegurar que una ecuación tiene solución.</p>
+<section class="leccion" id="U2T4L1"><h3><span class="ln">U2T4L1</span>Continuidad, una primera aproximación</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-1-continuidad-una-primera-aproximación-intuitiva"><i></i>Curso implementado · A4 L1</a><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-4-analizando-funciones-con-geogebra"><i></i>Curso implementado · U1 A1 L4</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · noción e intuición · viene de A4 L1 y de U1 A1 L4 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Reconocer en gráficos de situaciones si una cantidad cambia con saltos o sin ellos, interpretar cada salto en el contexto y describirlo con límites laterales distintos.</p>
+<p><strong>Punto de partida.</strong> Cuatro situaciones: la distancia recorrida en un viaje, la tarifa de un estacionamiento, la cuenta del agua y el día en que se cayó el Sistema Interconectado.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>La distancia recorrida no puede saltar: entre dos instantes cercanos, el auto recorre poco.</li>
+<li>La tarifa por bloques sí salta, y cada salto tiene un significado: el cambio de bloque.</li>
+<li><strong>Obstáculo.</strong> Se concluye que toda función por tramos tiene saltos. La cuenta del agua cobra $868 por metro cúbico hasta los 40 m³ y $1573 por cada metro cúbico que pasa de 40, y no tiene salto en 40: las dos fórmulas dan el mismo total ahí.</li>
+<li>En la caída del sistema eléctrico, el salto se expresa con límites laterales distintos.</li>
+<li>Una primera noción: una función sin saltos en un intervalo se dibuja sin levantar el lápiz.</li>
+</ol>
+</section><section class="leccion" id="U2T4L2"><h3><span class="ln">U2T4L2</span>Continuidad de funciones</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-2-continuidad-de-funciones"><i></i>Curso implementado · A4 L2</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · precisión · viene de A4 L2 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Decidir si una función es continua en un número comprobando que su límite exista y sea igual al valor de la función, decidir si es continua en un intervalo, y usar que las funciones conocidas son continuas para calcular límites evaluando.</p>
+<p><strong>Punto de partida.</strong> Una función por tramos con dos parámetros: uno mueve el gráfico de un tramo y el otro fija el valor de la función en \(x = 4\).</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Con los tramos juntos y \(f(4)\) fuera de ellos, el gráfico tiene un punto suelto: el límite existe y la función no es continua en 4. Para que no haya salto ni punto suelto, los límites laterales tienen que coincidir entre sí y con el valor de la función.</li>
+<li>\(f\) es continua en \(r\) si \(\lim_{x \to r} f(x) = f(r)\). La continuidad se pregunta solo en números del dominio.</li>
+<li><strong>Obstáculo.</strong> Se dice que \(\frac{1}{x}\) no es continua porque su gráfico tiene dos partes separadas en 0. 0 no está en su dominio, y la función es continua en cada número de su dominio.</li>
+<li>Una función es continua en un intervalo si es continua en cada número del intervalo, y para eso el intervalo tiene que estar dentro de su dominio. \(\frac{1}{x}\) es continua en su dominio y no es continua en \([-1, 1]\).</li>
+<li>Las constantes y la identidad son continuas, y las sumas, restas, productos y cocientes de funciones continuas también lo son donde están definidas; se argumenta con las propiedades de los límites. Las raíces, las exponenciales y los logaritmos son continuos en su dominio, y la composición de funciones continuas es continua: esto se acepta observando sus gráficos.</li>
+<li>Si una función es continua en \(r\), su límite en \(r\) se calcula evaluando. Esto justifica lo que hacía la L5 del Tema 2.</li>
+</ol>
+</section><section class="leccion" id="U2T4L3"><h3><span class="ln">U2T4L3</span>Teorema de Bolzano</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-3-teorema-del-valor-intermedio-de-bolzano"><i></i>Curso implementado · A4 L3</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · aplicación · viene de A4 L3 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Asegurar que una ecuación \(f(x) = 0\) tiene solución en un intervalo \([a, b]\), comprobando que \(f\) es continua en el intervalo y que \(f(a)\) y \(f(b)\) tienen distinto signo, y aproximar esa solución achicando el intervalo.</p>
+<p><strong>Punto de partida.</strong> La ecuación de Van der Waals para el helio de un globo es cúbica, no se resuelve con una fórmula sencilla, y hay que saber si tiene solución.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Las soluciones de \(f(x) = 0\) son los ceros de \(f\).</li>
+<li>Si una función continua es negativa en un extremo de un intervalo y positiva en el otro, su gráfico cruza el eje \(x\) entre los dos.</li>
+<li>Teorema de Bolzano: si \(f\) es continua en \([a, b]\), y \(f(a)\) y \(f(b)\) tienen distinto signo, hay al menos un cero en \(]a, b[\).</li>
+<li>Si la función no es continua en todo \([a, b]\), el teorema no se aplica: \(\frac{1}{x}\) cambia de signo entre −1 y 1 y no tiene ceros, porque 0 está en el intervalo y no en su dominio.</li>
+<li>La recíproca no vale: \(x^2 - 1\) tiene ceros en \([-2, 2]\) y vale 3 en los dos extremos.</li>
+<li>Partiendo el intervalo por la mitad y quedándose con la mitad donde hay cambio de signo, se aproxima el cero tanto como se quiera.</li>
+<li>El montañista que sube un día y baja al siguiente pasa por un mismo punto a la misma hora: se aplica el teorema a la diferencia entre las dos posiciones.</li>
+</ol>
+</section><section class="leccion" id="U2T4L4"><h3><span class="ln">U2T4L4</span>¿Cuándo se igualan dos cantidades?</h3><div class="enl"><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Práctica (aplicación) · nueva</em></p>
+<p><strong>Objetivo.</strong> Usar el teorema de Bolzano sobre la diferencia de dos modelos para asegurar que dos cantidades se igualan en un intervalo y aproximar cuándo, y ajustar un parámetro para que una tarifa por tramos no tenga salto.</p>
+<p><strong>Situaciones.</strong> Un servicio que crece \(2^x\) contra otro que crece \(10x\), en miles de usuarios, con \(x\) en meses. Una tarifa por tramos con un cargo que se puede ajustar.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Las cantidades se igualan donde la diferencia \(2^x - 10x\) vale 0, que es negativa en \(x = 5\) y positiva en \(x = 6\).</li>
+<li>La diferencia es continua, así que hay un mes entre 5 y 6 en que se igualan: cerca de 5.88.</li>
+<li>En \(x = 0\), \(2^x\) va adelante; antes del primer mes lo pasa la función afín, y entre el mes 5 y el 6, \(2^x\) la vuelve a pasar. La diferencia cambia de signo dos veces, así que las cantidades se igualan al menos dos veces, cerca de 0.11 y cerca de 5.88. Que sean exactamente dos no lo dice el teorema; el gráfico muestra que no hay más cruces.</li>
+<li>En la tarifa, el cargo se ajusta para que los dos tramos den el mismo valor en el número donde cambian.</li>
+</ol>
+</section><section class="leccion" id="U2T4L5"><h3><span class="ln">U2T4L5</span>Ejercitación de continuidad</h3><div class="enl"><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Ejercitación · nueva</em></p>
+<p><strong>Objetivo.</strong> Ejercitar la decisión de si una función es continua en un número y en un intervalo, el ajuste de parámetros para eliminar un salto, y el uso del teorema de Bolzano para ubicar y aproximar soluciones.</p>
+<p><strong>Contenido.</strong> Un bloque por lección de construcción y un bloque final que mezcla límites y continuidad. Los ejercicios se toman de las prácticas y de la evaluación de la Actividad 4 del curso implementado.</p>
+</section><h2 id="decisiones-abiertas-que-afectan-esta-ruta">Decisiones abiertas que afectan esta ruta</h2>
+<ol type="1">
+<li><strong>Sucesiones.</strong> La ruta conserva tres lecciones (decisión 4). Las alternativas son conservar las cinco o reducirlas a una que conecte \(f(n)\) con \(f(x)\).</li>
+<li><strong>Definición con distancias.</strong> La ruta la conserva solo al infinito (decisión 5).</li>
+<li><strong>Funciones que oscilan cerca de un punto.</strong> Salen (decisión 13).</li>
+<li><strong>Orden de los temas.</strong> Con el orden 1, 3, 2, 4, las sucesiones quedan junto a los límites al infinito que reutilizan, y el límite en un punto queda junto a la continuidad, que justifica calcularlo evaluando. La primera evaluación cerraría los límites al infinito. Los códigos de las lecciones cambiarían.</li>
+<li><strong>Cantidad de lecciones.</strong> La unidad tiene 25 lecciones, cuando según las semanas del programa le corresponden unas 21.</li>
+<li><strong>Código de las lecciones.</strong> La ruta numera los temas como las actividades del curso implementado, así que la lección de las bacterias es la U2T1L1. El plan de remodelación la llama U2T2L1.</li>
+</ol>
+
+</main>
+</div>
+</body>
+</html>

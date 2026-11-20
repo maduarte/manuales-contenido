@@ -1,0 +1,434 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LDI · Ruta nueva de la Unidad 4 · Integrales</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --ground:#fcfbfe; --surface:#f3f1f8; --surface-2:#ebe7f4; --line:#e0dcea;
+  --ink:#231d3b; --muted:#625c76;
+  --purple:#423475; --purple-ink:#423475; --on-purple:#ffffff;
+  --red:#d45762; --red-ink:#a8323e; --red-tint:#fbeef0;
+  --green:#61b89a; --green-ink:#2c7a5f; --green-tint:#eaf6f1;
+  --blue:#4aa7ba; --blue-ink:#27788a;
+  --orange:#f3972d; --orange-ink:#a85f0c;
+  --yellow:#f0f57d;
+  --code-bg:#eeebf6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+    --ink:#ece9f6; --muted:#aaa4c2;
+    --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+    --red-ink:#f0939b; --red-tint:#2e1b2c;
+    --green-ink:#86d6b9; --green-tint:#18302b;
+    --blue-ink:#85cfdd; --orange-ink:#f7b667;
+    --code-bg:#2a2548;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+  --ink:#ece9f6; --muted:#aaa4c2;
+  --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+  --red-ink:#f0939b; --red-tint:#2e1b2c;
+  --green-ink:#86d6b9; --green-tint:#18302b;
+  --blue-ink:#85cfdd; --orange-ink:#f7b667;
+  --code-bg:#2a2548;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.6;margin:0}
+.strip{display:flex;height:6px}
+.strip span{flex:1}
+header.top{background:var(--purple);color:var(--on-purple);padding-block:2.4rem 2.2rem;padding-inline:16px}
+header.top .in{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin:0 0 .6rem}
+header.top h1{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.15;margin:0 0 .8rem;text-wrap:balance;font-weight:650;letter-spacing:-.01em}
+header.top .lead{max-width:68ch;margin:0;font-size:1.05rem;opacity:.93}
+.layout{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:2rem 4rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1rem);align-self:start;font-size:.88rem;max-height:calc(100vh - 2rem);overflow:auto}
+nav.toc p{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .5rem}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
+nav.toc a{color:var(--ink);text-decoration:none;display:block;padding:.3rem .55rem;border-radius:6px;line-height:1.35}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--surface-2);outline:none}
+nav.toc .sub a{padding-left:1.3rem;color:var(--muted)}
+main{min-width:0;max-width:760px}
+main h2{font-size:1.55rem;line-height:1.25;margin:3rem 0 1rem;color:var(--purple-ink);text-wrap:balance;font-weight:650}
+main h2:first-child{margin-top:0}
+main h3{font-size:1.2rem;margin:2.2rem 0 .7rem;text-wrap:balance;font-weight:620}
+main h4{font-size:1.1rem;margin:1.6rem 0 .5rem}
+p,li{max-width:70ch}
+a{color:var(--purple-ink)}
+code{font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-size:.88em;background:var(--code-bg);padding:.08em .35em;border-radius:4px;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
+ul,ol{padding-left:1.3rem}
+li{margin:.3rem 0}
+li::marker{color:var(--purple-ink)}
+.tablewrap{overflow-x:auto;margin:1.2rem 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+th{background:var(--purple);color:var(--on-purple);text-align:left;font-weight:600;padding:.55rem .7rem}
+td{padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--surface)}
+blockquote{margin:1.4rem 0;padding:1rem 1.2rem;background:var(--surface);border-radius:10px}
+blockquote p{margin:.4rem 0}
+blockquote .tag{display:inline-block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:650;margin-bottom:.3rem;color:var(--muted)}
+blockquote.capsula{background:var(--green-tint)}
+blockquote.capsula .tag{color:var(--green-ink)}
+blockquote.revision{background:var(--red-tint)}
+blockquote.revision .tag{color:var(--red-ink)}
+.hito{display:flex;gap:.7rem;align-items:baseline;margin:1.6rem 0 .4rem;font-size:1.02rem;font-weight:620;line-height:1.4}
+.hito .hid{flex:none;background:var(--purple);color:var(--on-purple);font-family:"Geist Mono",ui-monospace,monospace;font-size:.78rem;font-weight:600;padding:.15rem .5rem;border-radius:999px;position:relative;top:-.08em}
+.hito + ul{margin-top:.2rem;padding-left:3.4rem}
+.leccion{border-top:1px solid var(--line);padding-top:1.4rem;margin-top:2.6rem}
+.leccion h4{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h4 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+details{margin:1rem 0}
+summary{cursor:pointer;font-weight:600;color:var(--purple-ink);padding:.35rem 0}
+summary:focus-visible{outline:2px solid var(--purple-ink);outline-offset:3px;border-radius:4px}
+.arco{list-style:none;padding:0;counter-reset:a;display:grid;gap:.7rem}
+.arco li{counter-increment:a;position:relative;padding-left:3rem;min-height:2.2rem;max-width:none}
+.arco li::before{content:counter(a);position:absolute;left:0;top:0;background:var(--surface-2);color:var(--purple-ink);font-weight:650;border-radius:50%;width:2.2rem;height:2.2rem;display:grid;place-items:center;font-family:"Geist Mono",monospace}
+.paso{display:grid;grid-template-columns:2.4rem 1fr;gap:.9rem;margin:1.3rem 0}
+.paso .num{font-family:"Geist Mono",ui-monospace,monospace;font-weight:600;color:var(--purple-ink);background:var(--surface-2);border-radius:8px;height:2.4rem;display:grid;place-items:center}
+.paso p{margin:0}
+.paso + ul{padding-left:4.6rem}
+.fases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem;margin:1.5rem 0 2rem}
+.fase{background:var(--surface);border-radius:10px;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.35rem}
+.fase .fn{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.fase .ft{font-weight:650;color:var(--purple-ink);font-size:1.05rem}
+.fase .fp{font-family:"Geist Mono",monospace;font-size:.82rem;color:var(--muted)}
+.fase .rv{margin-top:auto;display:flex;flex-wrap:wrap;gap:.3rem}
+.fase .rv span{font-size:.75rem;font-weight:600;color:var(--red-ink);background:var(--red-tint);border-radius:999px;padding:.1rem .55rem}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;gap:1.5rem}
+  nav.toc{position:static;max-height:none;background:var(--surface);border-radius:10px;padding:1rem}
+  .fases{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:460px){ .fases{grid-template-columns:1fr} .hito + ul{padding-left:1.3rem} .paso + ul{padding-left:1.3rem} }
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+
+header.top a{color:inherit;text-underline-offset:.2em}
+.enl{display:flex;flex-wrap:wrap;gap:.45rem;margin:.5rem 0 1rem}
+.enl a{display:inline-flex;align-items:center;gap:.45rem;border:1px solid var(--line);border-radius:999px;padding:.28rem .75rem;font-size:.86rem;line-height:1.35;text-decoration:none;color:var(--ink);background:var(--ground)}
+.enl a:hover,.enl a:focus-visible{border-color:var(--c);outline:none}
+.enl i{width:.6rem;height:.6rem;border-radius:50%;background:var(--c);flex:none}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.7rem;margin:1rem 0 1.6rem}
+a.card{display:grid;grid-template-columns:.8rem 1fr;gap:.8rem;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem;text-decoration:none;color:var(--ink);transition:border-color .15s,transform .15s}
+a.card:hover,a.card:focus-visible{border-color:var(--c);transform:translateY(-1px);outline:none}
+a.card i{width:.8rem;height:.8rem;border-radius:50%;background:var(--c);margin-top:.3rem}
+a.card b{display:block;font-weight:600;line-height:1.3}
+a.card span{display:block;color:var(--muted);font-size:.86rem;margin-top:.2rem;line-height:1.4}
+main h3.tema{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:1.6rem 0 .3rem}
+.lecs{margin:0 0 1rem;border-top:1px solid var(--line)}
+.lec{padding:.75rem 0;border-bottom:1px solid var(--line)}
+.lec p{margin:0;max-width:none}
+.lec .cod{font-family:"Geist Mono",ui-monospace,monospace;font-size:.8rem;font-weight:600;color:var(--purple-ink);margin-right:.45rem}
+.lec small{display:block;color:var(--muted);font-size:.84rem;margin-top:.1rem}
+.lec .enl{margin:.5rem 0 0}
+.leccion h3{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h3 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+table.meta th{background:var(--surface-2);color:var(--ink);width:11rem}
+.nota{color:var(--muted);font-size:.9rem}
+@media (prefers-reduced-motion:reduce){a.card{transition:none}}
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script></head>
+<body>
+<div class="strip"><span style="background:#423475"></span><span style="background:#d45762"></span><span style="background:#61b89a"></span><span style="background:#f0f57d"></span><span style="background:#4aa7ba"></span><span style="background:#f3972d"></span></div>
+<header class="top"><div class="in">
+<p class="eyebrow"><a href="index.html">LDI</a> · Ruta nueva, en construcción</p>
+<h1>Unidad 4 · Integrales</h1>
+<p class="lead">La unidad construye la integral como área bajo una curva desde la distancia recorrida, la conecta con la derivada por el Teorema Fundamental del Cálculo y la usa para calcular cambios netos, áreas y volúmenes. Conserva las tres actividades del curso implementado como temas. La lección del Teorema Fundamental del Cálculo se divide en dos, porque reunía el teorema, las integrales con valores negativos y el área entre curvas. Las propiedades y los teoremas se argumentan sin demostraciones formales.</p>
+</div></header>
+<div class="layout">
+<nav class="toc" aria-label="Contenido"><p>Contenido</p><ol><li><a href="#presentacion">Presentación</a></li><li><a href="#tema-1--integral-definida-como-área">Tema 1 · Integral definida como área</a></li><li class="sub"><a href="#U4T1L1">U4T1L1 · Áreas y distancias</a></li><li class="sub"><a href="#U4T1L2">U4T1L2 · Sumas inferiores y superiores</a></li><li class="sub"><a href="#U4T1L3">U4T1L3 · Integral definida</a></li><li class="sub"><a href="#U4T1L4">U4T1L4 · Acumular a partir de una razón de cambio</a></li><li class="sub"><a href="#U4T1L5">U4T1L5 · Ejercitación de la integral definida</a></li><li><a href="#tema-2--integral-y-antiderivada">Tema 2 · Integral y antiderivada</a></li><li class="sub"><a href="#U4T2L1">U4T2L1 · Antiderivadas</a></li><li class="sub"><a href="#U4T2L2">U4T2L2 · Propiedades de las antiderivadas</a></li><li class="sub"><a href="#U4T2L3">U4T2L3 · Teorema Fundamental del Cálculo</a></li><li class="sub"><a href="#U4T2L4">U4T2L4 · Integrales con valores negativos y área entre curvas</a></li><li class="sub"><a href="#U4T2L5">U4T2L5 · Áreas en construcción y diseño</a></li><li class="sub"><a href="#U4T2L6">U4T2L6 · Ejercitación de antiderivadas e integrales</a></li><li><a href="#tema-3--aplicaciones-de-la-integral">Tema 3 · Aplicaciones de la integral</a></li><li class="sub"><a href="#U4T3L1">U4T3L1 · Integral como cambio neto</a></li><li class="sub"><a href="#U4T3L2">U4T3L2 · Volumen</a></li><li class="sub"><a href="#U4T3L3">U4T3L3 · Aplicaciones de la integral</a></li><li class="sub"><a href="#U4T3L4">U4T3L4 · Ejercitación de aplicaciones</a></li><li><a href="#decisiones-abiertas-que-afectan-esta-ruta">Decisiones abiertas que afectan esta ruta</a></li></ol></nav>
+<main>
+<h2 id="presentacion">Presentación</h2><p><strong>Programa:</strong> Comprender la integral como proceso de reversibilidad y cálculo de áreas. <strong>OA 5</strong> (modelar situaciones con la integral como área bajo la curva, en forma manuscrita y con herramientas digitales, y evaluar la necesidad de ajustar el modelo). Habilidades a (estrategias para problemas no rutinarios), d (argumentar) y e (construir modelos). 11 semanas.</p>
+
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Código</th>
+<th>Lección</th>
+<th>Tipo</th>
+<th>Viene de</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#U4T1L1">U4T1L1</a></td>
+<td>Áreas y distancias</td>
+<td>Construcción</td>
+<td>A1 L1</td>
+</tr>
+<tr>
+<td><a href="#U4T1L2">U4T1L2</a></td>
+<td>Sumas inferiores y superiores</td>
+<td>Construcción</td>
+<td>A1 L2</td>
+</tr>
+<tr>
+<td><a href="#U4T1L3">U4T1L3</a></td>
+<td>Integral definida</td>
+<td>Construcción</td>
+<td>A1 L3</td>
+</tr>
+<tr>
+<td><a href="#U4T1L4">U4T1L4</a></td>
+<td>Acumular a partir de una razón de cambio</td>
+<td>Práctica (aplicación)</td>
+<td>Nueva</td>
+</tr>
+<tr>
+<td><a href="#U4T1L5">U4T1L5</a></td>
+<td>Ejercitación de la integral definida</td>
+<td>Ejercitación</td>
+<td>Nueva</td>
+</tr>
+<tr>
+<td><a href="#U4T2L1">U4T2L1</a></td>
+<td>Antiderivadas</td>
+<td>Construcción</td>
+<td>A2 L1</td>
+</tr>
+<tr>
+<td><a href="#U4T2L2">U4T2L2</a></td>
+<td>Propiedades de las antiderivadas</td>
+<td>Construcción</td>
+<td>A2 L2</td>
+</tr>
+<tr>
+<td><a href="#U4T2L3">U4T2L3</a></td>
+<td>Teorema Fundamental del Cálculo</td>
+<td>Construcción</td>
+<td>A2 L3</td>
+</tr>
+<tr>
+<td><a href="#U4T2L4">U4T2L4</a></td>
+<td>Integrales con valores negativos y área entre curvas</td>
+<td>Construcción</td>
+<td>A2 L3</td>
+</tr>
+<tr>
+<td><a href="#U4T2L5">U4T2L5</a></td>
+<td>Áreas en construcción y diseño</td>
+<td>Práctica (aplicación)</td>
+<td>Nueva, con material de A2 L3</td>
+</tr>
+<tr>
+<td><a href="#U4T2L6">U4T2L6</a></td>
+<td>Ejercitación de antiderivadas e integrales</td>
+<td>Ejercitación</td>
+<td>Nueva</td>
+</tr>
+<tr>
+<td><a href="#U4T3L1">U4T3L1</a></td>
+<td>Integral como cambio neto</td>
+<td>Construcción</td>
+<td>A3 L1</td>
+</tr>
+<tr>
+<td><a href="#U4T3L2">U4T3L2</a></td>
+<td>Volumen</td>
+<td>Construcción</td>
+<td>A3 L2</td>
+</tr>
+<tr>
+<td><a href="#U4T3L3">U4T3L3</a></td>
+<td>Aplicaciones de la integral</td>
+<td>Práctica (aplicación)</td>
+<td>A3 L3</td>
+</tr>
+<tr>
+<td><a href="#U4T3L4">U4T3L4</a></td>
+<td>Ejercitación de aplicaciones</td>
+<td>Ejercitación</td>
+<td>Nueva</td>
+</tr>
+</tbody>
+</table></div>
+<p>15 lecciones, más el diagnóstico y dos evaluaciones: una al cerrar el Tema 2 y otra al cerrar la unidad.</p>
+<p>Cada lección trae su tipo, su nivel y su origen; el objetivo; el punto de partida; y la secuencia de ideas en el orden en que se presentan, escritas como afirmaciones. La secuencia ordena la presentación y no es un procedimiento para el estudiante. Ninguna lección de la unidad tiene ficha todavía: todas se describen desde el curso implementado y se ajustan al hacer su ficha.</p>
+<p><strong>Lenguaje de la unidad.</strong> Las puntas de un intervalo, y las de una integral, se llaman "bordes": borde izquierdo y borde derecho. "Límite" queda para el límite del curso, con el que se define la integral, y "extremo", para un máximo o un mínimo, como en la Unidad 3.</p>
+<h2 id="tema-1--integral-definida-como-área">Tema 1 · Integral definida como área</h2>
+<p>El tema parte de una pregunta de la física, qué distancia recorre un móvil del que se conoce la velocidad, y llega a la integral definida como límite de sumas de áreas de rectángulos.</p>
+<section class="leccion" id="U4T1L1"><h3><span class="ln">U4T1L1</span>Áreas y distancias</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-1-áreas-y-distancias"><i></i>Curso implementado · A1 L1</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · noción e intuición · viene de A1 L1 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Calcular la distancia que recorre un móvil que avanza siempre en el mismo sentido como el área bajo el gráfico de su velocidad, cuando la velocidad es constante o cambia en forma lineal por tramos, reconocer que esa área tiene unidades de distancia, y expresar la distancia recorrida hasta un instante \(t\) como el área entre 0 y \(t\).</p>
+<p><strong>Punto de partida.</strong> Un tren bala viaja entre Hiroshima y Okayama. Su velocidad se modela con un gráfico de tramos: acelera, viaja a velocidad constante y frena. ¿Qué distancia recorre?</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Con velocidad constante, la distancia es la velocidad por el tiempo, y coincide con el área del rectángulo bajo el gráfico de la velocidad.</li>
+<li>El área tiene unidades de distancia, porque multiplica velocidad por tiempo: \((\text{km/h}) \cdot \text{h} = \text{km}\).</li>
+<li><strong>Obstáculo.</strong> Se lee la distancia en la altura del gráfico, que es la velocidad, o se multiplica la velocidad máxima por el tiempo total. La distancia está en el área.</li>
+<li>Con aceleración constante, la velocidad cambia en forma lineal, y la distancia coincide con el área del triángulo o del trapecio. Se comprueba con la posición de la Unidad 3, cuya derivada es la velocidad.</li>
+<li>La distancia total es la suma de las áreas de los tramos.</li>
+<li>Un auto que frena ante un ceda el paso: la distancia recorrida hasta el instante \(t\) es el área entre 0 y \(t\), y cambia con \(t\).</li>
+<li>La velocidad media es la altura del rectángulo que tiene, en el mismo intervalo, la misma área que la región bajo el gráfico de la velocidad.</li>
+</ol>
+</section><section class="leccion" id="U4T1L2"><h3><span class="ln">U4T1L2</span>Sumas inferiores y superiores</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-2-nociones-de-integración"><i></i>Curso implementado · A1 L2</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · noción e intuición · viene de A1 L2 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Acotar el área bajo una curva entre una suma inferior y una superior de rectángulos de igual base, eligiendo la altura de cada rectángulo según la función crezca o decrezca en el subintervalo, comprobar que con más rectángulos las dos sumas se acercan, y reconocer el área como el único número que queda entre todas ellas.</p>
+<p><strong>Punto de partida.</strong> ¿Cuánto mide el área bajo \(f(x) = x^2\) entre 0 y 3? No hay una fórmula de geometría para esa figura.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Con rectángulos bajo la curva se obtiene una suma inferior, menor que el área; con rectángulos sobre la curva, una suma superior, mayor que el área.</li>
+<li>Con 3 rectángulos, el área queda entre 5 y 14; con 6, entre 6.875 y 11.375; con 300, entre 8.955 y 9.045.</li>
+<li>En una función creciente, la altura del rectángulo inferior es el valor en el borde izquierdo de cada subintervalo.</li>
+<li><strong>Obstáculo.</strong> Se toma siempre el borde izquierdo como altura inferior. En una función decreciente, ese rectángulo queda sobre la curva: ahí la altura inferior es el valor en el borde derecho. En una función que sube y baja dentro de un subintervalo, es su menor valor ahí, que se lee en GeoGebra.</li>
+<li>En \(x^2\), la suma superior menos la inferior vale \((f(3) - f(0)) \cdot \frac{3}{n} = \frac{27}{n}\): 9, 4.5 y 0.09 con 3, 6 y 300 rectángulos. Esa diferencia queda tan pequeña como queramos, así que un solo número queda entre todas las sumas: el área.</li>
+<li>Los comandos <code>SumaInferior</code> y <code>SumaSuperior</code> de GeoGebra calculan las sumas con muchos rectángulos.</li>
+</ol>
+</section><section class="leccion" id="U4T1L3"><h3><span class="ln">U4T1L3</span>Integral definida</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-3-la-integral-definida"><i></i>Curso implementado · A1 L3</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · precisión · viene de A1 L3 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Escribir con sumatoria la suma inferior y la superior del área bajo \(x^2\) entre 0 y 3 con \(n\) rectángulos, calcular el límite de esas dos sucesiones, y leer una integral definida como el límite de las sumas de Riemann y, si la función no toma valores negativos, como un área en un gráfico.</p>
+<p><strong>Punto de partida.</strong> Las sumas de la L2, ahora con una cantidad cualquiera \(n\) de rectángulos.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>La notación de sumatoria escribe una suma de muchos términos con un patrón. En esta lección se usa solo para escribir la suma.</li>
+<li>Con \(n\) rectángulos, cada base mide \(\frac{3}{n}\) y las alturas son los valores de \(x^2\) en los bordes de los subintervalos.</li>
+<li>La suma de los primeros \(m\) cuadrados, \(\frac{m(m + 1)(2m + 1)}{6}\), se entrega y se comprueba con algunos valores de \(m\). Con ella, la suma inferior es \(\frac{9(n - 1)(2n - 1)}{2n^2}\) y la superior, \(\frac{9(n + 1)(2n + 1)}{2n^2}\). Con \(n = 3\) dan 5 y 14, como en la L2.</li>
+<li><strong>Obstáculo.</strong> Se concluye que, como la base de cada rectángulo tiende a 0, la suma también tiende a 0. La cantidad de rectángulos crece a la vez, y las dos sumas son cocientes de polinomios de igual grado que tienden a 9 (Unidad 2, Tema 1, L6).</li>
+<li>Una suma de Riemann usa como altura el valor en un punto cualquiera de cada subintervalo.</li>
+<li>Para una función continua en \([a, b]\), las sumas de Riemann se acercan a un mismo número, cualquiera sea el punto elegido en cada subintervalo: ese número es la integral definida \(\int_a^b f(x)\,dx\). Se lee "integral de \(a\) a \(b\) de \(f(x)\)", y \(dx\) recuerda la base de los rectángulos. Cuando \(f\) no toma valores negativos, es el área bajo la curva.</li>
+<li>Una integral se lee en un gráfico como un área, y una suma de Riemann se asocia con su integral.</li>
+</ol>
+</section><section class="leccion" id="U4T1L4"><h3><span class="ln">U4T1L4</span>Acumular a partir de una razón de cambio</h3><div class="enl"><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Práctica (aplicación) · nueva</em></p>
+<p><strong>Objetivo.</strong> Estimar una cantidad acumulada, como la energía que generan unos paneles solares o la distancia que recorre un auto, a partir de mediciones de su razón de cambio, uniendo las mediciones con segmentos o con rectángulos, acotarla entre una suma inferior y una superior cuando la razón de cambio solo sube o solo baja entre una medición y la siguiente, e interpretar el resultado con sus unidades.</p>
+<p><strong>Situaciones.</strong> La potencia que generan los paneles solares de una casa, medida cada hora en un día despejado. La velocidad de un auto registrada cada 5 segundos.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>La energía es el área bajo el gráfico de la potencia: kilowatts multiplicados por horas dan kilowatt-hora (kWh), la unidad con que se registra la energía que la casa entrega a la red.</li>
+<li>Con datos medidos, el área se estima con rectángulos o uniendo los puntos con segmentos.</li>
+<li>En un día despejado, la potencia solo sube hasta el mediodía y solo baja después. Si se supone eso entre una medición y la siguiente, los valores medidos en los bordes de cada hora dan una suma inferior y una superior que encierran la energía, salvo en la hora que contiene el mediodía.</li>
+<li>Mediciones más seguidas acercan las dos sumas.</li>
+</ol>
+</section><section class="leccion" id="U4T1L5"><h3><span class="ln">U4T1L5</span>Ejercitación de la integral definida</h3><div class="enl"><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Ejercitación · nueva</em></p>
+<p><strong>Objetivo.</strong> Ejercitar el cálculo de distancias como áreas bajo gráficos de velocidad, las sumas inferiores y superiores, la notación de sumatoria y la lectura de integrales como áreas.</p>
+<p><strong>Contenido.</strong> Un bloque por lección de construcción y un bloque final mixto. Los ejercicios se toman de las prácticas y de la evaluación de la Actividad 1 del curso implementado.</p>
+</section><h2 id="tema-2--integral-y-antiderivada">Tema 2 · Integral y antiderivada</h2>
+<p>El tema descubre que el área bajo una curva, mirada como función de su borde derecho, tiene como derivada la función original. Esa es la reversibilidad que nombra el programa: derivar la función área devuelve la función, e integrar la derivada de una función da su cambio, \(\int_a^b F'(x)\,dx = F(b) - F(a)\).</p>
+<section class="leccion" id="U4T2L1"><h3><span class="ln">U4T2L1</span>Antiderivadas</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-1-antiderivadas"><i></i>Curso implementado · A2 L1</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · noción e intuición · viene de A2 L1 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Calcular el área bajo \(t\), \(t^2\) y \(\sqrt{t}\) desde un punto fijo hasta \(x\), comprobar que en los tres casos la derivada de esa función área es la función que limita el área, definir antiderivada y encontrar antiderivadas de potencias.</p>
+<p><strong>Punto de partida.</strong> Si el borde derecho del intervalo se deja variable, el área bajo la curva pasa a ser una función.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Como \(x\) pasa a ser el borde derecho, la variable de la función se llama \(t\). Para \(f(t) = t\) y \(0 \le a \le x\), el área entre \(a\) y \(x\) es un trapecio, y vale \(\frac{x^2}{2} - \frac{a^2}{2}\). Su derivada es \(x\), la función original.</li>
+<li>Para \(t^2\), se rehace el cálculo de la L3 del Tema 1 con \(x\) en lugar de 3: la suma inferior es \(\frac{x^3 (n - 1)(2n - 1)}{6n^2}\), y tiende a \(\frac{x^3}{3}\). Su derivada es \(x^2\).</li>
+<li>El gráfico de \(\sqrt{t}\) es el reflejo del de \(t^2\) respecto de la recta \(y = t\) (Unidad 1, inversa). Por eso el área bajo \(\sqrt{t}\) entre 0 y \(x\) es la del rectángulo de \(x\) por \(\sqrt{x}\) menos el área bajo \(t^2\) entre 0 y \(\sqrt{x}\): \(\frac{2}{3}x^{3/2}\).</li>
+<li>En los tres casos, la derivada de la función área es la función original.</li>
+<li>\(F\) es una antiderivada de \(f\) si \(F' = f\). Si \(F\) lo es, \(F + C\) también, porque la derivada de una constante es 0. En un intervalo no hay otras: la diferencia entre dos antiderivadas tiene derivada 0 en todo el intervalo, y una cantidad que no cambia en ningún instante es constante.</li>
+<li><strong>Obstáculo.</strong> Se escribe que una antiderivada de \(x^2\) es \(2x\), confundiendo antiderivar con derivar. Derivar la respuesta comprueba si es una antiderivada.</li>
+<li>Una antiderivada de \(x^n\) es \(\frac{x^{n+1}}{n+1}\), para \(n \neq -1\).</li>
+</ol>
+</section><section class="leccion" id="U4T2L2"><h3><span class="ln">U4T2L2</span>Propiedades de las antiderivadas</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-2-propiedades-de-las-antiderivadas"><i></i>Curso implementado · A2 L2</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · cálculo · viene de A2 L2 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Calcular antiderivadas de sumas y múltiplos de funciones conocidas, proponiendo una forma, derivándola y ajustando sus coeficientes, y reescribiendo raíces y fracciones como potencias.</p>
+<p><strong>Punto de partida.</strong> Antiderivadas de \(k x^n\) y de sumas de funciones.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Para encontrar una antiderivada de \(6x^2\) se propone \(x^3\), se deriva (da \(3x^2\)) y se ajusta el coeficiente: \(2x^3\).</li>
+<li>Toda antiderivada propuesta se comprueba derivándola.</li>
+<li>Una antiderivada de \(k \cdot f\) es \(k\) veces una antiderivada de \(f\), y una de \(f + g\) es la suma de antiderivadas de \(f\) y de \(g\).</li>
+<li><strong>Obstáculo.</strong> Se antideriva un producto multiplicando antiderivadas: para \(x \cdot x\) daría \(\frac{x^4}{4}\), cuya derivada es \(x^3\) y no \(x^2\).</li>
+<li>Antes de antiderivar se reescriben raíces y fracciones como potencias: \(\sqrt{x} = x^{1/2}\) y \(\frac{1}{x^2} = x^{-2}\).</li>
+<li>Con la regla de la cadena de la Unidad 3 se comprueban antiderivadas de potencias de \(x + a\): una antiderivada de \(\frac{1}{(x + a)^2}\) es \(-\frac{1}{x + a}\), porque su derivada es \(\frac{1}{(x + a)^2}\).</li>
+</ol>
+</section><section class="leccion" id="U4T2L3"><h3><span class="ln">U4T2L3</span>Teorema Fundamental del Cálculo</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-3-teorema-fundamental-del-cálculo"><i></i>Curso implementado · A2 L3</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · precisión · viene de A2 L3 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Argumentar que la función área \(G(x) = \int_a^x f(t)\,dt\) tiene derivada \(f(x)\), y calcular integrales definidas con cualquier antiderivada \(F\) de \(f\) mediante \(\int_a^b f(x)\,dx = F(b) - F(a)\).</p>
+<p><strong>Punto de partida.</strong> Las funciones área de la L1, ahora para cualquier función continua. \(G(x)\) es el área bajo la curva cuando \(f\) no toma valores negativos.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>El área entre \(x\) y \(x + h\) se parece a la de un rectángulo de base \(h\) y altura \(f(x)\). Al dividir por \(h\) y hacer tender \(h\) a 0, se obtiene que \(G'(x) = f(x)\).</li>
+<li>Teorema Fundamental del Cálculo: si \(f\) es continua en un intervalo, la función área \(G\) es una antiderivada de \(f\).</li>
+<li>Como dos antiderivadas se diferencian en una constante, para cualquier antiderivada \(F\) de \(f\), \(\int_a^b f(x)\,dx = F(b) - F(a)\). La constante se cancela en la resta.</li>
+<li>El área bajo \(x^2\) entre 0 y 3 se recalcula en una línea: \(\frac{27}{3} - 0 = 9\). Con antiderivadas, el cálculo es mucho más corto que con sumas de Riemann.</li>
+<li><strong>Obstáculo.</strong> Se evalúa la antiderivada solo en el borde derecho: \(\int_1^3 x^2\,dx\) daría 9, y vale \(9 - \frac{1}{3} = \frac{26}{3}\).</li>
+</ol>
+</section><section class="leccion" id="U4T2L4"><h3><span class="ln">U4T2L4</span>Integrales con valores negativos y área entre curvas</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-3-teorema-fundamental-del-cálculo"><i></i>Curso implementado · A2 L3</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · cálculo · viene de A2 L3 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Reconocer que donde la función es negativa la integral resta el área de esa parte, calcular el área de una región que cruza el eje \(x\) separando el intervalo donde la función cambia de signo, y calcular el área entre dos curvas como la integral de la diferencia entre la de arriba y la de abajo.</p>
+<p><strong>Punto de partida.</strong> \(\int_0^3 (x^2 - 2x)\,dx\).</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li><strong>Obstáculo.</strong> Se espera que la integral sea el área de la región. \(\int_0^3 (x^2 - 2x)\,dx = 0\), y la región entre la curva y el eje \(x\) tiene área \(\frac{8}{3}\).</li>
+<li>Donde la función es negativa, la integral resta el área de esa parte: entre 0 y 2 la integral vale \(-\frac{4}{3}\), y entre 2 y 3 vale \(\frac{4}{3}\).</li>
+<li>Para obtener el área se separa el intervalo donde la función cambia de signo.</li>
+<li>En un intervalo donde una curva queda siempre arriba de la otra, el área entre ellas es la integral de la de arriba menos la de abajo. Si la región la encierran las dos curvas, los bordes de la integral son los \(x\) donde se intersectan: \(y = x\) e \(y = x^2\) se intersectan en 0 y en 1, y entre ellas el área es \(\frac{1}{2} - \frac{1}{3} = \frac{1}{6}\).</li>
+<li>Si las curvas se cruzan más de dos veces, se separa el intervalo en cada cruce: \(y = x^3\) e \(y = x\) se intersectan en −1, 0 y 1, \(\int_{-1}^{1} (x - x^3)\,dx = 0\), y el área encerrada es \(\frac{1}{2}\).</li>
+</ol>
+</section><section class="leccion" id="U4T2L5"><h3><span class="ln">U4T2L5</span>Áreas en construcción y diseño</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-3-teorema-fundamental-del-cálculo"><i></i>Curso implementado · A2 L3</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Práctica (aplicación) · nueva, con material de A2 L3</em></p>
+<p><strong>Objetivo.</strong> Calcular con antiderivadas áreas limitadas por curvas en situaciones de construcción y diseño, y usarlas para estimar volúmenes de cuerpos de sección constante.</p>
+<p><strong>Situaciones.</strong> La tierra que hay que sacar para hacer un túnel de sección parabólica. El vidrio de una ventana con arco parabólico. El área de un logo entre dos curvas.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>El túnel es un cuerpo de sección constante: su volumen es el área de su sección por su largo.</li>
+<li>El área de la sección se calcula con la integral de la parábola entre los puntos donde toca el suelo.</li>
+<li>En el logo, primero se encuentran los puntos donde las curvas se intersectan y se decide cuál va arriba en cada intervalo.</li>
+</ol>
+</section><section class="leccion" id="U4T2L6"><h3><span class="ln">U4T2L6</span>Ejercitación de antiderivadas e integrales</h3><div class="enl"><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Ejercitación · nueva</em></p>
+<p><strong>Objetivo.</strong> Ejercitar el cálculo de antiderivadas, de integrales definidas con el Teorema Fundamental del Cálculo y de áreas entre curvas.</p>
+<p><strong>Contenido.</strong> Un bloque por lección de construcción y un bloque final mixto. Los ejercicios se toman de las prácticas y de la evaluación de la Actividad 2 del curso implementado.</p>
+</section><h2 id="tema-3--aplicaciones-de-la-integral">Tema 3 · Aplicaciones de la integral</h2>
+<p>El tema lee la integral de una razón de cambio como el cambio neto de una cantidad, y la usa para calcular volúmenes y resolver problemas en contexto.</p>
+<section class="leccion" id="U4T3L1"><h3><span class="ln">U4T3L1</span>Integral como cambio neto</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-1-interpretación-física-de-la-integral"><i></i>Curso implementado · A3 L1</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · aplicación · viene de A3 L1 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Interpretar la integral de una razón de cambio como el cambio neto de la cantidad (desplazamiento, energía, volumen, sustancia eliminada), con sus unidades, distinguir el desplazamiento de la distancia recorrida, y calcular la distancia recorrida cuando la velocidad cambia de signo.</p>
+<p><strong>Punto de partida.</strong> Cuatro situaciones: una bala disparada hacia arriba, la energía que genera un parque eólico en el norte, el agua que entra a un embalse y la urea que se elimina en una diálisis.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Si \(F' = f\), la integral de \(f\) entre \(a\) y \(b\) es \(F(b) - F(a)\): el cambio neto de \(F\).</li>
+<li>La integral de la velocidad es el desplazamiento.</li>
+<li><strong>Obstáculo.</strong> Se da la integral de la velocidad como la distancia recorrida. La bala sube y vuelve al punto de partida: su desplazamiento es 0 y recorrió el doble de la altura máxima. Donde la velocidad es negativa, la integral resta.</li>
+<li>La distancia recorrida se obtiene separando el intervalo donde la velocidad cambia de signo y sumando las áreas, como en la L4 del Tema 2.</li>
+<li>La energía es la integral de la potencia, como en la L4 del Tema 1, y se mide en megawatt-hora. Si la potencia del parque eólico viene dada por un modelo, la energía se calcula con una antiderivada.</li>
+<li>El volumen que entra al embalse se estima con mediciones del caudal, uniendo los puntos con segmentos, como en la L4 del Tema 1.</li>
+<li>Cada integral se interpreta en el contexto: la urea eliminada en una hora de diálisis.</li>
+</ol>
+</section><section class="leccion" id="U4T3L2"><h3><span class="ln">U4T3L2</span>Volumen</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-2-volumen"><i></i>Curso implementado · A3 L2</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · aplicación · viene de A3 L2 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Calcular el volumen de un cuerpo sumando rebanadas, primero con las áreas de secciones medidas y después con la integral del área de la sección, y obtener volúmenes de sólidos de revolución.</p>
+<p><strong>Punto de partida.</strong> Una tomografía entrega las áreas de las secciones de un órgano cada 1.5 cm. ¿Cuál es su volumen?</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li><strong>Obstáculo.</strong> Se suman las áreas de las secciones y se da esa suma como el volumen del órgano. Cada área se multiplica por el grosor de la rebanada, 1.5 cm: cm² por cm da cm³.</li>
+<li>Cada rebanada se aproxima por un cuerpo de sección constante, como el túnel de la L5 del Tema 2, y el volumen total, por la suma.</li>
+<li>Con rebanadas cada vez más delgadas, la suma tiende a \(V = \int_a^b A(x)\,dx\), donde \(A(x)\) es el área de la sección en \(x\).</li>
+<li>La fórmula reproduce los volúmenes conocidos del cilindro y de la pirámide; el de la esfera queda para la ejercitación.</li>
+<li>Si la región bajo \(f\) gira en torno al eje \(x\), forma un sólido de revolución. Cada sección es un círculo de radio \(f(x)\), y \(V = \pi \int_a^b \left(f(x)\right)^2 dx\).</li>
+<li>Con esa fórmula se obtienen el volumen del cono y el del sólido que genera \(\sqrt{x}\) al girar.</li>
+</ol>
+</section><section class="leccion" id="U4T3L3"><h3><span class="ln">U4T3L3</span>Aplicaciones de la integral</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-3-aplicaciones-de-la-integral"><i></i>Curso implementado · A3 L3</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Práctica (aplicación) · viene de A3 L3</em></p>
+<p><strong>Objetivo.</strong> Resolver problemas de costo, distancia y volumen con integrales, ajustando una función a datos cuando hace falta, y comparar el resultado de dos modelos del mismo problema.</p>
+<p><strong>Situaciones.</strong> El costo de producir a partir del costo marginal y un dato conocido. La distancia que recorre un cohete a partir de una tabla de velocidades. El volumen de un bernegal, una vasija canaria de barro, a partir de sus radios.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Con el costo marginal y el costo de una cantidad conocida se encuentra la constante de la antiderivada y la función costo.</li>
+<li>La distancia del cohete se estima de dos formas: uniendo los puntos con segmentos y ajustando un polinomio en GeoGebra. La diferencia entre las dos estimaciones dice cuánto depende la respuesta del modelo.</li>
+<li>El volumen del bernegal se calcula ajustando una función a sus radios y usando el volumen de revolución.</li>
+</ol>
+</section><section class="leccion" id="U4T3L4"><h3><span class="ln">U4T3L4</span>Ejercitación de aplicaciones</h3><div class="enl"><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Ejercitación · nueva</em></p>
+<p><strong>Objetivo.</strong> Ejercitar la interpretación de integrales como cambio neto, el cálculo de volúmenes y la resolución de problemas con integrales.</p>
+<p><strong>Contenido.</strong> Un bloque por lección y un bloque final que mezcla la unidad completa. Los ejercicios se toman de las prácticas y de la evaluación de la Actividad 3 del curso implementado, incluido el agua que gira en un recipiente.</p>
+</section><h2 id="decisiones-abiertas-que-afectan-esta-ruta">Decisiones abiertas que afectan esta ruta</h2>
+<ol type="1">
+<li><strong>Volumen</strong> (decisión 10). La ruta lo conserva; el OA 5 habla del área bajo la curva.</li>
+<li><strong>Sumas de Riemann</strong> (decisión 11). La ruta calcula con sumatoria el límite para \(x^2\), con la suma de los cuadrados entregada.</li>
+<li><strong>Exponencial y logaritmo</strong> (decisión 9). La ruta no integra \(e^x\) ni \(\frac{1}{x}\), aunque la Unidad 3 deja sus derivadas.</li>
+<li><strong>Cantidad de lecciones.</strong> La unidad tiene 15 lecciones, cuando según las semanas del programa le corresponden unas 23.</li>
+</ol>
+
+</main>
+</div>
+</body>
+</html>

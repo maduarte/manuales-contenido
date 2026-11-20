@@ -1,0 +1,313 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LDI · Ficha U2 A1 L02</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --ground:#fcfbfe; --surface:#f3f1f8; --surface-2:#ebe7f4; --line:#e0dcea;
+  --ink:#231d3b; --muted:#625c76;
+  --purple:#423475; --purple-ink:#423475; --on-purple:#ffffff;
+  --red:#d45762; --red-ink:#a8323e; --red-tint:#fbeef0;
+  --green:#61b89a; --green-ink:#2c7a5f; --green-tint:#eaf6f1;
+  --blue:#4aa7ba; --blue-ink:#27788a;
+  --orange:#f3972d; --orange-ink:#a85f0c;
+  --yellow:#f0f57d;
+  --code-bg:#eeebf6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+    --ink:#ece9f6; --muted:#aaa4c2;
+    --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+    --red-ink:#f0939b; --red-tint:#2e1b2c;
+    --green-ink:#86d6b9; --green-tint:#18302b;
+    --blue-ink:#85cfdd; --orange-ink:#f7b667;
+    --code-bg:#2a2548;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+  --ink:#ece9f6; --muted:#aaa4c2;
+  --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+  --red-ink:#f0939b; --red-tint:#2e1b2c;
+  --green-ink:#86d6b9; --green-tint:#18302b;
+  --blue-ink:#85cfdd; --orange-ink:#f7b667;
+  --code-bg:#2a2548;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.6;margin:0}
+.strip{display:flex;height:6px}
+.strip span{flex:1}
+header.top{background:var(--purple);color:var(--on-purple);padding-block:2.4rem 2.2rem;padding-inline:16px}
+header.top .in{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin:0 0 .6rem}
+header.top h1{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.15;margin:0 0 .8rem;text-wrap:balance;font-weight:650;letter-spacing:-.01em}
+header.top .lead{max-width:68ch;margin:0;font-size:1.05rem;opacity:.93}
+.layout{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:2rem 4rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1rem);align-self:start;font-size:.88rem;max-height:calc(100vh - 2rem);overflow:auto}
+nav.toc p{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .5rem}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
+nav.toc a{color:var(--ink);text-decoration:none;display:block;padding:.3rem .55rem;border-radius:6px;line-height:1.35}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--surface-2);outline:none}
+nav.toc .sub a{padding-left:1.3rem;color:var(--muted)}
+main{min-width:0;max-width:760px}
+main h2{font-size:1.55rem;line-height:1.25;margin:3rem 0 1rem;color:var(--purple-ink);text-wrap:balance;font-weight:650}
+main h2:first-child{margin-top:0}
+main h3{font-size:1.2rem;margin:2.2rem 0 .7rem;text-wrap:balance;font-weight:620}
+main h4{font-size:1.1rem;margin:1.6rem 0 .5rem}
+p,li{max-width:70ch}
+a{color:var(--purple-ink)}
+code{font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-size:.88em;background:var(--code-bg);padding:.08em .35em;border-radius:4px;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
+ul,ol{padding-left:1.3rem}
+li{margin:.3rem 0}
+li::marker{color:var(--purple-ink)}
+.tablewrap{overflow-x:auto;margin:1.2rem 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+th{background:var(--purple);color:var(--on-purple);text-align:left;font-weight:600;padding:.55rem .7rem}
+td{padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--surface)}
+blockquote{margin:1.4rem 0;padding:1rem 1.2rem;background:var(--surface);border-radius:10px}
+blockquote p{margin:.4rem 0}
+blockquote .tag{display:inline-block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:650;margin-bottom:.3rem;color:var(--muted)}
+blockquote.capsula{background:var(--green-tint)}
+blockquote.capsula .tag{color:var(--green-ink)}
+blockquote.revision{background:var(--red-tint)}
+blockquote.revision .tag{color:var(--red-ink)}
+.hito{display:flex;gap:.7rem;align-items:baseline;margin:1.6rem 0 .4rem;font-size:1.02rem;font-weight:620;line-height:1.4}
+.hito .hid{flex:none;background:var(--purple);color:var(--on-purple);font-family:"Geist Mono",ui-monospace,monospace;font-size:.78rem;font-weight:600;padding:.15rem .5rem;border-radius:999px;position:relative;top:-.08em}
+.hito + ul{margin-top:.2rem;padding-left:3.4rem}
+.leccion{border-top:1px solid var(--line);padding-top:1.4rem;margin-top:2.6rem}
+.leccion h4{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h4 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+details{margin:1rem 0}
+summary{cursor:pointer;font-weight:600;color:var(--purple-ink);padding:.35rem 0}
+summary:focus-visible{outline:2px solid var(--purple-ink);outline-offset:3px;border-radius:4px}
+.arco{list-style:none;padding:0;counter-reset:a;display:grid;gap:.7rem}
+.arco li{counter-increment:a;position:relative;padding-left:3rem;min-height:2.2rem;max-width:none}
+.arco li::before{content:counter(a);position:absolute;left:0;top:0;background:var(--surface-2);color:var(--purple-ink);font-weight:650;border-radius:50%;width:2.2rem;height:2.2rem;display:grid;place-items:center;font-family:"Geist Mono",monospace}
+.paso{display:grid;grid-template-columns:2.4rem 1fr;gap:.9rem;margin:1.3rem 0}
+.paso .num{font-family:"Geist Mono",ui-monospace,monospace;font-weight:600;color:var(--purple-ink);background:var(--surface-2);border-radius:8px;height:2.4rem;display:grid;place-items:center}
+.paso p{margin:0}
+.paso + ul{padding-left:4.6rem}
+.fases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem;margin:1.5rem 0 2rem}
+.fase{background:var(--surface);border-radius:10px;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.35rem}
+.fase .fn{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.fase .ft{font-weight:650;color:var(--purple-ink);font-size:1.05rem}
+.fase .fp{font-family:"Geist Mono",monospace;font-size:.82rem;color:var(--muted)}
+.fase .rv{margin-top:auto;display:flex;flex-wrap:wrap;gap:.3rem}
+.fase .rv span{font-size:.75rem;font-weight:600;color:var(--red-ink);background:var(--red-tint);border-radius:999px;padding:.1rem .55rem}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;gap:1.5rem}
+  nav.toc{position:static;max-height:none;background:var(--surface);border-radius:10px;padding:1rem}
+  .fases{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:460px){ .fases{grid-template-columns:1fr} .hito + ul{padding-left:1.3rem} .paso + ul{padding-left:1.3rem} }
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+
+header.top a{color:inherit;text-underline-offset:.2em}
+.enl{display:flex;flex-wrap:wrap;gap:.45rem;margin:.5rem 0 1rem}
+.enl a{display:inline-flex;align-items:center;gap:.45rem;border:1px solid var(--line);border-radius:999px;padding:.28rem .75rem;font-size:.86rem;line-height:1.35;text-decoration:none;color:var(--ink);background:var(--ground)}
+.enl a:hover,.enl a:focus-visible{border-color:var(--c);outline:none}
+.enl i{width:.6rem;height:.6rem;border-radius:50%;background:var(--c);flex:none}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.7rem;margin:1rem 0 1.6rem}
+a.card{display:grid;grid-template-columns:.8rem 1fr;gap:.8rem;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem;text-decoration:none;color:var(--ink);transition:border-color .15s,transform .15s}
+a.card:hover,a.card:focus-visible{border-color:var(--c);transform:translateY(-1px);outline:none}
+a.card i{width:.8rem;height:.8rem;border-radius:50%;background:var(--c);margin-top:.3rem}
+a.card b{display:block;font-weight:600;line-height:1.3}
+a.card span{display:block;color:var(--muted);font-size:.86rem;margin-top:.2rem;line-height:1.4}
+main h3.tema{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:1.6rem 0 .3rem}
+.lecs{margin:0 0 1rem;border-top:1px solid var(--line)}
+.lec{padding:.75rem 0;border-bottom:1px solid var(--line)}
+.lec p{margin:0;max-width:none}
+.lec .cod{font-family:"Geist Mono",ui-monospace,monospace;font-size:.8rem;font-weight:600;color:var(--purple-ink);margin-right:.45rem}
+.lec small{display:block;color:var(--muted);font-size:.84rem;margin-top:.1rem}
+.lec .enl{margin:.5rem 0 0}
+.leccion h3{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h3 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+table.meta th{background:var(--surface-2);color:var(--ink);width:11rem}
+.nota{color:var(--muted);font-size:.9rem}
+@media (prefers-reduced-motion:reduce){a.card{transition:none}}
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script></head>
+<body>
+<div class="strip"><span style="background:#423475"></span><span style="background:#d45762"></span><span style="background:#61b89a"></span><span style="background:#f0f57d"></span><span style="background:#4aa7ba"></span><span style="background:#f3972d"></span></div>
+<header class="top"><div class="in">
+<p class="eyebrow"><a href="../index.html">LDI</a> · Ficha de una lección implementada</p>
+<h1>U2 A1 L2 · Notación de límite</h1>
+<p class="lead">Lección 2 de la Actividad 1 de la Unidad 2 del curso implementado, base de U2T1L2 en el curso nuevo.</p>
+</div></header>
+<div class="layout">
+<nav class="toc" aria-label="Contenido"><p>Contenido</p><ol><li><a href="#qué-logra-la-clase">Qué logra la clase</a></li><li class="sub"><a href="#logro">Logro</a></li><li class="sub"><a href="#lo-que-queda-para-otras-lecciones">Lo que queda para otras lecciones</a></li><li class="sub"><a href="#cómo-lo-logra">Cómo lo logra</a></li><li><a href="#diagnóstico-de-la-versión-implementada">Diagnóstico de la versión implementada</a></li><li class="sub"><a href="#secuencia">Secuencia</a></li><li class="sub"><a href="#hallazgos">Hallazgos</a></li><li class="sub"><a href="#errores">Errores</a></li><li><a href="#recursos">Recursos</a></li><li><a href="#se-conserva-y-sale">Se conserva y sale</a></li><li><a href="#para-decidir">Para decidir</a></li></ol></nav>
+<main>
+<div class="enl"><a style="--c:#4aa7ba" href="../../LDI_ruta_curso_implementado.html#lección-2-notación-de-límite"><i></i>Lección en el curso implementado</a><a style="--c:#423475" href="../ruta_U2.html#U2T1L2"><i></i>Propuesta nueva · U2T1L2</a></div><div class="tablewrap"><table>
+<tbody>
+<tr>
+<td>Guion de Drive</td>
+<td><code>LDI_U2_A1_Clase 2</code></td>
+</tr>
+<tr>
+<td>Objetivo declarado</td>
+<td>Explorar numérica y gráficamente el comportamiento al infinito de algunas funciones elementales e introducir la notación de límite para describir ese comportamiento.</td>
+</tr>
+<tr>
+<td>Objetivo propuesto</td>
+<td>Reconocer en tablas, gráficos y funciones conocidas tres comportamientos al infinito (acercarse tanto como se quiera a un número, diverger a infinito y diverger a menos infinito), cuando \(x\) tiende a infinito y cuando tiende a menos infinito, y anotarlos con la notación del curso.</td>
+</tr>
+<tr>
+<td>Veredicto</td>
+<td><strong>Remodelar</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="qué-logra-la-clase">Qué logra la clase</h2>
+<p>Nivel de noción e intuición. Parte del comportamiento que construyó la L1 y lo extiende a otros comportamientos y a la otra dirección de la variable.</p>
+<h3 id="logro">Logro</h3>
+<p>Al terminar, el estudiante distingue tres comportamientos de los valores de \(f(x)\):</p>
+<ul>
+<li><strong>Se acercan tanto como se quiera a un número:</strong> desde cierto momento, todos los valores de \(f(x)\) quedan tan cerca del número como queramos.</li>
+<li><strong>Divergen a infinito:</strong> desde cierto momento, todos los valores de \(f(x)\) quedan tan arriba como queramos.</li>
+<li><strong>Divergen a menos infinito:</strong> desde cierto momento, todos los valores de \(f(x)\) quedan tan abajo como queramos.</li>
+</ul>
+<p>Los distingue en las dos direcciones de la variable:</p>
+<ul>
+<li><strong>\(x\) tiende a infinito:</strong> \(x\) toma valores positivos cada vez más grandes, como 10, 100 y 1000. Se lee hacia la derecha del gráfico.</li>
+<li><strong>\(x\) tiende a menos infinito:</strong> \(x\) toma valores negativos cada vez más lejos de 0, como −10, −100 y −1000. Se lee hacia la izquierda del gráfico.</li>
+</ul>
+<p>Los reconoce en tablas, en gráficos y en funciones conocidas: las potencias \(x^n\) con \(n\) entero (con \(n\) positivo, según su paridad; con \(n\) negativo, límite 0 en las dos direcciones; con \(n = 0\), la constante 1), las exponenciales, y el logaritmo y la raíz cuadrada, que se estudian solo cuando \(x\) tiende a infinito porque no están definidas para \(x\) negativo.</p>
+<p>Anota cada caso con la notación del curso:</p>
+<ul>
+<li><strong>Si los valores se acercan tanto como se quiera a \(L\):</strong> \(\lim_{x \to \infty} f(x) = L\) o \(\lim_{x \to -\infty} f(x) = L\). La recta \(y = L\) es la <strong>asíntota horizontal</strong> del gráfico.</li>
+<li><strong>Si divergen:</strong> \(\lim_{x \to \infty} f(x) = \infty\) o \(\lim_{x \to \infty} f(x) = -\infty\), y lo mismo con \(x \to -\infty\). Se lee "\(f(x)\) tiende a infinito" o "\(f(x)\) diverge a infinito".</li>
+</ul>
+<p>Sabe qué dice \(\lim f(x) = \infty\): que, desde cierto momento, todos los valores quedan tan arriba como queramos. \(\infty\) no es un número, así que esa igualdad no dice que los valores se acerquen a un número; por eso no se lee "converge" y no se opera con \(\infty\) como si fuera un número.</p>
+<p>Sabe además dos cosas que el lenguaje cotidiano mezcla:</p>
+<ul>
+<li><strong>Lo que hacen los valores de \(f(x)\) cuando \(x\) tiende a menos infinito se lee hacia la izquierda del gráfico</strong>, y puede ser cualquiera de los tres comportamientos. \(2^{-x}\) es decreciente y diverge a infinito cuando \(x \to -\infty\): "decreciente" describe el gráfico leído de izquierda a derecha.</li>
+<li><strong>Una función puede crecer cada vez más lento y diverger a infinito</strong>, como el logaritmo: el logaritmo en base 10 supera 3 cuando \(x\) pasa de 1000 y supera cualquier número \(M\) cuando \(x\) pasa de \(10^M\).</li>
+</ul>
+<p>Una función sin límite puede no diverger; esos casos son de la L3.</p>
+<h3 id="lo-que-queda-para-otras-lecciones">Lo que queda para otras lecciones</h3>
+<p>Lecciones del curso implementado:</p>
+<ul>
+<li>Las funciones que oscilan, con y sin límite: L3, "El columpio sin fin".</li>
+<li>Qué significan con precisión "tan cerca como queramos" y "tan arriba como queramos": L4.</li>
+<li>Calcular límites con propiedades y estrategias algebraicas: L5 y L6.</li>
+<li>Lo que pasa cerca de 0 en \(\frac{1}{x}\) y \(\frac{1}{x^2}\), y la asíntota vertical: Actividad 2, L4.</li>
+</ul>
+<h3 id="cómo-lo-logra">Cómo lo logra</h3>
+<ol type="1">
+<li><strong>Activación.</strong> Se recupera la L1 con \(1 + 2^{-x}\): hacia la derecha del gráfico, sus valores se acercan tanto como se quiera a 1.</li>
+<li><strong>Sin Contexto.</strong> La clase trabaja directamente sobre funciones (decisión 2 del plan).</li>
+<li><strong>Construcción, tabla hacia la derecha.</strong> Para \(x\) de 10 a 1000: \(\frac{1}{x^2}\) se acerca a 0, \(\frac{x^2+1}{x^2-1}\) se acerca a 1, \(x^2\) diverge a infinito y \(-x^3\) diverge a menos infinito (−1000, −8000, …, −10⁹). Cada fila lleva un desplegable con su comportamiento. Una pregunta lee la altura con un número elegido: desde qué valor de \(x\) los valores de \(x^2\) superan 1 000 000 (para \(x &gt; 1000\)). La tabla se completa con GeoGebra con redondeo a 10 cifras, o con calculadora (decisión 20). Una pregunta retoma la L1: GeoGebra muestra 0 en \(x = 1000\) con el redondeo por defecto; ¿vale 0 \(\frac{1}{x^2}\) en ese punto?</li>
+<li><strong>Construcción, la otra dirección.</strong> Se abre la pregunta nueva: qué pasa con los valores cuando \(x\) toma valores negativos cada vez más lejos de 0. En la tabla para \(x\) = −1, −2, −5 y −10, \(1 + 2^{-x}\) vale 3, 5, 33 y 1025; \(2^x\) vale 0.5, 0.25, 0.03125 y 0.00098; \(x^3\) vale −1, −8, −125 y −1000. Aparecen los tres comportamientos. La tabla llega hasta −10 para que el redondeo no muestre \(2^x\) como 0.</li>
+<li><strong>Construcción, obstáculo.</strong> El estudiante lee los gráficos de izquierda a derecha, como cuando decide si una función es creciente (Unidad 1). Un diálogo lo pone en juego: un personaje dice que \(1 + 2^{-x}\) es decreciente, así que cuando \(x\) tiende a menos infinito sus valores bajan; el otro muestra la tabla, donde en \(x = -10\) vale 1025. Se resuelve recorriendo el gráfico de derecha a izquierda con un punto de GeoGebra. \(x^2\) da el mismo contraste: es decreciente a la izquierda del 0 y diverge a infinito cuando \(x \to -\infty\).</li>
+<li><strong>Construcción, gráficos.</strong> Cuatro gráficos se clasifican en los seis casos. Los enunciados nombran "los valores de \(f(x)\)" y usan las frases del Logro.</li>
+<li><strong>Construcción, notación.</strong> Una cápsula reúne los tres comportamientos con sus frases, las dos direcciones, la notación, la asíntota horizontal y qué dice la notación \(\lim f(x) = \infty\).</li>
+<li><strong>Construcción, funciones conocidas.</strong> Con un deslizador para \(n\), el estudiante mira las dos direcciones de \(x^n\) para \(n\) de 1 a 6 y anota cada caso; después mira \(\frac{1}{x}\), \(\frac{1}{x^2}\) y \(\frac{1}{x^3}\) lejos de 0, con una línea que dice que lo que pasa cerca de 0 es de la Actividad 2. Una cápsula resume las potencias, con \(n = 0\). El logaritmo entra con una tabla de potencias de 10 (\(\log 10 = 1\), \(\log 100 = 2\), \(\log 10^6 = 6\)), que muestra que supera cualquier techo. En GeoGebra, <code>log(x)</code> es el logaritmo natural y el de base 10 es <code>lg(x)</code>.</li>
+<li><strong>Sistematización.</strong> Diapositivas con los tres comportamientos, las dos direcciones, la notación y las potencias.</li>
+<li><strong>Práctica.</strong> Las preguntas 1, 2, 5 y 6 actuales, y cuatro funciones de la pregunta 3: \(x^5\), \(2^{x+1}\) y \(x^{-3}\) cuando \(x \to -\infty\), y \(\sqrt{x}\) cuando \(x \to \infty\).</li>
+<li><strong>Ticket.</strong> Asociar gráficos con su notación, marcando todos los gráficos de cada comportamiento, más un caso sin gráfico, como \(3^{-x}\) cuando \(x \to -\infty\).</li>
+</ol>
+<h2 id="diagnóstico-de-la-versión-implementada">Diagnóstico de la versión implementada</h2>
+<p>Llega hasta clasificar gráficos en los seis casos, anotarlos y practicar con potencias. Le faltan una tabla para \(x \to -\infty\) y una retroalimentación que aborde el obstáculo.</p>
+<h3 id="secuencia">Secuencia</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Qué hace</th>
+<th>Preguntas</th>
+<th>En PyE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recordemos</td>
+<td>Recuerda la asíntota horizontal y el comando Asíntota; graficar \(1 + 2^{-x}\) y subir una imagen; dos V/F sobre su comportamiento cuando \(x\) crece y cuando decrece</td>
+<td>2</td>
+<td>Activación</td>
+</tr>
+<tr>
+<td>Abordando un problema</td>
+<td>Tabla de \(\frac{1}{x^2}\), \(x^2\) y \(\frac{x^2+1}{x^2-1}\) para \(x\) de 10 a 1000; arrastrar cada función a su comportamiento; clasificar cuatro gráficos en los seis casos</td>
+<td>8</td>
+<td>Construcción</td>
+</tr>
+<tr>
+<td>Toma nota: notación de límite</td>
+<td>\(\lim = L\) cuando \(x \to \pm\infty\); \(\infty\) no es un número; \(f(x) \to \pm\infty\) y "diverge"</td>
+<td>—</td>
+<td>Cápsula</td>
+</tr>
+<tr>
+<td>Practica lo aprendido</td>
+<td>Leer comportamientos en dos gráficos; identificar el comportamiento de siete funciones; el logaritmo, en parejas; valores de \(n\) para el límite de \(x^n\)</td>
+<td>6</td>
+<td>Construcción y Práctica</td>
+</tr>
+<tr>
+<td>Toma nota: potencias</td>
+<td>Tabla de \(x^n\) según paridad y signo</td>
+<td>—</td>
+<td>Cápsula</td>
+</tr>
+<tr>
+<td>¿Qué aprendimos?</td>
+<td>Frases con desplegables sobre \(x \to \pm\infty\) y los tres comportamientos</td>
+<td>8 huecos</td>
+<td>Sistematización</td>
+</tr>
+<tr>
+<td>Ticket de salida</td>
+<td>Asociar cuatro gráficos a los seis casos</td>
+<td>6 huecos</td>
+<td>Ticket</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="hallazgos">Hallazgos</h3>
+<ul>
+<li><strong>\(x \to -\infty\) no se construye.</strong> La tabla solo tiene \(x\) positivos, sus tres funciones son pares y ninguna diverge a menos infinito, así que muestra dos de los tres comportamientos. La otra dirección aparece por primera vez en los gráficos, ya mezclada con los seis casos.</li>
+<li><strong>No hay obstáculo.</strong> La clasificación de los gráficos es el lugar natural para confundir la dirección de \(x\) con la de los valores, y las preguntas 3 a 8 no tienen retroalimentación que la aborde. Es esperable que el estudiante intercambie los gráficos 3 y 4 en las preguntas 7 y 8, y que en la pregunta 2 de la Práctica marque \(g(x) \to -\infty\) cuando \(x \to -\infty\).</li>
+<li><strong>La definición se debilita respecto de la L1.</strong> La Toma nota dice que los valores "se acercan a un número fijo \(L\)", y la L1 decía "tanto como queramos". Al pie de la letra, la frase la cumple también otro número: \(\frac{x^2+1}{x^2-1}\) baja hacia 1 y, por eso, se acerca cada vez más a 0. Las preguntas 3 y 4 piden gráficos cuyos valores "se acercan cada vez más a un número", con clave el gráfico 1, una oscilación cuya distancia al número sube y baja. La definición de asíntota horizontal de U1 A1 L4 usa la misma frase.</li>
+<li><strong>Léxico.</strong> La Toma nota, la Sistematización y las preguntas 5 a 8 definen la divergencia con "\(f(x)\) crece indefinidamente", que la logística de la L1 cumple sin diverger. Usan "crece" y "decrece" para los valores cuando \(x \to -\infty\), los mismos verbos de función creciente y decreciente. En "A medida que \(x\) crece indefinidamente, sus valores…", el posesivo queda pegado a \(x\) y se lee como los valores de \(x\).</li>
+<li><strong>El logaritmo queda sin cierre, y GeoGebra lo hace ver con límite.</strong> La pregunta 4 de la Práctica no tiene respuesta esperada. Al alejar el zoom, los dos ejes se comprimen igual y el logaritmo se ve cada vez más plano.</li>
+<li><strong>La clase supone lo que la Unidad 1 nueva ya no trae.</strong> El comando Asíntota, el nombre asíntota horizontal y \(\frac{1}{x}\) venían de U1 A1 L4, cuyas asíntotas pasan a la U2 (decisión del 2026-11-18). Las potencias de exponente negativo venían de U1 A1 L3.</li>
+<li><strong>El redondeo de GeoGebra contradice la tabla.</strong> Con dos decimales, \(\frac{1}{1000^2}\) aparece como 0 y \(\frac{1000^2+1}{1000^2-1}\) como 1. El estudiante escribe 0 y 1, Moodle espera 0.000001 y 1.000002, y la respuesta marcada incorrecta refuerza "llega a 0".</li>
+<li><strong>La Práctica mezcla construcción y práctica.</strong> Las potencias se introducen en la Práctica y se formalizan después, en una Toma nota.</li>
+</ul>
+<h3 id="errores">Errores</h3>
+<ul>
+<li><strong>La notación de la divergencia está mezclada.</strong> El equipo la cambió a flechas (\(f(x) \to \infty\)) en el guion de la Toma nota, la Sistematización y el Ticket, y dejó \(\lim_{x \to -\infty} x^n = \infty\) en la pregunta 5 de la Práctica y en la evaluación de la Actividad 1. El curso usa \(\lim f(x) = \infty\) (decisión del docente, 2026-11-18): hay que unificar aquí, en la L3 y en las lecciones de la Actividad 2 que usen límites infinitos.</li>
+<li><strong>Guion y Moodle.</strong> Moodle conserva una versión anterior de la Toma nota ("Análogamente, anotaremos:") y le falta la frase del guion que dice que la función que diverge no tiene límite.</li>
+<li><strong>Ticket en Moodle.</strong> El guion es una tabla donde se marcan todos los gráficos de cada comportamiento. En Moodle cada fila es un desplegable de una sola opción, y en dos filas hay dos gráficos correctos (3 y 4; 2 y 3), así que el estudiante marca uno y no se comprueba el otro. Hay que verificarlo en la plataforma.</li>
+<li><strong>Toma nota de potencias.</strong> Dice que resume "los casos posibles" con \(n\) entero y omite \(n = 0\).</li>
+<li><strong>Recordemos.</strong> Atribuye a la L1 el nombre "asíntota horizontal", que la L1 no usa. Mezcla "comportamiento al infinito" y "comportamiento asintótico" en dos afirmaciones seguidas.</li>
+<li><strong>Tabla.</strong> En \(x = 800\), \(\frac{1}{x^2}\) vale 0.0000015625 y la tabla muestra 0.000002. La fila de \(\frac{x^2+1}{x^2-1}\) usa diez decimales en el guion, y el hueco 3 acepta solo 1.000002.</li>
+<li><strong>Redacción y notación.</strong> "su valores" (es "sus"); "::"; \(\log(x)\) sin base; en el guion, "Notaciòn" y "Pàgina", y LaTeX roto (<code>(\f(x)</code>, <code>x\to infty</code>); decimales con coma (0,01; 1,020202). La Toma nota escribe "diverge a infinito" y la L3 y la Actividad 3, "al infinito": hay que unificar.</li>
+<li>Las demás claves se verificaron y están correctas: la tabla, el arrastre, las preguntas 3 a 8, la Práctica y el Ticket.</li>
+</ul>
+<h2 id="recursos">Recursos</h2>
+<ul>
+<li><strong>Imágenes:</strong> <code>U2-A1_Clase2_Imagen1</code> a <code>Imagen19</code> en Drive, también en Moodle: los cuatro gráficos de la Construcción, los seis de la Toma nota, dos de la Práctica, tres de las potencias y cuatro del Ticket. Se reutilizan, redibujados en la paleta MatCon, salvo el gráfico 1 de la Construcción.</li>
+<li><strong>GeoGebra:</strong> el estudiante grafica libremente; no hay recursos incrustados. Hacen falta dos nuevos: un punto que recorre el gráfico de derecha a izquierda y un deslizador para \(n\) en \(x^n\).</li>
+<li>No hay videos ni personajes.</li>
+</ul>
+<h2 id="se-conserva-y-sale">Se conserva y sale</h2>
+<ul>
+<li><strong>Se conserva:</strong> la tabla de las tres funciones, con \(-x^3\) agregada; los gráficos 2, 3 y 4 y las seis preguntas de clasificación, reescritas con "los valores de \(f(x)\)" y las frases del Logro; la Toma nota de notación en la versión del guion, con \(\lim f(x) = \pm\infty\) en lugar de las flechas y sin "crece indefinidamente"; la tabla de potencias, con \(n = 0\); las preguntas 1, 2, 5 y 6 de la Práctica y cuatro funciones de la 3; el Ticket en la versión del guion.</li>
+<li><strong>Sale:</strong> las flechas \(f(x) \to \pm\infty\) del guion; "comportamiento asintótico" como sinónimo; el comando Asíntota y la captura que se sube en el Recordemos (decisión 17); el arrastre después de la tabla, que pasa a un desplegable por fila; tres funciones de la pregunta 3 de la Práctica; el gráfico 1 de la Construcción, la oscilación que se apaga, que pasa a la L3.</li>
+</ul>
+<h2 id="para-decidir">Para decidir</h2>
+<p>Sin decisiones pendientes.</p>
+
+</main>
+</div>
+</body>
+</html>

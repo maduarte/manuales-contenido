@@ -1,0 +1,303 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LDI · Ficha U1 A2 L01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --ground:#fcfbfe; --surface:#f3f1f8; --surface-2:#ebe7f4; --line:#e0dcea;
+  --ink:#231d3b; --muted:#625c76;
+  --purple:#423475; --purple-ink:#423475; --on-purple:#ffffff;
+  --red:#d45762; --red-ink:#a8323e; --red-tint:#fbeef0;
+  --green:#61b89a; --green-ink:#2c7a5f; --green-tint:#eaf6f1;
+  --blue:#4aa7ba; --blue-ink:#27788a;
+  --orange:#f3972d; --orange-ink:#a85f0c;
+  --yellow:#f0f57d;
+  --code-bg:#eeebf6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+    --ink:#ece9f6; --muted:#aaa4c2;
+    --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+    --red-ink:#f0939b; --red-tint:#2e1b2c;
+    --green-ink:#86d6b9; --green-tint:#18302b;
+    --blue-ink:#85cfdd; --orange-ink:#f7b667;
+    --code-bg:#2a2548;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+  --ink:#ece9f6; --muted:#aaa4c2;
+  --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+  --red-ink:#f0939b; --red-tint:#2e1b2c;
+  --green-ink:#86d6b9; --green-tint:#18302b;
+  --blue-ink:#85cfdd; --orange-ink:#f7b667;
+  --code-bg:#2a2548;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.6;margin:0}
+.strip{display:flex;height:6px}
+.strip span{flex:1}
+header.top{background:var(--purple);color:var(--on-purple);padding-block:2.4rem 2.2rem;padding-inline:16px}
+header.top .in{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin:0 0 .6rem}
+header.top h1{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.15;margin:0 0 .8rem;text-wrap:balance;font-weight:650;letter-spacing:-.01em}
+header.top .lead{max-width:68ch;margin:0;font-size:1.05rem;opacity:.93}
+.layout{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:2rem 4rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1rem);align-self:start;font-size:.88rem;max-height:calc(100vh - 2rem);overflow:auto}
+nav.toc p{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .5rem}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
+nav.toc a{color:var(--ink);text-decoration:none;display:block;padding:.3rem .55rem;border-radius:6px;line-height:1.35}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--surface-2);outline:none}
+nav.toc .sub a{padding-left:1.3rem;color:var(--muted)}
+main{min-width:0;max-width:760px}
+main h2{font-size:1.55rem;line-height:1.25;margin:3rem 0 1rem;color:var(--purple-ink);text-wrap:balance;font-weight:650}
+main h2:first-child{margin-top:0}
+main h3{font-size:1.2rem;margin:2.2rem 0 .7rem;text-wrap:balance;font-weight:620}
+main h4{font-size:1.1rem;margin:1.6rem 0 .5rem}
+p,li{max-width:70ch}
+a{color:var(--purple-ink)}
+code{font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-size:.88em;background:var(--code-bg);padding:.08em .35em;border-radius:4px;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
+ul,ol{padding-left:1.3rem}
+li{margin:.3rem 0}
+li::marker{color:var(--purple-ink)}
+.tablewrap{overflow-x:auto;margin:1.2rem 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+th{background:var(--purple);color:var(--on-purple);text-align:left;font-weight:600;padding:.55rem .7rem}
+td{padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--surface)}
+blockquote{margin:1.4rem 0;padding:1rem 1.2rem;background:var(--surface);border-radius:10px}
+blockquote p{margin:.4rem 0}
+blockquote .tag{display:inline-block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:650;margin-bottom:.3rem;color:var(--muted)}
+blockquote.capsula{background:var(--green-tint)}
+blockquote.capsula .tag{color:var(--green-ink)}
+blockquote.revision{background:var(--red-tint)}
+blockquote.revision .tag{color:var(--red-ink)}
+.hito{display:flex;gap:.7rem;align-items:baseline;margin:1.6rem 0 .4rem;font-size:1.02rem;font-weight:620;line-height:1.4}
+.hito .hid{flex:none;background:var(--purple);color:var(--on-purple);font-family:"Geist Mono",ui-monospace,monospace;font-size:.78rem;font-weight:600;padding:.15rem .5rem;border-radius:999px;position:relative;top:-.08em}
+.hito + ul{margin-top:.2rem;padding-left:3.4rem}
+.leccion{border-top:1px solid var(--line);padding-top:1.4rem;margin-top:2.6rem}
+.leccion h4{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h4 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+details{margin:1rem 0}
+summary{cursor:pointer;font-weight:600;color:var(--purple-ink);padding:.35rem 0}
+summary:focus-visible{outline:2px solid var(--purple-ink);outline-offset:3px;border-radius:4px}
+.arco{list-style:none;padding:0;counter-reset:a;display:grid;gap:.7rem}
+.arco li{counter-increment:a;position:relative;padding-left:3rem;min-height:2.2rem;max-width:none}
+.arco li::before{content:counter(a);position:absolute;left:0;top:0;background:var(--surface-2);color:var(--purple-ink);font-weight:650;border-radius:50%;width:2.2rem;height:2.2rem;display:grid;place-items:center;font-family:"Geist Mono",monospace}
+.paso{display:grid;grid-template-columns:2.4rem 1fr;gap:.9rem;margin:1.3rem 0}
+.paso .num{font-family:"Geist Mono",ui-monospace,monospace;font-weight:600;color:var(--purple-ink);background:var(--surface-2);border-radius:8px;height:2.4rem;display:grid;place-items:center}
+.paso p{margin:0}
+.paso + ul{padding-left:4.6rem}
+.fases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem;margin:1.5rem 0 2rem}
+.fase{background:var(--surface);border-radius:10px;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.35rem}
+.fase .fn{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.fase .ft{font-weight:650;color:var(--purple-ink);font-size:1.05rem}
+.fase .fp{font-family:"Geist Mono",monospace;font-size:.82rem;color:var(--muted)}
+.fase .rv{margin-top:auto;display:flex;flex-wrap:wrap;gap:.3rem}
+.fase .rv span{font-size:.75rem;font-weight:600;color:var(--red-ink);background:var(--red-tint);border-radius:999px;padding:.1rem .55rem}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;gap:1.5rem}
+  nav.toc{position:static;max-height:none;background:var(--surface);border-radius:10px;padding:1rem}
+  .fases{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:460px){ .fases{grid-template-columns:1fr} .hito + ul{padding-left:1.3rem} .paso + ul{padding-left:1.3rem} }
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+
+header.top a{color:inherit;text-underline-offset:.2em}
+.enl{display:flex;flex-wrap:wrap;gap:.45rem;margin:.5rem 0 1rem}
+.enl a{display:inline-flex;align-items:center;gap:.45rem;border:1px solid var(--line);border-radius:999px;padding:.28rem .75rem;font-size:.86rem;line-height:1.35;text-decoration:none;color:var(--ink);background:var(--ground)}
+.enl a:hover,.enl a:focus-visible{border-color:var(--c);outline:none}
+.enl i{width:.6rem;height:.6rem;border-radius:50%;background:var(--c);flex:none}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.7rem;margin:1rem 0 1.6rem}
+a.card{display:grid;grid-template-columns:.8rem 1fr;gap:.8rem;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem;text-decoration:none;color:var(--ink);transition:border-color .15s,transform .15s}
+a.card:hover,a.card:focus-visible{border-color:var(--c);transform:translateY(-1px);outline:none}
+a.card i{width:.8rem;height:.8rem;border-radius:50%;background:var(--c);margin-top:.3rem}
+a.card b{display:block;font-weight:600;line-height:1.3}
+a.card span{display:block;color:var(--muted);font-size:.86rem;margin-top:.2rem;line-height:1.4}
+main h3.tema{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:1.6rem 0 .3rem}
+.lecs{margin:0 0 1rem;border-top:1px solid var(--line)}
+.lec{padding:.75rem 0;border-bottom:1px solid var(--line)}
+.lec p{margin:0;max-width:none}
+.lec .cod{font-family:"Geist Mono",ui-monospace,monospace;font-size:.8rem;font-weight:600;color:var(--purple-ink);margin-right:.45rem}
+.lec small{display:block;color:var(--muted);font-size:.84rem;margin-top:.1rem}
+.lec .enl{margin:.5rem 0 0}
+.leccion h3{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h3 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+table.meta th{background:var(--surface-2);color:var(--ink);width:11rem}
+.nota{color:var(--muted);font-size:.9rem}
+@media (prefers-reduced-motion:reduce){a.card{transition:none}}
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script></head>
+<body>
+<div class="strip"><span style="background:#423475"></span><span style="background:#d45762"></span><span style="background:#61b89a"></span><span style="background:#f0f57d"></span><span style="background:#4aa7ba"></span><span style="background:#f3972d"></span></div>
+<header class="top"><div class="in">
+<p class="eyebrow"><a href="../index.html">LDI</a> · Ficha de una lección implementada</p>
+<h1>U1 A2 L1 · Componiendo con tablas y máquinas</h1>
+<p class="lead">Lección 1 de la Actividad 2 de la Unidad 1 del curso implementado, base de U1T2L1 en el curso nuevo.</p>
+</div></header>
+<div class="layout">
+<nav class="toc" aria-label="Contenido"><p>Contenido</p><ol><li><a href="#secuencia-del-curso-implementado">Secuencia del curso implementado</a></li><li><a href="#problema-y-contexto">Problema y contexto</a></li><li><a href="#cadena-de-ideas">Cadena de ideas</a></li><li><a href="#contraste-con-el-estándar-de-pye">Contraste con el estándar de PyE</a></li><li><a href="#errores-y-problemas">Errores y problemas</a></li><li><a href="#recursos">Recursos</a></li><li><a href="#propuesta-de-remodelación">Propuesta de remodelación</a></li><li><a href="#para-decidir">Para decidir</a></li></ol></nav>
+<main>
+<div class="enl"><a style="--c:#4aa7ba" href="../../LDI_ruta_curso_implementado.html#lección-1-componiendo-con-tablas-y-máquinas"><i></i>Lección en el curso implementado</a><a style="--c:#423475" href="../ruta_U1.html#U1T2L1"><i></i>Propuesta nueva · U1T2L1</a></div><div class="tablewrap"><table>
+<tbody>
+<tr>
+<td>Guion de Drive</td>
+<td><code>LDI_U1_A2_Clase 1: Composición de funciones</code></td>
+</tr>
+<tr>
+<td>Objetivo declarado</td>
+<td>Componer funciones presentadas a través de tablas y máquinas, interpretando los resultados y procedimientos en problemas contextuales.</td>
+</tr>
+<tr>
+<td>Veredicto</td>
+<td><strong>Remodelar</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="secuencia-del-curso-implementado">Secuencia del curso implementado</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Qué hace</th>
+<th>Preguntas</th>
+<th>En PyE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recordemos</td>
+<td>Función como máquina con un único resultado; evaluar \(f(-1)\) y \(g(4)\)</td>
+<td>3 huecos</td>
+<td>Activación</td>
+</tr>
+<tr>
+<td>Video introductorio (solo en el guion)</td>
+<td>Narración del globo meteorológico: principio de Arquímedes, por qué revienta y por qué interesa predecirlo</td>
+<td>—</td>
+<td>Contexto</td>
+</tr>
+<tr>
+<td>Presentando una situación</td>
+<td>Diálogo de Alejandra y Nicolás: el globo revienta a 400 mbar; tabla de presión según altura</td>
+<td>—</td>
+<td>Contexto</td>
+</tr>
+<tr>
+<td>Analizando la situación (1)</td>
+<td>Qué saben, qué falta, leer la tabla, notación \(p(h)\), evaluar \(p\), qué significa "es función de"</td>
+<td>6</td>
+<td>Construcción, hito 1</td>
+</tr>
+<tr>
+<td>Analizando la situación (2)</td>
+<td>Tabla de altura según tiempo; \(t(h)\) y \(h(t)\); evaluar; presión a los 25 min cruzando las dos tablas; \(p(h(0))\)</td>
+<td>5</td>
+<td>Construcción, hito 1</td>
+</tr>
+<tr>
+<td>Toma nota · Composición</td>
+<td>Define \(p \circ h\) y \((p \circ h)(t) = p(h(t))\); se lee de izquierda a derecha y se evalúa de derecha a izquierda</td>
+<td>—</td>
+<td>Cápsula</td>
+</tr>
+<tr>
+<td>Practica lo aprendido</td>
+<td>Rendimiento de un auto según velocidad y costo de 100 km según rendimiento; completar la tabla de la compuesta</td>
+<td>2</td>
+<td>Construcción, aplicación</td>
+</tr>
+<tr>
+<td>Toma nota · Máquinas</td>
+<td>\(f(x)=x^2\), \(g(x)=3x-1\): animación que encadena las máquinas hasta \(f \circ g\)</td>
+<td>—</td>
+<td>Cápsula, hito 2</td>
+</tr>
+<tr>
+<td>Toma nota · Operaciones</td>
+<td>Composición frente a suma de funciones, con máquinas</td>
+<td>—</td>
+<td>Cápsula, hito 2</td>
+</tr>
+<tr>
+<td>Practica lo aprendido</td>
+<td>Armar máquinas para \(x^2+10\) y \((x+10)^2\); el orden importa; \(h\) tal que \(f \circ h = x\); arrastrar resultados</td>
+<td>5</td>
+<td>Construcción, hito 2, y Práctica</td>
+</tr>
+<tr>
+<td>¿Qué aprendimos?</td>
+<td>Frases para completar sobre la composición y el orden</td>
+<td>2 huecos</td>
+<td>Sistematización</td>
+</tr>
+<tr>
+<td>Ticket de salida</td>
+<td>Comisión de un vendedor según autos vendidos y ventas por día; completar la tabla compuesta e identificar \(C \circ V\)</td>
+<td>2</td>
+<td>Ticket</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="problema-y-contexto">Problema y contexto</h2>
+<p>El globo meteorológico motiva bien la composición: la presión depende de la altura y la altura del tiempo, así que la presión en el tiempo es una cadena de dos funciones. La pregunta del relato es cuánto dura el vuelo hasta que el globo revienta.</p>
+<p><strong>La lección no responde esa pregunta.</strong> El globo revienta a 400 mbar y la tabla de presión llega solo a 540 mbar (5000 m), y la de altura se corta a los 25 minutos. El narrador dice que la situación se retoma durante la actividad. Con la decisión del equipo, eso está bien: el contexto motiva y la construcción puede seguir en lo matemático.</p>
+<p><strong>Las dos tablas casi no se pueden componer.</strong> Las alturas de la Tabla 2 (1520, 2150, 3130, 4320) no están en la Tabla 1, así que \(p(h(t))\) solo se calcula en \(t = 0\) y \(t = 25\). La lección lo resuelve eligiendo esos dos puntos, sin decirlo. Es una oportunidad: el hueco muestra que para componer la salida de \(h\) tiene que estar en el dominio de \(p\), que es la idea de la Lección 2.</p>
+<h2 id="cadena-de-ideas">Cadena de ideas</h2>
+<ol type="1">
+<li>Una función asigna a cada entrada un único valor, y se puede ver como una máquina.</li>
+<li>Cuando una cantidad depende de otra que a su vez depende de una tercera, se encadenan dos funciones.</li>
+<li>Para evaluar la cadena en una entrada, se evalúa la primera función y su resultado entra en la segunda: \(p(h(t))\).</li>
+<li>La cadena es una función nueva, \(p \circ h\), que se lee de izquierda a derecha y se evalúa de derecha a izquierda.</li>
+<li>Componer no es sumar: en la suma las dos funciones reciben la misma entrada.</li>
+<li>El orden importa: en general \(f \circ g \neq g \circ f\).</li>
+<li>Hay funciones que deshacen a otras: si \(f(x) = x + 10\) y \(h(x) = x - 10\), entonces \((f \circ h)(x) = x\). Anticipa la inversa (Actividad 3).</li>
+</ol>
+<h2 id="contraste-con-el-estándar-de-pye">Contraste con el estándar de PyE</h2>
+<ul>
+<li><strong>Secuencia.</strong> Calza casi entera con Activación, Contexto, Construcción en dos hitos (componer en contexto, componer expresiones con máquinas) y Ticket. Hay que separar una Práctica: hoy la práctica final mezcla tareas del hito 2 con aplicación.</li>
+<li><strong>Obstáculo.</strong> No hay. Las preguntas llevan de la mano hasta \(p(h(25))\) y no hay un camino fallido. Un candidato natural: intentar \(p(h(10))\) y no encontrar 2150 en la Tabla 1.</li>
+<li><strong>Preguntas de lectura.</strong> Las preguntas 1 a 3 del primer cuestionario (qué saben, qué falta, mínimos y máximos de la tabla) leen el contexto y no hacen avanzar la idea. Se pueden reducir a una.</li>
+<li><strong>Cápsulas.</strong> Las tres "Toma nota" son cápsulas razonables. La de composición está bien escrita.</li>
+<li><strong>Sistematización.</strong> Es un cuestionario de frases para completar; en PyE son diapositivas. El contenido sirve.</li>
+<li><strong>Diálogos.</strong> Solo entregan datos. Con el criterio de PyE, el diálogo puede sostener la duda de cómo cruzar las dos tablas.</li>
+<li><strong>Ticket.</strong> Bueno: pide la misma idea en otro contexto y la notación \(C \circ V\).</li>
+</ul>
+<h2 id="errores-y-problemas">Errores y problemas</h2>
+<ul>
+<li><strong>Clave errónea en el guion:</strong> \(p(h(0)) = p(500) = 1030\). Es 954, porque \(p(500) = 954\). Moodle ya está corregido.</li>
+<li><strong>Clave discutible:</strong> en "qué tareas les falta", la alternativa "asegurarse de llenar el globo con 20 litros de helio" es correcta, pero es una condición del experimento y no una tarea de cálculo. La otra correcta (a qué altura la presión es 400 mbar) no se puede hacer con la tabla, que no llega a 400.</li>
+<li><strong>La práctica del auto no compone de verdad.</strong> La Tabla 2 lista los rendimientos en el mismo orden que la Tabla 1 (18, 19, 16, 13), así que la tabla de la compuesta se llena copiando la fila del costo en orden. Hay que desordenar la Tabla 2. Los datos son consistentes: el litro cuesta unos 750 pesos en las cuatro columnas.</li>
+<li><strong>Diferencias con Moodle:</strong> la segunda máquina pide \((x+10)^2\) en Moodle y \(x^2+20x+100\) en el guion; el video de la situación no quedó en Moodle; la tabla de la "Respuesta para el profesor" del guion es una retroalimentación en Moodle.</li>
+<li><strong>Notación:</strong> el guion usa decimales y miles sin espacio (5000) y <code>$...$</code>; en el estándar van () y 5 000.</li>
+</ul>
+<h2 id="recursos">Recursos</h2>
+<ul>
+<li>Personajes Alejandra y Nicolás, con avatares en el servidor viejo (<code>static.sumaysigue.uchile.cl/LiceoDigital/img/p1.png</code>, <code>p2.png</code>).</li>
+<li>Diagrama que cruza las dos tablas; máquinas de \(f\) y \(g\) con estilo propio; animación de cinco etapas de \(f \circ g\); máquinas de composición y de suma; tres arrastrables (<code>ddimageortext</code>). Están en Moodle y en <code>LDI_U1_Imágenes y Geogebras</code> de Drive. El estilo de las máquinas se puede conservar si se redibujan en la paleta MatCon.</li>
+</ul>
+<h2 id="propuesta-de-remodelación">Propuesta de remodelación</h2>
+<ul>
+<li><strong>Se conserva:</strong> el globo como contexto; el cruce de las dos tablas hasta \(p(h(25))\); la cápsula de composición; las máquinas como representación; el contraste con la suma; el ticket del vendedor.</li>
+<li><strong>Se quita:</strong> las preguntas de lectura del contexto (mínimos y máximos, qué saben, qué falta), salvo una; el video narrado, porque el curso no usa videos de contexto; lo que cuenta (por qué revienta el globo y por qué interesa predecirlo) pasa a un Contexto breve en texto e imagen.</li>
+<li><strong>Se agrega:</strong> un intento fallido con \(p(h(10))\), que deja planteado que la salida de una función tiene que ser entrada válida de la otra (sin resolverlo, para la Lección 2); una Práctica separada; una Sistematización en diapositivas.</li>
+<li><strong>Se corrige:</strong> la clave de \(p(h(0))\); el orden de la Tabla 2 del auto; la notación.</li>
+</ul>
+<h2 id="para-decidir">Para decidir</h2>
+<ul>
+<li>Si la pregunta de \(f \circ h = x\) se queda aquí o pasa a la actividad de la inversa.</li>
+<li>Si los personajes Alejandra y Nicolás siguen en el curso nuevo (decisión 19).</li>
+<li>Si la pregunta del vuelo del globo se cierra en alguna lección de la Actividad 2; hay que verificarlo al leer la L2 y la L3.</li>
+</ul>
+
+</main>
+</div>
+</body>
+</html>

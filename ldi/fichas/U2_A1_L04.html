@@ -1,0 +1,331 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LDI · Ficha U2 A1 L04</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --ground:#fcfbfe; --surface:#f3f1f8; --surface-2:#ebe7f4; --line:#e0dcea;
+  --ink:#231d3b; --muted:#625c76;
+  --purple:#423475; --purple-ink:#423475; --on-purple:#ffffff;
+  --red:#d45762; --red-ink:#a8323e; --red-tint:#fbeef0;
+  --green:#61b89a; --green-ink:#2c7a5f; --green-tint:#eaf6f1;
+  --blue:#4aa7ba; --blue-ink:#27788a;
+  --orange:#f3972d; --orange-ink:#a85f0c;
+  --yellow:#f0f57d;
+  --code-bg:#eeebf6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+    --ink:#ece9f6; --muted:#aaa4c2;
+    --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+    --red-ink:#f0939b; --red-tint:#2e1b2c;
+    --green-ink:#86d6b9; --green-tint:#18302b;
+    --blue-ink:#85cfdd; --orange-ink:#f7b667;
+    --code-bg:#2a2548;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+  --ink:#ece9f6; --muted:#aaa4c2;
+  --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+  --red-ink:#f0939b; --red-tint:#2e1b2c;
+  --green-ink:#86d6b9; --green-tint:#18302b;
+  --blue-ink:#85cfdd; --orange-ink:#f7b667;
+  --code-bg:#2a2548;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.6;margin:0}
+.strip{display:flex;height:6px}
+.strip span{flex:1}
+header.top{background:var(--purple);color:var(--on-purple);padding-block:2.4rem 2.2rem;padding-inline:16px}
+header.top .in{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin:0 0 .6rem}
+header.top h1{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.15;margin:0 0 .8rem;text-wrap:balance;font-weight:650;letter-spacing:-.01em}
+header.top .lead{max-width:68ch;margin:0;font-size:1.05rem;opacity:.93}
+.layout{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:2rem 4rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1rem);align-self:start;font-size:.88rem;max-height:calc(100vh - 2rem);overflow:auto}
+nav.toc p{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .5rem}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
+nav.toc a{color:var(--ink);text-decoration:none;display:block;padding:.3rem .55rem;border-radius:6px;line-height:1.35}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--surface-2);outline:none}
+nav.toc .sub a{padding-left:1.3rem;color:var(--muted)}
+main{min-width:0;max-width:760px}
+main h2{font-size:1.55rem;line-height:1.25;margin:3rem 0 1rem;color:var(--purple-ink);text-wrap:balance;font-weight:650}
+main h2:first-child{margin-top:0}
+main h3{font-size:1.2rem;margin:2.2rem 0 .7rem;text-wrap:balance;font-weight:620}
+main h4{font-size:1.1rem;margin:1.6rem 0 .5rem}
+p,li{max-width:70ch}
+a{color:var(--purple-ink)}
+code{font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-size:.88em;background:var(--code-bg);padding:.08em .35em;border-radius:4px;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
+ul,ol{padding-left:1.3rem}
+li{margin:.3rem 0}
+li::marker{color:var(--purple-ink)}
+.tablewrap{overflow-x:auto;margin:1.2rem 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+th{background:var(--purple);color:var(--on-purple);text-align:left;font-weight:600;padding:.55rem .7rem}
+td{padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--surface)}
+blockquote{margin:1.4rem 0;padding:1rem 1.2rem;background:var(--surface);border-radius:10px}
+blockquote p{margin:.4rem 0}
+blockquote .tag{display:inline-block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:650;margin-bottom:.3rem;color:var(--muted)}
+blockquote.capsula{background:var(--green-tint)}
+blockquote.capsula .tag{color:var(--green-ink)}
+blockquote.revision{background:var(--red-tint)}
+blockquote.revision .tag{color:var(--red-ink)}
+.hito{display:flex;gap:.7rem;align-items:baseline;margin:1.6rem 0 .4rem;font-size:1.02rem;font-weight:620;line-height:1.4}
+.hito .hid{flex:none;background:var(--purple);color:var(--on-purple);font-family:"Geist Mono",ui-monospace,monospace;font-size:.78rem;font-weight:600;padding:.15rem .5rem;border-radius:999px;position:relative;top:-.08em}
+.hito + ul{margin-top:.2rem;padding-left:3.4rem}
+.leccion{border-top:1px solid var(--line);padding-top:1.4rem;margin-top:2.6rem}
+.leccion h4{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h4 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+details{margin:1rem 0}
+summary{cursor:pointer;font-weight:600;color:var(--purple-ink);padding:.35rem 0}
+summary:focus-visible{outline:2px solid var(--purple-ink);outline-offset:3px;border-radius:4px}
+.arco{list-style:none;padding:0;counter-reset:a;display:grid;gap:.7rem}
+.arco li{counter-increment:a;position:relative;padding-left:3rem;min-height:2.2rem;max-width:none}
+.arco li::before{content:counter(a);position:absolute;left:0;top:0;background:var(--surface-2);color:var(--purple-ink);font-weight:650;border-radius:50%;width:2.2rem;height:2.2rem;display:grid;place-items:center;font-family:"Geist Mono",monospace}
+.paso{display:grid;grid-template-columns:2.4rem 1fr;gap:.9rem;margin:1.3rem 0}
+.paso .num{font-family:"Geist Mono",ui-monospace,monospace;font-weight:600;color:var(--purple-ink);background:var(--surface-2);border-radius:8px;height:2.4rem;display:grid;place-items:center}
+.paso p{margin:0}
+.paso + ul{padding-left:4.6rem}
+.fases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem;margin:1.5rem 0 2rem}
+.fase{background:var(--surface);border-radius:10px;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.35rem}
+.fase .fn{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.fase .ft{font-weight:650;color:var(--purple-ink);font-size:1.05rem}
+.fase .fp{font-family:"Geist Mono",monospace;font-size:.82rem;color:var(--muted)}
+.fase .rv{margin-top:auto;display:flex;flex-wrap:wrap;gap:.3rem}
+.fase .rv span{font-size:.75rem;font-weight:600;color:var(--red-ink);background:var(--red-tint);border-radius:999px;padding:.1rem .55rem}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;gap:1.5rem}
+  nav.toc{position:static;max-height:none;background:var(--surface);border-radius:10px;padding:1rem}
+  .fases{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:460px){ .fases{grid-template-columns:1fr} .hito + ul{padding-left:1.3rem} .paso + ul{padding-left:1.3rem} }
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+
+header.top a{color:inherit;text-underline-offset:.2em}
+.enl{display:flex;flex-wrap:wrap;gap:.45rem;margin:.5rem 0 1rem}
+.enl a{display:inline-flex;align-items:center;gap:.45rem;border:1px solid var(--line);border-radius:999px;padding:.28rem .75rem;font-size:.86rem;line-height:1.35;text-decoration:none;color:var(--ink);background:var(--ground)}
+.enl a:hover,.enl a:focus-visible{border-color:var(--c);outline:none}
+.enl i{width:.6rem;height:.6rem;border-radius:50%;background:var(--c);flex:none}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.7rem;margin:1rem 0 1.6rem}
+a.card{display:grid;grid-template-columns:.8rem 1fr;gap:.8rem;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem;text-decoration:none;color:var(--ink);transition:border-color .15s,transform .15s}
+a.card:hover,a.card:focus-visible{border-color:var(--c);transform:translateY(-1px);outline:none}
+a.card i{width:.8rem;height:.8rem;border-radius:50%;background:var(--c);margin-top:.3rem}
+a.card b{display:block;font-weight:600;line-height:1.3}
+a.card span{display:block;color:var(--muted);font-size:.86rem;margin-top:.2rem;line-height:1.4}
+main h3.tema{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:1.6rem 0 .3rem}
+.lecs{margin:0 0 1rem;border-top:1px solid var(--line)}
+.lec{padding:.75rem 0;border-bottom:1px solid var(--line)}
+.lec p{margin:0;max-width:none}
+.lec .cod{font-family:"Geist Mono",ui-monospace,monospace;font-size:.8rem;font-weight:600;color:var(--purple-ink);margin-right:.45rem}
+.lec small{display:block;color:var(--muted);font-size:.84rem;margin-top:.1rem}
+.lec .enl{margin:.5rem 0 0}
+.leccion h3{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h3 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+table.meta th{background:var(--surface-2);color:var(--ink);width:11rem}
+.nota{color:var(--muted);font-size:.9rem}
+@media (prefers-reduced-motion:reduce){a.card{transition:none}}
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script></head>
+<body>
+<div class="strip"><span style="background:#423475"></span><span style="background:#d45762"></span><span style="background:#61b89a"></span><span style="background:#f0f57d"></span><span style="background:#4aa7ba"></span><span style="background:#f3972d"></span></div>
+<header class="top"><div class="in">
+<p class="eyebrow"><a href="../index.html">LDI</a> · Ficha de una lección implementada</p>
+<h1>U2 A1 L4 · Precisando la definición de límite</h1>
+<p class="lead">Lección 4 de la Actividad 1 de la Unidad 2 del curso implementado, base de U2T1L4 en el curso nuevo.</p>
+</div></header>
+<div class="layout">
+<nav class="toc" aria-label="Contenido"><p>Contenido</p><ol><li><a href="#qué-logra-la-clase">Qué logra la clase</a></li><li class="sub"><a href="#logro">Logro</a></li><li class="sub"><a href="#lo-que-queda-para-otras-lecciones">Lo que queda para otras lecciones</a></li><li class="sub"><a href="#cómo-lo-logra">Cómo lo logra</a></li><li><a href="#diagnóstico-de-la-versión-implementada">Diagnóstico de la versión implementada</a></li><li class="sub"><a href="#secuencia">Secuencia</a></li><li class="sub"><a href="#hallazgos">Hallazgos</a></li><li class="sub"><a href="#errores">Errores</a></li><li><a href="#recursos">Recursos</a></li><li><a href="#se-conserva-y-sale">Se conserva y sale</a></li><li><a href="#para-decidir">Para decidir</a></li></ol></nav>
+<main>
+<div class="enl"><a style="--c:#4aa7ba" href="../../LDI_ruta_curso_implementado.html#lección-4-precisando-la-definición-de-límite"><i></i>Lección en el curso implementado</a><a style="--c:#423475" href="../ruta_U2.html#U2T1L4"><i></i>Propuesta nueva · U2T1L4</a></div><div class="tablewrap"><table>
+<tbody>
+<tr>
+<td>Guion de Drive</td>
+<td><code>LDI_U2_A1_Clase 4</code></td>
+</tr>
+<tr>
+<td>Objetivo declarado</td>
+<td>Construir una definición intuitiva de límite de \(f(x)\) cuando \(x\) tiende a infinito o a menos infinito.</td>
+</tr>
+<tr>
+<td>Objetivo propuesto</td>
+<td>Escribir con la distancia qué significa que el límite de \(f(x)\) sea \(L\) cuando \(x\) tiende a infinito o a menos infinito, y explicar con contraejemplos por qué no basta que los valores se acerquen cada vez más a \(L\), ni que queden cerca de \(L\) solo en algunos valores de \(x\).</td>
+</tr>
+<tr>
+<td>Veredicto</td>
+<td><strong>Remodelar</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="qué-logra-la-clase">Qué logra la clase</h2>
+<p>Nivel de precisión: la clase convierte la frase de las Lecciones 1 a 3 ("desde cierto momento, todos los valores de \(f(x)\) quedan tan cerca de \(L\) como queramos") en una definición con distancias. Según la propuesta de decisiones estructurales (decisión 5), es la única del curso.</p>
+<h3 id="logro">Logro</h3>
+<p>Al terminar, el estudiante escribe la definición:</p>
+<blockquote>
+<p>Para cada distancia \(d &gt; 0\), por pequeña que sea, hay un número tal que, para todos los \(x\) mayores que ese número, la distancia entre \(f(x)\) y \(L\) es menor que \(d\).</p>
+</blockquote>
+<p>Para \(x \to -\infty\) escribe lo mismo con "todos los \(x\) menores que ese número". Sabe que qué tan cerca está \(f(x)\) de \(L\) se mide con la distancia \(\lvert f(x) - L \rvert\), que nunca es negativa: mientras menor es la distancia, más cerca está.</p>
+<p>Sabe por qué la definición necesita cada una de sus partes:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Parte</th>
+<th>Cómo se escribe</th>
+<th>Qué la hace necesaria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tan cerca como queramos</td>
+<td>Para cada distancia \(d &gt; 0\), la distancia entre \(f(x)\) y \(L\) es menor que \(d\)</td>
+<td>Para \(x &gt; 0\), los valores de \(\frac{x-1}{x}\) se acercan cada vez más a 1 y también a 2. La distancia a 1 es \(\frac{1}{x}\), que queda tan pequeña como queramos; la distancia a 2 es \(1 + \frac{1}{x}\), siempre mayor que 1</td>
+</tr>
+<tr>
+<td>Todos los valores</td>
+<td>Para todos los \(x\) mayores que ese número</td>
+<td>\(\operatorname{sen} x\) vale 1 en infinitos valores de \(x\), tan grandes como se quiera, y entre ellos baja hasta −1: no tiene límite. Es el columpio a ritmo constante de la L3</td>
+</tr>
+<tr>
+<td>El número se busca después de elegir \(d\)</td>
+<td>Hay un número, y ese número depende de \(d\)</td>
+<td>Para \(\frac{x-1}{x}\), "todos los \(x\) mayores que 2" sirve para \(d = 0.5\) y no para \(d = 0.1\): en \(x = 3\) la distancia a 1 es 0.33</td>
+</tr>
+</tbody>
+</table></div>
+<p>Lee la definición en un gráfico: la franja entre las rectas horizontales \(y = L - d\) e \(y = L + d\), y el número desde el cual la curva queda dentro de la franja. Sabe que ese número no es, en general, el primer \(x\) donde la curva entra a la franja: una curva que oscila puede entrar y volver a salir.</p>
+<p>Para \(\frac{x-1}{x}\) encuentra el número para cualquier \(d\): como la distancia es \(\frac{1}{x}\), sirve todo \(x &gt; \frac{1}{d}\). En esta función, cuanto más pequeña es \(d\), mayor es ese número. Probar con algunas distancias permite conjeturar, como probar con algunos puntos; la regla \(x &gt; \frac{1}{d}\) es la que vale para todas.</p>
+<h3 id="lo-que-queda-para-otras-lecciones">Lo que queda para otras lecciones</h3>
+<ul>
+<li>Calcular límites con propiedades y estrategias algebraicas: L5 y L6 de la Actividad 1 del curso implementado.</li>
+<li>El límite en un punto: Actividad 2. Su lección de precisión (A2 L7) sale según la propuesta de decisiones estructurales.</li>
+</ul>
+<h3 id="cómo-lo-logra">Cómo lo logra</h3>
+<p>En toda la clase, "cada" o "cualquier" se usa solo para \(d\) y va al comienzo de la frase; "todos" se usa solo para los valores de \(x\). La frase es siempre "la distancia entre \(f(x)\) y \(L\) es menor que \(d\)".</p>
+<ol type="1">
+<li><strong>Activación.</strong> La frase de las Lecciones 1 a 3, la tabla de los seis casos rehecha con la notación del curso, y la distancia en la recta numérica: \(\lvert 0.9 - 1 \rvert = 0.1\) y \(\lvert -2 - 3 \rvert = 5\).</li>
+<li><strong>Sin Contexto.</strong> La clase trabaja directamente sobre funciones (decisión 2 del plan).</li>
+<li><strong>Construcción, acercarse cada vez más no basta.</strong> Con \(f(x) = \frac{x-1}{x}\) y \(x\) positivo, una tabla de las distancias a 1 y a 2. Las dos se achican. Un compañero dice que \(f(x)\) también se acerca a 2. ¿Qué parte de la frase del curso descarta el 2? La franja de ancho 0.5 alrededor de 2 lo comprueba: ningún \(x\) positivo deja la curva dentro.</li>
+<li><strong>Construcción, la distancia elegida.</strong> Con el deslizador de \(d\), el estudiante escribe un número desde el cual está seguro de que, para todos los \(x\) mayores, la distancia entre \(f(x)\) y 1 es menor que \(d\), para \(d\) = 0.5, 0.1 y 0.05. No hace falta el menor. La recta que marca el umbral queda oculta hasta que responde, y después sirve para comprobar. Un cuarto caso, \(d = 0.001\), se responde con la tabla del paso 3. Cierra con la regla para cualquier \(d\): \(x &gt; \frac{1}{d}\).</li>
+<li><strong>Construcción, obstáculo: entrar a la franja no basta.</strong> Con \(1 + \frac{\operatorname{sen}(3x)}{x}\) y \(d = 0.3\), un diálogo. Sergio sostiene que basta desde \(x = 0.95\), porque ahí la curva entra a la franja. El otro personaje le muestra que la curva vuelve a salir, y que recién desde 2.81 no sale más. Cierre: el número que sirve es aquel desde el cual la curva queda dentro de la franja. \(\operatorname{sen} x\) y el columpio de la L3 se recuerdan como el caso extremo: entran y salen siempre.</li>
+<li><strong>Construcción, la definición.</strong> Una cápsula escribe la definición con la tabla de sus partes, la ilustra con la franja y agrega la versión para \(x \to -\infty\).</li>
+<li><strong>Sistematización.</strong> Diapositivas con la definición, la franja y los contraejemplos.</li>
+<li><strong>Práctica.</strong> \(2 - 1.2^{-x}\) con \(L = 2\) (umbrales 5.026 y 12.629), con el rótulo del recurso oculto; el columpio frenado de la L3 con \(d = 0.5\) (entra a la franja en \(t \approx 0.58\) y queda dentro desde \(t \approx 9.2\)); y \(2^x\) cuando \(x \to -\infty\), con \(L = 0\): "para todos los \(x\) menores que ___", con \(d\) = 0.1 y 0.01 (umbrales −3.32 y −6.64). Cada respuesta acepta cualquier número más allá del umbral, y una retroalimentación atiende la respuesta "donde entra a la franja".</li>
+<li><strong>Ticket.</strong> Los tres gráficos actuales más un cuarto, cuya curva se acerca a un número que está dentro de la franja dibujada sin ser \(L\). Enunciado: "Selecciona los gráficos en que la curva queda dentro de la franja para todos los \(x\) mayores que un número, y seguiría quedando dentro si la franja se angostara tanto como queramos."</li>
+</ol>
+<h2 id="diagnóstico-de-la-versión-implementada">Diagnóstico de la versión implementada</h2>
+<p>La clase tiene la estructura correcta: refuta dos versiones débiles con dos contraejemplos y llega a una definición con la distancia. Fallan el montaje de las claves numéricas, la Sistematización, que conserva una versión refutada, y dos frases que invierten el orden de la definición.</p>
+<h3 id="secuencia">Secuencia</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Qué hace</th>
+<th>Preguntas</th>
+<th>En PyE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recordemos</td>
+<td>Tabla de los seis casos con su notación; graficar \(2^x\), \(-x^3\) y \(\frac{2^x-1}{2^x}\) y asociarlas a sus comportamientos</td>
+<td>1</td>
+<td>Activación</td>
+</tr>
+<tr>
+<td>Aprendamos juntos (1)</td>
+<td>\(\frac{x-1}{x}\): tabla de distancias a 1 y a 2; las dos bajan; un valor de \(x\) a menos de \(d\) = 0.5, 0.1 y 0.05; la franja alrededor de 2</td>
+<td>9</td>
+<td>Construcción</td>
+</tr>
+<tr>
+<td>Toma nota: refinando la definición</td>
+<td>El límite es \(L\) si los valores se acercan tanto como se quiera; la distancia \(\lvert f(x) - L \rvert\)</td>
+<td>—</td>
+<td>Cápsula</td>
+</tr>
+<tr>
+<td>Aprendamos juntos (2)</td>
+<td>Diálogo de Sergio y el profesor: puntos de una función oculta que parecen acercarse a 1; la función no tiene límite; completar "para cualquier \(x\) suficientemente grande"</td>
+<td>4</td>
+<td>Construcción</td>
+</tr>
+<tr>
+<td>Toma nota: precisando la definición (video en el guion)</td>
+<td>Para cualquier \(d &gt; 0\), la distancia es menor que \(d\) a partir de un valor de \(x\); ejemplo con \(d = 0.5\)</td>
+<td>—</td>
+<td>Cápsula</td>
+</tr>
+<tr>
+<td>Practica lo aprendido</td>
+<td>Dos funciones en GeoGebra: desde qué \(x\) la distancia a \(L\) es menor que dos valores de \(d\); completar la definición</td>
+<td>4</td>
+<td>Práctica</td>
+</tr>
+<tr>
+<td>¿Qué aprendimos?</td>
+<td>Dos frases con desplegables</td>
+<td>2 huecos</td>
+<td>Sistematización</td>
+</tr>
+<tr>
+<td>Ticket de salida</td>
+<td>Elegir los gráficos que cumplen la definición</td>
+<td>1</td>
+<td>Ticket</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="hallazgos">Hallazgos</h3>
+<ul>
+<li><strong>Las preguntas 6 a 8 piden la versión débil:</strong> "un valor de \(x\) para el cual \(f(x)\) está a menos de \(d\)", que el diálogo de Sergio refuta después.</li>
+<li><strong>El diálogo de Sergio no se sostiene con la frase nueva.</strong> Si el estudiante ya dice "todos los valores" y vio en la L3 que el columpio no tiene límite, ante unos puntos sueltos dirá que entre ellos la función podría oscilar. La función oculta es \(\operatorname{sen} x\), con 200 puntos junto a sus máximos. Además, Sergio solo asiente: cuatro de sus intervenciones no aportan una idea. El error real, tomar el primer \(x\) donde la curva entra a la franja, aparece en la pregunta 3 de la Práctica, y la Construcción no lo prepara.</li>
+<li><strong>La tarea con \(d\) no exige buscar.</strong> \(\frac{x-1}{x}\) es creciente, así que la primera entrada a la franja es el umbral, y <code>wngsurx7</code> dibuja la recta \(x = \frac{1}{d}\) con su valor. Nada lleva de tres valores de \(d\) a cualquier \(d\).</li>
+<li><strong>La dependencia de \(d\) no se dice</strong>, y es lo que distingue la definición de un único número para todas las distancias.</li>
+<li><strong>La definición se escribe solo para \(x \to \infty\)</strong>, aunque el objetivo y la primera Toma nota dicen "(o menos infinito)", y ninguna pregunta lo pide.</li>
+<li><strong>La clase supone que \(\lvert a - b \rvert\) es la distancia entre dos números</strong>, y ninguna lección anterior lo recupera.</li>
+<li><strong>La Práctica deja las respuestas a la vista.</strong> <code>x32rnrtx</code> muestra en pantalla "x = 5.03", y las preguntas 2 y 4 se responden copiando el \(L\) de la pregunta anterior.</li>
+<li><strong>El Ticket tiene una sola franja por gráfico</strong>, así que mide "queda en esta franja" y no la dependencia de \(d\).</li>
+</ul>
+<h3 id="errores">Errores</h3>
+<ul>
+<li><strong>Claves de las preguntas 6 a 8 en Moodle.</strong> Aceptan solo 2, 10 y 21. En \(x = 2\), \(f(x)\) está exactamente a 0.5 de 1, y en \(x = 10\), exactamente a 0.1: las dos claves son falsas. Cualquier \(x\) mayor es correcto, como dice el guion.</li>
+<li><strong>Claves de la Práctica en Moodle.</strong> Son umbrales correctos, redondeados hacia arriba (los exactos son 5.026, 12.629, 0.838 y 2.808), pero Moodle acepta solo ese número y el guion dice "cualquier valor mayor o igual". Con \(d = 0.3\), 2.80 es incorrecto: ahí la distancia es 0.305.</li>
+<li><strong>Dos frases invierten el orden de la definición.</strong> La Toma nota 4.3 dice que es posible encontrar "valores de \(x\) para los cuales la distancia es menor a cualquier distancia máxima \(d\)", y el cierre de la 4.5, "un valor de \(x\) a partir del cual la distancia es menor a cualquier \(d\) dado". Leídas al pie de la letra, un mismo \(x\) sirve para todas las distancias, y eso obligaría a que la distancia fuera 0. "Distancia máxima" sugiere además que se admite una distancia igual a \(d\).</li>
+<li><strong>La Sistematización conserva una definición refutada.</strong> Su primera frase dice que \(L\) es el límite si los valores "se acercan tanto como se quiera" a \(L\).</li>
+<li><strong>La tabla del Recordemos</strong> (<code>814605e510ba.png</code>) escribe \(\lim_{x \to -\infty} f(x) = -\infty\) en la fila "tiende a un número \(L\)"; debe decir \(= L\). Rotula la divergencia con "crece indefinidamente".</li>
+<li><strong>"La distancia a 2 nunca es menor que 1" es falso sin \(x &gt; 0\).</strong> \(f(-1) = 2\), y para todo \(x &lt; -\frac{1}{2}\) la distancia es menor que 1. La rama izquierda se ve en <code>wngsurx7</code> y <code>dktgwnzk</code>. La retroalimentación de la pregunta 9 repite el error.</li>
+<li><strong><code>dktgwnzk</code> dibuja un umbral que no existe:</strong> la recta \(x = \frac{2}{d}\), copiada de <code>wngsurx7</code>, en la pregunta que debe concluir que no hay umbral.</li>
+<li><strong>Guion y Moodle.</strong> La segunda Toma nota era un video en el guion; Moodle tiene su texto y una imagen.</li>
+<li><strong>Redacción y notación.</strong> "\(f(x\)", sin cerrar el paréntesis, varias veces; "Profesor::"; "lim" sin barra invertida; LaTeX roto en el guion (<code>\f(x)\)</code>); decimales con coma (0,5; 5,03), mezclados con 12.63.</li>
+<li>Se verificaron y están correctas las claves del Recordemos, la tabla de distancias, los umbrales de la Práctica y el Ticket.</li>
+</ul>
+<h2 id="recursos">Recursos</h2>
+<ul>
+<li><strong>GeoGebra:</strong> <code>f5qrzhjq</code> (ingresar valores de \(x\)); <code>wngsurx7</code> (deslizador de \(d\) para \(L = 1\), con la recta del umbral, que hay que ocultar hasta que el estudiante responda; el deslizador no baja de 0.01); <code>dktgwnzk</code> (franja alrededor de 2, sin la recta del umbral); <code>j7y5nh6p</code> (la función oculta, \(\operatorname{sen} x\)); <code>x32rnrtx</code> (\(2 - 1.2^{-x}\), sin el rótulo "x = …"); <code>pfrhhc4w</code> (\(1 + \frac{\operatorname{sen}(3x)}{x}\), que pasa al paso 5). De la L3, <code>ywy3wgue</code> para la Práctica.</li>
+<li><strong>Imágenes:</strong> la tabla de los seis casos, que hay que corregir; los puntos de la función oculta; la ilustración de la franja (<code>U2-A1_Clase4_Imagen14</code>); los tres gráficos del Ticket. Se reutilizan, redibujados en la paleta MatCon. Hace falta un cuarto gráfico para el Ticket.</li>
+<li><strong>Video.</strong> La segunda Toma nota narraba la definición mientras aparecían la franja, la distancia y el valor de \(x\) que se mueve. No se reutiliza (decisión 5 del plan); <code>wngsurx7</code> hace lo mismo de forma interactiva.</li>
+<li><strong>Personajes:</strong> el profesor y Sergio, con sus avatares (IPD).</li>
+</ul>
+<h2 id="se-conserva-y-sale">Se conserva y sale</h2>
+<ul>
+<li><strong>Se conserva:</strong> la tabla de distancias a 1 y a 2, con \(x\) positivo; el deslizador de \(d\), con las preguntas reescritas; la segunda Toma nota, corregida; la pregunta 1 de la Práctica; el Ticket, con un gráfico más.</li>
+<li><strong>Sale:</strong> graficar las tres funciones del Recordemos; las preguntas 2 a 5 de la Construcción, que quedan en una; la función oculta como obstáculo; la primera Toma nota como definición provisoria; la primera frase de la Sistematización; las preguntas 2 y 4 de la Práctica; "distancia máxima"; el video.</li>
+</ul>
+<h2 id="para-decidir">Para decidir</h2>
+<ul>
+<li><strong>Si se precisa también \(\lim_{x \to \infty} f(x) = \infty\):</strong> para cada número \(M\), hay un número tal que, para todos los \(x\) mayores, \(f(x)\) es mayor que \(M\). Las fichas de la L2 y la L3 lo dejan a la L4. La revisión docente estima que no cabe en esta clase y propone una sola pregunta en la ejercitación, con el logaritmo de la L2 (supera \(M\) cuando \(x &gt; 10^M\)).</li>
+<li><strong>Si se precisa qué significa que \(x\) tienda a infinito.</strong> El documento <code>Reciclaje</code> de la carpeta de la Actividad 1 trae \(\frac{n-1}{n}\), que crece siempre y queda bajo 1: muestra que crecer siempre no basta para tender a infinito. Está ligado al léxico de "crecer indefinidamente" de las fichas anteriores.</li>
+</ul>
+
+</main>
+</div>
+</body>
+</html>

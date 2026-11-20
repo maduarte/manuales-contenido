@@ -1,0 +1,341 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LDI · Ficha U2 A1 L03</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --ground:#fcfbfe; --surface:#f3f1f8; --surface-2:#ebe7f4; --line:#e0dcea;
+  --ink:#231d3b; --muted:#625c76;
+  --purple:#423475; --purple-ink:#423475; --on-purple:#ffffff;
+  --red:#d45762; --red-ink:#a8323e; --red-tint:#fbeef0;
+  --green:#61b89a; --green-ink:#2c7a5f; --green-tint:#eaf6f1;
+  --blue:#4aa7ba; --blue-ink:#27788a;
+  --orange:#f3972d; --orange-ink:#a85f0c;
+  --yellow:#f0f57d;
+  --code-bg:#eeebf6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+    --ink:#ece9f6; --muted:#aaa4c2;
+    --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+    --red-ink:#f0939b; --red-tint:#2e1b2c;
+    --green-ink:#86d6b9; --green-tint:#18302b;
+    --blue-ink:#85cfdd; --orange-ink:#f7b667;
+    --code-bg:#2a2548;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+  --ink:#ece9f6; --muted:#aaa4c2;
+  --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+  --red-ink:#f0939b; --red-tint:#2e1b2c;
+  --green-ink:#86d6b9; --green-tint:#18302b;
+  --blue-ink:#85cfdd; --orange-ink:#f7b667;
+  --code-bg:#2a2548;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.6;margin:0}
+.strip{display:flex;height:6px}
+.strip span{flex:1}
+header.top{background:var(--purple);color:var(--on-purple);padding-block:2.4rem 2.2rem;padding-inline:16px}
+header.top .in{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin:0 0 .6rem}
+header.top h1{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.15;margin:0 0 .8rem;text-wrap:balance;font-weight:650;letter-spacing:-.01em}
+header.top .lead{max-width:68ch;margin:0;font-size:1.05rem;opacity:.93}
+.layout{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:2rem 4rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1rem);align-self:start;font-size:.88rem;max-height:calc(100vh - 2rem);overflow:auto}
+nav.toc p{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .5rem}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
+nav.toc a{color:var(--ink);text-decoration:none;display:block;padding:.3rem .55rem;border-radius:6px;line-height:1.35}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--surface-2);outline:none}
+nav.toc .sub a{padding-left:1.3rem;color:var(--muted)}
+main{min-width:0;max-width:760px}
+main h2{font-size:1.55rem;line-height:1.25;margin:3rem 0 1rem;color:var(--purple-ink);text-wrap:balance;font-weight:650}
+main h2:first-child{margin-top:0}
+main h3{font-size:1.2rem;margin:2.2rem 0 .7rem;text-wrap:balance;font-weight:620}
+main h4{font-size:1.1rem;margin:1.6rem 0 .5rem}
+p,li{max-width:70ch}
+a{color:var(--purple-ink)}
+code{font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-size:.88em;background:var(--code-bg);padding:.08em .35em;border-radius:4px;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
+ul,ol{padding-left:1.3rem}
+li{margin:.3rem 0}
+li::marker{color:var(--purple-ink)}
+.tablewrap{overflow-x:auto;margin:1.2rem 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+th{background:var(--purple);color:var(--on-purple);text-align:left;font-weight:600;padding:.55rem .7rem}
+td{padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--surface)}
+blockquote{margin:1.4rem 0;padding:1rem 1.2rem;background:var(--surface);border-radius:10px}
+blockquote p{margin:.4rem 0}
+blockquote .tag{display:inline-block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:650;margin-bottom:.3rem;color:var(--muted)}
+blockquote.capsula{background:var(--green-tint)}
+blockquote.capsula .tag{color:var(--green-ink)}
+blockquote.revision{background:var(--red-tint)}
+blockquote.revision .tag{color:var(--red-ink)}
+.hito{display:flex;gap:.7rem;align-items:baseline;margin:1.6rem 0 .4rem;font-size:1.02rem;font-weight:620;line-height:1.4}
+.hito .hid{flex:none;background:var(--purple);color:var(--on-purple);font-family:"Geist Mono",ui-monospace,monospace;font-size:.78rem;font-weight:600;padding:.15rem .5rem;border-radius:999px;position:relative;top:-.08em}
+.hito + ul{margin-top:.2rem;padding-left:3.4rem}
+.leccion{border-top:1px solid var(--line);padding-top:1.4rem;margin-top:2.6rem}
+.leccion h4{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h4 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+details{margin:1rem 0}
+summary{cursor:pointer;font-weight:600;color:var(--purple-ink);padding:.35rem 0}
+summary:focus-visible{outline:2px solid var(--purple-ink);outline-offset:3px;border-radius:4px}
+.arco{list-style:none;padding:0;counter-reset:a;display:grid;gap:.7rem}
+.arco li{counter-increment:a;position:relative;padding-left:3rem;min-height:2.2rem;max-width:none}
+.arco li::before{content:counter(a);position:absolute;left:0;top:0;background:var(--surface-2);color:var(--purple-ink);font-weight:650;border-radius:50%;width:2.2rem;height:2.2rem;display:grid;place-items:center;font-family:"Geist Mono",monospace}
+.paso{display:grid;grid-template-columns:2.4rem 1fr;gap:.9rem;margin:1.3rem 0}
+.paso .num{font-family:"Geist Mono",ui-monospace,monospace;font-weight:600;color:var(--purple-ink);background:var(--surface-2);border-radius:8px;height:2.4rem;display:grid;place-items:center}
+.paso p{margin:0}
+.paso + ul{padding-left:4.6rem}
+.fases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem;margin:1.5rem 0 2rem}
+.fase{background:var(--surface);border-radius:10px;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.35rem}
+.fase .fn{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.fase .ft{font-weight:650;color:var(--purple-ink);font-size:1.05rem}
+.fase .fp{font-family:"Geist Mono",monospace;font-size:.82rem;color:var(--muted)}
+.fase .rv{margin-top:auto;display:flex;flex-wrap:wrap;gap:.3rem}
+.fase .rv span{font-size:.75rem;font-weight:600;color:var(--red-ink);background:var(--red-tint);border-radius:999px;padding:.1rem .55rem}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;gap:1.5rem}
+  nav.toc{position:static;max-height:none;background:var(--surface);border-radius:10px;padding:1rem}
+  .fases{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:460px){ .fases{grid-template-columns:1fr} .hito + ul{padding-left:1.3rem} .paso + ul{padding-left:1.3rem} }
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+
+header.top a{color:inherit;text-underline-offset:.2em}
+.enl{display:flex;flex-wrap:wrap;gap:.45rem;margin:.5rem 0 1rem}
+.enl a{display:inline-flex;align-items:center;gap:.45rem;border:1px solid var(--line);border-radius:999px;padding:.28rem .75rem;font-size:.86rem;line-height:1.35;text-decoration:none;color:var(--ink);background:var(--ground)}
+.enl a:hover,.enl a:focus-visible{border-color:var(--c);outline:none}
+.enl i{width:.6rem;height:.6rem;border-radius:50%;background:var(--c);flex:none}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.7rem;margin:1rem 0 1.6rem}
+a.card{display:grid;grid-template-columns:.8rem 1fr;gap:.8rem;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem;text-decoration:none;color:var(--ink);transition:border-color .15s,transform .15s}
+a.card:hover,a.card:focus-visible{border-color:var(--c);transform:translateY(-1px);outline:none}
+a.card i{width:.8rem;height:.8rem;border-radius:50%;background:var(--c);margin-top:.3rem}
+a.card b{display:block;font-weight:600;line-height:1.3}
+a.card span{display:block;color:var(--muted);font-size:.86rem;margin-top:.2rem;line-height:1.4}
+main h3.tema{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:1.6rem 0 .3rem}
+.lecs{margin:0 0 1rem;border-top:1px solid var(--line)}
+.lec{padding:.75rem 0;border-bottom:1px solid var(--line)}
+.lec p{margin:0;max-width:none}
+.lec .cod{font-family:"Geist Mono",ui-monospace,monospace;font-size:.8rem;font-weight:600;color:var(--purple-ink);margin-right:.45rem}
+.lec small{display:block;color:var(--muted);font-size:.84rem;margin-top:.1rem}
+.lec .enl{margin:.5rem 0 0}
+.leccion h3{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h3 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+table.meta th{background:var(--surface-2);color:var(--ink);width:11rem}
+.nota{color:var(--muted);font-size:.9rem}
+@media (prefers-reduced-motion:reduce){a.card{transition:none}}
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script></head>
+<body>
+<div class="strip"><span style="background:#423475"></span><span style="background:#d45762"></span><span style="background:#61b89a"></span><span style="background:#f0f57d"></span><span style="background:#4aa7ba"></span><span style="background:#f3972d"></span></div>
+<header class="top"><div class="in">
+<p class="eyebrow"><a href="../index.html">LDI</a> · Ficha de una lección implementada</p>
+<h1>U2 A1 L3 · El columpio sin fin</h1>
+<p class="lead">Lección 3 de la Actividad 1 de la Unidad 2 del curso implementado, base de U2T1L3 en el curso nuevo.</p>
+</div></header>
+<div class="layout">
+<nav class="toc" aria-label="Contenido"><p>Contenido</p><ol><li><a href="#qué-logra-la-clase">Qué logra la clase</a></li><li class="sub"><a href="#logro">Logro</a></li><li class="sub"><a href="#lo-que-queda-para-otras-lecciones">Lo que queda para otras lecciones</a></li><li class="sub"><a href="#cómo-lo-logra">Cómo lo logra</a></li><li><a href="#diagnóstico-de-la-versión-implementada">Diagnóstico de la versión implementada</a></li><li class="sub"><a href="#secuencia">Secuencia</a></li><li class="sub"><a href="#hallazgos">Hallazgos</a></li><li class="sub"><a href="#errores">Errores</a></li><li><a href="#recursos">Recursos</a></li><li><a href="#se-conserva-y-sale">Se conserva y sale</a></li><li><a href="#para-decidir">Para decidir</a></li></ol></nav>
+<main>
+<div class="enl"><a style="--c:#4aa7ba" href="../../LDI_ruta_curso_implementado.html#lección-3-el-columpio-sin-fin"><i></i>Lección en el curso implementado</a><a style="--c:#423475" href="../ruta_U2.html#U2T1L3"><i></i>Propuesta nueva · U2T1L3</a></div><div class="tablewrap"><table>
+<tbody>
+<tr>
+<td>Guion de Drive</td>
+<td><code>LDI_U2_A1_Clase 3</code></td>
+</tr>
+<tr>
+<td>Objetivo declarado</td>
+<td>Identificar los diferentes tipos de comportamiento al infinito de funciones que oscilan.</td>
+</tr>
+<tr>
+<td>Objetivo propuesto</td>
+<td>Reconocer en gráficos el comportamiento al infinito de funciones que oscilan, decidir si sus valores se acercan tanto como se quiera a un número o divergen, y describir con palabras los comportamientos distintos de los tres de la L2.</td>
+</tr>
+<tr>
+<td>Veredicto</td>
+<td><strong>Remodelar</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="qué-logra-la-clase">Qué logra la clase</h2>
+<p>Nivel de noción e intuición. Usa los tres comportamientos y las frases de la L2.</p>
+<h3 id="logro">Logro</h3>
+<p>Al terminar, el estudiante sabe que hay comportamientos al infinito distintos de los tres de la L2, y que esos se describen con palabras, porque no tienen símbolo.</p>
+<p>Ante una función que oscila, mira a la vez los máximos y los mínimos de cada oscilación y decide con dos preguntas, suponiendo que el patrón del gráfico se mantiene:</p>
+<ul>
+<li><strong>¿Se acercan los máximos y los mínimos a un mismo número?</strong> Si se acercan a \(L\), desde cierto momento todos los valores quedan tan cerca de \(L\) como queramos: la función tiende a \(L\), aunque lo cruce una y otra vez. Si no se acercan a un mismo número, la función no tiene límite, aunque sus máximos bajen.</li>
+<li><strong>¿Quedan también los mínimos tan arriba como queramos?</strong> Solo así la función diverge a infinito. Si los máximos superan cualquier número y los mínimos vuelven a valores negativos, la función supera cualquier número y no diverge a infinito: en algún instante queda sobre cualquier número, pero nunca llega un momento desde el cual todos sus valores queden sobre 0.</li>
+</ul>
+<p>Reconoce estos casos en los ensayos del columpio:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Ensayo</th>
+<th>Máximos y mínimos</th>
+<th>Comportamiento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A ritmo constante</td>
+<td>1.5 y −1.5 en cada oscilación</td>
+<td>No tiene límite: pasa por 0 una y otra vez, y después de cada paso vuelve a 1.5 o a −1.5</td>
+</tr>
+<tr>
+<td>Frenado por el roce</td>
+<td>Los dos se acercan a 0</td>
+<td>Tiende a 0, cruzándolo</td>
+</tr>
+<tr>
+<td>Con un empujón y después mantenido</td>
+<td>Los máximos bajan hacia 1 y los mínimos suben hacia −1</td>
+<td>No tiene límite, aunque los máximos bajen</td>
+</tr>
+<tr>
+<td>Impulsado</td>
+<td>Los máximos superan cualquier número y los mínimos quedan bajo cualquier número</td>
+<td>No tiene límite y no diverge a infinito ni a menos infinito</td>
+</tr>
+</tbody>
+</table></div>
+<p>Hacia la izquierda del gráfico, cuando \(x \to -\infty\), las dos preguntas se responden igual.</p>
+<p>Sabe además que el modelo vale en un tramo de tiempo: el columpio real se detiene, y sus cuerdas limitan cuánto puede alejarse hacia adelante y hacia atrás.</p>
+<h3 id="lo-que-queda-para-otras-lecciones">Lo que queda para otras lecciones</h3>
+<p>Lecciones del curso implementado:</p>
+<ul>
+<li>Qué significan con precisión "tan cerca como queramos" y "tan arriba como queramos", y por qué no basta pasar cerca en algunos instantes: L4. El columpio a ritmo constante, que pasa por 0 una y otra vez sin quedarse cerca de 0, le sirve de ejemplo.</li>
+<li>Calcular límites con propiedades y estrategias algebraicas: L5 y L6.</li>
+</ul>
+<h3 id="cómo-lo-logra">Cómo lo logra</h3>
+<ol type="1">
+<li><strong>Activación.</strong> Un gráfico con un comportamiento hacia la derecha y otro distinto hacia la izquierda recupera los tres comportamientos de la L2, con sus frases y su notación.</li>
+<li><strong>Contexto.</strong> Una fábrica de columpios prueba sus productos con un robot que se columpia por horas. La posición horizontal del columpio, \(p(t)\), vale 0 cuando las cuerdas quedan verticales, es positiva hacia adelante y negativa hacia atrás. Habrá cuatro ensayos. En toda la clase, "arriba" y "abajo" se refieren al gráfico, y "adelante" y "atrás", al columpio.</li>
+<li><strong>Construcción, ritmo constante.</strong> Con GeoGebra, el estudiante anota el máximo y el mínimo de la primera oscilación y de una oscilación lejana, y decide cuál de las frases de la L2 cumple \(p(t)\): ninguna. La respuesta esperable es "oscila entre −1.5 y 1.5, así que no tiene límite"; es correcta, y le falta ubicarla frente a las tres frases. Una cápsula define la oscilación: un ciclo en que la función sube hasta un máximo, baja cruzando 0 hasta un mínimo y vuelve a 0; una función oscila cuando recorre ese ciclo una y otra vez, y sus máximos y mínimos pueden cambiar de un ciclo a otro. La misma cápsula dice que hay comportamientos sin símbolo, y que se describen con palabras.</li>
+<li><strong>Construcción, frenado por el roce.</strong> Antes de concluir, una predicción abierta: \(p(t)\) vale 0 una y otra vez; ¿tiene límite cuando \(t\) tiende a infinito? Un diálogo contrapone dos ideas. Un personaje dice que no, porque la colonia de la L1 se acercaba a 3135 sin pasarse y este columpio cruza el 0 todo el rato. El otro mira los máximos y los mínimos, que se acercan a 0. La conclusión es \(\lim_{t \to \infty} p(t) = 0\). El cierre compara los dos ensayos: en los dos \(p(t)\) vale 0 infinitas veces, y lo que los distingue son los máximos y los mínimos.</li>
+<li><strong>Construcción, empujón y después mantenido.</strong> El robot da un empujón fuerte y después mantiene el columpio a 1 m. Los máximos bajan hacia 1 y los mínimos suben hacia −1. Pregunta: los máximos bajan, como en el columpio frenado; ¿tiene límite \(p(t)\)? No, porque los máximos y los mínimos no se acercan a un mismo número.</li>
+<li><strong>Construcción, impulsado.</strong> El estudiante propone un techo para los máximos y lo pone a prueba en GeoGebra: los máximos pasan de 10 m cerca de \(t = 100\) y de 100 m cerca de \(t = 220\). Después decide, con la frase de la L2, si \(p(t)\) diverge a infinito. No diverge: nunca llega un momento desde el cual todos sus valores queden sobre 0. La retroalimentación anticipa la respuesta "diverge a infinito y a menos infinito": no se cumple ninguna de las dos frases, porque en cada oscilación vuelve a valores positivos y negativos. Recién entonces se pregunta por el recorrido de la función \(p\), que son todos los números reales.</li>
+<li><strong>Construcción, modelo y realidad.</strong> Una cápsula breve dice que el modelo vale en un tramo de tiempo, con el ejemplo de un edificio que oscila cada vez más ante un temblor.</li>
+<li><strong>Sistematización.</strong> Diapositivas con los comportamientos sin símbolo, la definición de oscilación, las dos preguntas del criterio y la diferencia entre superar cualquier número y diverger a infinito.</li>
+<li><strong>Práctica.</strong> Los gráficos 1 a 3 actuales y \(t + 2\operatorname{sen} t\), que oscila y diverge a infinito porque sus mínimos también suben. Una pregunta por gráfico y por dirección, con un desplegable de frases: se acerca tanto como se quiera a un número; diverge a infinito; diverge a menos infinito; oscila, y sus máximos y mínimos no se acercan a un mismo número; oscila, supera cualquier número y no diverge.</li>
+<li><strong>Ticket.</strong> El gráfico 4 del Ticket actual, cuyos máximos bajan hacia 2 y cuyos mínimos suben hacia 2, cruzándolo una y otra vez. Pregunta: ¿qué ocurre con \(f(x)\) cuando \(x \to \infty\)? Alternativas: su límite es 2, porque máximos y mínimos se acercan a 2; no tiene límite, porque cruza el 2 una y otra vez; no tiene límite, porque nunca deja de oscilar.</li>
+</ol>
+<h2 id="diagnóstico-de-la-versión-implementada">Diagnóstico de la versión implementada</h2>
+<p>La clase funciona: el contexto produce casos distintos y cada ensayo tiene su GeoGebra. Falla en el criterio, porque la Sistematización y una retroalimentación deducen el límite de que los máximos bajan, y deja sin responder la pregunta que fija qué es diverger a infinito.</p>
+<h3 id="secuencia">Secuencia</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Qué hace</th>
+<th>Preguntas</th>
+<th>En PyE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recordemos</td>
+<td>Recuerda los tres comportamientos y su notación; leerlos en un gráfico</td>
+<td>1</td>
+<td>Activación</td>
+</tr>
+<tr>
+<td>Presentando una situación</td>
+<td>Fábrica Divertilandia: robot que se columpia a ritmo constante; \(p(t)\) es la posición horizontal; gráfico de la oscilación</td>
+<td>—</td>
+<td>Contexto</td>
+</tr>
+<tr>
+<td>Analizando una situación (1)</td>
+<td>Columpio a ritmo constante: propiedades del gráfico; comportamiento para \(t\) grande; cápsula: no tiene ninguno de los tres comportamientos</td>
+<td>2</td>
+<td>Construcción</td>
+</tr>
+<tr>
+<td>Analizando una situación (2)</td>
+<td>Columpio frenado: propiedades; comportamiento al infinito; \(\lim p(t) = 0\); cápsulas sobre qué es una oscilación y sobre modelo y realidad</td>
+<td>3</td>
+<td>Construcción</td>
+</tr>
+<tr>
+<td>Analizando una situación (3)</td>
+<td>Columpio impulsado: propiedades; conjetura; tabla de los máximos y sus diferencias; recorrido; si diverge a infinito; si un columpio real puede hacerlo; resonancia y un video externo</td>
+<td>8</td>
+<td>Construcción</td>
+</tr>
+<tr>
+<td>Practica lo aprendido</td>
+<td>Cuatro gráficos por cinco comportamientos, con desplegables sí y no</td>
+<td>20 huecos</td>
+<td>Práctica</td>
+</tr>
+<tr>
+<td>¿Qué aprendimos?</td>
+<td>Tres casos de oscilación, con desplegables</td>
+<td>5 huecos</td>
+<td>Sistematización</td>
+</tr>
+<tr>
+<td>Ticket de salida</td>
+<td>Cuatro gráficos por cinco comportamientos, con desplegables sí y no</td>
+<td>20 huecos</td>
+<td>Ticket</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="hallazgos">Hallazgos</h3>
+<ul>
+<li><strong>La pregunta que fija qué es diverger queda sin respuesta, y el recorrido la reemplaza.</strong> La pregunta 7 del tercer ensayo pregunta si \(p(t)\) diverge a infinito, y el Exploremos responde con el recorrido. El recorrido no decide si una función diverge: \(t - \frac{1}{t}\), con \(t &gt; 0\), tiene recorrido \(\mathbb{R}\) y diverge a infinito. Como la pregunta del recorrido va justo antes, la clase empuja a justificar "no diverge porque su recorrido es \(\mathbb{R}\)".</li>
+<li><strong>No hay obstáculo, y el natural está en el columpio frenado.</strong> Si las fichas de la L1 y la L2 sacan la oscilación que se apaga, aquí el estudiante ve por primera vez una función que cruza el número al que se acerca. Lo esperable es "no tiene límite, porque sigue cruzando el 0". Las preguntas de cada ensayo piden propiedades del gráfico, y el estudiante las lee.</li>
+<li><strong>Ningún ensayo muestra máximos que bajan sin límite.</strong> Con los tres ensayos actuales, la regla falsa de la Sistematización (si los máximos bajan, hay límite) funciona en todos, así que el estudiante la reconstruye aunque se le enseñe la correcta.</li>
+<li><strong>Solo se miran los máximos.</strong> La clase concluye sobre los máximos y extiende a los mínimos en una cápsula.</li>
+<li><strong>La tabla de los máximos es larga y no da la evidencia que importa.</strong> Son 13 huecos para concluir que las diferencias entre máximos consecutivos crecen, cuando lo que hace falta es ver que los máximos superan cualquier número.</li>
+<li><strong>La definición de oscilación choca con una clave.</strong> La cápsula la define como "el ciclo que se repite", y en el mismo componente la clave marca como falsa "cada cierto tiempo el gráfico se repite" para el columpio frenado.</li>
+<li><strong>Las preguntas de propiedades de cada ensayo no alimentan el criterio</strong> y suman tiempo a tres GeoGebra que hay que cargar en laboratorio.</li>
+<li><strong>La Práctica y el Ticket tienen el mismo formato:</strong> 20 desplegables de sí o no, que se aciertan al azar. La fila "La función tiene un comportamiento oscilatorio" no dice hacia qué lado del gráfico se mira.</li>
+<li><strong>Léxico.</strong> El Recordemos dice "crece indefinidamente" para diverger a infinito. El "punto más bajo" del columpio físico corresponde a \(p = 0\), y en el gráfico los puntos más bajos son los mínimos. "La altura de cada oscilación" mezcla el columpio con el gráfico. "Recorrido" se lee como el trayecto del columpio. La figura de la posición rotula derecha e izquierda, y el texto dice adelante y atrás.</li>
+</ul>
+<h3 id="errores">Errores</h3>
+<ul>
+<li><strong>La Sistematización enuncia un criterio falso.</strong> Dice que si los máximos se hacen cada vez más pequeños la función tiene límite, y que si no varían no lo tiene. Las dos cosas fallan en general. \((1 + \frac{1}{x}) \operatorname{sen} x\) tiene máximos que bajan hacia 1 y mínimos que suben hacia \(-1\), y no tiene límite. \(1 - e^{-0.2x}\lvert\operatorname{sen} x\rvert\) tiene todos sus máximos iguales a 1 y tiende a 1.</li>
+<li><strong>La retroalimentación de la pregunta 3 del columpio frenado</strong> deduce \(\lim p(t) = 0\) de que los máximos se hacen cada vez más pequeños, con el mismo criterio falso: unos máximos que bajan pueden acercarse a 0.3 y no a 0.</li>
+<li><strong>Clave del período invertida.</strong> El GeoGebra <code>ghxjft8t</code> define \(1.5\cos(\frac{2\pi}{2.5}t)\): el período es 2.5 segundos. La clave, en el guion y en Moodle, marca como correcta "se repite cada 8 segundos" y como incorrecta "cada 2.5 segundos". Con 8 segundos no se repite ni aproximadamente: \(p(8) \approx 0.46\) y \(p(0) = 1.5\).</li>
+<li><strong>El período cambia entre ensayos.</strong> El columpio a ritmo constante tiene período 2.5 s, y el frenado y el impulsado, 3 s. En un columpio el período casi no depende del roce ni de cuánto se aleja.</li>
+<li><strong>Práctica, gráfico 3.</strong> La clave dice que no tiene comportamiento oscilatorio, y el gráfico oscila: sus oscilaciones se apagan hacia la izquierda y crecen hacia la derecha. La clave debe ser "sí".</li>
+<li><strong>"Distancia entre los máximos consecutivos"</strong> (preguntas 3 y 4 del tercer ensayo) se lee como separación en el tiempo, que es 3 s en todo el gráfico; con esa lectura la correcta sería "se mantiene", y la clave dice "crece". Se quiere decir la diferencia de altura.</li>
+<li><strong>Tabla de los máximos.</strong> La primera fila dice \(p(t_1)\) donde va \(p(t_0)\).</li>
+<li><strong>Imagen de la posición horizontal.</strong> En el respaldo, <code>c996be73794d.png</code> es la misma imagen de U1 A1 L2 y L3. Hay que verificar en Moodle y en el guion de Drive qué se muestra. La figura que fija el signo es <code>db860719e25e.png</code>.</li>
+<li><strong>Notación.</strong> \(\lim_{\to \infty} p(t)\), sin la variable; el distractor "No se puede definir un límite para \(p(t)\)" (se quiere decir que no tiene límite); "diverge al infinito" en la cápsula, cuando la L2 escribe "a infinito"; en el guion, LaTeX roto (<code>(\f(x)</code>, <code>x\to infty</code>).</li>
+<li><strong>Guion y Moodle.</strong> El guion numera los componentes 3.6, 3.8 y 3.9, y Moodle 3.6, 3.7 y 3.8.</li>
+<li><strong>Redacción.</strong> "Cúal", tres veces; "se toman muy en serio el proceso"; "Apóyate de este recursos"; "en un oscilación"; "la función tienen máximos"; "la diferencia […] aumentan"; "moviéndose a la izquierda", que se lee como mover la vista o como ir hacia \(t\) menores; decimales con coma (1,5; 2,5; 1,588), mezclados con 1.5.</li>
+<li>Las demás claves se verificaron y están correctas: el Recordemos, los ensayos 2 y 3, la tabla de los máximos (las diferencias 0.088 a 0.117 calzan; los máximos crecen 5.9 % cada 3 segundos) y el Ticket.</li>
+</ul>
+<h2 id="recursos">Recursos</h2>
+<ul>
+<li><strong>GeoGebra:</strong> <code>ghxjft8t</code>, <code>ywy3wgue</code> y <code>peskqg7n</code> son el mismo archivo, con una función visible en cada uno: \(1.5\cos(\frac{2\pi}{2.5}t)\), \(1.5 \cdot 3^{-0.1t}\cos(\frac{2\pi}{3}t)\) y \(1.5 \cdot 1.1^{0.2t}\cos(\frac{2\pi}{3}t)\). Se reutilizan con el mismo período en los tres. Hay que comprobar que <code>peskqg7n</code> llega hasta \(t = 220\). Hace falta un cuarto ensayo, por ejemplo \((1 + 0.5 \cdot 3^{-0.1t})\cos(\frac{2\pi}{2.5}t)\), que parte en 1.5 y oscila entre 1 y −1 (verificado). <code>cMSpBrj6</code> es la referencia para la animación que construye una oscilación.</li>
+<li><strong>Imágenes:</strong> robot que se columpia (IPD 1 y 3, animaciones), la figura del signo de la posición (<code>db860719e25e.png</code>, que hay que redibujar con \(p(t)\) y con adelante y atrás), el ciclo de una oscilación (IPD 4) y los gráficos de los ensayos, de la Práctica y del Ticket (<code>U2-A1_Clase3_1</code> a <code>_8</code>). El gráfico 4 de la Práctica tiene picos de tres alturas en cada período, así que hay que reemplazarlo o decir qué picos cuentan.</li>
+<li><strong>Video externo</strong> sobre resonancia estructural, en curriculumnacional.cl. No se reutiliza (decisión 5); su idea entra en la cápsula de modelo y realidad.</li>
+<li>No hay personajes.</li>
+</ul>
+<h2 id="se-conserva-y-sale">Se conserva y sale</h2>
+<ul>
+<li><strong>Se conserva:</strong> el contexto, con un ensayo nuevo; los tres GeoGebra, con el mismo período; el Recordemos, con las frases de la L2; la cápsula de los comportamientos sin símbolo, con "diverge a infinito" y sin "se estabiliza"; la definición de oscilación, reescrita sin "el ciclo que se repite"; la cápsula de modelo y realidad, sin "amplitud" ni "resonancia"; la pregunta del recorrido, después de decidir la divergencia; la pregunta de si un columpio real puede comportarse así; los gráficos 1 a 3 de la Práctica, con la clave corregida.</li>
+<li><strong>Sale:</strong> las preguntas de propiedades de cada ensayo, incluida la del período, que se reemplazan por la lectura de máximos y mínimos; la tabla de las diferencias entre máximos; el video externo; las tablas de sí o no de la Práctica y el Ticket.</li>
+</ul>
+<h2 id="para-decidir">Para decidir</h2>
+<ul>
+<li><strong>La decisión 13</strong> (funciones que oscilan cerca de un punto, Actividad 2, L5). Si esa lección sale, esta es la única del curso con oscilaciones.</li>
+<li><strong>La decisión 8</strong> (funciones trigonométricas). La clase usa oscilaciones solo en gráficos. Los tres GeoGebra tienen la vista algebraica activa: si el recurso incrustado la muestra, el estudiante ve expresiones con coseno.</li>
+</ul>
+
+</main>
+</div>
+</body>
+</html>

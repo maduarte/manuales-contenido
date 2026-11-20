@@ -1,0 +1,308 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LDI · Ficha U2 A1 L06</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --ground:#fcfbfe; --surface:#f3f1f8; --surface-2:#ebe7f4; --line:#e0dcea;
+  --ink:#231d3b; --muted:#625c76;
+  --purple:#423475; --purple-ink:#423475; --on-purple:#ffffff;
+  --red:#d45762; --red-ink:#a8323e; --red-tint:#fbeef0;
+  --green:#61b89a; --green-ink:#2c7a5f; --green-tint:#eaf6f1;
+  --blue:#4aa7ba; --blue-ink:#27788a;
+  --orange:#f3972d; --orange-ink:#a85f0c;
+  --yellow:#f0f57d;
+  --code-bg:#eeebf6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+    --ink:#ece9f6; --muted:#aaa4c2;
+    --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+    --red-ink:#f0939b; --red-tint:#2e1b2c;
+    --green-ink:#86d6b9; --green-tint:#18302b;
+    --blue-ink:#85cfdd; --orange-ink:#f7b667;
+    --code-bg:#2a2548;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+  --ink:#ece9f6; --muted:#aaa4c2;
+  --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+  --red-ink:#f0939b; --red-tint:#2e1b2c;
+  --green-ink:#86d6b9; --green-tint:#18302b;
+  --blue-ink:#85cfdd; --orange-ink:#f7b667;
+  --code-bg:#2a2548;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.6;margin:0}
+.strip{display:flex;height:6px}
+.strip span{flex:1}
+header.top{background:var(--purple);color:var(--on-purple);padding-block:2.4rem 2.2rem;padding-inline:16px}
+header.top .in{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin:0 0 .6rem}
+header.top h1{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.15;margin:0 0 .8rem;text-wrap:balance;font-weight:650;letter-spacing:-.01em}
+header.top .lead{max-width:68ch;margin:0;font-size:1.05rem;opacity:.93}
+.layout{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:2rem 4rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1rem);align-self:start;font-size:.88rem;max-height:calc(100vh - 2rem);overflow:auto}
+nav.toc p{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .5rem}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
+nav.toc a{color:var(--ink);text-decoration:none;display:block;padding:.3rem .55rem;border-radius:6px;line-height:1.35}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--surface-2);outline:none}
+nav.toc .sub a{padding-left:1.3rem;color:var(--muted)}
+main{min-width:0;max-width:760px}
+main h2{font-size:1.55rem;line-height:1.25;margin:3rem 0 1rem;color:var(--purple-ink);text-wrap:balance;font-weight:650}
+main h2:first-child{margin-top:0}
+main h3{font-size:1.2rem;margin:2.2rem 0 .7rem;text-wrap:balance;font-weight:620}
+main h4{font-size:1.1rem;margin:1.6rem 0 .5rem}
+p,li{max-width:70ch}
+a{color:var(--purple-ink)}
+code{font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-size:.88em;background:var(--code-bg);padding:.08em .35em;border-radius:4px;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
+ul,ol{padding-left:1.3rem}
+li{margin:.3rem 0}
+li::marker{color:var(--purple-ink)}
+.tablewrap{overflow-x:auto;margin:1.2rem 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+th{background:var(--purple);color:var(--on-purple);text-align:left;font-weight:600;padding:.55rem .7rem}
+td{padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--surface)}
+blockquote{margin:1.4rem 0;padding:1rem 1.2rem;background:var(--surface);border-radius:10px}
+blockquote p{margin:.4rem 0}
+blockquote .tag{display:inline-block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:650;margin-bottom:.3rem;color:var(--muted)}
+blockquote.capsula{background:var(--green-tint)}
+blockquote.capsula .tag{color:var(--green-ink)}
+blockquote.revision{background:var(--red-tint)}
+blockquote.revision .tag{color:var(--red-ink)}
+.hito{display:flex;gap:.7rem;align-items:baseline;margin:1.6rem 0 .4rem;font-size:1.02rem;font-weight:620;line-height:1.4}
+.hito .hid{flex:none;background:var(--purple);color:var(--on-purple);font-family:"Geist Mono",ui-monospace,monospace;font-size:.78rem;font-weight:600;padding:.15rem .5rem;border-radius:999px;position:relative;top:-.08em}
+.hito + ul{margin-top:.2rem;padding-left:3.4rem}
+.leccion{border-top:1px solid var(--line);padding-top:1.4rem;margin-top:2.6rem}
+.leccion h4{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h4 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+details{margin:1rem 0}
+summary{cursor:pointer;font-weight:600;color:var(--purple-ink);padding:.35rem 0}
+summary:focus-visible{outline:2px solid var(--purple-ink);outline-offset:3px;border-radius:4px}
+.arco{list-style:none;padding:0;counter-reset:a;display:grid;gap:.7rem}
+.arco li{counter-increment:a;position:relative;padding-left:3rem;min-height:2.2rem;max-width:none}
+.arco li::before{content:counter(a);position:absolute;left:0;top:0;background:var(--surface-2);color:var(--purple-ink);font-weight:650;border-radius:50%;width:2.2rem;height:2.2rem;display:grid;place-items:center;font-family:"Geist Mono",monospace}
+.paso{display:grid;grid-template-columns:2.4rem 1fr;gap:.9rem;margin:1.3rem 0}
+.paso .num{font-family:"Geist Mono",ui-monospace,monospace;font-weight:600;color:var(--purple-ink);background:var(--surface-2);border-radius:8px;height:2.4rem;display:grid;place-items:center}
+.paso p{margin:0}
+.paso + ul{padding-left:4.6rem}
+.fases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem;margin:1.5rem 0 2rem}
+.fase{background:var(--surface);border-radius:10px;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.35rem}
+.fase .fn{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.fase .ft{font-weight:650;color:var(--purple-ink);font-size:1.05rem}
+.fase .fp{font-family:"Geist Mono",monospace;font-size:.82rem;color:var(--muted)}
+.fase .rv{margin-top:auto;display:flex;flex-wrap:wrap;gap:.3rem}
+.fase .rv span{font-size:.75rem;font-weight:600;color:var(--red-ink);background:var(--red-tint);border-radius:999px;padding:.1rem .55rem}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;gap:1.5rem}
+  nav.toc{position:static;max-height:none;background:var(--surface);border-radius:10px;padding:1rem}
+  .fases{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:460px){ .fases{grid-template-columns:1fr} .hito + ul{padding-left:1.3rem} .paso + ul{padding-left:1.3rem} }
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+
+header.top a{color:inherit;text-underline-offset:.2em}
+.enl{display:flex;flex-wrap:wrap;gap:.45rem;margin:.5rem 0 1rem}
+.enl a{display:inline-flex;align-items:center;gap:.45rem;border:1px solid var(--line);border-radius:999px;padding:.28rem .75rem;font-size:.86rem;line-height:1.35;text-decoration:none;color:var(--ink);background:var(--ground)}
+.enl a:hover,.enl a:focus-visible{border-color:var(--c);outline:none}
+.enl i{width:.6rem;height:.6rem;border-radius:50%;background:var(--c);flex:none}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.7rem;margin:1rem 0 1.6rem}
+a.card{display:grid;grid-template-columns:.8rem 1fr;gap:.8rem;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem;text-decoration:none;color:var(--ink);transition:border-color .15s,transform .15s}
+a.card:hover,a.card:focus-visible{border-color:var(--c);transform:translateY(-1px);outline:none}
+a.card i{width:.8rem;height:.8rem;border-radius:50%;background:var(--c);margin-top:.3rem}
+a.card b{display:block;font-weight:600;line-height:1.3}
+a.card span{display:block;color:var(--muted);font-size:.86rem;margin-top:.2rem;line-height:1.4}
+main h3.tema{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:1.6rem 0 .3rem}
+.lecs{margin:0 0 1rem;border-top:1px solid var(--line)}
+.lec{padding:.75rem 0;border-bottom:1px solid var(--line)}
+.lec p{margin:0;max-width:none}
+.lec .cod{font-family:"Geist Mono",ui-monospace,monospace;font-size:.8rem;font-weight:600;color:var(--purple-ink);margin-right:.45rem}
+.lec small{display:block;color:var(--muted);font-size:.84rem;margin-top:.1rem}
+.lec .enl{margin:.5rem 0 0}
+.leccion h3{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h3 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+table.meta th{background:var(--surface-2);color:var(--ink);width:11rem}
+.nota{color:var(--muted);font-size:.9rem}
+@media (prefers-reduced-motion:reduce){a.card{transition:none}}
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script></head>
+<body>
+<div class="strip"><span style="background:#423475"></span><span style="background:#d45762"></span><span style="background:#61b89a"></span><span style="background:#f0f57d"></span><span style="background:#4aa7ba"></span><span style="background:#f3972d"></span></div>
+<header class="top"><div class="in">
+<p class="eyebrow"><a href="../index.html">LDI</a> · Ficha de una lección implementada</p>
+<h1>U2 A1 L6 · Practicando con límites al infinito</h1>
+<p class="lead">Lección 6 de la Actividad 1 de la Unidad 2 del curso implementado, base de U2T1L6 en el curso nuevo.</p>
+</div></header>
+<div class="layout">
+<nav class="toc" aria-label="Contenido"><p>Contenido</p><ol><li><a href="#qué-logra-la-clase">Qué logra la clase</a></li><li class="sub"><a href="#logro">Logro</a></li><li class="sub"><a href="#lo-que-queda-para-otras-lecciones">Lo que queda para otras lecciones</a></li><li class="sub"><a href="#cómo-lo-logra">Cómo lo logra</a></li><li><a href="#diagnóstico-de-la-versión-implementada">Diagnóstico de la versión implementada</a></li><li class="sub"><a href="#secuencia">Secuencia</a></li><li class="sub"><a href="#hallazgos">Hallazgos</a></li><li class="sub"><a href="#errores">Errores</a></li><li><a href="#recursos">Recursos</a></li><li><a href="#se-conserva-y-sale">Se conserva y sale</a></li><li><a href="#para-decidir">Para decidir</a></li></ol></nav>
+<main>
+<div class="enl"><a style="--c:#4aa7ba" href="../../LDI_ruta_curso_implementado.html#lección-6-practicando-con-límites-al-infinito"><i></i>Lección en el curso implementado</a><a style="--c:#423475" href="../ruta_U2.html#U2T1L6"><i></i>Propuesta nueva · U2T1L6</a></div><div class="tablewrap"><table>
+<tbody>
+<tr>
+<td>Guion de Drive</td>
+<td><code>LDI_U2_A1_Clase 6</code></td>
+</tr>
+<tr>
+<td>Objetivo declarado</td>
+<td>Aplicar estrategias algebraicas para el cálculo de límites al infinito.</td>
+</tr>
+<tr>
+<td>Objetivo propuesto</td>
+<td>Calcular límites al infinito de la potencia de una función que tiene límite y de cocientes de dos polinomios, reescribiendo el cociente de modo que se puedan usar las propiedades de la L5.</td>
+</tr>
+<tr>
+<td>Veredicto</td>
+<td><strong>Remodelar</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="qué-logra-la-clase">Qué logra la clase</h2>
+<p>Nivel de aplicación de las propiedades de la L5. Es una lección de construcción, y el tema suma una lección de práctica (decisión del docente, 2026-11-18); el título "Practicando" cambia.</p>
+<h3 id="logro">Logro</h3>
+<p>Al terminar, el estudiante calcula:</p>
+<ul>
+<li><strong>El límite de la potencia de una función.</strong> Si \(\lim_{x \to \infty} f(x) = F\) y \(n\) es un entero positivo, \(\lim_{x \to \infty} \left(f(x)\right)^n = F^n\), por la propiedad del producto. Si además \(F \neq 0\), \(\lim_{x \to \infty} \frac{1}{\left(f(x)\right)^n} = \frac{1}{F^n}\), por la del cociente; también se escribe \(\left(f(x)\right)^{-n}\).</li>
+<li><strong>El límite de un cociente de dos polinomios.</strong> Divide el numerador y el denominador por \(x^n\), donde \(n\) es el grado del denominador. La expresión nueva vale lo mismo que la original para todo \(x \neq 0\), como \(\frac{6}{8} = \frac{3}{4}\). El numerador nuevo tiene límite, y el denominador nuevo tiende a su coeficiente principal, que no es 0, así que se cumplen las dos condiciones de la propiedad del cociente. Si los grados son iguales, el límite es el cociente de los coeficientes principales; si el numerador tiene grado menor, el límite es 0, y la recta \(y = 0\) es la asíntota horizontal. Si el numerador tiene grado mayor, el numerador nuevo diverge y el denominador nuevo tiende a un número distinto de 0, así que el cociente diverge: \(\frac{x^2+1}{x+1} = \frac{x + \frac{1}{x}}{1 + \frac{1}{x}}\), y \(\lim_{x \to \infty} \frac{x^2+1}{x+1} = \infty\). Para eso usa una regla nueva: si el numerador tiende a infinito y el denominador a un número positivo, el cociente tiende a infinito; con otros signos, se ajusta el signo del resultado.</li>
+</ul>
+<p>Las dos herramientas valen también cuando \(x \to -\infty\), siempre que la base tenga límite en esa dirección: \((0.3^x + 2)^2\) tiende a 4 cuando \(x \to \infty\) y diverge cuando \(x \to -\infty\).</p>
+<p>Sabe por qué se reescribe y por qué con esa potencia:</p>
+<ul>
+<li><strong>La propiedad del cociente pide que el numerador y el denominador tengan límite</strong>, y cuando divergen no lo tienen. Saber que los dos divergen tampoco dice cuál es el límite: "\(\frac{\infty}{\infty}\)" no tiene un valor fijo, igual que \(\infty - \infty\) en la L5.</li>
+<li><strong>Con un exponente menor que el grado</strong>, el numerador y el denominador nuevos vuelven a diverger. <strong>Con uno mayor</strong>, los dos tienden a 0, y la propiedad del cociente no se puede usar porque pide que el límite del denominador sea distinto de 0.</li>
+</ul>
+<h3 id="lo-que-queda-para-otras-lecciones">Lo que queda para otras lecciones</h3>
+<ul>
+<li>La misma estrategia con sucesiones, escrita como "multiplicar por \(\frac{1}{n^2}\)": Actividad 3, L4.</li>
+<li>Los límites en un punto y sus estrategias algebraicas: Actividad 2.</li>
+</ul>
+<h3 id="cómo-lo-logra">Cómo lo logra</h3>
+<p>La propiedad nueva se llama siempre "propiedad de la potencia de una función", y la base va entre paréntesis: \(\left(f(x)\right)^n\). Después de dividir se habla del "numerador nuevo" y el "denominador nuevo", o de \(n(x)\) y \(d(x)\). Se dice "calcular el límite" y "reescribir", nunca "resolver" ni "manipular".</p>
+<ol type="1">
+<li><strong>Activación.</strong> El resumen de la L5 (límites de las constantes, de \(\frac{1}{x^n}\) y de \(a^x\), el producto por una constante y las cuatro propiedades con sus dos condiciones), el grado de un polinomio como su mayor exponente de \(x\), y dos preguntas de álgebra: separar y simplificar \(\frac{6x^2-4x}{2x^2} = 3 - \frac{2}{x}\), y calcular \(2^{-3} = \frac{1}{8}\).</li>
+<li><strong>Sin Contexto.</strong> La clase trabaja directamente sobre funciones (decisión 2 del plan).</li>
+<li><strong>Construcción, potencia de una función.</strong> Una sola pregunta: el límite de \((0.3^x + 2)^3\), escrita como producto. De ahí sale la propiedad, con \(n\) entero positivo, y su forma \(\frac{1}{\left(f(x)\right)^n}\) si \(F \neq 0\). Error esperable: \(4^{-3} = -64\); la retroalimentación vuelve a \(a^{-n} = \frac{1}{a^n}\).</li>
+<li><strong>Construcción, obstáculo.</strong> Se pide predecir el límite de \(\frac{3x^2+1}{x^2}\). Las respuestas esperables son "no tiene límite" (porque la propiedad del cociente no se puede usar), 4 (por simplificar mal) y 1. Una tabla muestra que el cociente tiende a 3, y eso descarta las tres: la propiedad no se puede usar y aun así el límite existe. Una pregunta con \(\frac{x^2}{x}\) y \(\frac{x}{x^2}\), que se simplifican a \(x\) y a \(\frac{1}{x}\), muestra que "\(\frac{\infty}{\infty}\)" no tiene un valor fijo.</li>
+<li><strong>Construcción, reescribir.</strong> \(\frac{3x^2+1}{x^2} = 3 + \frac{1}{x^2}\), y ahí se usan las propiedades. Con \(\frac{2x^2+2x-3}{x^2}\), el estudiante elige cuál de varias expresiones equivalentes muestra el límite de cada término. \(h(x) = \frac{1-x^2}{x^2}\), que la L5 dejó sin calcular, es el tercer ejemplo; su numerador diverge a menos infinito. Errores esperables: \(\frac{3x^2+1}{x^2} = 3 + 1\), \(\frac{5x}{x^2} = 5\) y dividir solo el primer término.</li>
+<li><strong>Construcción, denominador que no es potencia.</strong> \(b(x) = \frac{3x^2-5x+2}{4x^2-2x+7}\). Antes de dividir por \(x^2\), el estudiante recibe \(b(x)\) dividido por \(x\) y por \(x^3\), y en cada caso dice a qué tienden el numerador nuevo y el denominador nuevo, y si se puede usar la propiedad del cociente. Con \(x\), los dos divergen a infinito, como al comienzo; con \(x^3\), los dos tienden a 0. Después divide por \(x^2\): \(n(x)\) tiende a 3 y \(d(x)\) a 4, y el límite es \(\frac{3}{4}\). Cierra con \(\frac{x^2+1}{x+1}\): al dividir por \(x\), el numerador nuevo diverge a infinito y el denominador nuevo tiende a 1, así que \(\lim_{x \to \infty} \frac{x^2+1}{x+1} = \infty\).</li>
+<li><strong>Sistematización.</strong> Diapositivas con la propiedad de la potencia de una función (con \(n\) entero positivo y, en la forma \(\frac{1}{(f(x))^n}\), \(F \neq 0\)), por qué "\(\frac{\infty}{\infty}\)" no tiene un valor fijo, y la estrategia de reescribir dividiendo por \(x^n\), con \(n\) el grado del denominador. Dice que dividir por \(x^2\) es lo mismo que multiplicar por \(\frac{1}{x^2}\), como lo escribirá la Actividad 3.</li>
+<li><strong>Práctica.</strong> \(\frac{3x^2-5x}{x^2}\) y su cubo; \(\frac{3x^3+1}{2x^3+2x-3}\); el mismo cociente cuando \(x \to -\infty\), con 1.5 y −1.5 entre las alternativas; \(\frac{x+1}{x^2+1}\), que tiende a 0; \(\frac{2x^3-1}{x^2+1}\), que tiende a infinito; y un ítem de cada forma de potencia: \(\left(f(x)\right)^2\), \(\left(f(x)\right)^{-3}\) y \(\left(\frac{1}{g(x)}\right)^3\).</li>
+<li><strong>Ticket.</strong> El límite de \(\frac{5x^2+4x+3}{2x^2-3x+1}\), que es 2.5, y una pregunta nueva. Un compañero divide el numerador y el denominador por \(x^3\), ve que los dos tienden a 0 y concluye que el límite no existe. ¿Tiene razón? Clave: no. El límite es 2.5; al dividir por \(x^3\) queda un cociente en que la propiedad del cociente no se puede usar.</li>
+</ol>
+<h2 id="diagnóstico-de-la-versión-implementada">Diagnóstico de la versión implementada</h2>
+<p>La clase llega a calcular potencias de una función y cocientes de polinomios del mismo grado. Le faltan el obstáculo y la razón de cada paso, trabaja solo \(x \to \infty\) y dos retroalimentaciones tienen errores.</p>
+<h3 id="secuencia">Secuencia</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Qué hace</th>
+<th>Preguntas</th>
+<th>En PyE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recordemos</td>
+<td>Un límite con las propiedades; producto y cociente de dos límites dados; la definición de límite</td>
+<td>3</td>
+<td>Activación</td>
+</tr>
+<tr>
+<td>Aprendamos juntos (1) (video en el guion)</td>
+<td>\((0.3^x + 2)^2\) como producto; proponer la estrategia para el cubo; potencias de \(5 + 0.2^x\) y de una función con límite 3</td>
+<td>3</td>
+<td>Construcción</td>
+</tr>
+<tr>
+<td>Toma nota: potencias</td>
+<td>\(\lim f(x)^n = F^n\) y \(\lim f(x)^{-n} = F^{-n}\) si \(F \neq 0\)</td>
+<td>—</td>
+<td>Cápsula</td>
+</tr>
+<tr>
+<td>Practica lo aprendido (1)</td>
+<td>Potencias de una función con límite 4 y de \(\frac{4}{x^4} - 2\)</td>
+<td>2</td>
+<td>Práctica</td>
+</tr>
+<tr>
+<td>Aprendamos juntos (2) (video en el guion)</td>
+<td>\(\frac{3x^2+1}{x^2}\) reescrita como \(3 + \frac{1}{x^2}\); \(\frac{2x^2+2x-3}{x^2}\): por qué no se usa el cociente, ordenar los pasos, elegir la expresión equivalente, calcular; cápsula con cinco pasos</td>
+<td>4</td>
+<td>Construcción</td>
+</tr>
+<tr>
+<td>Practica lo aprendido (2)</td>
+<td>\(\frac{3x^2-5x}{x^2}\) y su cubo</td>
+<td>2</td>
+<td>Práctica</td>
+</tr>
+<tr>
+<td>Aprendamos juntos (3)</td>
+<td>\(\frac{3x^2-5x+2}{4x^2-2x+7}\) dividido por \(x^2\); por qué \(x^2\); \(\frac{3x^3+1}{2x^3+2x-3}\)</td>
+<td>7</td>
+<td>Construcción</td>
+</tr>
+<tr>
+<td>¿Qué aprendimos?</td>
+<td>Frases con desplegables</td>
+<td>7 huecos</td>
+<td>Sistematización</td>
+</tr>
+<tr>
+<td>Ticket de salida</td>
+<td>Un cociente de polinomios del mismo grado y su potencia \(-2\)</td>
+<td>2 huecos</td>
+<td>Ticket</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="hallazgos">Hallazgos</h3>
+<ul>
+<li><strong>No hay obstáculo.</strong> La clase dice que la propiedad del cociente "no nos llevará a un resultado" porque el numerador y el denominador divergen, sin mostrar qué pasa con "\(\frac{\infty}{\infty}\)". Tampoco hace que el estudiante pruebe otra potencia antes de explicar por qué \(x^2\).</li>
+<li><strong>La estrategia se entrega como procedimiento.</strong> La cápsula de observación lista cinco pasos, y una pregunta pide ordenar tres. El estándar de PyE no entrega procedimientos al estudiante.</li>
+<li><strong>Ningún ejercicio tiene grados distintos</strong>, aunque la cápsula afirma que la estrategia funciona con el numerador de grado menor o igual. Con la asíntota horizontal en este tema (reestructuración de la U1), hace falta al menos el caso de grado menor.</li>
+<li><strong>Solo se trabaja \(x \to \infty\)</strong>, aunque la L2, la L4 y la L5 trabajan las dos direcciones.</li>
+<li><strong>La retroalimentación sobre la elección de \(g(x)\)</strong> dice que en \(\frac{2x^2}{x^2}\) el numerador y el denominador divergen. Es cierto, pero ese término vale 2 para todo \(x \neq 0\), así que la razón para preferir otra expresión es que ahí cada término muestra su límite.</li>
+<li><strong>"El numerador y el denominador" nombra dos cosas:</strong> los del cociente original, que divergen, y los que quedan después de dividir, que tienen límite. La retroalimentación justifica la división con "una amplificación por \(\frac{1}{x^2}\)", y en la escuela amplificar es multiplicar.</li>
+<li><strong>Léxico.</strong> "Ley para el cuociente", "regla del cociente" y "propiedad del cociente" conviven, y la regla del cociente es otra cosa en las derivadas (U3). "Resolver" un límite o una función, "manipular la expresión", "álgebra de límites al infinito" y "funciones racionales" con "irracionales" como distractor. "Propiedad de las potencias" es, en la escuela, el nombre de \(a^m \cdot a^n = a^{m+n}\), justo la confusión que buscan los distractores \(5^4\) y \(5^6\).</li>
+</ul>
+<h3 id="errores">Errores</h3>
+<ul>
+<li><strong>La retroalimentación de la pregunta 5 del componente 6.7</strong> dice que, si el numerador y el denominador se dividen por una misma potencia distinta de \(x^2\), las nuevas funciones no tienen límite. Es cierto para \(x\) y falso para \(x^3\): con \(x^3\), los dos tienden a 0, y lo que falla es la condición \(G \neq 0\) de la propiedad del cociente.</li>
+<li><strong>La Sistematización dice "para cualquier \(n\)"</strong>; debe decir "para cualquier entero positivo \(n\)", como la Toma nota. Con \(f(x) = \frac{1}{x}\) y \(n = -1\), \(f(x)^{-1} = x\) diverge.</li>
+<li><strong>Retroalimentación de la pregunta 7 del componente 6.7:</strong> "\(3 + \lim \frac{1}{x^3} = 1 + 0 = 3\)"; debe decir \(3 + 0 = 3\).</li>
+<li><strong>Retroalimentación de 6.6:</strong> llama "propiedad de la suma" al cálculo de \(3 - \frac{5}{x}\), que usa la de la resta y el producto por una constante.</li>
+<li><strong>Claves solo en decimal.</strong> Las de \(f(x)^{-3}\), \(\frac{1}{f(x)}^2\), \(g(x)^{-2}\), \(\frac{1}{g(x)}^3\) y la potencia \(-2\) del Ticket aceptan solo el decimal; \(\frac{1}{64}\) o \(\frac{4}{25}\) se marcan mal. Hay que aceptar la fracción o decir en qué forma se responde.</li>
+<li><strong>Referencia a un video que no está.</strong> Moodle dice "la misma estrategia vista en el vídeo". El guion tenía dos videos, y en Moodle quedó su texto.</li>
+<li><strong>Recordemos, pregunta 3.</strong> La clave repite la frase de las Lecciones 1 a 3 sin decir que el número desde el cual se cumple depende de la distancia elegida.</li>
+<li><strong>Notación.</strong> "\(\frac{1}{f(x)}^2\)", sin paréntesis: se escribe \(\left(\frac{1}{f(x)}\right)^2\), que es igual a \(f(x)^{-2}\). "\(\lim_{x \to \infty} 3 + \frac{1}{x^2}\)", sin paréntesis, en 6.5. \(\left(\lim 0.3^x + 2\right)^3\), sin paréntesis interiores. "\(\lim_{x \to \infty} 4 \cdot 2\)". Un subíndice suelto al final de la fórmula de \(f(x)^{-n}\).</li>
+<li><strong>Redacción.</strong> "notemos que \(\lim 3\) y que \(\lim \frac{1}{x^2}\) también existe", sin verbo para el primero; "tanto el numerador como el denominador, diverge"; "en el denominador y el denominador"; "dividieramos"; "Si sabe que"; "se tiene puede establecer"; "Si cumple que además"; en el guion, "IPM: XXº componente"; decimales con coma (0,3; 0,2; 0,015625).</li>
+<li>Se verificaron y están correctas todas las claves: el Recordemos, las potencias, los cocientes, la Sistematización y el Ticket.</li>
+</ul>
+<h2 id="recursos">Recursos</h2>
+<ul>
+<li>No hay GeoGebra ni imágenes propias, ni personajes.</li>
+<li><strong>Videos.</strong> El guion tenía dos: uno narraba el límite de \((0.3^x + 2)^2\) como producto y otro la reescritura de \(\frac{3x^2+1}{x^2}\). No se reutilizan (decisión 5 del plan); su texto ya está en Moodle.</li>
+</ul>
+<h2 id="se-conserva-y-sale">Se conserva y sale</h2>
+<ul>
+<li><strong>Se conserva:</strong> la Toma nota de la potencia de una función, con \(n\) entero positivo; los cocientes \(\frac{3x^2+1}{x^2}\), \(\frac{2x^2+2x-3}{x^2}\), \(\frac{3x^2-5x+2}{4x^2-2x+7}\) y \(\frac{3x^3+1}{2x^3+2x-3}\); la pregunta de por qué dividir por \(x^2\), con la retroalimentación corregida; parte de las Prácticas; el cálculo del Ticket.</li>
+<li><strong>Sale:</strong> los ejercicios de potencias que exceden un ítem de cada forma; la cápsula de los cinco pasos y la pregunta de ordenarlos; la referencia al video; las frases con desplegables de la Sistematización; la potencia \(-2\) del Ticket; "ley para el cuociente", "regla del cociente", "resolver", "manipular", "amplificación" y "álgebra de límites al infinito".</li>
+</ul>
+<h2 id="para-decidir">Para decidir</h2>
+<p>Sin decisiones pendientes.</p>
+
+</main>
+</div>
+</body>
+</html>

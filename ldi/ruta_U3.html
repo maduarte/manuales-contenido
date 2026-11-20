@@ -1,0 +1,515 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LDI · Ruta nueva de la Unidad 3 · Derivadas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --ground:#fcfbfe; --surface:#f3f1f8; --surface-2:#ebe7f4; --line:#e0dcea;
+  --ink:#231d3b; --muted:#625c76;
+  --purple:#423475; --purple-ink:#423475; --on-purple:#ffffff;
+  --red:#d45762; --red-ink:#a8323e; --red-tint:#fbeef0;
+  --green:#61b89a; --green-ink:#2c7a5f; --green-tint:#eaf6f1;
+  --blue:#4aa7ba; --blue-ink:#27788a;
+  --orange:#f3972d; --orange-ink:#a85f0c;
+  --yellow:#f0f57d;
+  --code-bg:#eeebf6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+    --ink:#ece9f6; --muted:#aaa4c2;
+    --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+    --red-ink:#f0939b; --red-tint:#2e1b2c;
+    --green-ink:#86d6b9; --green-tint:#18302b;
+    --blue-ink:#85cfdd; --orange-ink:#f7b667;
+    --code-bg:#2a2548;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+  --ink:#ece9f6; --muted:#aaa4c2;
+  --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+  --red-ink:#f0939b; --red-tint:#2e1b2c;
+  --green-ink:#86d6b9; --green-tint:#18302b;
+  --blue-ink:#85cfdd; --orange-ink:#f7b667;
+  --code-bg:#2a2548;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.6;margin:0}
+.strip{display:flex;height:6px}
+.strip span{flex:1}
+header.top{background:var(--purple);color:var(--on-purple);padding-block:2.4rem 2.2rem;padding-inline:16px}
+header.top .in{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin:0 0 .6rem}
+header.top h1{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.15;margin:0 0 .8rem;text-wrap:balance;font-weight:650;letter-spacing:-.01em}
+header.top .lead{max-width:68ch;margin:0;font-size:1.05rem;opacity:.93}
+.layout{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:2rem 4rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1rem);align-self:start;font-size:.88rem;max-height:calc(100vh - 2rem);overflow:auto}
+nav.toc p{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .5rem}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
+nav.toc a{color:var(--ink);text-decoration:none;display:block;padding:.3rem .55rem;border-radius:6px;line-height:1.35}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--surface-2);outline:none}
+nav.toc .sub a{padding-left:1.3rem;color:var(--muted)}
+main{min-width:0;max-width:760px}
+main h2{font-size:1.55rem;line-height:1.25;margin:3rem 0 1rem;color:var(--purple-ink);text-wrap:balance;font-weight:650}
+main h2:first-child{margin-top:0}
+main h3{font-size:1.2rem;margin:2.2rem 0 .7rem;text-wrap:balance;font-weight:620}
+main h4{font-size:1.1rem;margin:1.6rem 0 .5rem}
+p,li{max-width:70ch}
+a{color:var(--purple-ink)}
+code{font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-size:.88em;background:var(--code-bg);padding:.08em .35em;border-radius:4px;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
+ul,ol{padding-left:1.3rem}
+li{margin:.3rem 0}
+li::marker{color:var(--purple-ink)}
+.tablewrap{overflow-x:auto;margin:1.2rem 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+th{background:var(--purple);color:var(--on-purple);text-align:left;font-weight:600;padding:.55rem .7rem}
+td{padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--surface)}
+blockquote{margin:1.4rem 0;padding:1rem 1.2rem;background:var(--surface);border-radius:10px}
+blockquote p{margin:.4rem 0}
+blockquote .tag{display:inline-block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:650;margin-bottom:.3rem;color:var(--muted)}
+blockquote.capsula{background:var(--green-tint)}
+blockquote.capsula .tag{color:var(--green-ink)}
+blockquote.revision{background:var(--red-tint)}
+blockquote.revision .tag{color:var(--red-ink)}
+.hito{display:flex;gap:.7rem;align-items:baseline;margin:1.6rem 0 .4rem;font-size:1.02rem;font-weight:620;line-height:1.4}
+.hito .hid{flex:none;background:var(--purple);color:var(--on-purple);font-family:"Geist Mono",ui-monospace,monospace;font-size:.78rem;font-weight:600;padding:.15rem .5rem;border-radius:999px;position:relative;top:-.08em}
+.hito + ul{margin-top:.2rem;padding-left:3.4rem}
+.leccion{border-top:1px solid var(--line);padding-top:1.4rem;margin-top:2.6rem}
+.leccion h4{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h4 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+details{margin:1rem 0}
+summary{cursor:pointer;font-weight:600;color:var(--purple-ink);padding:.35rem 0}
+summary:focus-visible{outline:2px solid var(--purple-ink);outline-offset:3px;border-radius:4px}
+.arco{list-style:none;padding:0;counter-reset:a;display:grid;gap:.7rem}
+.arco li{counter-increment:a;position:relative;padding-left:3rem;min-height:2.2rem;max-width:none}
+.arco li::before{content:counter(a);position:absolute;left:0;top:0;background:var(--surface-2);color:var(--purple-ink);font-weight:650;border-radius:50%;width:2.2rem;height:2.2rem;display:grid;place-items:center;font-family:"Geist Mono",monospace}
+.paso{display:grid;grid-template-columns:2.4rem 1fr;gap:.9rem;margin:1.3rem 0}
+.paso .num{font-family:"Geist Mono",ui-monospace,monospace;font-weight:600;color:var(--purple-ink);background:var(--surface-2);border-radius:8px;height:2.4rem;display:grid;place-items:center}
+.paso p{margin:0}
+.paso + ul{padding-left:4.6rem}
+.fases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem;margin:1.5rem 0 2rem}
+.fase{background:var(--surface);border-radius:10px;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.35rem}
+.fase .fn{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.fase .ft{font-weight:650;color:var(--purple-ink);font-size:1.05rem}
+.fase .fp{font-family:"Geist Mono",monospace;font-size:.82rem;color:var(--muted)}
+.fase .rv{margin-top:auto;display:flex;flex-wrap:wrap;gap:.3rem}
+.fase .rv span{font-size:.75rem;font-weight:600;color:var(--red-ink);background:var(--red-tint);border-radius:999px;padding:.1rem .55rem}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;gap:1.5rem}
+  nav.toc{position:static;max-height:none;background:var(--surface);border-radius:10px;padding:1rem}
+  .fases{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:460px){ .fases{grid-template-columns:1fr} .hito + ul{padding-left:1.3rem} .paso + ul{padding-left:1.3rem} }
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+
+header.top a{color:inherit;text-underline-offset:.2em}
+.enl{display:flex;flex-wrap:wrap;gap:.45rem;margin:.5rem 0 1rem}
+.enl a{display:inline-flex;align-items:center;gap:.45rem;border:1px solid var(--line);border-radius:999px;padding:.28rem .75rem;font-size:.86rem;line-height:1.35;text-decoration:none;color:var(--ink);background:var(--ground)}
+.enl a:hover,.enl a:focus-visible{border-color:var(--c);outline:none}
+.enl i{width:.6rem;height:.6rem;border-radius:50%;background:var(--c);flex:none}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.7rem;margin:1rem 0 1.6rem}
+a.card{display:grid;grid-template-columns:.8rem 1fr;gap:.8rem;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem;text-decoration:none;color:var(--ink);transition:border-color .15s,transform .15s}
+a.card:hover,a.card:focus-visible{border-color:var(--c);transform:translateY(-1px);outline:none}
+a.card i{width:.8rem;height:.8rem;border-radius:50%;background:var(--c);margin-top:.3rem}
+a.card b{display:block;font-weight:600;line-height:1.3}
+a.card span{display:block;color:var(--muted);font-size:.86rem;margin-top:.2rem;line-height:1.4}
+main h3.tema{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:1.6rem 0 .3rem}
+.lecs{margin:0 0 1rem;border-top:1px solid var(--line)}
+.lec{padding:.75rem 0;border-bottom:1px solid var(--line)}
+.lec p{margin:0;max-width:none}
+.lec .cod{font-family:"Geist Mono",ui-monospace,monospace;font-size:.8rem;font-weight:600;color:var(--purple-ink);margin-right:.45rem}
+.lec small{display:block;color:var(--muted);font-size:.84rem;margin-top:.1rem}
+.lec .enl{margin:.5rem 0 0}
+.leccion h3{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h3 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+table.meta th{background:var(--surface-2);color:var(--ink);width:11rem}
+.nota{color:var(--muted);font-size:.9rem}
+@media (prefers-reduced-motion:reduce){a.card{transition:none}}
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script></head>
+<body>
+<div class="strip"><span style="background:#423475"></span><span style="background:#d45762"></span><span style="background:#61b89a"></span><span style="background:#f0f57d"></span><span style="background:#4aa7ba"></span><span style="background:#f3972d"></span></div>
+<header class="top"><div class="in">
+<p class="eyebrow"><a href="index.html">LDI</a> · Ruta nueva, en construcción</p>
+<h1>Unidad 3 · Derivadas</h1>
+<p class="lead">La unidad construye la derivada desde la velocidad instantánea y la pendiente de la tangente, desarrolla las reglas para calcularla y la usa para estudiar funciones y optimizar. Conserva las Actividades 1, 2 y 3 del curso implementado como temas, y junta la Actividad 4, derivadas de exponenciales y logaritmos, con la de cálculo de derivadas, como propone el camino de mínimo cambio de <a href="../LDI_decisiones_estructurales.html">las decisiones estructurales</a>. Las reglas de derivación se argumentan sin demostraciones formales. Las funciones trigonométricas no se derivan.</p>
+</div></header>
+<div class="layout">
+<nav class="toc" aria-label="Contenido"><p>Contenido</p><ol><li><a href="#presentacion">Presentación</a></li><li><a href="#tema-1--derivada-como-razón-de-cambio-instantánea">Tema 1 · Derivada como razón de cambio instantánea</a></li><li class="sub"><a href="#U3T1L1">U3T1L1 · Velocidad instantánea</a></li><li class="sub"><a href="#U3T1L2">U3T1L2 · Derivada en un punto</a></li><li class="sub"><a href="#U3T1L3">U3T1L3 · Función derivada</a></li><li class="sub"><a href="#U3T1L4">U3T1L4 · Razones de cambio en situaciones</a></li><li class="sub"><a href="#U3T1L5">U3T1L5 · Ejercitación de la derivada</a></li><li><a href="#tema-2--cálculo-de-derivadas">Tema 2 · Cálculo de derivadas</a></li><li class="sub"><a href="#U3T2L1">U3T2L1 · Derivadas básicas</a></li><li class="sub"><a href="#U3T2L2">U3T2L2 · Reglas de la suma, el producto y el cociente</a></li><li class="sub"><a href="#U3T2L3">U3T2L3 · Regla de la cadena</a></li><li class="sub"><a href="#U3T2L4">U3T2L4 · Derivada de la exponencial</a></li><li class="sub"><a href="#U3T2L5">U3T2L5 · Derivada del logaritmo</a></li><li class="sub"><a href="#U3T2L6">U3T2L6 · Derivar modelos</a></li><li class="sub"><a href="#U3T2L7">U3T2L7 · Ejercitación de cálculo de derivadas</a></li><li><a href="#tema-3--estudio-de-funciones-y-optimización">Tema 3 · Estudio de funciones y optimización</a></li><li class="sub"><a href="#U3T3L1">U3T3L1 · Cimas y valles</a></li><li class="sub"><a href="#U3T3L2">U3T3L2 · Máximo y mínimo en un intervalo cerrado</a></li><li class="sub"><a href="#U3T3L3">U3T3L3 · Concavidad y segunda derivada</a></li><li class="sub"><a href="#U3T3L4">U3T3L4 · Optimización</a></li><li class="sub"><a href="#U3T3L5">U3T3L5 · Problemas de optimización</a></li><li class="sub"><a href="#U3T3L6">U3T3L6 · Ejercitación de estudio de funciones</a></li><li><a href="#proyecto">Proyecto</a></li><li class="sub"><a href="#U3P">U3P · Derivando la aceleración de gravedad</a></li><li><a href="#decisiones-abiertas-que-afectan-esta-ruta">Decisiones abiertas que afectan esta ruta</a></li></ol></nav>
+<main>
+<h2 id="presentacion">Presentación</h2><p><strong>Programa:</strong> Modelar situaciones de cambio con derivadas. <strong>OA 3</strong> (modelar situaciones que involucren rapidez instantánea de cambio y evaluar la necesidad de ajustar el modelo) y <strong>OA 4</strong> (crecimiento, decrecimiento, concavidad, máximos, mínimos y puntos de inflexión con la primera y la segunda derivada). Habilidades a (estrategias para problemas no rutinarios), d (argumentar) y e (construir modelos). 12 semanas.</p>
+
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Código</th>
+<th>Lección</th>
+<th>Tipo</th>
+<th>Viene de</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#U3T1L1">U3T1L1</a></td>
+<td>Velocidad instantánea</td>
+<td>Construcción</td>
+<td>A1 L1</td>
+</tr>
+<tr>
+<td><a href="#U3T1L2">U3T1L2</a></td>
+<td>Derivada en un punto</td>
+<td>Construcción</td>
+<td>A1 L2</td>
+</tr>
+<tr>
+<td><a href="#U3T1L3">U3T1L3</a></td>
+<td>Función derivada</td>
+<td>Construcción</td>
+<td>A1 L3</td>
+</tr>
+<tr>
+<td><a href="#U3T1L4">U3T1L4</a></td>
+<td>Razones de cambio en situaciones</td>
+<td>Práctica (aplicación)</td>
+<td>Nueva</td>
+</tr>
+<tr>
+<td><a href="#U3T1L5">U3T1L5</a></td>
+<td>Ejercitación de la derivada</td>
+<td>Ejercitación</td>
+<td>Nueva</td>
+</tr>
+<tr>
+<td><a href="#U3T2L1">U3T2L1</a></td>
+<td>Derivadas básicas</td>
+<td>Construcción</td>
+<td>A2 L1</td>
+</tr>
+<tr>
+<td><a href="#U3T2L2">U3T2L2</a></td>
+<td>Reglas de la suma, el producto y el cociente</td>
+<td>Construcción</td>
+<td>A2 L2</td>
+</tr>
+<tr>
+<td><a href="#U3T2L3">U3T2L3</a></td>
+<td>Regla de la cadena</td>
+<td>Construcción</td>
+<td>A2 L3</td>
+</tr>
+<tr>
+<td><a href="#U3T2L4">U3T2L4</a></td>
+<td>Derivada de la exponencial</td>
+<td>Construcción</td>
+<td>A4 L1</td>
+</tr>
+<tr>
+<td><a href="#U3T2L5">U3T2L5</a></td>
+<td>Derivada del logaritmo</td>
+<td>Construcción</td>
+<td>A4 L2</td>
+</tr>
+<tr>
+<td><a href="#U3T2L6">U3T2L6</a></td>
+<td>Derivar modelos</td>
+<td>Práctica (aplicación)</td>
+<td>Nueva, con material de A4 L1 y L2</td>
+</tr>
+<tr>
+<td><a href="#U3T2L7">U3T2L7</a></td>
+<td>Ejercitación de cálculo de derivadas</td>
+<td>Ejercitación</td>
+<td>Nueva</td>
+</tr>
+<tr>
+<td><a href="#U3T3L1">U3T3L1</a></td>
+<td>Cimas y valles</td>
+<td>Construcción</td>
+<td>A3 L1</td>
+</tr>
+<tr>
+<td><a href="#U3T3L2">U3T3L2</a></td>
+<td>Máximo y mínimo en un intervalo cerrado</td>
+<td>Construcción</td>
+<td>A3 L2</td>
+</tr>
+<tr>
+<td><a href="#U3T3L3">U3T3L3</a></td>
+<td>Concavidad y segunda derivada</td>
+<td>Construcción</td>
+<td>A3 L3</td>
+</tr>
+<tr>
+<td><a href="#U3T3L4">U3T3L4</a></td>
+<td>Optimización</td>
+<td>Construcción</td>
+<td>A3 L4</td>
+</tr>
+<tr>
+<td><a href="#U3T3L5">U3T3L5</a></td>
+<td>Problemas de optimización</td>
+<td>Práctica (aplicación)</td>
+<td>A3 L5</td>
+</tr>
+<tr>
+<td><a href="#U3T3L6">U3T3L6</a></td>
+<td>Ejercitación de estudio de funciones</td>
+<td>Ejercitación</td>
+<td>Nueva</td>
+</tr>
+<tr>
+<td><a href="#U3P">U3P</a></td>
+<td>Proyecto: derivando la aceleración de gravedad</td>
+<td>Proyecto</td>
+<td>Proyecto</td>
+</tr>
+</tbody>
+</table></div>
+<p>18 lecciones y el proyecto, más el diagnóstico y la evaluación de la unidad.</p>
+<p>Cada lección trae su tipo, su nivel y su origen; el objetivo; el punto de partida; y la secuencia de ideas en el orden en que se presentan, escritas como afirmaciones. La secuencia ordena la presentación y no es un procedimiento para el estudiante. Ninguna lección de la unidad tiene ficha todavía: todas se describen desde el curso implementado y se ajustan al hacer su ficha.</p>
+<p><strong>Lenguaje de la unidad.</strong> La derivada se nombra "razón de cambio instantánea", que continúa la razón de cambio de la Unidad 1; el programa la llama "rapidez instantánea de cambio". "Rapidez" queda para el movimiento: la velocidad sin signo. "Extremo" nombra un máximo o un mínimo, y "borde", cada punta de un intervalo.</p>
+<h2 id="tema-1--derivada-como-razón-de-cambio-instantánea">Tema 1 · Derivada como razón de cambio instantánea</h2>
+<p>El tema parte de lo que dejó la Unidad 2: la pendiente de la tangente como límite de pendientes de secantes. Lo reconoce en la velocidad de un objeto, en la razón de cambio de una cantidad y en el gráfico, y lo nombra derivada.</p>
+<section class="leccion" id="U3T1L1"><h3><span class="ln">U3T1L1</span>Velocidad instantánea</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-1-velocidad-instantánea"><i></i>Curso implementado · A1 L1</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · noción e intuición · viene de A1 L1 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Calcular la velocidad media de un objeto en intervalos de tiempo cada vez más cortos, obtener la velocidad instantánea como el límite de esas velocidades medias, interpretarla como la pendiente de la tangente al gráfico de la posición, y leer en un gráfico de posición dónde la velocidad es positiva, negativa o 0, y cuál de dos móviles va más rápido en un instante.</p>
+<p><strong>Punto de partida.</strong> Una pelota se lanza hacia arriba desde 1.5 m a 4 m/s, y su altura sigue \(s(t) = 1.5 + 4t - 4.9\,t^2\). ¿Qué velocidad tiene en un instante dado?</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>La velocidad de la pelota cambia todo el tiempo: es positiva mientras sube, 0 en lo más alto y negativa mientras cae, y disminuye todo el tiempo. Su rapidez, la velocidad sin signo, disminuye al subir y aumenta al caer.</li>
+<li>La velocidad media entre dos instantes es el cociente entre el cambio de altura y el tiempo transcurrido, y es la pendiente de la recta secante al gráfico de la posición.</li>
+<li><strong>Obstáculo.</strong> Se calcula la velocidad en un instante dividiendo la altura por el tiempo. A los 0.6 s la pelota ya baja, y \(\frac{s(0.6)}{0.6}\) da 3.56 m/s, positivo. Las velocidades medias en intervalos cada vez más cortos alrededor de 0.6 s se acercan a −1.88 m/s.</li>
+<li>Ese número es la velocidad instantánea: el límite de las velocidades medias cuando el intervalo se achica, como en la Unidad 2.</li>
+<li>Como con el camino de la colina de la Unidad 2, la secante se acerca a la tangente, y la velocidad instantánea es la pendiente de la tangente.</li>
+<li>Donde la velocidad instantánea es positiva, la posición sube; donde es negativa, baja; donde la tangente es horizontal, vale 0.</li>
+<li>En un gráfico con dos ciclistas, va más rápido en un instante el que tiene la tangente más inclinada en ese instante.</li>
+</ol>
+</section><section class="leccion" id="U3T1L2"><h3><span class="ln">U3T1L2</span>Derivada en un punto</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-2-significado-de-la-derivada"><i></i>Curso implementado · A1 L2</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · precisión · viene de A1 L2 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Calcular la derivada \(f'(a)\) de una función en un punto como el límite de sus razones de cambio medias, interpretarla con sus unidades y como pendiente de la tangente, escribir la ecuación de la recta tangente, y reconocer puntos donde la función no es derivable.</p>
+<p><strong>Punto de partida.</strong> Una esfera crece, y su superficie es \(S(r) = 4\pi r^2\). ¿A qué ritmo cambia la superficie cuando el radio mide 10 cm?</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>La razón de cambio media \(\frac{S(10 + h) - S(10)}{h}\) se acerca a un número cuando \(h\) tiende a 0, por la izquierda y por la derecha.</li>
+<li>Con álgebra, para \(h \neq 0\) la razón media vale \(4\pi(20 + h)\), y su límite es \(80\pi\), unos 251.3 cm² por cada cm de radio.</li>
+<li>La derivada de \(f\) en \(a\) es \(f'(a) = \lim_{h \to 0} \frac{f(a + h) - f(a)}{h}\). Reúne en un solo concepto la velocidad instantánea, la razón de cambio instantánea y la pendiente de la tangente.</li>
+<li>Sus unidades son las del cociente: centímetros cuadrados por centímetro, metros por segundo, pesos por unidad.</li>
+<li>La recta tangente en \(a\) pasa por \((a, f(a))\) con pendiente \(f'(a)\): \(y = f(a) + f'(a)(x - a)\).</li>
+<li><strong>Obstáculo.</strong> Se toma como tangente una recta que toca la curva en un solo punto, como en la circunferencia. En \(\lvert x \rvert\), muchas rectas tocan el gráfico solo en el origen, y ninguna es la tangente: las razones medias valen −1 por la izquierda y 1 por la derecha, y no se acercan a un solo número. \(\sqrt[3]{x}\) tampoco tiene derivada en 0: su tangente en 0 es vertical, y una recta vertical no tiene pendiente.</li>
+<li>Una función es derivable en un punto si tiene derivada en ese punto. Si es derivable en un punto, es continua en él; la recíproca no vale, como muestra \(\lvert x \rvert\).</li>
+</ol>
+</section><section class="leccion" id="U3T1L3"><h3><span class="ln">U3T1L3</span>Función derivada</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-3-función-derivada"><i></i>Curso implementado · A1 L3</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · noción e intuición · viene de A1 L3 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Dibujar el gráfico de la función derivada a partir del gráfico de una función, leyendo la pendiente de la tangente en cada punto, y relacionar el signo de \(f'\) con los intervalos en que \(f\) crece o decrece.</p>
+<p><strong>Punto de partida.</strong> El costo de generar energía eléctrica crece con la cantidad generada, y las tarifas dependen del costo marginal: lo que cuesta generar una unidad más.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>El costo marginal \(C(x + 1) - C(x)\) es una razón de cambio media en un intervalo de una unidad, y se aproxima por la pendiente de la tangente, \(C'(x)\).</li>
+<li>La función derivada asigna a cada \(x\) la pendiente de la tangente en \((x, f(x))\).</li>
+<li><strong>Obstáculo.</strong> Se dibuja \(f'\) copiando la forma de \(f\): donde \(f\) es alta, \(f'\) alta. \(f'\) depende de la inclinación, no de la altura: en lo más alto de una cima suave, \(f'\) vale 0.</li>
+<li>Si \(f' &gt; 0\) en un intervalo, \(f\) crece en ese intervalo; si \(f' &lt; 0\), decrece. La recíproca no vale: \(x^3\) crece en todos los reales y su derivada vale 0 en 0.</li>
+<li>Donde una función derivable pasa de crecer a decrecer, su derivada vale 0.</li>
+<li>En el gráfico del costo marginal se lee dónde el costo crece más rápido y qué significa un salto en el mercado eléctrico.</li>
+<li>Dado el gráfico de \(f\), se dibuja a mano un gráfico posible de \(f'\), y se reconocen pares \(f\), \(f'\).</li>
+</ol>
+</section><section class="leccion" id="U3T1L4"><h3><span class="ln">U3T1L4</span>Razones de cambio en situaciones</h3><div class="enl"><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Práctica (aplicación) · nueva</em></p>
+<p><strong>Objetivo.</strong> Estimar razones de cambio instantáneas con razones medias en intervalos cada vez más cortos, en situaciones dadas por un modelo o por datos medidos, interpretarlas con sus unidades y su signo, y explicar por qué con un modelo el intervalo se puede achicar tanto como se quiera y con datos medidos no.</p>
+<p><strong>Situaciones.</strong> La colonia de bacterias de la Unidad 2, \(P(t) = \frac{3135}{1 + 5.27 \cdot 1.1^{-t}}\), a las 30 horas. El café que se enfría, \(T(t) = 20 + 70 \cdot 0.9^t\), a los 10 minutos. La altura de una avioneta medida cada 30 segundos, la misma que recibe un modelo en la L6 del Tema 2.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Con un modelo, las razones medias en intervalos cada vez más cortos se acercan a la razón instantánea: la colonia crece a unas 53 bacterias por hora a las 30 horas.</li>
+<li>El café se enfría a unos 2.6 °C por minuto a los 10 minutos, y el signo negativo indica que la temperatura baja.</li>
+<li>Con datos medidos cada 30 segundos, el intervalo más corto es de 30 segundos, y solo hay razones medias entre mediciones. La razón media en el intervalo que contiene al instante es la mejor estimación disponible; para estimar mejor hace falta un modelo o mediciones más seguidas.</li>
+<li>Las unidades de la razón instantánea son las de la cantidad divididas por las de la variable.</li>
+</ol>
+</section><section class="leccion" id="U3T1L5"><h3><span class="ln">U3T1L5</span>Ejercitación de la derivada</h3><div class="enl"><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Ejercitación · nueva</em></p>
+<p><strong>Objetivo.</strong> Ejercitar el cálculo de razones de cambio medias e instantáneas, el cálculo de derivadas en un punto con el límite, la ecuación de la recta tangente y la lectura del gráfico de \(f'\) a partir del de \(f\).</p>
+<p><strong>Contenido.</strong> Un bloque por lección de construcción y un bloque final mixto. Los ejercicios se toman de las prácticas y de la evaluación de la Actividad 1 del curso implementado.</p>
+</section><h2 id="tema-2--cálculo-de-derivadas">Tema 2 · Cálculo de derivadas</h2>
+<p>El tema reemplaza el límite de cada caso por reglas. Las reglas se conjeturan con ejemplos y se argumentan con números, áreas o razones de cambio.</p>
+<section class="leccion" id="U3T2L1"><h3><span class="ln">U3T2L1</span>Derivadas básicas</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-1-funciones-derivadas-básicas"><i></i>Curso implementado · A2 L1</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · cálculo · viene de A2 L1 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Obtener las derivadas de las funciones constantes, afines y potencias, con el gráfico y la definición en los primeros casos y con la regla \((x^n)' = n x^{n-1}\) después, reescribiendo raíces y fracciones como potencias, y usarlas para escribir rectas tangentes.</p>
+<p><strong>Punto de partida.</strong> Calcular el límite de la definición en cada caso es largo, y se buscan reglas.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>La derivada de una constante es 0 y la de \(mx + n\) es \(m\): sus gráficos son rectas, y la pendiente de la tangente es la pendiente de la recta.</li>
+<li>Con la definición, la derivada de \(x^2\) es \(2x\) y la de \(x^3\) es \(3x^2\).</li>
+<li>Del patrón se conjetura \((x^n)' = n x^{n-1}\) para \(n\) entero positivo.</li>
+<li>Escribiendo \(\frac{1}{x} = x^{-1}\) y \(\sqrt{x} = x^{1/2}\), la misma regla da sus derivadas. Para \(\frac{1}{x}\) se comprueba con la definición; la razón general llega en la L5.</li>
+<li><strong>Obstáculo.</strong> Se deriva \(\frac{1}{x^2}\) como \(\frac{1}{2x}\). Para \(x &gt; 0\), \(\frac{1}{2x}\) es positiva, y una función con derivada positiva crece (Tema 1, L3); pero \(\frac{1}{x^2}\) decrece. Reescrita como \(x^{-2}\), su derivada es \(-2x^{-3}\).</li>
+<li>Con una tabla de derivadas básicas se escribe la recta tangente en cualquier punto.</li>
+</ol>
+</section><section class="leccion" id="U3T2L2"><h3><span class="ln">U3T2L2</span>Reglas de la suma, el producto y el cociente</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-2-propiedades-de-derivadas"><i></i>Curso implementado · A2 L2</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · cálculo · viene de A2 L2 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Derivar sumas, restas, múltiplos, productos y cocientes de funciones con sus reglas, argumentadas sin demostración formal, elegir entre desarrollar una expresión y aplicar una regla, y encontrar dónde la derivada de un polinomio vale 0.</p>
+<p><strong>Punto de partida.</strong> Una caja de base cuadrada de lado \(x\) y altura \(2 - x\) tiene volumen \(V(x) = (2 - x)x^2\). ¿Para qué \(x\) el volumen es máximo?</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>La derivada de una suma es la suma de las derivadas: la razón media de la suma es la suma de las razones medias, y se usa la propiedad de la suma de los límites. Lo mismo vale para la resta y para el producto por una constante.</li>
+<li>Con esas reglas se deriva cualquier polinomio: \(V'(x) = 4x - 3x^2\). \(V'\) es positiva entre 0 y \(\frac{4}{3}\) y negativa entre \(\frac{4}{3}\) y 2, así que el volumen crece hasta \(x = \frac{4}{3}\), donde vale \(\frac{32}{27}\), y después decrece (Tema 1, L3).</li>
+<li><strong>Obstáculo.</strong> Se deriva un producto multiplicando las derivadas. Con \(x \cdot x\) se obtendría 1, y la derivada de \(x^2\) es \(2x\).</li>
+<li>Regla del producto, \((fg)' = f'g + fg'\): en un rectángulo de lados \(f\) y \(g\) que crecen, el área aumenta en dos franjas, \(f \cdot \Delta g\) y \(g \cdot \Delta f\), más una esquina que se vuelve despreciable.</li>
+<li>Con la regla del producto se obtienen las derivadas de \(x^4\) y \(x^5\), que confirman la regla de las potencias.</li>
+<li>La regla del cociente se presenta y se comprueba con \(\frac{x^3}{x} = x^2\).</li>
+<li>A veces conviene desarrollar la expresión antes de derivar, y a veces aplicar la regla.</li>
+</ol>
+</section><section class="leccion" id="U3T2L3"><h3><span class="ln">U3T2L3</span>Regla de la cadena</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-3-derivada-de-funciones-compuestas"><i></i>Curso implementado · A2 L3</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · cálculo · viene de A2 L3 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Derivar composiciones de funciones con la regla de la cadena, identificando la función de afuera y la de adentro, y usarla para relacionar las razones de cambio de cantidades que dependen unas de otras.</p>
+<p><strong>Punto de partida.</strong> Tres engranajes de una bicicleta unidos por una cadena. Después, un tanque cilíndrico cuya altura de agua sube 3 cm por minuto.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>En los engranajes, las razones entre vueltas se multiplican.</li>
+<li>En el tanque, el volumen depende de la altura y la altura del tiempo. La razón de cambio del volumen respecto del tiempo es el producto de las dos razones.</li>
+<li>Para derivar, la composición se descompone en dos funciones, como en la Unidad 1: la de adentro, que se evalúa primero, y la de afuera, que recibe su resultado.</li>
+<li>Regla de la cadena: \(\left(f(g(x))\right)' = f'(g(x)) \cdot g'(x)\). Se argumenta escribiendo la razón media de la composición como producto de dos razones medias.</li>
+<li><strong>Obstáculo.</strong> Se olvida la derivada de adentro: \(\left((2x)^2\right)'\) daría \(2 \cdot 2x = 4x\), y desarrollando, \((4x^2)' = 8x\).</li>
+<li>Se encuentra y corrige el error en el cálculo de otro estudiante.</li>
+</ol>
+</section><section class="leccion" id="U3T2L4"><h3><span class="ln">U3T2L4</span>Derivada de la exponencial</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-1-derivada-de-funciones-exponenciales"><i></i>Curso implementado · A4 L1</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · cálculo · viene de A4 L1 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Obtener que la derivada de \(e^x\) es \(e^x\) a partir del límite de \(\frac{b^h - 1}{h}\), derivar funciones con exponenciales combinando las reglas del tema, y usarlas para responder preguntas sobre un modelo que combina una potencia y una exponencial, como la concentración de alcohol \(C(t) = 1.75\,t\,e^{-0.8t}\).</p>
+<p><strong>Punto de partida.</strong> Después de beber, la concentración de alcohol en la sangre de un adulto sigue \(C(t) = 1.75\,t\,e^{-0.8t}\) g/L, con \(t\) en horas. ¿Cuándo es máxima? ¿Llega a 0.8 g/L, la concentración desde la cual la ley considera estado de ebriedad?</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>En el gráfico del modelo se lee, de forma aproximada, cuándo la concentración es máxima.</li>
+<li>Con la definición, la derivada de \(b^x\) es \(b^x \cdot \lim_{h \to 0} \frac{b^h - 1}{h}\). Ese límite vale 0.693 para \(b = 2\) y 1.099 para \(b = 3\).</li>
+<li>Con un deslizador para \(b\), se busca entre 2 y 3 la base en que el límite vale 1, achicando el intervalo como con el teorema de Bolzano. Resulta 2.718…, el número \(e\) de la Unidad 2, y por eso \((e^x)' = e^x\).</li>
+<li><strong>Obstáculo.</strong> Se deriva \(e^x\) como \(x e^{x-1}\), con la regla de las potencias. En \(x = 0\) esa expresión vale 0, y la tangente a \(e^x\) en \((0, 1)\) tiene pendiente 1: en \(e^x\) la variable está en el exponente.</li>
+<li>Con la regla de la cadena, \((e^{kx})' = k e^{kx}\); con la del producto se deriva \(C(t)\).</li>
+<li>La concentración es máxima donde su derivada pasa de positiva a negativa: a las 1.25 horas, con 0.805 g/L, apenas sobre el nivel de ebriedad.</li>
+</ol>
+</section><section class="leccion" id="U3T2L5"><h3><span class="ln">U3T2L5</span>Derivada del logaritmo</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-2-derivada-de-funciones-logarítmicas"><i></i>Curso implementado · A4 L2</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · cálculo · viene de A4 L2 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Obtener que la derivada de \(\ln x\) es \(\frac{1}{x}\) derivando \(e^{\ln x} = x\) con la regla de la cadena, extenderla a \(\log_a x\) y \(a^x\), usarla para calcular la razón de cambio instantánea en un modelo logarítmico, y justificar con ella que \((x^r)' = r x^{r-1}\) vale para cualquier \(r\) real.</p>
+<p><strong>Punto de partida.</strong> Un modelo logarítmico da la estatura de Milan, un niño, según su edad. ¿A qué ritmo debería estar creciendo a los 10 meses?</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>\(\ln x\) es el logaritmo en base \(e\), la inversa de \(e^x\) (Unidad 1, Tema 3): \(e^{\ln x} = x\) para \(x &gt; 0\). De \(a = e^{\ln a}\) salen \(a^x = e^{x \ln a}\) y \(\log_a x = \frac{\ln x}{\ln a}\).</li>
+<li>Derivando los dos lados de \(e^{\ln x} = x\) con la regla de la cadena se obtiene \((\ln x)' = \frac{1}{x}\).</li>
+<li>Con esa derivada se responde la pregunta de Milan, en centímetros por mes.</li>
+<li>El reflejo respecto de \(y = x\) lleva el punto \((a, b)\) del gráfico de la función al punto \((b, a)\) del gráfico de la inversa, y la pendiente en \((b, a)\) es el recíproco de la pendiente en \((a, b)\). Para \(e^x\), la pendiente en \((a, e^a)\) es \(e^a\), y la de \(\ln x\) en \((e^a, a)\) es \(\frac{1}{e^a}\), o sea \(\frac{1}{x}\).</li>
+<li>\((\log_a x)' = \frac{1}{x \ln a}\) y \((a^x)' = a^x \ln a\). Por eso los límites de la L4 valen \(\ln 2 \approx 0.693\) y \(\ln 3 \approx 1.099\).</li>
+<li>Escribiendo \(x^r = e^{r \ln x}\) se obtiene \((x^r)' = r x^{r-1}\) para \(x &gt; 0\) y cualquier \(r\) real, que justifica lo que la L1 hizo con \(\sqrt{x}\).</li>
+</ol>
+</section><section class="leccion" id="U3T2L6"><h3><span class="ln">U3T2L6</span>Derivar modelos</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-1-derivada-de-funciones-exponenciales"><i></i>Curso implementado · A4 L1</a><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-2-derivada-de-funciones-logarítmicas"><i></i>Curso implementado · A4 L2</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Práctica (aplicación) · nueva, con material de A4 L1 y L2</em></p>
+<p><strong>Objetivo.</strong> Derivar modelos de situaciones combinando las reglas del tema, y responder con la derivada preguntas sobre razones de cambio instantáneas, con sus unidades.</p>
+<p><strong>Situaciones.</strong> La velocidad de ascenso de la avioneta de la L4 del Tema 1, ahora con un modelo logarítmico de su altura. La pendiente de un cable colgado entre dos postes (una catenaria) en el punto donde toca un poste. Un tanque cónico, con la punta hacia abajo, que se llena a caudal constante: la razón de cambio de la altura del agua.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Cada pregunta se traduce a una derivada: velocidad de ascenso, pendiente del cable, razón de cambio de la altura del agua.</li>
+<li>La catenaria se escribe con exponenciales, y su pendiente se obtiene con la regla de la cadena.</li>
+<li>En el tanque cónico, con caudal constante, el agua sube cada vez más lento, porque cada centímetro de altura necesita más volumen.</li>
+</ol>
+</section><section class="leccion" id="U3T2L7"><h3><span class="ln">U3T2L7</span>Ejercitación de cálculo de derivadas</h3><div class="enl"><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Ejercitación · nueva</em></p>
+<p><strong>Objetivo.</strong> Ejercitar el cálculo de derivadas con las reglas de las potencias, la suma, el producto, el cociente y la cadena, y las de exponenciales y logaritmos, y la escritura de rectas tangentes.</p>
+<p><strong>Contenido.</strong> Un bloque por lección de construcción y un bloque final en que el estudiante elige qué reglas usar. Los ejercicios se toman de las prácticas y de las evaluaciones de las Actividades 2 y 4 del curso implementado.</p>
+</section><h2 id="tema-3--estudio-de-funciones-y-optimización">Tema 3 · Estudio de funciones y optimización</h2>
+<p>El tema usa la primera y la segunda derivada para describir una función y para encontrar el mejor valor en un problema.</p>
+<section class="leccion" id="U3T3L1"><h3><span class="ln">U3T3L1</span>Cimas y valles</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-1-cimas-y-valles"><i></i>Curso implementado · A3 L1</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · cálculo · viene de A3 L1 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Encontrar los máximos y mínimos locales de una función en sus números críticos, donde la derivada vale 0 o no existe, estudiando el signo de la derivada a ambos lados de cada uno.</p>
+<p><strong>Punto de partida.</strong> El vértice de una parábola.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>En el vértice de \(f(x) = ax^2 + bx + c\) la derivada vale 0, y de ahí sale \(x = -\frac{b}{2a}\).</li>
+<li>En una cúbica se buscan los \(x\) donde \(f'(x) = 0\) y se estudia el signo de \(f'\) en una tabla de signos.</li>
+<li>Si \(f\) es continua en el número, hay un máximo local donde \(f'\) pasa de positiva a negativa, y un mínimo local donde pasa de negativa a positiva.</li>
+<li><strong>Obstáculo.</strong> Se concluye que donde la derivada vale 0 hay un extremo. \(x^3\) tiene derivada 0 en 0, crece a los dos lados y no tiene extremo ahí.</li>
+<li>También puede haber un extremo donde la derivada no existe, como \(\lvert x \rvert\) en 0. Los números donde la derivada vale 0 o no existe se llaman números críticos.</li>
+<li>Una función con \(f' &gt; 0\) en todo un intervalo abierto no tiene extremos locales en ese intervalo.</li>
+<li>GeoGebra deriva y resuelve \(f'(x) = 0\).</li>
+</ol>
+</section><section class="leccion" id="U3T3L2"><h3><span class="ln">U3T3L2</span>Máximo y mínimo en un intervalo cerrado</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-2-extremos-globales-de-una-función"><i></i>Curso implementado · A3 L2</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · cálculo · viene de A3 L2 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Encontrar el máximo y el mínimo de una función continua en un intervalo cerrado, fijado por el contexto, comparando sus valores en los números críticos y en los bordes del intervalo, y distinguirlos de los máximos y mínimos locales.</p>
+<p><strong>Punto de partida.</strong> Una caja que se hace cortando cuadrados en las esquinas de una plancha de hojalata de 27 × 72 cm. Isolina está a 1 km de la costa, vuelve de pescar remando a 3 km/h y caminando a 5 km/h, y quiere llegar a su casa en el menor tiempo.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Las restricciones del contexto fijan el intervalo: el lado del cuadrado que se corta va de 0 a 13.5 cm, la mitad del lado más corto. \(V'(x) = 12(x - 6)(x - 27)\), y el número crítico 27 queda fuera del intervalo. Con \(x = 6\), el volumen máximo es 5400 cm³.</li>
+<li>Una función continua en un intervalo cerrado tiene un máximo y un mínimo en ese intervalo.</li>
+<li>El máximo y el mínimo en el intervalo están en números críticos o en los bordes, así que basta evaluar la función ahí y comparar.</li>
+<li><strong>Obstáculo.</strong> Se da el número crítico como respuesta sin compararlo con los bordes. Si la casa de Isolina está a 2 km del punto de la costa más cercano, le conviene desembarcar a 750 m de ese punto, y tarda 40 minutos. Si su casa está a 500 m, el número crítico, 750 m, queda fuera del intervalo, y lo mejor es remar directo hasta su casa, en el borde: tarda unos 22 minutos.</li>
+<li>Los comandos Máximo y Mínimo de GeoGebra sirven para comprobar.</li>
+</ol>
+</section><section class="leccion" id="U3T3L3"><h3><span class="ln">U3T3L3</span>Concavidad y segunda derivada</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-3-concavidad-y-criterio-de-la-segunda-derivada"><i></i>Curso implementado · A3 L3</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · cálculo · viene de A3 L3 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Determinar dónde una función es cóncava hacia arriba o hacia abajo con el signo de su segunda derivada, encontrar sus puntos de inflexión, y clasificar extremos locales con el criterio de la segunda derivada.</p>
+<p><strong>Punto de partida.</strong> Gráficos y funciones polinómicas. Al cierre, una epidemia: el día en que los contagios acumulados pasan de crecer cada vez más rápido a crecer cada vez más lento.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Una función es cóncava hacia arriba en un intervalo cuando la pendiente de su tangente crece en ese intervalo, y cóncava hacia abajo cuando decrece.</li>
+<li>Como \(f''\) es la derivada de \(f'\), si \(f'' &gt; 0\) en un intervalo la función es cóncava hacia arriba, y si \(f'' &lt; 0\), cóncava hacia abajo.</li>
+<li>Un punto de inflexión es un punto donde cambia la concavidad.</li>
+<li><strong>Obstáculo.</strong> Se concluye que donde \(f'' = 0\) hay un punto de inflexión. \(x^4\) tiene \(f''(0) = 0\) y es cóncava hacia arriba a los dos lados.</li>
+<li>Criterio de la segunda derivada: si \(f'(a) = 0\) y \(f''(a) &gt; 0\), hay un mínimo local; si \(f''(a) &lt; 0\), un máximo local. Si \(f''(a) = 0\), el criterio no decide.</li>
+<li>El modelo logístico de una epidemia da los contagios acumulados. Su punto de inflexión es el día en que los acumulados pasan de crecer cada vez más rápido a crecer cada vez más lento, que es el día con más contagios diarios. La segunda derivada se calcula con GeoGebra.</li>
+</ol>
+</section><section class="leccion" id="U3T3L4"><h3><span class="ln">U3T3L4</span>Optimización</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-4-optimización"><i></i>Curso implementado · A3 L4</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Construcción · aplicación · viene de A3 L4 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Resolver problemas de optimización geométrica escribiendo la cantidad que se quiere optimizar como función de una sola variable con la restricción del problema, fijando su dominio con el contexto y encontrando su máximo o su mínimo con la derivada.</p>
+<p><strong>Punto de partida.</strong> El rectángulo de mayor área que se forma con 100 cm de hilo. El tarro de hojalata de mayor volumen para un costo dado de material.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>Se identifica la cantidad que se quiere maximizar, y queda escrita con dos variables: el área del rectángulo depende del largo y del ancho.</li>
+<li>La restricción, 100 cm de perímetro, deja la cantidad con una sola variable: \(A(x) = x(50 - x)\).</li>
+<li>El contexto fija el dominio. Conviene incluir los bordes, donde un lado mide 0 y no hay rectángulo, para trabajar en un intervalo cerrado: \(0 \le x \le 50\).</li>
+<li>Con la L2, el máximo está en \(x = 25\): el rectángulo de mayor área es un cuadrado.</li>
+<li>En el tarro, la restricción es el costo del material, y se maximiza el volumen.</li>
+<li><strong>Obstáculo.</strong> Se da por hecho que el número crítico es la respuesta. Un alambre se corta en dos partes para formar un cuadrado y un círculo: el único número crítico da el área total mínima, y la máxima está en un borde, cuando todo el alambre forma el círculo.</li>
+</ol>
+</section><section class="leccion" id="U3T3L5"><h3><span class="ln">U3T3L5</span>Problemas de optimización</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#lección-5-practicando-con-problemas-de-optimización"><i></i>Curso implementado · A3 L5</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Práctica (aplicación) · viene de A3 L5</em></p>
+<p><strong>Objetivo.</strong> Resolver problemas de optimización en situaciones de negocios y de diseño, eligiendo las variables, comparando dos modelos del mismo problema, interpretando el resultado en el contexto, y resolver un problema con los costos como parámetros para comparar ofertas.</p>
+<p><strong>Situaciones.</strong> El arriendo de un edificio: subir el precio deja departamentos vacíos. Una hoja con zona de impresión y márgenes. El trazado más barato de una tubería para una planta de amoníaco verde, con ofertas de tres empresas.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>La elección de la variable cambia la dificultad del problema y no su respuesta: dos modelos del mismo problema llegan al mismo resultado.</li>
+<li>El precio que maximiza el ingreso del edificio se interpreta en el contexto: cuántos departamentos quedan arrendados.</li>
+<li>En la tubería, el trazado más barato depende de los costos por metro de cada tramo. Si el problema se resuelve con esos costos como parámetros, las tres ofertas se comparan sin resolverlo tres veces.</li>
+</ol>
+</section><section class="leccion" id="U3T3L6"><h3><span class="ln">U3T3L6</span>Ejercitación de estudio de funciones</h3><div class="enl"><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Ejercitación · nueva</em></p>
+<p><strong>Objetivo.</strong> Ejercitar el estudio de funciones con la primera y la segunda derivada (crecimiento, extremos, concavidad e inflexión) y la resolución de problemas de optimización.</p>
+<p><strong>Contenido.</strong> Un bloque por lección de construcción y un bloque final de problemas. Los ejercicios se toman de las prácticas y de la evaluación de la Actividad 3 del curso implementado.</p>
+</section><h2 id="proyecto">Proyecto</h2>
+<section class="leccion" id="U3P"><h3><span class="ln">U3P</span>Derivando la aceleración de gravedad</h3><div class="enl"><a style="--c:#4aa7ba" href="../LDI_ruta_curso_implementado.html#proyecto-derivando-la-aceleración-de-gravedad"><i></i>Curso implementado · Proyecto</a><a style="--c:#d45762" href="https://claude.ai/artifact/6gZW8oCrXi1QNDGUHciLpL"><i></i>Comentar la propuesta</a></div>
+<p><em>Proyecto · viene del proyecto de la Unidad 3 · sin ficha</em></p>
+<p><strong>Objetivo.</strong> Diseñar un experimento de caída, ajustar un modelo a los datos de posición y tiempo, derivarlo dos veces para estimar la aceleración de gravedad, y evaluar el modelo comparando la estimación con el valor conocido.</p>
+<p><strong>Punto de partida.</strong> Galileo cuestionó que los objetos más pesados caigan más rápido. Los equipos miden la distancia que recorre un objeto al caer y construyen un modelo para estimar la aceleración de gravedad.</p>
+<p><strong>Secuencia de ideas</strong></p>
+<ol type="1">
+<li>El ciclo de modelamiento tiene cuatro etapas: entender y simplificar, matematizar, trabajar matemáticamente, e interpretar y validar. El proyecto las presenta y las recorre en orden.</li>
+<li>Entender y simplificar: diseñar un experimento que mida distancia y tiempo.</li>
+<li>Matematizar: ajustar un modelo cuadrático a los datos.</li>
+<li>Trabajar matemáticamente: la derivada de la posición es la velocidad y la derivada de la velocidad es la aceleración, así que la segunda derivada del modelo estima la aceleración de gravedad.</li>
+<li>Interpretar y validar: comparar el valor absoluto de la estimación con 9.8 m/s² y explicar las diferencias por las simplificaciones del experimento.</li>
+<li>Preparar un reporte y presentar los resultados.</li>
+</ol>
+</section><h2 id="decisiones-abiertas-que-afectan-esta-ruta">Decisiones abiertas que afectan esta ruta</h2>
+<ol type="1">
+<li><strong>Proyecto</strong> (decisión 3). La ruta lo conserva como lección aparte; puede ocupar más de una clase.</li>
+<li><strong>Exponencial y logaritmo</strong> (decisión 9). La ruta los junta con el cálculo de derivadas.</li>
+<li><strong>Funciones trigonométricas</strong> (decisión 8). No se derivan.</li>
+<li><strong>Orden.</strong> La L2 y la L4 del Tema 2 buscan un máximo con la derivada antes del Tema 3. Lo hacen con lo que dejó la L3 del Tema 1 (donde la función pasa de crecer a decrecer, la derivada vale 0), y el Tema 3 lo formaliza.</li>
+<li><strong>Ciclo de modelamiento de las paltas</strong>, que sale de la Unidad 1. Si entra en esta unidad, su lugar es la práctica del Tema 3: ingreso máximo con un precio ajustado a datos y evaluación del modelo.</li>
+<li><strong>Cantidad de lecciones.</strong> La unidad tiene 18 lecciones y el proyecto, cuando según las semanas del programa le corresponden unas 25.</li>
+</ol>
+
+</main>
+</div>
+</body>
+</html>
