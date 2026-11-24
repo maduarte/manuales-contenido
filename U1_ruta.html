@@ -1,0 +1,487 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ruta de la Unidad 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --ground:#fcfbfe; --surface:#f3f1f8; --surface-2:#ebe7f4; --line:#e0dcea;
+  --ink:#231d3b; --muted:#625c76;
+  --purple:#423475; --purple-ink:#423475; --on-purple:#ffffff;
+  --red:#d45762; --red-ink:#a8323e; --red-tint:#fbeef0;
+  --green:#61b89a; --green-ink:#2c7a5f; --green-tint:#eaf6f1;
+  --blue:#4aa7ba; --blue-ink:#27788a;
+  --orange:#f3972d; --orange-ink:#a85f0c;
+  --yellow:#f0f57d;
+  --code-bg:#eeebf6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+    --ink:#ece9f6; --muted:#aaa4c2;
+    --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+    --red-ink:#f0939b; --red-tint:#2e1b2c;
+    --green-ink:#86d6b9; --green-tint:#18302b;
+    --blue-ink:#85cfdd; --orange-ink:#f7b667;
+    --code-bg:#2a2548;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+  --ink:#ece9f6; --muted:#aaa4c2;
+  --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+  --red-ink:#f0939b; --red-tint:#2e1b2c;
+  --green-ink:#86d6b9; --green-tint:#18302b;
+  --blue-ink:#85cfdd; --orange-ink:#f7b667;
+  --code-bg:#2a2548;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.6;margin:0}
+.strip{display:flex;height:6px}
+.strip span{flex:1}
+header.top{background:var(--purple);color:var(--on-purple);padding-block:2.4rem 2.2rem;padding-inline:16px}
+header.top .in{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin:0 0 .6rem}
+header.top h1{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.15;margin:0 0 .8rem;text-wrap:balance;font-weight:650;letter-spacing:-.01em}
+header.top .lead{max-width:68ch;margin:0;font-size:1.05rem;opacity:.93}
+.layout{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:2rem 4rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1rem);align-self:start;font-size:.88rem;max-height:calc(100vh - 2rem);overflow:auto}
+nav.toc p{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .5rem}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
+nav.toc a{color:var(--ink);text-decoration:none;display:block;padding:.3rem .55rem;border-radius:6px;line-height:1.35}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--surface-2);outline:none}
+nav.toc .sub a{padding-left:1.3rem;color:var(--muted)}
+main{min-width:0;max-width:760px}
+main h2{font-size:1.55rem;line-height:1.25;margin:3rem 0 1rem;color:var(--purple-ink);text-wrap:balance;font-weight:650}
+main h2:first-child{margin-top:0}
+main h3{font-size:1.2rem;margin:2.2rem 0 .7rem;text-wrap:balance;font-weight:620}
+main h4{font-size:1.1rem;margin:1.6rem 0 .5rem}
+p,li{max-width:70ch}
+a{color:var(--purple-ink)}
+code{font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-size:.88em;background:var(--code-bg);padding:.08em .35em;border-radius:4px;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
+ul,ol{padding-left:1.3rem}
+li{margin:.3rem 0}
+li::marker{color:var(--purple-ink)}
+.tablewrap{overflow-x:auto;margin:1.2rem 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+th{background:var(--purple);color:var(--on-purple);text-align:left;font-weight:600;padding:.55rem .7rem}
+td{padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--surface)}
+blockquote{margin:1.4rem 0;padding:1rem 1.2rem;background:var(--surface);border-radius:10px}
+blockquote p{margin:.4rem 0}
+blockquote .tag{display:inline-block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:650;margin-bottom:.3rem;color:var(--muted)}
+blockquote.capsula{background:var(--green-tint)}
+blockquote.capsula .tag{color:var(--green-ink)}
+blockquote.revision{background:var(--red-tint)}
+blockquote.revision .tag{color:var(--red-ink)}
+.hito{display:flex;gap:.7rem;align-items:baseline;margin:1.6rem 0 .4rem;font-size:1.02rem;font-weight:620;line-height:1.4}
+.hito .hid{flex:none;background:var(--purple);color:var(--on-purple);font-family:"Geist Mono",ui-monospace,monospace;font-size:.78rem;font-weight:600;padding:.15rem .5rem;border-radius:999px;position:relative;top:-.08em}
+.hito + ul{margin-top:.2rem;padding-left:3.4rem}
+.leccion{border-top:1px solid var(--line);padding-top:1.4rem;margin-top:2.6rem}
+.leccion h4{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h4 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+details{margin:1rem 0}
+summary{cursor:pointer;font-weight:600;color:var(--purple-ink);padding:.35rem 0}
+summary:focus-visible{outline:2px solid var(--purple-ink);outline-offset:3px;border-radius:4px}
+.arco{list-style:none;padding:0;counter-reset:a;display:grid;gap:.7rem}
+.arco li{counter-increment:a;position:relative;padding-left:3rem;min-height:2.2rem;max-width:none}
+.arco li::before{content:counter(a);position:absolute;left:0;top:0;background:var(--surface-2);color:var(--purple-ink);font-weight:650;border-radius:50%;width:2.2rem;height:2.2rem;display:grid;place-items:center;font-family:"Geist Mono",monospace}
+.paso{display:grid;grid-template-columns:2.4rem 1fr;gap:.9rem;margin:1.3rem 0}
+.paso .num{font-family:"Geist Mono",ui-monospace,monospace;font-weight:600;color:var(--purple-ink);background:var(--surface-2);border-radius:8px;height:2.4rem;display:grid;place-items:center}
+.paso p{margin:0}
+.paso + ul{padding-left:4.6rem}
+.fases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem;margin:1.5rem 0 2rem}
+.fase{background:var(--surface);border-radius:10px;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.35rem}
+.fase .fn{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.fase .ft{font-weight:650;color:var(--purple-ink);font-size:1.05rem}
+.fase .fp{font-family:"Geist Mono",monospace;font-size:.82rem;color:var(--muted)}
+.fase .rv{margin-top:auto;display:flex;flex-wrap:wrap;gap:.3rem}
+.fase .rv span{font-size:.75rem;font-weight:600;color:var(--red-ink);background:var(--red-tint);border-radius:999px;padding:.1rem .55rem}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;gap:1.5rem}
+  nav.toc{position:static;max-height:none;background:var(--surface);border-radius:10px;padding:1rem}
+  .fases{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:460px){ .fases{grid-template-columns:1fr} .hito + ul{padding-left:1.3rem} .paso + ul{padding-left:1.3rem} }
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script></head>
+<body>
+<div class="strip"><span style="background:#423475"></span><span style="background:#d45762"></span><span style="background:#61b89a"></span><span style="background:#f0f57d"></span><span style="background:#4aa7ba"></span><span style="background:#f3972d"></span></div>
+<header class="top"><div class="in">
+<p class="eyebrow">Probabilidad y Estadística · Ruta de la unidad</p>
+<h1>Unidad 1: ¿Qué dicen los gráficos? Análisis crítico de la información</h1>
+<p class="lead">Esta unidad busca que los estudiantes desarrollen un análisis crítico de la información estadística a través de distintos tipos de gráficos: parte con gráficos de barras y de líneas para explorar fenómenos y series de tiempo (incluyendo variación porcentual y proyecciones), avanza hacia el histograma como herramienta para estudiar centro, variabilidad y forma de una distribución, incorpora el diagrama de cajón (cuartiles, RIC) como complemento visual del histograma para comparar distribuciones, y cierra analizando relaciones entre dos variables mediante diagramas de dispersión, la razón de conteo por cuadrantes y la recta de mínimos cuadrados — sentando así las bases visuales e intuitivas que Unidad 2 retomará para formalizar covarianza y correlación de Pearson.</p>
+</div></header>
+<div class="layout">
+<nav class="toc" aria-label="Contenido"><p>Contenido</p><ol><li><a href="#presentacion">Presentación de la unidad</a></li><li><a href="#tema-1--explorar-fenómenos-a-través-de-datos">Tema 1: Explorar fenómenos a través de datos</a></li><li class="sub"><a href="#diagnóstico-inicial-de-la-unidad">Diagnóstico inicial de la Unidad</a></li><li class="sub"><a href="#lección-1--recolectar-organizar-y-analizar-datos-por-medio-de-gráficos-para-entender-una-situación">Lección 1 · Recolectar, organizar y analizar datos por medio de gráficos para entender una situación</a></li><li class="sub"><a href="#lección-2--agrupando-datos-para-visualizar-patrones-en-gráficos-de-barras">Lección 2 · Agrupando datos para visualizar patrones en gráficos de barras</a></li><li class="sub"><a href="#lección-3--analizar-tendencias-en-los-datos-mediante-gráficos-de-líneas">Lección 3 · Analizar tendencias en los datos mediante gráficos de líneas</a></li><li class="sub"><a href="#lección-4--crearconstruir-gráficos-de-barras-y-líneas">Lección 4 · Crear/Construir gráficos de barras y líneas</a></li><li class="sub"><a href="#lección-5--variación-porcentual-de-datos-en-el-tiempo-análisis-del-cambio-y-proyecciones">Lección 5 · Variación porcentual de datos en el tiempo: análisis del cambio y proyecciones</a></li><li class="sub"><a href="#lección-6--práctica-de-construcción-y-análisis-de-gráficos-de-barras-y-líneas">Lección 6 · Práctica de construcción y análisis de gráficos de barras y líneas</a></li><li class="sub"><a href="#lección-7--gráfico-circular-y-pertinencia-de-gráficos">Lección 7 · Gráfico circular y pertinencia de gráficos</a></li><li><a href="#tema-2--analizar-la-distribución-de-los-datos">Tema 2: Analizar la distribución de los datos</a></li><li class="sub"><a href="#lección-1--introduciendo-histogramas">Lección 1 · Introduciendo histogramas</a></li><li class="sub"><a href="#lección-2--caracterizar-y-comparar-distribuciones-a-través-de-histogramas">Lección 2 · Caracterizar y comparar distribuciones a través de histogramas</a></li><li class="sub"><a href="#lección-3--construcción-de-histogramas">Lección 3 · Construcción de Histogramas</a></li><li class="sub"><a href="#lección-4--práctica-de-construcción-y-análisis-de-gráficos-de-histogramas">Lección 4 · Práctica de construcción y análisis de gráficos de histogramas</a></li><li><a href="#tema-3--medidas-de-posición-para-analizar-la-distribución-de-los-datos">Tema 3: Medidas de posición para analizar la distribución de los datos</a></li><li class="sub"><a href="#lección-1--medidas-de-posición">Lección 1 · Medidas de posición</a></li><li class="sub"><a href="#lección-2--diagramas-de-cajón">Lección 2 · Diagramas de cajón</a></li><li class="sub"><a href="#lección-3--profundizando-en-el-diagrama-de-cajón">Lección 3 · Profundizando en el diagrama de cajón</a></li><li class="sub"><a href="#lección-4--construcción-de-diagramas-de-cajón-usando-herramientas-tecnológicas">Lección 4 · Construcción de diagramas de cajón usando herramientas tecnológicas</a></li><li class="sub"><a href="#lección-5--práctica">Lección 5 · Práctica</a></li><li><a href="#tema-4--analizar-relaciones-entre-variables-mediante-correlaciones-y-modelos-lineales">Tema 4: Analizar relaciones entre variables mediante correlaciones y modelos lineales</a></li><li class="sub"><a href="#lección-1--diagramas-de-dispersión">Lección 1 · Diagramas de dispersión</a></li><li class="sub"><a href="#lección-2--análisis-de-la-correlación-de-las-variables-en-un-diagrama-de-dispersión">Lección 2 · Análisis de la correlación de las variables en un diagrama de dispersión</a></li><li class="sub"><a href="#lección-3--explorar-la-recta-de-mínimos-cuadrados">Lección 3 · Explorar la recta de mínimos cuadrados</a></li><li class="sub"><a href="#lección-4--construcción-de-diagramas-de-dispersión-usando-herramientas-tecnológicas">Lección 4 · Construcción de diagramas de dispersión usando herramientas tecnológicas</a></li><li class="sub"><a href="#lección-5--práctica-de-construcción-y-análisis-de-diagrama-de-puntos">Lección 5 · Práctica de construcción y análisis de diagrama de puntos</a></li><li class="sub"><a href="#evaluación-unidad-1">Evaluación Unidad 1</a></li></ol></nav>
+<main>
+<h2 id="presentacion">Presentación de la unidad</h2>
+<p><strong>OA de Conocimiento y Comprensión (PEDI):</strong> <strong>OA 1 — Análisis Gráfico</strong>: <em>Argumentar y comunicar decisiones a partir del análisis crítico de información presente en histogramas, polígonos de frecuencia, frecuencia acumulada, diagramas de cajón y nube de puntos, incluyendo el uso de herramientas digitales.</em></p>
+<p><strong>Habilidades citadas para esta Unidad:</strong> c (Decisiones Fundamentadas), d (Argumentar Conjeturas), i (Información Confiable).</p>
+<p><strong>Antecedente en Formación General:</strong> el único antecedente en FG (1°–4°M) para toda la OAC 01 es <strong>MA1M OA 12</strong> (Doble Entrada) + <strong>MA1M OA 13</strong> (Nube Puntos) — antecedente general para los Temas 1-3, y antecedente directo y explícito para el Tema 4 (citado textualmente en la secuencia pedagógica de Unidad 2 como prerrequisito "U1T4"). El diferenciado amplía el repertorio gráfico más allá de ese antecedente.</p>
+<hr />
+<h2 id="tema-1--explorar-fenómenos-a-través-de-datos">Tema 1 — Explorar fenómenos a través de datos</h2>
+<p><strong>Objetivo del tema:</strong> Analizar fenómenos mediante gráficos de barras y de líneas en series de tiempo, incluyendo variación porcentual y gráfico circular.</p>
+<p><strong>OA PEDI:</strong> OA 1 — Análisis Gráfico <em>(hereda de la Unidad)</em>.</p>
+<p><strong>OA Formación General:</strong></p>
+<ul>
+<li>1° Medio: <strong>MA1M OA 12 + OA 13</strong> (antecedente general de la OAC 01, no específico del Tema — gráficos de barras/líneas y series de tiempo no están cubiertos como tales por ningún OA de FG 1°–4°M).</li>
+</ul>
+<h3 id="lecciones">Lecciones</h3>
+<section class="leccion" id="diagnóstico-inicial-de-la-unidad"><h4>Diagnóstico inicial de la Unidad</h4>
+</section><section class="leccion" id="lección-1--recolectar-organizar-y-analizar-datos-por-medio-de-gráficos-para-entender-una-situación"><h4><span class="ln">Lección 1</span>Recolectar, organizar y analizar datos por medio de gráficos para entender una situación</h4>
+<p><strong>Objetivo:</strong> Analizar críticamente gráficos de distintos medios, evaluando si la información disponible (precipitaciones 2010-2019) es suficiente para comprender la megasequía, usando tablas y gráficos de barras.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Calcular la media de un conjunto de datos.</li>
+<li>Interpretar la media como medida de tendencia central y como valor de reparto equitativo entre los datos.</li>
+<li>Analizar información del contexto para identificar variables y datos relevantes.</li>
+<li>Organizar datos en un gráfico de barras.</li>
+<li>Evaluar si los datos disponibles permiten analizar el fenómeno de interés.</li>
+<li>Modificar el diseño del gráfico incorporando elementos que mejoren su análisis e interpretación.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-2--agrupando-datos-para-visualizar-patrones-en-gráficos-de-barras"><h4><span class="ln">Lección 2</span>Agrupando datos para visualizar patrones en gráficos de barras</h4>
+<p><strong>Objetivo:</strong> Agrupar datos de precipitaciones en gráficos de barras de series de tiempo (por décadas) y analizar la megasequía a partir de los patrones observados.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Analizar un conjunto de datos representado en un gráfico de barras y usar el promedio como referencia para comparar valores individuales.</li>
+<li>Interpretar la información contenida en un gráfico de barras de una serie de tiempo.</li>
+<li>Agrupar datos en intervalos de tiempo y representarlos en un gráfico de barras para facilitar su análisis.</li>
+<li>Elegir la medida más adecuada para analizar datos agrupados en un gráfico de barras de series de tiempo.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-3--analizar-tendencias-en-los-datos-mediante-gráficos-de-líneas"><h4><span class="ln">Lección 3</span>Analizar tendencias en los datos mediante gráficos de líneas</h4>
+<p><strong>Objetivo:</strong> Analizar datos de una serie de tiempo mediante gráficos de líneas, reconociendo su pertinencia para observar tendencias (temperatura, CO2, hielo marino) frente al gráfico de barras.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Interpretar la información de un gráfico de barras e identificar los datos relevantes del contexto.</li>
+<li>Evaluar si un gráfico de barras permite observar adecuadamente la variación de los datos en el tiempo.</li>
+<li>Evaluar la validez de conclusiones extraídas de un gráfico de barras cuyo eje vertical no parte de cero.</li>
+<li>Determinar los propósitos para los cuales es más adecuado un gráfico de barras o uno de líneas.</li>
+<li>Identificar tendencias y cambios en los datos a lo largo del tiempo en un gráfico de líneas.</li>
+<li>Analizar la magnitud de los cambios entre periodos consecutivos comparando visualmente las pendientes de un gráfico de líneas.</li>
+<li>Interpretar un fenómeno a partir de los cambios y tendencias observados en un gráfico de líneas.</li>
+<li>Formular preguntas y emitir un juicio crítico sobre el fenómeno a partir del análisis de los datos.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-4--crearconstruir-gráficos-de-barras-y-líneas"><h4><span class="ln">Lección 4</span>Crear/Construir gráficos de barras y líneas</h4>
+<p><strong>Objetivo:</strong> Construir gráficos de líneas y de barras (simples y con datos agrupados) usando Excel/Google Sheets, siguiendo tutoriales paso a paso.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Organizar datos en una hoja de cálculo para preparar la construcción de un gráfico.</li>
+<li>Construir un gráfico de líneas a partir de una serie de tiempo utilizando una hoja de cálculo.</li>
+<li>Construir un gráfico de barras simples a partir de un conjunto de datos utilizando una hoja de cálculo.</li>
+<li>Agrupar datos en intervalos (por ejemplo, décadas o trimestres) usando una tabla dinámica y construir el gráfico de barras correspondiente.</li>
+<li>Editar elementos del gráfico (títulos, ejes) para mejorar su interpretación.</li>
+<li>Comparar gráficos con datos agrupados en distintos intervalos para identificar tendencias.</li>
+<li>Exportar y guardar el gráfico construido en formato de imagen.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-5--variación-porcentual-de-datos-en-el-tiempo-análisis-del-cambio-y-proyecciones"><h4><span class="ln">Lección 5</span>Variación porcentual de datos en el tiempo: análisis del cambio y proyecciones</h4>
+<p><strong>Objetivo:</strong> Analizar el cambio relativo de una variable en el tiempo y calcular proyecciones a partir de variaciones porcentuales (crecimiento poblacional).</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Determinar la variación porcentual que experimenta una variable estadística entre dos momentos.</li>
+<li>Estimar y comparar el cambio absoluto de una variable en distintos intervalos de tiempo a partir de un gráfico de líneas y una tabla de valores.</li>
+<li>Comparar el comportamiento de los cambios absolutos con el de la variación porcentual en los mismos períodos.</li>
+<li>Analizar la evolución de la variación porcentual de una variable a partir de un gráfico de líneas.</li>
+<li>Comparar la evolución de una variable y su variación porcentual representadas en la misma área gráfica.</li>
+<li>Identificar la expresión matemática que permite proyectar el valor de una variable suponiendo una variación porcentual constante.</li>
+<li>Proyectar el valor de una variable en el tiempo considerando una tasa de crecimiento constante.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-6--práctica-de-construcción-y-análisis-de-gráficos-de-barras-y-líneas"><h4><span class="ln">Lección 6</span>Práctica de construcción y análisis de gráficos de barras y líneas</h4>
+<p><strong>Objetivo:</strong> Practicar la construcción y análisis de gráficos de barras y líneas aplicados a un nuevo fenómeno (incendios forestales), integrando lo aprendido en L1-L5.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Interpretar gráficos de barras de series de tiempo y evaluar el efecto de agrupar datos o de modificar el origen del eje vertical.</li>
+<li>Analizar y comparar la evolución de dos variables asociadas a distintas causas de un mismo fenómeno, representadas en un mismo gráfico.</li>
+<li>Determinar la validez de afirmaciones sobre la relación entre dos variables graficadas con escalas distintas.</li>
+<li>Calcular la variación porcentual de una variable entre periodos consecutivos a partir de una tabla de datos.</li>
+<li>Agrupar datos en décadas usando funciones de una hoja de cálculo y construir el gráfico de barras correspondiente.</li>
+<li>Agregar títulos y elementos de diseño a un gráfico para mejorar su interpretación.</li>
+<li>Interpretar tendencias y cambios en un gráfico de barras agrupadas, justificando conclusiones con la variación porcentual.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-7--gráfico-circular-y-pertinencia-de-gráficos"><h4><span class="ln">Lección 7</span>Gráfico circular y pertinencia de gráficos</h4>
+<p><strong>Objetivo:</strong> Analizar la pertinencia de distintos tipos de gráficos (barras, líneas, circular) para comunicar información, reconociendo cuándo usar cada uno.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Determinar qué tipo de gráfico permite responder mejor a una pregunta específica sobre los datos.</li>
+<li>Identificar las limitaciones de los gráficos de barras y de líneas para comparar la proporción de cada categoría respecto del total de datos.</li>
+<li>Leer e interpretar gráficos circulares, estimando las proporciones de cada categoría respecto del total y analizando los porcentajes correspondientes.</li>
+<li>Analizar gráficos circulares para evaluar su pertinencia y corrección, proponiendo mejoras o representaciones alternativas.</li>
+</ul>
+</details>
+
+<hr />
+</section><h2 id="tema-2--analizar-la-distribución-de-los-datos">Tema 2 — Analizar la distribución de los datos</h2>
+<p><strong>Objetivo del tema:</strong> Usar el histograma para estudiar centro, variabilidad y forma de una distribución.</p>
+<p><strong>OA PEDI:</strong> OA 1 — Análisis Gráfico <em>(hereda de la Unidad)</em>.</p>
+<p><strong>OA Formación General:</strong></p>
+<ul>
+<li>1° Medio: <strong>MA1M OA 12 + OA 13</strong> (antecedente general de la OAC 01, no específico del Tema).</li>
+</ul>
+<h3 id="lecciones-1">Lecciones</h3>
+<section class="leccion" id="lección-1--introduciendo-histogramas"><h4><span class="ln">Lección 1</span>Introduciendo histogramas</h4>
+<p><strong>Objetivo:</strong> Identificar el histograma como representación gráfica de la distribución de un conjunto de datos, reconociendo cómo la frecuencia agrupada en intervalos permite analizar concentración y variabilidad, distinguiéndolo de un gráfico de barras.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Leer e interpretar la información de una serie de tiempo en un gráfico de barras y en un gráfico de líneas, dentro de un contexto dado.</li>
+<li>Analizar información del contexto para identificar variables y datos relevantes.</li>
+<li>Leer e interpretar la información de un gráfico de barras en un contexto dado.</li>
+<li>Construir un gráfico de barras para representar la frecuencia de los datos separados en categorías.</li>
+<li>Describir la distribución de los datos de un conjunto a partir del histograma que lo representa.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-2--caracterizar-y-comparar-distribuciones-a-través-de-histogramas"><h4><span class="ln">Lección 2</span>Caracterizar y comparar distribuciones a través de histogramas</h4>
+<p><strong>Objetivo:</strong> Comparar distintas distribuciones mediante histogramas (simétrica, asimétrica, bimodal) y reconocer el comportamiento de media y mediana en cada caso.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Describir la distribución de los datos dentro de un conjunto a partir de su histograma.</li>
+<li>Calcular la media y la mediana de un conjunto de datos.</li>
+<li>Analizar información del contexto para identificar variables y datos relevantes.</li>
+<li>Leer un gráfico de líneas identificando la evolución de los datos en un contexto dado.</li>
+<li>Determinar simetrías en la distribución de los datos, observando su comportamiento respecto a la mediana en un histograma.</li>
+<li>Comparar distribuciones de distintos conjuntos de datos en un mismo contexto, identificando semejanzas y diferencias en sus respectivos histogramas.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-3--construcción-de-histogramas"><h4><span class="ln">Lección 3</span>Construcción de Histogramas</h4>
+<p><strong>Objetivo:</strong> Construir histogramas utilizando hojas de cálculo (Excel/Google Sheets) y GeoGebra.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Construir un histograma a partir de un conjunto de datos utilizando una hoja de cálculo.</li>
+<li>Evaluar la veracidad de afirmaciones sobre proporciones de datos a partir de un histograma construido.</li>
+<li>Construir un histograma utilizando GeoGebra y ajustar el número de intervalos con un deslizador.</li>
+<li>Comparar histogramas de una misma variable construidos con distinta cantidad de intervalos.</li>
+<li>Determinar frecuencias de datos que cumplen una condición a partir de un histograma con intervalos ajustados.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-4--práctica-de-construcción-y-análisis-de-gráficos-de-histogramas"><h4><span class="ln">Lección 4</span>Práctica de construcción y análisis de gráficos de histogramas</h4>
+<p><strong>Objetivo:</strong> Practicar la construcción y análisis de histogramas aplicados al impacto del COVID-19 en Chile.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Interpretar variaciones porcentuales y datos de un texto informativo para identificar información relevante del contexto.</li>
+<li>Describir la distribución de un histograma (simetría, asimetría, forma) y explicar el significado de su mediana.</li>
+<li>Evaluar la veracidad de afirmaciones sobre una distribución a partir de un histograma o un gráfico circular.</li>
+<li>Interpretar proporciones y porcentajes de categorías representadas en un gráfico circular.</li>
+<li>Construir un histograma en GeoGebra y marcar la mediana como segmento de referencia.</li>
+<li>Comparar dos histogramas de un mismo contexto para identificar semejanzas y diferencias entre sus distribuciones.</li>
+<li>Interpretar la evolución de una variable en un gráfico de líneas categorizado, relacionándola con el contexto.</li>
+</ul>
+</details>
+
+<hr />
+</section><h2 id="tema-3--medidas-de-posición-para-analizar-la-distribución-de-los-datos">Tema 3 — Medidas de posición para analizar la distribución de los datos</h2>
+<p><strong>Objetivo del tema:</strong> Usar el diagrama de cajón (cuartiles, RIC) como complemento del histograma.</p>
+<p><strong>OA PEDI:</strong> OA 1 — Análisis Gráfico <em>(hereda de la Unidad)</em>.</p>
+<p><strong>OA Formación General:</strong></p>
+<ul>
+<li>1° Medio: <strong>MA1M OA 12 + OA 13</strong> (antecedente general de la OAC 01, no específico del Tema).</li>
+</ul>
+<h3 id="lecciones-2">Lecciones</h3>
+<section class="leccion" id="lección-1--medidas-de-posición"><h4><span class="ln">Lección 1</span>Medidas de posición</h4>
+<p><strong>Objetivo:</strong> Identificar cómo se agrupan los datos mediante las 5 medidas de posición (mín, Q1, Q2, Q3, máx) en un diagrama de puntos; comparar dos conjuntos sin conocer todos los datos.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Calcular e interpretar la mediana de un conjunto de datos.</li>
+<li>Analizar información del contexto para identificar variables y datos relevantes.</li>
+<li>Leer un diagrama de puntos e interpretar los datos según el contexto.</li>
+<li>Calcular e interpretar el rango de valores de un conjunto.</li>
+<li>Describir un conjunto de datos con su mediana y comparar dos conjuntos a partir de esta medida en un contexto dado.</li>
+<li>Describir un conjunto de datos a partir del primer y tercer cuartil y comparar dos conjuntos a partir de estas medidas.</li>
+<li>Describir un conjunto de datos utilizando sus 5 medidas de posición representadas en un diagrama de puntos.</li>
+<li>Comparar dos conjuntos de datos a partir de sus 5 medidas de posición en un contexto dado.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-2--diagramas-de-cajón"><h4><span class="ln">Lección 2</span>Diagramas de cajón</h4>
+<p><strong>Objetivo:</strong> Introducir el diagrama de cajón (boxplot) para visualizar y comparar distribuciones, incorporando el rango intercuartílico (RIC).</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Interpretar la distribución de los datos en un conjunto a partir de su respectivo diagrama de puntos.</li>
+<li>Analizar información del contexto para identificar variables y datos relevantes.</li>
+<li>Describir la distribución de los datos de un conjunto a partir de sus medidas de posición representadas en un diagrama de cajón.</li>
+<li>Calcular e interpretar el rango intercuartil (RIC) de un conjunto a partir de su respectivo diagrama de cajón.</li>
+<li>Comparar dos conjuntos de datos representados en un mismo diagrama de cajón, a partir de sus medidas de posición y su RIC.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-3--profundizando-en-el-diagrama-de-cajón"><h4><span class="ln">Lección 3</span>Profundizando en el diagrama de cajón</h4>
+<p><strong>Objetivo:</strong> Relacionar diagramas de cajón con histogramas como representaciones complementarias; interpretar el efecto de datos atípicos.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Describir la variabilidad de los datos dentro de un conjunto a partir del histograma que los representa.</li>
+<li>Describir la variabilidad de los datos respecto a la mediana del conjunto a partir del diagrama de cajón que los representa.</li>
+<li>Analizar información del contexto para identificar variables y datos relevantes.</li>
+<li>Interpretar la distribución de los datos usando un histograma y un boxplot, y comparar ambas lecturas entre sí.</li>
+<li>Interpretar los datos atípicos de un conjunto en un boxplot, reconociendo sus efectos visuales en las medidas de posición.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-4--construcción-de-diagramas-de-cajón-usando-herramientas-tecnológicas"><h4><span class="ln">Lección 4</span>Construcción de diagramas de cajón usando herramientas tecnológicas</h4>
+<p><strong>Objetivo:</strong> Construir diagramas de cajón con Excel y GeoGebra siguiendo videotutoriales, comparando boxplot vs. histograma.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Construir un diagrama de cajón a partir de un conjunto de datos utilizando una hoja de cálculo.</li>
+<li>Comparar distribuciones de distintos grupos representadas en un mismo diagrama de cajón.</li>
+<li>Evaluar la veracidad de afirmaciones sobre la dispersión y las medidas de posición a partir de un diagrama de cajón construido.</li>
+<li>Construir un diagrama de cajón en GeoGebra y contrastarlo con el histograma de la misma distribución.</li>
+<li>Construir histogramas de distintos subgrupos de datos y compararlos con sus respectivos diagramas de cajón.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-5--práctica"><h4><span class="ln">Lección 5</span>Práctica</h4>
+<p><strong>Objetivo:</strong> Describir/construir diagramas de cajón y comparar conjuntos aplicado al análisis de la brecha de género.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Interpretar una brecha de género calculada como diferencia entre dos parámetros y determinar a qué grupo favorece.</li>
+<li>Evaluar la veracidad de afirmaciones sobre variaciones y brechas de género a partir de tablas de datos.</li>
+<li>Construir diagramas de cajón que representen la distribución de un conjunto de datos categorizado por sexo, utilizando una hoja de cálculo.</li>
+<li>Comparar dos diagramas de cajón a partir de sus medidas de posición para describir semejanzas y diferencias entre grupos.</li>
+<li>Calcular e interpretar la brecha de género en relación a la mediana y a los cuartiles de dos conjuntos de datos.</li>
+<li>Relacionar brechas de género observadas en distintos contextos (educación, ingresos) para argumentar posibles explicaciones.</li>
+</ul>
+</details>
+
+<hr />
+</section><h2 id="tema-4--analizar-relaciones-entre-variables-mediante-correlaciones-y-modelos-lineales">Tema 4 — Analizar relaciones entre variables mediante correlaciones y modelos lineales</h2>
+<p><strong>Objetivo del tema:</strong> Correlación visual por cuadrantes, diagramas de dispersión en Excel/Sheets, razón de conteo informal (r_q), recta de mínimos cuadrados.</p>
+<p><strong>OA PEDI:</strong> OA 1 — Análisis Gráfico <em>(hereda de la Unidad)</em>.</p>
+<p><strong>OA Formación General:</strong></p>
+<ul>
+<li>1° Medio: <strong>MA1M OA 12</strong> (Doble Entrada) + <strong>MA1M OA 13</strong> (Nube Puntos) — antecedente directo y explícito, citado en Unidad 2 como prerrequisito ("U1T4").</li>
+</ul>
+<h3 id="lecciones-3">Lecciones</h3>
+<section class="leccion" id="lección-1--diagramas-de-dispersión"><h4><span class="ln">Lección 1</span>Diagramas de dispersión</h4>
+<p><strong>Objetivo:</strong> Utilizar diagramas de dispersión para estudiar datos asociados a dos variables estadísticas.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Leer gráficos de barras simples y barras dobles, interpretando los datos en un contexto dado.</li>
+<li>Identificar datos bivariados en un conjunto.</li>
+<li>Analizar información del contexto para identificar variables y datos relevantes.</li>
+<li>Interpretar la relación entre dos variables representadas en una nube de puntos.</li>
+<li>Describir el comportamiento de los datos en un contexto dado, a partir de dos variables representadas en una nube de puntos.</li>
+<li>Comparar diferentes grupos dentro de un mismo conjunto de datos, diferenciando puntos en la nube para interpretarlos según el contexto.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-2--análisis-de-la-correlación-de-las-variables-en-un-diagrama-de-dispersión"><h4><span class="ln">Lección 2</span>Análisis de la correlación de las variables en un diagrama de dispersión</h4>
+<p><strong>Objetivo:</strong> Describir la correlación entre dos variables cuantitativas usando la razón de conteo por cuadrantes (rq).</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Describir la tendencia general de la nube de puntos que representa la relación entre dos variables.</li>
+<li>Calcular la media aritmética de un conjunto de datos.</li>
+<li>Identificar si existe correlación entre dos variables representadas en un diagrama de dispersión.</li>
+<li>Describir la correlación entre dos variables identificando la tendencia de los datos en un diagrama de dispersión.</li>
+<li>Calcular la razón de conteo por cuadrantes (rq) para cuantificar la correlación entre dos variables.</li>
+<li>Interpretar rq para caracterizar la correlación entre dos variables.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-3--explorar-la-recta-de-mínimos-cuadrados"><h4><span class="ln">Lección 3</span>Explorar la recta de mínimos cuadrados</h4>
+<p><strong>Objetivo:</strong> Analizar que existe una recta que mejor se ajusta a la nube de puntos, minimizando el error al cuadrado (pendiente m, coeficiente de posición n).</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Calcular e interpretar rq a partir de un diagrama de dispersión.</li>
+<li>Identificar el signo de los parámetros de una recta a partir de su ecuación.</li>
+<li>Leer un diagrama de dispersión con una recta que describa la relación lineal entre las dos variables.</li>
+<li>Describir el grado de correlación lineal entre dos variables a partir del comportamiento general de los puntos.</li>
+<li>Calcular valores para las variables x e y cuando se relacionan linealmente mediante una ecuación de la forma y = mx + n.</li>
+<li>Calcular e interpretar el error de estimación como la diferencia entre el valor observado y el valor estimado de una variable.</li>
+<li>Variar los parámetros de una recta para ajustar la tendencia general de los puntos y analizar cómo varía el error de estimación.</li>
+<li>Observar y describir cómo varía el modelo lineal por efecto de los puntos aislados de la nube.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-4--construcción-de-diagramas-de-dispersión-usando-herramientas-tecnológicas"><h4><span class="ln">Lección 4</span>Construcción de diagramas de dispersión usando herramientas tecnológicas</h4>
+<p><strong>Objetivo:</strong> Construir diagramas de dispersión con Excel/Google Sheets, incluyendo categorización por color y línea de tendencia.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Construir un diagrama de dispersión a partir de dos variables utilizando una hoja de cálculo.</li>
+<li>Agregar una línea de tendencia a un diagrama de dispersión.</li>
+<li>Interpretar la relación observada entre dos variables evitando conclusiones causales infundadas.</li>
+<li>Construir un diagrama de dispersión categorizado por color según una variable cualitativa.</li>
+<li>Comparar la tendencia de la relación entre dos variables para distintas categorías o grupos.</li>
+<li>Determinar si la relación entre dos variables es positiva, negativa o nula a partir de un diagrama de dispersión construido.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-5--práctica-de-construcción-y-análisis-de-diagrama-de-puntos"><h4><span class="ln">Lección 5</span>Práctica de construcción y análisis de diagrama de puntos</h4>
+<p><strong>Objetivo:</strong> Integrar lo aprendido en L1-L4: construir dispersión categorizada, calcular rq, analizar recta de mínimos cuadrados, atípicos y estimar valores.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Construir un diagrama de dispersión categorizado en dos grupos a partir de datos reales, utilizando una hoja de cálculo.</li>
+<li>Interpretar la media de cada variable y evaluar afirmaciones sobre la relación entre ellas a partir del diagrama construido.</li>
+<li>Calcular e interpretar la razón de conteo por cuadrantes (rq) para cuantificar la correlación entre dos variables en distintos grupos.</li>
+<li>Construir un diagrama de dispersión con la recta de tendencia para el conjunto completo de datos.</li>
+<li>Calcular estimaciones y el error cuadrático de puntos observados respecto a un modelo lineal dado.</li>
+<li>Evaluar el efecto de los puntos aislados de la nube sobre el ajuste del modelo lineal.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="evaluación-unidad-1"><h4>Evaluación Unidad 1</h4>
+<hr />
+</section>
+</main>
+</div>
+</body>
+</html>

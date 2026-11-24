@@ -1,0 +1,403 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ruta de la Unidad 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --ground:#fcfbfe; --surface:#f3f1f8; --surface-2:#ebe7f4; --line:#e0dcea;
+  --ink:#231d3b; --muted:#625c76;
+  --purple:#423475; --purple-ink:#423475; --on-purple:#ffffff;
+  --red:#d45762; --red-ink:#a8323e; --red-tint:#fbeef0;
+  --green:#61b89a; --green-ink:#2c7a5f; --green-tint:#eaf6f1;
+  --blue:#4aa7ba; --blue-ink:#27788a;
+  --orange:#f3972d; --orange-ink:#a85f0c;
+  --yellow:#f0f57d;
+  --code-bg:#eeebf6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+    --ink:#ece9f6; --muted:#aaa4c2;
+    --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+    --red-ink:#f0939b; --red-tint:#2e1b2c;
+    --green-ink:#86d6b9; --green-tint:#18302b;
+    --blue-ink:#85cfdd; --orange-ink:#f7b667;
+    --code-bg:#2a2548;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+  --ink:#ece9f6; --muted:#aaa4c2;
+  --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+  --red-ink:#f0939b; --red-tint:#2e1b2c;
+  --green-ink:#86d6b9; --green-tint:#18302b;
+  --blue-ink:#85cfdd; --orange-ink:#f7b667;
+  --code-bg:#2a2548;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.6;margin:0}
+.strip{display:flex;height:6px}
+.strip span{flex:1}
+header.top{background:var(--purple);color:var(--on-purple);padding-block:2.4rem 2.2rem;padding-inline:16px}
+header.top .in{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin:0 0 .6rem}
+header.top h1{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.15;margin:0 0 .8rem;text-wrap:balance;font-weight:650;letter-spacing:-.01em}
+header.top .lead{max-width:68ch;margin:0;font-size:1.05rem;opacity:.93}
+.layout{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:2rem 4rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1rem);align-self:start;font-size:.88rem;max-height:calc(100vh - 2rem);overflow:auto}
+nav.toc p{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .5rem}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
+nav.toc a{color:var(--ink);text-decoration:none;display:block;padding:.3rem .55rem;border-radius:6px;line-height:1.35}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--surface-2);outline:none}
+nav.toc .sub a{padding-left:1.3rem;color:var(--muted)}
+main{min-width:0;max-width:760px}
+main h2{font-size:1.55rem;line-height:1.25;margin:3rem 0 1rem;color:var(--purple-ink);text-wrap:balance;font-weight:650}
+main h2:first-child{margin-top:0}
+main h3{font-size:1.2rem;margin:2.2rem 0 .7rem;text-wrap:balance;font-weight:620}
+main h4{font-size:1.1rem;margin:1.6rem 0 .5rem}
+p,li{max-width:70ch}
+a{color:var(--purple-ink)}
+code{font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-size:.88em;background:var(--code-bg);padding:.08em .35em;border-radius:4px;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
+ul,ol{padding-left:1.3rem}
+li{margin:.3rem 0}
+li::marker{color:var(--purple-ink)}
+.tablewrap{overflow-x:auto;margin:1.2rem 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+th{background:var(--purple);color:var(--on-purple);text-align:left;font-weight:600;padding:.55rem .7rem}
+td{padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--surface)}
+blockquote{margin:1.4rem 0;padding:1rem 1.2rem;background:var(--surface);border-radius:10px}
+blockquote p{margin:.4rem 0}
+blockquote .tag{display:inline-block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:650;margin-bottom:.3rem;color:var(--muted)}
+blockquote.capsula{background:var(--green-tint)}
+blockquote.capsula .tag{color:var(--green-ink)}
+blockquote.revision{background:var(--red-tint)}
+blockquote.revision .tag{color:var(--red-ink)}
+.hito{display:flex;gap:.7rem;align-items:baseline;margin:1.6rem 0 .4rem;font-size:1.02rem;font-weight:620;line-height:1.4}
+.hito .hid{flex:none;background:var(--purple);color:var(--on-purple);font-family:"Geist Mono",ui-monospace,monospace;font-size:.78rem;font-weight:600;padding:.15rem .5rem;border-radius:999px;position:relative;top:-.08em}
+.hito + ul{margin-top:.2rem;padding-left:3.4rem}
+.leccion{border-top:1px solid var(--line);padding-top:1.4rem;margin-top:2.6rem}
+.leccion h4{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h4 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+details{margin:1rem 0}
+summary{cursor:pointer;font-weight:600;color:var(--purple-ink);padding:.35rem 0}
+summary:focus-visible{outline:2px solid var(--purple-ink);outline-offset:3px;border-radius:4px}
+.arco{list-style:none;padding:0;counter-reset:a;display:grid;gap:.7rem}
+.arco li{counter-increment:a;position:relative;padding-left:3rem;min-height:2.2rem;max-width:none}
+.arco li::before{content:counter(a);position:absolute;left:0;top:0;background:var(--surface-2);color:var(--purple-ink);font-weight:650;border-radius:50%;width:2.2rem;height:2.2rem;display:grid;place-items:center;font-family:"Geist Mono",monospace}
+.paso{display:grid;grid-template-columns:2.4rem 1fr;gap:.9rem;margin:1.3rem 0}
+.paso .num{font-family:"Geist Mono",ui-monospace,monospace;font-weight:600;color:var(--purple-ink);background:var(--surface-2);border-radius:8px;height:2.4rem;display:grid;place-items:center}
+.paso p{margin:0}
+.paso + ul{padding-left:4.6rem}
+.fases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem;margin:1.5rem 0 2rem}
+.fase{background:var(--surface);border-radius:10px;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.35rem}
+.fase .fn{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.fase .ft{font-weight:650;color:var(--purple-ink);font-size:1.05rem}
+.fase .fp{font-family:"Geist Mono",monospace;font-size:.82rem;color:var(--muted)}
+.fase .rv{margin-top:auto;display:flex;flex-wrap:wrap;gap:.3rem}
+.fase .rv span{font-size:.75rem;font-weight:600;color:var(--red-ink);background:var(--red-tint);border-radius:999px;padding:.1rem .55rem}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;gap:1.5rem}
+  nav.toc{position:static;max-height:none;background:var(--surface);border-radius:10px;padding:1rem}
+  .fases{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:460px){ .fases{grid-template-columns:1fr} .hito + ul{padding-left:1.3rem} .paso + ul{padding-left:1.3rem} }
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script></head>
+<body>
+<div class="strip"><span style="background:#423475"></span><span style="background:#d45762"></span><span style="background:#61b89a"></span><span style="background:#f0f57d"></span><span style="background:#4aa7ba"></span><span style="background:#f3972d"></span></div>
+<header class="top"><div class="in">
+<p class="eyebrow">Probabilidad y Estadística · Ruta de la unidad</p>
+<h1>Unidad 2: Comprender la media muestral, las medidas de dispersión y la correlación</h1>
+<p class="lead">Esta unidad busca que los estudiantes construyan progresivamente la idea de variabilidad de un conjunto de datos: partiendo de la media muestral como punto de equilibrio, avanzan hacia medidas que cuantifican la dispersión (desviaciones puntuales, DMA, varianza, desviación estándar) comparando sus alcances y limitaciones, estudian cómo estas medidas se comportan bajo transformaciones lineales y qué aporta el coeficiente de variación para comparar dispersión relativa, y cierran formalizando la relación entre dos variables mediante la covarianza muestral y el coeficiente de correlación de Pearson — transitando desde la razón de conteo por cuadrantes (ya trabajada de forma visual en Unidad 1) hacia medidas algebraicas que permiten interpretar y comparar la intensidad de asociaciones lineales.</p>
+</div></header>
+<div class="layout">
+<nav class="toc" aria-label="Contenido"><p>Contenido</p><ol><li><a href="#presentacion">Presentación de la unidad</a></li><li><a href="#tema-1--medidas-de-dispersión">Tema 1: Medidas de dispersión</a></li><li class="sub"><a href="#lección-1--qué-nos-dice-la-media">Lección 1 · ¿Qué nos dice la media?</a></li><li class="sub"><a href="#lección-2--dispersión-y-desviaciones-puntuales">Lección 2 · Dispersión y desviaciones puntuales</a></li><li class="sub"><a href="#lección-3--desviación-media-absoluta-dma">Lección 3 · Desviación media absoluta (DMA)</a></li><li class="sub"><a href="#lección-4--varianza-muestral-y-desviación-estándar">Lección 4 · Varianza muestral y desviación estándar</a></li><li class="sub"><a href="#lección-5--herramientas-digitales-dispersión-dma-varianza-y-de">Lección 5 · Herramientas digitales: dispersión, DMA, varianza y DE</a></li><li class="sub"><a href="#lección-6--clase-de-ejercicios">Lección 6 · Clase de ejercicios</a></li><li><a href="#tema-2--propiedades-y-comparación-de-la-dispersión">Tema 2: Propiedades y comparación de la dispersión</a></li><li class="sub"><a href="#lección-1--desviación-estándar-en-distribuciones-acampanadas">Lección 1 · Desviación estándar en distribuciones acampanadas</a></li><li class="sub"><a href="#lección-2--propiedades-de-la-media-y-la-de-bajo-transformaciones-lineales">Lección 2 · Propiedades de la media y la DE bajo transformaciones lineales</a></li><li class="sub"><a href="#lección-3--coeficiente-de-variación">Lección 3 · Coeficiente de variación</a></li><li class="sub"><a href="#lección-4--integración-transformaciones-lineales-distribuciones-y-coeficiente-de-variación">Lección 4 · Integración: transformaciones lineales, distribuciones y coeficiente de variación</a></li><li class="sub"><a href="#lección-5--clase-de-ejercicios">Lección 5 · Clase de ejercicios</a></li><li class="sub"><a href="#evaluación-temas-1-y-2">Evaluación Temas 1 y 2</a></li><li><a href="#tema-3--correlación-muestral">Tema 3: Correlación muestral</a></li><li class="sub"><a href="#lección-1--de-los-cuadrantes-a-la-covarianza-muestral">Lección 1 · De los cuadrantes a la covarianza muestral</a></li><li class="sub"><a href="#lección-2--coeficiente-de-correlación-definición-y-cálculo">Lección 2 · Coeficiente de correlación: definición y cálculo</a></li><li class="sub"><a href="#lección-3--coeficiente-de-correlación-interpretación">Lección 3 · Coeficiente de correlación: interpretación</a></li><li class="sub"><a href="#lección-4--práctica-correlación-lineal-de-pearson">Lección 4 · Práctica: Correlación lineal de Pearson</a></li><li class="sub"><a href="#lección-5--clase-de-ejercicios-1">Lección 5 · Clase de ejercicios</a></li><li class="sub"><a href="#evaluación-tema-3">Evaluación Tema 3</a></li></ol></nav>
+<main>
+<h2 id="presentacion">Presentación de la unidad</h2>
+<p><strong>OA de Conocimiento y Comprensión (PEDI):</strong> <strong>OA 2 — Dispersión-Correlación</strong>: <em>Resolver problemas que involucren los conceptos de media muestral, desviación estándar, varianza, coeficiente de variación y correlación muestral entre dos variables, tanto de forma manuscrita como haciendo uso de herramientas tecnológicas digitales.</em></p>
+<p><strong>Habilidades citadas para esta Unidad:</strong> b (Variar Parámetros), d (Argumentar Conjeturas), i (Información Confiable).</p>
+<p><strong>Antecedente en Formación General:</strong> el único antecedente directo para las medidas de dispersión es 3° Medio FG (decisiones bajo incerteza con medidas de dispersión y probabilidad condicional); varianza, coeficiente de variación y correlación de Pearson son contenidos exclusivos del diferenciado. Para la correlación (Tema 3), hay además un antecedente directo y explícito en 1° Medio (nube de puntos y gráficos xy), citado en la propia secuencia pedagógica como prerrequisito de Unidad 1 Tema 4.</p>
+<hr />
+<h2 id="tema-1--medidas-de-dispersión">Tema 1 — Medidas de dispersión</h2>
+<p><strong>Objetivo del tema:</strong> Construir progresivamente la idea de variabilidad, desde la media como punto de equilibrio hacia DMA, varianza y desviación estándar, comparando alcances y limitaciones.</p>
+<p><strong>OA PEDI:</strong> OA 2 — Dispersión-Correlación <em>(hereda de la Unidad)</em>.</p>
+<p><strong>OA Formación General:</strong></p>
+<ul>
+<li>3° Medio: <strong>MA3M FG OA</strong> (Dispersión Condicional) — único antecedente directo; MAD/varianza/DE con esta profundidad son exclusivos del diferenciado.</li>
+</ul>
+<h3 id="lecciones">Lecciones</h3>
+<section class="leccion" id="lección-1--qué-nos-dice-la-media"><h4><span class="ln">Lección 1</span>¿Qué nos dice la media?</h4>
+<p><strong>Objetivo:</strong> Identificar la media muestral como punto de equilibrio de una distribución y reconocer su estabilidad ante el aumento del tamaño muestral.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Analizar el comportamiento de los datos en diagramas de puntos y en muestras de datos.</li>
+<li>Calcular la media de una muestra de datos.</li>
+<li>Reconocer e interpretar la media como un punto de equilibrio en el que las diferencias positivas y negativas se compensan.</li>
+<li>Analizar cómo se desplaza la media al incorporar valores alejados de la media.</li>
+<li>Reconocer la estabilidad de la media frente al aumento del tamaño de la muestra.</li>
+<li>Recuperar un dato faltante de un conjunto a partir de la media conocida y la propiedad de compensación.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-2--dispersión-y-desviaciones-puntuales"><h4><span class="ln">Lección 2</span>Dispersión y desviaciones puntuales</h4>
+<p><strong>Objetivo:</strong> Cuantificar la dispersión a través de las desviaciones absolutas individuales de cada dato respecto a la media.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Calcular la media de un conjunto e interpretarla en el contexto de los datos.</li>
+<li>Analizar información del contexto para identificar variables y datos relevantes.</li>
+<li>Calcular la diferencia de cada dato con la media e interpretarla en el contexto dado.</li>
+<li>Calcular el promedio de las diferencias de cada dato con la media, para evidenciar que la suma de las diferencias siempre es igual a cero.</li>
+<li>Obtener la distancia de los datos a la media a partir de la diferencia de los datos con la media.</li>
+<li>Calcular la desviación media absoluta (DMA) del conjunto como el promedio de las distancias de los datos a la media.</li>
+<li>Interpretar la DMA en el contexto de los datos.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-3--desviación-media-absoluta-dma"><h4><span class="ln">Lección 3</span>Desviación media absoluta (DMA)</h4>
+<p><strong>Objetivo:</strong> Cuantificar la dispersión mediante el promedio de las distancias absolutas respecto a la media (DMA); interpretarla y usarla para comparar homogeneidad.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Calcular la desviación media absoluta (DMA) de una muestra de datos.</li>
+<li>Interpretar el valor de la DMA tanto fuera como dentro de un contexto.</li>
+<li>Utilizar la DMA para comparar la homogeneidad de muestras de datos.</li>
+<li>Analizar la sensibilidad de la DMA con respecto a datos atípicos (alejados de la media).</li>
+<li>Identificar fortalezas y limitaciones de la DMA como medida de dispersión.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-4--varianza-muestral-y-desviación-estándar"><h4><span class="ln">Lección 4</span>Varianza muestral y desviación estándar</h4>
+<p><strong>Objetivo:</strong> Calcular e interpretar varianza y DE; comprender la ventaja de la DE sobre la varianza (unidades interpretables) y la mayor sensibilidad de ambas ante datos extremos, comparada con la DMA.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Calcular e interpretar la desviación media absoluta (DMA) de una muestra de datos.</li>
+<li>Calcular e interpretar la varianza muestral de un conjunto de datos a partir de su fórmula.</li>
+<li>Calcular e interpretar la desviación estándar muestral como raíz cuadrada de la varianza muestral.</li>
+<li>Analizar cómo cambia la varianza muestral al variar la dispersión de los datos.</li>
+<li>Reconocer similitudes y diferencias entre la DMA, la varianza muestral y la desviación estándar muestral.</li>
+<li>Comparar la sensibilidad de la DMA y de la desviación estándar muestral ante datos muy alejados de la media.</li>
+<li>Utilizar la desviación estándar muestral para comparar y decidir sobre conjuntos de datos.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-5--herramientas-digitales-dispersión-dma-varianza-y-de"><h4><span class="ln">Lección 5</span>Herramientas digitales: dispersión, DMA, varianza y DE</h4>
+<p><strong>Objetivo:</strong> Consolidar cálculo e interpretación de las medidas en contextos reales; comparar sensibilidad ante datos extremos.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Identificar la población de referencia y el significado de un indicador socioeconómico en un reporte de datos.</li>
+<li>Calcular e interpretar la media, la varianza muestral y la desviación estándar muestral a partir de una muestra.</li>
+<li>Calcular las mismas medidas a partir de fórmulas usando una planilla de cálculo.</li>
+<li>Caracterizar cambios en la distribución de un conjunto de datos al añadir nuevos datos a la muestra, a través del comportamiento de la media y la DE.</li>
+<li>Comparar dos muestras de distinto tamaño utilizando la media, la DMA y la DE para determinar niveles de homogeneidad, usando una planilla de cálculo.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-6--clase-de-ejercicios"><h4><span class="ln">Lección 6</span>Clase de ejercicios</h4>
+<p><strong>Objetivo:</strong> Ejercitación integrada de L1 a L4 (media, dispersión, DMA, varianza/DE).</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Interpretar la media como punto de equilibrio en un diagrama de puntos, prediciendo su desplazamiento al incorporar un dato extremo.</li>
+<li>Verificar que la suma de las desviaciones puntuales respecto a la media se anula, y usar su valor absoluto para medir dispersión.</li>
+<li>Calcular la DMA de dos conjuntos de datos e interpretarla para comparar su homogeneidad, incluyendo el efecto de un dato extremo.</li>
+<li>Calcular la varianza y la desviación estándar muestral siguiendo el procedimiento completo.</li>
+<li>Comparar la sensibilidad de la desviación estándar y la DMA frente a un dato extremo.</li>
+</ul>
+</details>
+
+<hr />
+</section><h2 id="tema-2--propiedades-y-comparación-de-la-dispersión">Tema 2 — Propiedades y comparación de la dispersión</h2>
+<p><strong>Objetivo del tema:</strong> Comprender cómo las medidas de dispersión se comportan bajo transformaciones y cómo permiten comparar distribuciones en distintos contextos, incorporando forma, escala y relatividad.</p>
+<p><strong>OA PEDI:</strong> OA 2 — Dispersión-Correlación <em>(hereda de la Unidad)</em>.</p>
+<p><strong>OA Formación General:</strong></p>
+<ul>
+<li>3° Medio: <strong>MA3M FG OA</strong> (Dispersión Condicional) — mismo antecedente que Tema 1, como marco general; el coeficiente de variación (Lección 3) no tiene antecedente específico en FG.</li>
+</ul>
+<h3 id="lecciones-1">Lecciones</h3>
+<section class="leccion" id="lección-1--desviación-estándar-en-distribuciones-acampanadas"><h4><span class="ln">Lección 1</span>Desviación estándar en distribuciones acampanadas</h4>
+<p><strong>Objetivo:</strong> Analizar e interpretar media y DE en distribuciones simétricas, relacionando forma (campana, uniforme, datos en extremos) con ambas medidas; explorar con recursos interactivos.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Analizar el comportamiento de los datos en histogramas y diagramas de caja y bigotes.</li>
+<li>Calcular la desviación estándar de una muestra de datos.</li>
+<li>Asociar el nivel de dispersión de un histograma simétrico con forma de "campana" a su concentración en torno a la media, usando la DE.</li>
+<li>Asociar y cuantificar el nivel de dispersión de un diagrama de caja y bigotes según la amplitud del rango intercuartílico y el rango total.</li>
+<li>Asociar el nivel de dispersión de un histograma simétrico sin forma de campana a su concentración en torno a la media, estimando la DE.</li>
+<li>Comparar el comportamiento de distintas muestras a través de sus histogramas, interpretando su variabilidad.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-2--propiedades-de-la-media-y-la-de-bajo-transformaciones-lineales"><h4><span class="ln">Lección 2</span>Propiedades de la media y la DE bajo transformaciones lineales</h4>
+<p><strong>Objetivo:</strong> Determinar e interpretar el efecto de sumar/multiplicar por una constante sobre media y DE, justificando intuitivamente las propiedades.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Calcular la media y la DE de un conjunto de datos iniciales.</li>
+<li>Calcular y comparar estadísticos tras aplicar una traslación.</li>
+<li>Calcular y comparar estadísticos tras aplicar un escalamiento.</li>
+<li>Determinar el efecto de transformaciones lineales compuestas y multiplicaciones por números negativos.</li>
+<li>Generalizar algebraicamente las propiedades de la media y de la desviación estándar muestral.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-3--coeficiente-de-variación"><h4><span class="ln">Lección 3</span>Coeficiente de variación</h4>
+<p><strong>Objetivo:</strong> Calcular e interpretar el CV de un conjunto de datos positivos; usarlo para comparar dispersión entre muestras de distinta magnitud/unidad.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Seleccionar medidas pertinentes para describir la dispersión y calcular la DE de dos conjuntos de datos.</li>
+<li>Evaluar la validez de comparar desviaciones estándar cuando las muestras están en unidades distintas.</li>
+<li>Escalar datos dividiendo por la media y calcular el cociente entre la DE y la media.</li>
+<li>Definir, calcular e interpretar el coeficiente de variación como medida adimensional de dispersión relativa.</li>
+<li>Reconocer la invariancia del CV frente a escalamientos positivos y cambios de unidad multiplicativos.</li>
+<li>Identificar condiciones de uso del CV (datos positivos o de un mismo signo, media no cercana a cero) y compararlo entre contextos distintos.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-4--integración-transformaciones-lineales-distribuciones-y-coeficiente-de-variación"><h4><span class="ln">Lección 4</span>Integración: transformaciones lineales, distribuciones y coeficiente de variación</h4>
+<p><strong>Objetivo:</strong> Integrar las propiedades bajo transformaciones lineales, forma-DE y CV en problemas de un mismo contexto.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Comparar histogramas de concentración de MP2.5 en invierno y verano, prediciendo diferencias en variabilidad antes de calcular.</li>
+<li>Calcular e interpretar media, desviación estándar y coeficiente de variación de ambas estaciones usando una planilla.</li>
+<li>Definir una transformación lineal respecto de un umbral e interpretar su signo.</li>
+<li>Aplicar las propiedades de las transformaciones lineales para obtener media, DE y CV de la variable transformada sin recalcular, y verificarlo en la planilla.</li>
+<li>Evaluar la pertinencia del CV para la variable transformada, e interpretar boxplots comparando ambas estaciones.</li>
+<li>Elaborar una conclusión sobre la calidad del aire en invierno y verano, basada en las medidas y gráficos obtenidos.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-5--clase-de-ejercicios"><h4><span class="ln">Lección 5</span>Clase de ejercicios</h4>
+<p><strong>Objetivo:</strong> Ejercitación integrada de L1 a L4 (forma-DE, transformaciones lineales, CV).</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Comparar la desviación estándar de histogramas simétricos a partir de su forma, ordenándolos de menor a mayor dispersión.</li>
+<li>Determinar el efecto de una traslación y de un escalamiento sobre la media y la desviación estándar de un conjunto de datos.</li>
+<li>Evaluar por qué no es válido comparar la variabilidad de dos grupos usando solo la DE cuando difieren en magnitud o unidades, y usar el CV para resolverlo.</li>
+<li>Calcular media, DE y CV de conjuntos en unidades distintas, verificando que el CV es invariante ante cambios de unidad.</li>
+<li>Determinar el efecto de transformaciones lineales compuestas (traslación + escala) sobre la DE y el CV de distintos conjuntos.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="evaluación-temas-1-y-2"><h4>Evaluación Temas 1 y 2</h4>
+<hr />
+</section><h2 id="tema-3--correlación-muestral">Tema 3 — Correlación muestral</h2>
+<p><strong>Objetivo del tema:</strong> Formalizar la relación entre dos variables a partir de la covarianza y el coeficiente de correlación de Pearson, transitando desde representaciones intuitivas hacia medidas algebraicas.</p>
+<p><strong>OA PEDI:</strong> OA 2 — Dispersión-Correlación <em>(hereda de la Unidad)</em>.</p>
+<p><strong>OA Formación General:</strong></p>
+<ul>
+<li>1° Medio: <strong>MA1M OA 12</strong> (Doble Entrada) + <strong>MA1M OA 13</strong> (Nube Puntos) — antecedente directo y explícito, citado en la propia secuencia pedagógica como prerrequisito ("U1T4").</li>
+<li>3° Medio: <strong>MA3M FG OA</strong> (Dispersión Condicional) — como marco general de la unidad.</li>
+</ul>
+<h3 id="lecciones-2">Lecciones</h3>
+<section class="leccion" id="lección-1--de-los-cuadrantes-a-la-covarianza-muestral"><h4><span class="ln">Lección 1</span>De los cuadrantes a la covarianza muestral</h4>
+<p><strong>Objetivo:</strong> Comprender la covarianza muestral (s_xy) como formalización algebraica de la razón de conteo por cuadrantes (r_q), calculando signo y magnitud e interpretando su relación con el gráfico de dispersión.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Analizar diagramas de dispersión con igual r_q pero distinta distribución de puntos, para reconocer las limitaciones de r_q.</li>
+<li>Determinar el signo de las diferencias de cada dato respecto a las medias de x e y, y relacionarlo con el cuadrante y el aporte a la covarianza.</li>
+<li>Calcular el aporte de cada dato al área (producto de diferencias) y la covarianza muestral de un conjunto de datos.</li>
+<li>Interpretar el signo de la covarianza obtenida, evaluando que no basta con su signo para describir la relación sin el gráfico.</li>
+<li>Analizar casos con covarianza cercana a cero para distinguir ausencia de relación de relaciones no monótonas.</li>
+<li>Completar una tabla de diferencias y productos, y calcular e interpretar la covarianza muestral de un nuevo conjunto de datos.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-2--coeficiente-de-correlación-definición-y-cálculo"><h4><span class="ln">Lección 2</span>Coeficiente de correlación: definición y cálculo</h4>
+<p><strong>Objetivo:</strong> Definir r como medida adimensional que supera las limitaciones de la covarianza; interpretar según su valor en [−1,1]; calcular con herramientas digitales.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Describir visualmente el tipo de relación (positiva, negativa, nula) en distintos diagramas de dispersión.</li>
+<li>Predecir el signo de la covarianza antes de calcularla, y calcularla usando SUMAPRODUCTO en una planilla.</li>
+<li>Comparar diagramas de dispersión de las mismas variables en distintas unidades, concluyendo que la covarianza depende de la escala.</li>
+<li>Calcular el coeficiente de correlación de Pearson en distintas unidades de medida, verificando que no cambia.</li>
+<li>Determinar cómo escalar las variables afecta la media, DE, covarianza y el signo del coeficiente de correlación.</li>
+<li>Calcular el coeficiente de correlación usando COEF.DE.CORREL para comparar la fuerza de relación entre varias variables.</li>
+<li>Interpretar y ordenar los coeficientes de correlación obtenidos, evaluando afirmaciones sobre su signo y magnitud.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-3--coeficiente-de-correlación-interpretación"><h4><span class="ln">Lección 3</span>Coeficiente de correlación: interpretación</h4>
+<p><strong>Objetivo:</strong> Interpretar r como grado de asociación lineal; analizar visualmente el efecto de cambiar r; reconocer su relación con R².</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Calcular el coeficiente de correlación de Pearson a partir de la covarianza y las desviaciones estándar, en distintos contextos.</li>
+<li>Explorar cómo cambia la nube de puntos al modificar el valor de r, relacionando su signo y magnitud con la tendencia observada.</li>
+<li>Clasificar la intensidad y dirección de una asociación lineal a partir del valor de r.</li>
+<li>Analizar un caso con r=0 pero relación no lineal evidente, concluyendo que r=0 no implica ausencia de relación.</li>
+<li>Agregar línea de tendencia y R² a diagramas de dispersión, evaluando las propiedades de R².</li>
+<li>Calcular r² a partir de r y compararlo con el R² obtenido gráficamente, interpretándolo como variabilidad explicada.</li>
+<li>Evaluar afirmaciones que sintetizan la interpretación de r y R² como cierre de la lección.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-4--práctica-correlación-lineal-de-pearson"><h4><span class="ln">Lección 4</span>Práctica: Correlación lineal de Pearson</h4>
+<p><strong>Objetivo:</strong> Calcular e interpretar la covarianza entre variables con impacto real; aplicar r para analizar y comparar relaciones en un contexto real.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Interpretar un gráfico de barras sobre generación de residuos por región de Chile.</li>
+<li>Calcular la covarianza y el coeficiente de correlación entre cantidad de habitantes y basura generada, interpretando su signo.</li>
+<li>Calcular el coeficiente de correlación por zona geográfica y a nivel país, comparando la fuerza de la asociación entre ellas.</li>
+<li>Calcular el coeficiente de determinación R² para cada zona e interpretar el porcentaje de variabilidad explicada.</li>
+<li>Elaborar una conclusión sobre la relación entre población y basura generada, reconociendo sus límites explicativos.</li>
+<li>Interpretar la posición de datos atípicos respecto a la recta de tendencia y razonar sobre el efecto de eliminarlos.</li>
+<li>Interpretar R² y la posición de los datos para la relación entre ingresos municipales y reciclaje, elaborando una conclusión final.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="lección-5--clase-de-ejercicios-1"><h4><span class="ln">Lección 5</span>Clase de ejercicios</h4>
+<p><strong>Objetivo:</strong> Ejercitación integrada de L1 (covarianza/cuadrantes); revisa contenidos del tema.</p>
+<details open>
+<summary>Tareas matemáticas</summary>
+
+<ul>
+<li>Calcular la razón de conteo por cuadrantes (r_q) e interpretar su signo y magnitud en un diagrama interactivo.</li>
+<li>Calcular la covarianza muestral, interpretando su signo y comparando el aporte de datos según su distancia a las medias.</li>
+<li>Calcular el coeficiente de correlación de Pearson e interpretar su signo y magnitud en distintos contextos.</li>
+<li>Explorar mediante un recurso interactivo el efecto de la unidad de medida y la posición de los puntos sobre covarianza, DE y r.</li>
+<li>Analizar un caso con comportamiento cíclico y r≈0, concluyendo que existe una relación no lineal no capturada por r.</li>
+<li>Evaluar críticamente un caso de correlación espuria con R² alto, cuestionando si implica causalidad.</li>
+</ul>
+</details>
+
+</section><section class="leccion" id="evaluación-tema-3"><h4>Evaluación Tema 3</h4>
+<hr />
+</section>
+</main>
+</div>
+</body>
+</html>
