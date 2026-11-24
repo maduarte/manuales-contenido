@@ -1,0 +1,280 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Del objetivo al storyboard</title>
+<meta name="description" content="Taller de 90 minutos para armar el storyboard de una lección en seis pasos, sobre el caso U4T1L1.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --ground:#fcfbfe; --surface:#f3f1f8; --surface-2:#ebe7f4; --line:#e0dcea;
+  --ink:#231d3b; --muted:#625c76;
+  --purple:#423475; --purple-ink:#423475; --on-purple:#ffffff;
+  --red:#d45762; --red-ink:#a8323e; --red-tint:#fbeef0;
+  --green:#61b89a; --green-ink:#2c7a5f; --green-tint:#eaf6f1;
+  --blue:#4aa7ba; --blue-ink:#27788a;
+  --orange:#f3972d; --orange-ink:#a85f0c;
+  --yellow:#f0f57d;
+  --code-bg:#eeebf6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+    --ink:#ece9f6; --muted:#aaa4c2;
+    --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+    --red-ink:#f0939b; --red-tint:#2e1b2c;
+    --green-ink:#86d6b9; --green-tint:#18302b;
+    --blue-ink:#85cfdd; --orange-ink:#f7b667;
+    --code-bg:#2a2548;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#16132a; --surface:#1f1b36; --surface-2:#29244a; --line:#35305a;
+  --ink:#ece9f6; --muted:#aaa4c2;
+  --purple:#4a3b86; --purple-ink:#b9adf0; --on-purple:#ffffff;
+  --red-ink:#f0939b; --red-tint:#2e1b2c;
+  --green-ink:#86d6b9; --green-tint:#18302b;
+  --blue-ink:#85cfdd; --orange-ink:#f7b667;
+  --code-bg:#2a2548;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.6;margin:0}
+.strip{display:flex;height:6px}
+.strip span{flex:1}
+header.top{background:var(--purple);color:var(--on-purple);padding-block:2.4rem 2.2rem;padding-inline:16px}
+header.top .in{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin:0 0 .6rem}
+header.top h1{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.15;margin:0 0 .8rem;text-wrap:balance;font-weight:650;letter-spacing:-.01em}
+header.top .lead{max-width:68ch;margin:0;font-size:1.05rem;opacity:.93}
+.layout{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:2rem 4rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1rem);align-self:start;font-size:.88rem;max-height:calc(100vh - 2rem);overflow:auto}
+nav.toc p{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .5rem}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
+nav.toc a{color:var(--ink);text-decoration:none;display:block;padding:.3rem .55rem;border-radius:6px;line-height:1.35}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--surface-2);outline:none}
+nav.toc .sub a{padding-left:1.3rem;color:var(--muted)}
+main{min-width:0;max-width:760px}
+main h2{font-size:1.55rem;line-height:1.25;margin:3rem 0 1rem;color:var(--purple-ink);text-wrap:balance;font-weight:650}
+main h2:first-child{margin-top:0}
+main h3{font-size:1.2rem;margin:2.2rem 0 .7rem;text-wrap:balance;font-weight:620}
+main h4{font-size:1.1rem;margin:1.6rem 0 .5rem}
+p,li{max-width:70ch}
+a{color:var(--purple-ink)}
+code{font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-size:.88em;background:var(--code-bg);padding:.08em .35em;border-radius:4px;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
+ul,ol{padding-left:1.3rem}
+li{margin:.3rem 0}
+li::marker{color:var(--purple-ink)}
+.tablewrap{overflow-x:auto;margin:1.2rem 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+th{background:var(--purple);color:var(--on-purple);text-align:left;font-weight:600;padding:.55rem .7rem}
+td{padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--surface)}
+blockquote{margin:1.4rem 0;padding:1rem 1.2rem;background:var(--surface);border-radius:10px}
+blockquote p{margin:.4rem 0}
+blockquote .tag{display:inline-block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:650;margin-bottom:.3rem;color:var(--muted)}
+blockquote.capsula{background:var(--green-tint)}
+blockquote.capsula .tag{color:var(--green-ink)}
+blockquote.revision{background:var(--red-tint)}
+blockquote.revision .tag{color:var(--red-ink)}
+.hito{display:flex;gap:.7rem;align-items:baseline;margin:1.6rem 0 .4rem;font-size:1.02rem;font-weight:620;line-height:1.4}
+.hito .hid{flex:none;background:var(--purple);color:var(--on-purple);font-family:"Geist Mono",ui-monospace,monospace;font-size:.78rem;font-weight:600;padding:.15rem .5rem;border-radius:999px;position:relative;top:-.08em}
+.hito + ul{margin-top:.2rem;padding-left:3.4rem}
+.leccion{border-top:1px solid var(--line);padding-top:1.4rem;margin-top:2.6rem}
+.leccion h4{font-size:1.3rem;margin-top:0;color:var(--purple-ink);text-wrap:balance}
+.leccion h4 .ln{display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.2rem}
+details{margin:1rem 0}
+summary{cursor:pointer;font-weight:600;color:var(--purple-ink);padding:.35rem 0}
+summary:focus-visible{outline:2px solid var(--purple-ink);outline-offset:3px;border-radius:4px}
+.arco{list-style:none;padding:0;counter-reset:a;display:grid;gap:.7rem}
+.arco li{counter-increment:a;position:relative;padding-left:3rem;min-height:2.2rem;max-width:none}
+.arco li::before{content:counter(a);position:absolute;left:0;top:0;background:var(--surface-2);color:var(--purple-ink);font-weight:650;border-radius:50%;width:2.2rem;height:2.2rem;display:grid;place-items:center;font-family:"Geist Mono",monospace}
+.paso{display:grid;grid-template-columns:2.4rem 1fr;gap:.9rem;margin:1.3rem 0}
+.paso .num{font-family:"Geist Mono",ui-monospace,monospace;font-weight:600;color:var(--purple-ink);background:var(--surface-2);border-radius:8px;height:2.4rem;display:grid;place-items:center}
+.paso p{margin:0}
+.paso + ul{padding-left:4.6rem}
+.fases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem;margin:1.5rem 0 2rem}
+.fase{background:var(--surface);border-radius:10px;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.35rem}
+.fase .fn{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.fase .ft{font-weight:650;color:var(--purple-ink);font-size:1.05rem}
+.fase .fp{font-family:"Geist Mono",monospace;font-size:.82rem;color:var(--muted)}
+.fase .rv{margin-top:auto;display:flex;flex-wrap:wrap;gap:.3rem}
+.fase .rv span{font-size:.75rem;font-weight:600;color:var(--red-ink);background:var(--red-tint);border-radius:999px;padding:.1rem .55rem}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;gap:1.5rem}
+  nav.toc{position:static;max-height:none;background:var(--surface);border-radius:10px;padding:1rem}
+  .fases{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:460px){ .fases{grid-template-columns:1fr} .hito + ul{padding-left:1.3rem} .paso + ul{padding-left:1.3rem} }
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+
+body{font-size:1rem}
+html.grande{font-size:20px}
+.botones{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem}
+.botones button,.botones a{font:inherit;font-size:.9rem;font-weight:600;border:1px solid rgba(255,255,255,.55);background:transparent;color:var(--on-purple);border-radius:999px;padding:.35rem .9rem;cursor:pointer;text-decoration:none}
+.botones button:hover,.botones a:hover{background:rgba(255,255,255,.14)}
+main h2{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap}
+.pn{font-family:"Geist Mono",ui-monospace,monospace;font-size:.95rem;background:var(--purple);color:var(--on-purple);border-radius:8px;padding:.1rem .55rem;position:relative;top:-.12em}
+.min{margin-left:auto;font-size:.8rem;font-weight:600;color:var(--muted);background:var(--surface-2);border-radius:999px;padding:.15rem .7rem;position:relative;top:-.2em}
+.producto{color:var(--muted);margin:-.4rem 0 1rem}
+.producto b{color:var(--ink)}
+.seis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem;margin:1.2rem 0 1.6rem;padding:0;list-style:none}
+.seis li{max-width:none;margin:0;background:var(--surface);border-radius:10px;padding:.8rem .95rem;display:flex;flex-direction:column;gap:.25rem}
+.seis .sn{font-family:"Geist Mono",monospace;font-size:.78rem;font-weight:600;color:var(--muted)}
+.seis .st{font-weight:650;color:var(--purple-ink);font-size:1.05rem}
+.seis .sd{font-size:.88rem;color:var(--muted);line-height:1.4}
+.seis li.atras{background:var(--red-tint)}
+.seis li.atras .st{color:var(--red-ink)}
+.caja{background:var(--surface);border-radius:10px;padding:1rem 1.2rem;margin:1.1rem 0}
+.caja .tag{display:block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:650;color:var(--muted);margin-bottom:.35rem}
+.caja p{margin:.35rem 0}
+.caja ul,.caja ol{margin:.35rem 0}
+.caja.consigna{background:var(--surface-2);border-left:4px solid var(--purple-ink)}
+.caja.consigna .tag{color:var(--purple-ink)}
+.caja.material .tag{color:var(--blue-ink)}
+details.revela{margin:1.4rem 0;border:1px solid var(--line);border-radius:10px;background:var(--ground)}
+details.revela>summary{padding:.7rem 1rem;color:var(--green-ink);list-style:none;display:flex;align-items:center;gap:.5rem}
+details.revela>summary::-webkit-details-marker{display:none}
+details.revela>summary::before{content:"▸";transition:transform .15s}
+details.revela[open]>summary::before{transform:rotate(90deg)}
+details.revela[open]>summary{border-bottom:1px solid var(--line)}
+.rv-in{padding:.6rem 1.2rem 1rem;background:var(--green-tint);border-radius:0 0 10px 10px}
+.rv-in h3{font-size:1.02rem;margin:1.1rem 0 .4rem}
+details.plegado>summary{color:var(--blue-ink)}
+.ad{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:.6rem 0}
+.ad>div{background:var(--ground);border-radius:8px;padding:.7rem .95rem}
+.ad.apilado{grid-template-columns:1fr}
+.ad p,.ad li{max-width:none}
+.adl{display:inline-block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:650;color:var(--red-ink);margin-bottom:.2rem}
+.adl.dsp{color:var(--green-ink)}
+.delata{font-size:.92rem;background:var(--red-tint);border-radius:8px;padding:.6rem .9rem;margin:1rem 0 .2rem}
+.delata b{color:var(--red-ink)}
+.tarjetas{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.7rem;margin:1rem 0;padding:0;list-style:none}
+.tarjetas li{max-width:none;margin:0;background:var(--surface-2);border:1px dashed var(--line);border-radius:10px;padding:.8rem 1rem;font-size:.95rem}
+.tarjetas li b{display:inline-block;font-family:"Geist Mono",monospace;color:var(--purple-ink);margin-right:.35rem}
+.cadena{counter-reset:k;list-style:none;padding:0}
+.cadena li{counter-increment:k;position:relative;padding-left:2.4rem;max-width:none;margin:.55rem 0}
+.cadena li::before{content:counter(k);position:absolute;left:0;top:0;width:1.7rem;height:1.7rem;border-radius:50%;display:grid;place-items:center;background:var(--surface-2);color:var(--purple-ink);font-weight:650;font-family:"Geist Mono",monospace;font-size:.85rem}
+.cadena .lt{font-family:"Geist Mono",monospace;font-size:.8rem;color:var(--muted)}
+mark{background:var(--yellow);color:#231d3b;padding:0 .15em;border-radius:3px}
+.calc{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:.6rem;margin:.8rem 0}
+.calc label{display:flex;flex-direction:column;font-size:.85rem;font-weight:600;gap:.25rem}
+.calc input{font:inherit;font-size:1rem;padding:.4rem .55rem;border:1px solid var(--line);border-radius:8px;background:var(--ground);color:var(--ink);font-variant-numeric:tabular-nums}
+.calc input:focus-visible{outline:2px solid var(--purple-ink);outline-offset:1px}
+.chequeos{list-style:none;padding:0;margin:.8rem 0}
+.chequeos li{margin:.3rem 0;max-width:none}
+.ok{color:var(--green-ink);font-weight:650}
+.no{color:var(--red-ink);font-weight:650}
+.calc-out td small{color:var(--muted)}
+.agenda td:last-child,.agenda th:last-child{text-align:right;width:5rem}
+.paso-tag{white-space:nowrap;font-weight:600;color:var(--purple-ink)}
+@media (max-width:860px){ .seis{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:560px){ .seis{grid-template-columns:1fr} .ad{grid-template-columns:1fr} }
+@media print{
+  details.revela{display:none}
+  .botones,nav.toc{display:none}
+  .layout{display:block}
+}
+</style>
+</head>
+<body>
+<div class="strip"><span style="background:#423475"></span><span style="background:#d45762"></span><span style="background:#61b89a"></span><span style="background:#f0f57d"></span><span style="background:#4aa7ba"></span><span style="background:#f3972d"></span></div>
+<header class="top"><div class="in">
+<p class="eyebrow">Rutas Digitales · Taller para guionistas</p>
+<h1>Del objetivo al storyboard</h1>
+<p class="lead">Seis pasos para diseñar una lección, trabajados sobre una lección real, U4T1L1 (Variable aleatoria). En cada paso lo producen ustedes primero; después se abre el antes y el después de la lección.</p>
+<div class="botones"><button type="button" id="letra">Agrandar letra</button><a href="taller_storyboard_material.html">Material para imprimir</a><a href="index.html">Portada</a></div>
+</div></header>
+<div class="layout">
+<nav class="toc" aria-label="Contenido"><p>Contenido</p><ol><li><a href="#como">Cómo funciona</a></li><li><a href="#paso1">1 · Objetivo</a></li><li><a href="#paso2">2 · Qué mostrar</a></li><li><a href="#paso3">3 · Contexto</a></li><li><a href="#paso4">4 · Preguntas</a></li><li><a href="#paso5">5 · Volver atrás</a></li><li><a href="#paso6">6 · Transferencia</a></li><li><a href="#tarea">Tarea</a></li><li><a href="#preguntas">Preguntas para revisar</a></li></ol></nav>
+<main>
+<h2 id="como">Cómo funciona</h2>
+<p>Una lección terminada solo muestra el resultado. Para aprender el proceso hay que ver lo que hubo antes: la lista de ideas, el boceto del contexto con sus restricciones y el esqueleto de preguntas antes de redactarlas. En este taller ustedes producen cada uno de esos artefactos para una lección real, U4T1L1, la primera de variables aleatorias de Probabilidad y Estadística. Después abrimos el <b>antes y el después</b> de esa lección: lo que se escribió primero y cómo quedó.</p>
+<ul class="seis"><li class=""><span class="sn">Paso 1</span><span class="st">Objetivo</span><span class="sd">Una sola frase de la que se pueda derivar todo lo demás.</span></li><li class=""><span class="sn">Paso 2</span><span class="st">Qué mostrar</span><span class="sd">La lista de ideas, todavía sin contexto ni preguntas.</span></li><li class=""><span class="sn">Paso 3</span><span class="st">Contexto</span><span class="sd">Una situación real que obligue a que esas ideas aparezcan, con datos elegidos para eso.</span></li><li class=""><span class="sn">Paso 4</span><span class="st">Preguntas</span><span class="sd">El esqueleto: cada pregunta cubre una idea, de lo concreto a lo abstracto.</span></li><li class="atras"><span class="sn">Paso 5</span><span class="st">Volver atrás</span><span class="sd">Revisar cada paso con lo que mostró el siguiente.</span></li><li class=""><span class="sn">Paso 6</span><span class="st">Transferencia</span><span class="sd">El mismo patrón en otras situaciones, con apoyo decreciente.</span></li></ul>
+<p>El paso 5 no va al final: ocurre todo el tiempo. Es lo que hace que el resultado funcione.</p>
+<div class="caja "><span class="tag">Storyboard</span><p>El storyboard de una lección son los artefactos de los pasos 1 a 4 y 6, en punteo: el objetivo, la lista de ideas, la problemática real con sus datos, el esqueleto de preguntas y la transferencia. No es prosa: las preguntas y los textos se escriben después.</p></div>
+<div class="tablewrap"><table class="agenda"><thead><tr><th>Tramo</th><th>Min</th></tr></thead><tbody><tr><td>Apertura</td><td>3</td></tr><tr><td>1 · Objetivo</td><td>5</td></tr><tr><td>2 · Qué mostrar</td><td>12</td></tr><tr><td>3 · Contexto</td><td>20</td></tr><tr><td>4 · Preguntas</td><td>20</td></tr><tr><td>5 · Volver atrás</td><td>12</td></tr><tr><td>6 · Transferencia</td><td>10</td></tr><tr><td>Cierre y tarea</td><td>8</td></tr><tr><td><b>Total</b></td><td><b>90</b></td></tr></tbody></table></div>
+<h2 id="paso1"><span class="pn">1</span>Objetivo<span class="min">5 min</span></h2><p class="producto"><b>Produce:</b> una sola frase de la que se pueda derivar todo lo demás.</p>
+<div class="caja material"><span class="tag">Material</span><p><b>Objetivo de U4T1L1.</b> Definir una variable aleatoria como una función que asigna un número a cada resultado del espacio muestral de un experimento aleatorio, e interpretar <i>X</i> = <i>x</i> como un evento, reconociendo que sobre un mismo experimento se pueden registrar distintas cantidades.</p></div>
+<div class="caja consigna"><span class="tag">Consigna</span><p>Subrayen en el objetivo las ideas que la lección tiene que mostrar. ¿Cuántas hay?</p></div>
+<details class="revela"><summary>Ver el antes y el después en U4T1L1</summary><div class="rv-in"><p>Definir una variable aleatoria como <mark>una función que asigna un número a cada resultado del espacio muestral</mark> de un experimento aleatorio, e <mark>interpretar <i>X</i> = <i>x</i> como un evento</mark>, reconociendo que <mark>sobre un mismo experimento se pueden registrar distintas cantidades</mark>.</p><p>La frase ya contiene las tres ideas que la lección debe mostrar: la variable como función, el evento <i>X</i> = <i>x</i>, y varias cantidades sobre un mismo experimento. Por eso sirve de origen para todo lo demás.</p><p class="delata"><b>Para revisar cualquier lección:</b> ¿Se puede derivar todo lo demás de esta frase?</p></div></details>
+<h2 id="paso2"><span class="pn">2</span>Qué mostrar<span class="min">12 min</span></h2><p class="producto"><b>Produce:</b> la lista de ideas, todavía sin contexto ni preguntas.</p>
+<div class="caja consigna"><span class="tag">Consigna</span><p>Primero, cada uno escribe su lista de ideas para el objetivo (4 min).</p><p>Después, comparen con las siete tarjetas de la hoja 2 (8 min). Ordénenlas, saquen las que el objetivo no pide y corrijan las que digan algo falso. Marquen la idea que más le va a costar al estudiante.</p></div>
+<div class="caja material"><span class="tag">Material (hoja 2)</span><ul class="tarjetas"><li><b>A</b>Un mismo experimento admite varias variables.</li><li><b>B</b>Hay variables finitas, discretas no acotadas y continuas.</li><li><b>C</b>Una función asigna a cada resultado exactamente un valor, y varios resultados pueden compartir un valor.</li><li><b>D</b>El espacio muestral se construye con un diagrama de árbol.</li><li><b>E</b>Al registrar una sola variable se pierde información; por eso importa elegir qué registrar.</li><li><b>F</b>Una variable aleatoria es un número que cambia al azar.</li><li><b>G</b><i>X</i> = <i>x</i> es el conjunto de las preimágenes de <i>x</i>, es decir, un evento.</li></ul></div>
+<details class="revela"><summary>Ver el antes y el después en U4T1L1</summary><div class="rv-in"><div class="ad"><div><span class="adl">Antes</span><ul><li><b>B</b>, los tipos de variable, estaba en la primera lista.</li><li><b>F</b>, “un número que cambia al azar”, era la primera idea de lo que le cuesta al estudiante.</li></ul></div><div><span class="adl dsp">Después</span><ol class="cadena"><li>El espacio muestral se construye con un árbol.</li><li>Una función asigna a cada resultado exactamente un valor, y varios resultados pueden compartir valor.</li><li>El mismo experimento admite varias variables (<i>X</i>, <i>Y</i>, <i>C</i>).</li><li><i>X</i> = <i>x</i> es el conjunto de las preimágenes, es decir, un evento.</li><li>Al registrar solo <i>X</i> se pierde información, y por eso importa elegir qué registrar.</li></ol></div></div><ul><li><b>B salió.</b> El objetivo no la pide y cortaba el hilo. Se muestra sin profundizar en la Práctica del tema.</li><li><b>F es falsa.</b> La función no tiene nada de azar: a cada resultado le asigna siempre el mismo valor. Lo aleatorio es el resultado.</li><li><b>Lo que más cuesta:</b> El estudiante identifica la cantidad con el resultado: “el pedido” y “lo que cuesta el pedido” son para él la misma cosa. La lista tiene que romper esa identificación por los dos lados: un mismo valor viene de varios resultados, y un mismo resultado tiene varias cantidades.</li></ul><p class="delata"><b>Para revisar cualquier lección:</b> ¿El objetivo pide esta idea? ¿La idea dice algo verdadero? ¿Qué idea le cuesta más al estudiante?</p></div></details>
+<h2 id="paso3"><span class="pn">3</span>Contexto<span class="min">20 min</span></h2><p class="producto"><b>Produce:</b> una situación real que obligue a que esas ideas aparezcan, con datos elegidos para eso.</p>
+<div class="caja consigna"><span class="tag">Consigna 3a · 8 min</span><p>Juzguen estas dos problemáticas con dos preguntas: ¿obliga a que aparezcan las ideas de la lista, o se resuelve sin ellas? ¿Alguien haría esto en la vida real? Escriban un arreglo para la más rescatable.</p></div>
+<div class="caja material"><span class="tag">Material (hoja 3)</span><p><b>Problemática A.</b> En un carro de comida, cada pedido lleva un plato y puede sumar un postre y una bebida. La dueña anota solo el monto de cada pedido. Quiere saber qué pedidos pudieron dar cada monto, y en cuáles recibe al menos cierta cantidad de dinero.</p><p><b>Problemática B.</b> La dueña de una cocinería anota en un cuaderno solo el monto de cada pedido. Un día quiere saber cuántas cazuelas vendió, para comprar los ingredientes del día siguiente, y con el cuaderno no puede saberlo.</p></div>
+<details class="revela"><summary>Ver el antes y el después de la problemática</summary><div class="rv-in"><div class="ad"><div><span class="adl">Antes</span><ul><li><b>A</b> se resuelve mirando una tabla de pedidos y montos, sin definir ninguna variable.</li><li><b>B</b> no es creíble: una cocinera sabe cuántas cazuelas hizo, y nadie compra ingredientes mirando montos.</li><li>Antes de las dos hubo una fonda con dos ruletas. Salió porque los contextos del curso son adultos, con prioridad para negocios de ventas sencillas.</li></ul></div><div><span class="adl dsp">Después</span><p><b>Problemática real</b></p><ul><li>Patricia tiene una cocinería de barrio; cocina sin sacar cuentas y usa para su familia lo que sobra.</li><li>Su hijo Carlos cursa el electivo de Probabilidad y Estadística y quiere analizar los datos de la cocinería para ese ramo.</li><li>Quiere saber cuántos charquicanes se venden, y el único registro escrito son las boletas, que muestran solo el monto.</li><li>Un mismo monto puede venir de un pedido con charquicán o de uno con pollo arvejado: tiene que decidir qué registrar desde ahora.</li></ul></div></div><p>La cocinería funciona por una <b>restricción</b>: Patricia no anota los pedidos, y solo quedan las boletas con el monto. Eso obliga a la función de muchos a uno, porque un monto de $6500 puede venir de cuatro pedidos distintos. Y el problema pasó a ser <b>qué registrar</b>, que es justo la última idea de la lista.</p><p class="delata"><b>Para revisar cualquier lección:</b> ¿La situación obliga a que aparezcan las ideas? ¿Alguien haría esto en la vida real?</p></div></details>
+<div class="caja consigna"><span class="tag">Consigna 3b · 12 min</span><p>Cada pedido lleva una comida, y puede sumar a lo más un postre y a lo más un bebestible: son 18 pedidos posibles. Pónganle precio a cada producto, de modo que:</p><ul><li>que haya montos repetidos;</li><li>que con algún monto repetido se pueda deducir cuántos ítems tenía el pedido, y con otro no;</li><li>que algún monto reúna pedidos con charquicán y pedidos con pollo arvejado, para que el monto no diga la comida.</li></ul></div>
+<div class="caja material"><span class="tag">Material (hoja 4)</span><div class="tablewrap"><table><thead><tr><th>Comida</th><th>Postre</th><th>Bebestible</th></tr></thead><tbody><tr><td>Charquicán</td><td>Sin postre</td><td>Sin bebestible</td></tr><tr><td>Pollo arvejado con papas</td><td>Fruta picada</td><td>Bebida</td></tr><tr><td></td><td>Leche asada</td><td>Jugo</td></tr></tbody></table></div></div>
+<div class="caja "><span class="tag">Prueben sus precios</span><div class="calc"><label>Charquicán<input type="number" inputmode="numeric" min="0" step="100" id="p_ch"></label><label>Pollo arvejado con papas<input type="number" inputmode="numeric" min="0" step="100" id="p_po"></label><label>Fruta picada<input type="number" inputmode="numeric" min="0" step="100" id="p_fr"></label><label>Leche asada<input type="number" inputmode="numeric" min="0" step="100" id="p_la"></label><label>Bebida<input type="number" inputmode="numeric" min="0" step="100" id="p_be"></label><label>Jugo<input type="number" inputmode="numeric" min="0" step="100" id="p_ju"></label></div><ul class="chequeos" id="chequeos"><li>Completen los seis precios.</li></ul><div id="calc-out"></div></div>
+<details class="revela"><summary>Ver los precios de U4T1L1</summary><div class="rv-in"><div class="tablewrap"><table><thead><tr><th>Comida</th><th>Postre</th><th>Bebestible</th></tr></thead><tbody><tr><td>Charquicán, 5000</td><td>Sin postre, 0</td><td>Sin bebestible, 0</td></tr><tr><td>Pollo arvejado con papas, 5500</td><td>Fruta picada, 1000</td><td>Bebida, 1000</td></tr><tr><td></td><td>Leche asada, 1500</td><td>Jugo, 1500</td></tr></tbody></table></div><ul><li>18 pedidos y 8 montos, entre 5000 y 8500.</li><li><b>$6500</b> reúne cuatro pedidos, dos con charquicán y dos con pollo arvejado, todos de dos ítems: la boleta dice los ítems, pero no la comida.</li><li><b>$7000</b> junta un pedido de tres ítems con dos de dos ítems: la boleta no dice cuántos envases se usaron.</li><li>El monto no distingue la comida; la variable de los charquicanes, que vale 1 o 0, sí.</li><li>Los empates los deciden las <b>diferencias</b> de precio: las comidas se separan por 500 y los extras valen 1000 o 1500.</li><li>Los precios no son casuales, y cada dato tiene su motivo en la historia: Patricia nunca pide propina, así que el monto es la suma de los precios.</li></ul><p class="delata"><b>Para revisar cualquier lección:</b> ¿Cada dato tiene un motivo? ¿Los números producen el contraste que la lección necesita?</p></div></details>
+<h2 id="paso4"><span class="pn">4</span>Preguntas<span class="min">20 min</span></h2><p class="producto"><b>Produce:</b> el esqueleto de preguntas, cada una con la idea que cubre, de lo concreto a lo abstracto.</p>
+<div class="caja material"><span class="tag">Material (hojas 5 y 6)</span><details class="plegado"><summary>Mostrar al comenzar el paso 4</summary><p><b>Lista de ideas.</b></p><ol class="cadena"><li>El espacio muestral se construye con un árbol.</li><li>Una función asigna a cada resultado exactamente un valor, y varios resultados pueden compartir valor.</li><li>El mismo experimento admite varias variables (<i>X</i>, <i>Y</i>, <i>C</i>).</li><li><i>X</i> = <i>x</i> es el conjunto de las preimágenes, es decir, un evento.</li><li>Al registrar solo <i>X</i> se pierde información, y por eso importa elegir qué registrar.</li></ol><p><b>Problemática real.</b></p><ul><li>Patricia tiene una cocinería de barrio; cocina sin sacar cuentas y usa para su familia lo que sobra.</li><li>Su hijo Carlos cursa el electivo de Probabilidad y Estadística y quiere analizar los datos de la cocinería para ese ramo.</li><li>Quiere saber cuántos charquicanes se venden, y el único registro escrito son las boletas, que muestran solo el monto.</li><li>Un mismo monto puede venir de un pedido con charquicán o de uno con pollo arvejado: tiene que decidir qué registrar desde ahora.</li></ul><p><b>Menú con precios:</b> el del paso 3.</p></details></div>
+<div class="caja consigna"><span class="tag">Consigna</span><p>Escriban el esqueleto de la Activación, el Contexto y el comienzo de la Construcción: una línea por pregunta, y al lado la idea de la lista que cubre. Ordénenlas de lo concreto a lo abstracto. Si hace falta un relato o un diálogo entre dos preguntas, anótenlo en una línea y digan para qué está.</p><p>No redacten las preguntas: basta decir qué hace el estudiante.</p></div>
+<details class="revela"><summary>Ver el antes y el después del esqueleto</summary><div class="rv-in"><div class="ad apilado"><div><span class="adl">Antes</span><p>La primera tabla:</p><ul><li>Activación: tres preguntas en otro negocio, una de ellas sobre funciones.</li><li>Contexto: la cocinería, el árbol de los 18 pedidos, algunos montos y la pregunta abierta.</li><li>Construcción: cuatro preguntas para escribir eventos con <i>X</i> = <i>x</i>.</li></ul></div><div><span class="adl dsp">Después</span><div class="tablewrap"><table><thead><tr><th>Pregunta</th><th>Idea que cubre</th></tr></thead><tbody><tr><td>Activación: completar el árbol de un menú reducido, comida y bebestible</td><td>Árbol</td></tr><tr><td>Contexto: agregar el postre al árbol y contar los 18 pedidos</td><td>Árbol</td></tr><tr><td>Contexto, abierta: ¿con las boletas se puede saber cuántos charquicanes se vendieron?</td><td>Registrar solo el monto</td></tr><tr><td>Llenar la tabla de monto y cantidad de ítems de los 18 pedidos</td><td>Varias variables</td></tr><tr><td>Buscar los pedidos que pudieron dejar una boleta de $6500</td><td>Función que comparte valores</td></tr><tr><td>Comparar una boleta de $6500 con una de $7000: ¿cuál dice los ítems?</td><td>Función que comparte valores</td></tr><tr><td>Decidir cuál de dos diagramas sagitales es función: de pedido a monto, o de monto a pedido</td><td>Función</td></tr><tr><td>Nombrar <i>X</i> (monto) e <i>Y</i> (ítems) y contar los valores que toma cada una</td><td>Varias variables</td></tr><tr><td>Escribir eventos con <i>X</i> e <i>Y</i>: <i>X</i> = 6500, <i>Y</i> = 3, <i>X</i> ≥ 7000, <i>X</i> = 6200</td><td><i>X</i> = <i>x</i> es un evento</td></tr><tr><td>Definir <i>C</i>, la cantidad de charquicanes, y cerrar la pregunta abierta del Contexto</td><td>Registrar solo el monto</td></tr></tbody></table></div></div></div><p>La secuencia va de lo concreto a lo abstracto: completar el árbol, contar los pedidos, llenar la tabla de montos, buscar los pedidos de $6500, decidir qué diagrama es función, nombrar las variables, escribir eventos y definir la variable de los charquicanes.</p><p class="delata"><b>Para revisar cualquier lección:</b> ¿Cada pregunta cubre una idea de la lista? ¿Hay una idea sin pregunta? ¿Van de lo concreto a lo abstracto?</p></div></details>
+<h2 id="paso5"><span class="pn">5</span>Volver atrás<span class="min">12 min</span></h2><p class="producto"><b>Produce:</b> las correcciones que el paso siguiente obliga a hacer en los anteriores.</p>
+<div class="caja consigna"><span class="tag">Consigna</span><p>Intercambien esqueletos. Revisen el del compañero con estas preguntas:</p><ul><li>¿En qué pregunta aparecen los precios? ¿Algún detalle contradice lo que la lección quiere mostrar?</li><li>¿Lo que se abre al comienzo se cierra al final?</li><li>¿La Activación prepara lo que el Contexto reutiliza?</li><li>¿Hay una idea de la lista sin pregunta?</li></ul><p>Marquen un lugar donde haya que volver a un paso anterior: ¿a cuál, y qué cambia?</p></div>
+<details class="revela"><summary>Ver las vueltas atrás de U4T1L1</summary><div class="rv-in"><p>Así se volvió atrás en U4T1L1:</p><div class="tablewrap"><table><thead><tr><th>Qué se notó</th><th>Qué cambió</th><th>Volvió a</th></tr></thead><tbody><tr><td>La pregunta abierta del Contexto, “¿puede Carlos saber cuántos charquicanes se vendieron?”, necesita respuesta dentro de la lección.</td><td>Se retoma al final de la Construcción, con la variable de los charquicanes. El cierre se diseñó mirando el objetivo.</td><td><span class="paso-tag">1 · Objetivo</span></td></tr><tr><td>El árbol del Contexto se construye agregando una etapa al de la Activación.</td><td>Eso decidió qué ejemplo lleva la Activación: el mismo menú, reducido a comida y bebestible.</td><td><span class="paso-tag">4 · Preguntas</span></td></tr><tr><td>En el diálogo del Contexto, la objeción de Patricia no era real, o la respuesta de Carlos prometía de más.</td><td>El diálogo se rehízo varias veces. La corrección vino de la lógica de la historia, no de la matemática.</td><td><span class="paso-tag">3 · Contexto</span></td></tr><tr><td>El árbol se armaba con los precios desde el comienzo, y eso pegaba el monto al pedido, justo lo que la lección quiere separar.</td><td>El árbol se arma sin precios, y los precios entran con las boletas, que es cuando hacen falta.</td><td><span class="paso-tag">2 · Qué mostrar</span></td></tr><tr><td>Al revisar el guion surgió la pregunta: ¿dónde se dice cuál es el experimento aleatorio y para quién es aleatorio?</td><td>Entró una idea nueva: el cliente elige, y para Patricia y Carlos el pedido es aleatorio.</td><td><span class="paso-tag">2 · Qué mostrar</span></td></tr><tr><td>El paso que escribe eventos tenía cuatro preguntas para muchos tipos de evento.</td><td>La Activación y el Contexto bajaron de seis preguntas a tres, y esas preguntas pasaron a los eventos, que quedaron con siete.</td><td><span class="paso-tag">4 · Preguntas</span></td></tr><tr><td>La Activación recordaba qué es una función en una diapositiva, pero no la hacía usar.</td><td>Entró una pregunta con dos diagramas sagitales, uno que es función y otro que no.</td><td><span class="paso-tag">4 · Preguntas</span></td></tr></tbody></table></div><p>La regla general: si una pregunta no produce el contraste buscado, se vuelve a los datos del paso 3, y si un detalle contradice lo que se quiere mostrar, se vuelve a la lista del paso 2.</p><p class="delata"><b>Para revisar cualquier lección:</b> ¿Algún detalle contradice lo que la lección quiere mostrar? ¿Lo que se abre al comienzo se cierra al final?</p></div></details>
+<h2 id="paso6"><span class="pn">6</span>Transferencia<span class="min">10 min</span></h2><p class="producto"><b>Produce:</b> el mismo patrón en otras situaciones, con apoyo decreciente.</p>
+<div class="caja consigna"><span class="tag">Consigna</span><p>Propongan en tres líneas otra situación para la Práctica de U4T1L1: un negocio donde los resultados no sean números, donde un mismo monto reúna resultados distintos y donde alguien necesite otra cantidad. Después, una todavía más corta para el Ticket de salida.</p></div>
+<details class="revela"><summary>Ver la Práctica y el Ticket de U4T1L1</summary><div class="rv-in"><h3>Práctica: el lavado de autos de Héctor</h3><ul><li>Lavado a máquina ($5000) o a mano ($8000), con aspirado ($2000) y encerado ($3000) opcionales. Héctor anota solo el monto.</li><li>8 servicios y 6 montos. A máquina con encerado cuesta lo mismo que a mano solo: un monto de $8000 no dice cómo se lavó el auto.</li><li>La cantidad de adicionales <i>Y</i> le sirve a Héctor para pagarle a su ayudante.</li><li>Cinco preguntas, con menos apoyo que la Construcción.</li></ul><h3>Ticket de salida: el carro de café de Lorena</h3><ul><li>Café chico ($1500) o grande ($2000), con o sin crema ($500): 4 cafés y 3 montos.</li><li>En $2000 se juntan el chico con crema y el grande sin crema.</li><li>Dos preguntas, sin apoyo: los valores que toma el monto, y qué variable de 1 y 0 cuenta los vasos grandes.</li></ul><p>El apoyo baja de dieciséis preguntas en la Construcción a cinco en la Práctica y dos en el Ticket. Sirve para comprobar que la estructura se puede reutilizar.</p><p class="delata"><b>Para revisar cualquier lección:</b> ¿Se repite la estructura en otra situación? ¿Cada vez con menos apoyo?</p></div></details>
+<h2 id="tarea">Tarea para el martes 1 de diciembre</h2>
+<div class="caja consigna"><span class="tag">Consigna</span><p>El storyboard de la lección que trajeron, en punteo, con un artefacto por paso:</p><ul><li>el objetivo, en una frase;</li><li>la lista de ideas, y la que más le cuesta al estudiante;</li><li>la problemática real, con su restricción y sus datos;</li><li>el esqueleto de preguntas, cada una con la idea que cubre;</li><li>las vueltas atrás que hicieron, en una línea cada una;</li><li>la transferencia: la situación de la Práctica y la del Ticket.</li></ul><p>Antes de entregarlo, revísenlo con las preguntas de abajo.</p></div>
+<h2 id="preguntas">Preguntas para revisar un storyboard</h2>
+<div class="tablewrap"><table><thead><tr><th>Paso</th><th>Preguntas</th></tr></thead><tbody><tr><td><span class="paso-tag">1 · Objetivo</span></td><td>¿Se puede derivar todo lo demás de esta frase? ¿Qué ideas contiene?</td></tr><tr><td><span class="paso-tag">2 · Qué mostrar</span></td><td>¿El objetivo pide esta idea, o corta el hilo? ¿La idea dice algo verdadero? ¿Qué idea le cuesta más al estudiante, y por qué?</td></tr><tr><td><span class="paso-tag">3 · Contexto</span></td><td>¿La situación obliga a que aparezcan las ideas, o se resuelve sin ellas? ¿Alguien haría esto en la vida real? ¿Cada dato tiene un motivo en la historia?</td></tr><tr><td><span class="paso-tag">4 · Preguntas</span></td><td>¿Cada pregunta cubre una idea de la lista? ¿Hay una idea sin pregunta? ¿Van de lo concreto a lo abstracto?</td></tr><tr><td><span class="paso-tag">5 · Volver atrás</span></td><td>¿Algún detalle contradice lo que la lección quiere mostrar? ¿Lo que se abre al comienzo se cierra al final? ¿Una objeción de un personaje es real, y la respuesta no promete de más?</td></tr><tr><td><span class="paso-tag">6 · Transferencia</span></td><td>¿Se repite la estructura en otra situación? ¿Cada vez con menos apoyo?</td></tr></tbody></table></div>
+</main>
+</div>
+<script>
+(function(){
+  var b=document.getElementById('letra'), h=document.documentElement;
+  function marca(){ b.textContent = h.classList.contains('grande') ? 'Achicar letra' : 'Agrandar letra'; }
+  try{ if(localStorage.getItem('taller-letra')==='grande') h.classList.add('grande'); }catch(e){}
+  marca();
+  b.addEventListener('click',function(){
+    h.classList.toggle('grande'); marca();
+    try{ localStorage.setItem('taller-letra', h.classList.contains('grande')?'grande':''); }catch(e){}
+  });
+
+  var ids=['ch','po','fr','la','be','ju'];
+  var nombres={ch:'Charquicán',po:'Pollo arvejado',fr:'Fruta picada',la:'Leche asada',be:'Bebida',ju:'Jugo'};
+  var out=document.getElementById('calc-out'), chq=document.getElementById('chequeos');
+  function v(k){ var s=document.getElementById('p_'+k).value; return s===''?null:Number(s); }
+  function calcula(){
+    var p={}, falta=false;
+    ids.forEach(function(k){ p[k]=v(k); if(p[k]===null||isNaN(p[k])) falta=true; });
+    if(falta){ chq.innerHTML='<li>Completen los seis precios.</li>'; out.innerHTML=''; return; }
+    var grupos={};
+    ['ch','po'].forEach(function(c){ [null,'fr','la'].forEach(function(po){ [null,'be','ju'].forEach(function(be){
+      var m=p[c]+(po?p[po]:0)+(be?p[be]:0), it=1+(po?1:0)+(be?1:0);
+      var nom=nombres[c]+(po?', '+nombres[po].toLowerCase():'')+(be?', '+nombres[be].toLowerCase():'');
+      (grupos[m]=grupos[m]||[]).push({c:c,it:it,nom:nom});
+    }); }); });
+    var montos=Object.keys(grupos).map(Number).sort(function(a,b){return a-b;});
+    var rep=false, deduce=false, mezcla=false, comidas=false;
+    var filas=montos.map(function(m){
+      var g=grupos[m], cs={}, its={};
+      g.forEach(function(x){ cs[x.c]=1; its[x.it]=1; });
+      var nIt=Object.keys(its).length;
+      if(g.length>1){ rep=true; if(nIt===1) deduce=true; }
+      if(nIt>1) mezcla=true;
+      if(cs.ch&&cs.po) comidas=true;
+      return '<tr><td>'+m+'</td><td>'+g.length+'</td><td>'+Object.keys(its).join(', ')+'</td><td><small>'+g.map(function(x){return x.nom;}).join(' · ')+'</small></td></tr>';
+    }).join('');
+    function linea(ok,t){ return '<li class="'+(ok?'ok':'no')+'">'+(ok?'✓ ':'✗ ')+t+'</li>'; }
+    chq.innerHTML=linea(rep,'Hay montos repetidos.')
+      +linea(deduce,'Con algún monto repetido se deduce cuántos ítems tenía el pedido.')
+      +linea(mezcla,'Con otro monto no se deduce: junta pedidos con distinta cantidad de ítems.')
+      +linea(comidas,'Algún monto reúne pedidos con charquicán y con pollo arvejado.')
+      +'<li>'+montos.length+' montos distintos para 18 pedidos.</li>';
+    out.innerHTML='<div class="tablewrap calc-out"><table><thead><tr><th>Monto</th><th>Pedidos</th><th>Ítems</th><th>Cuáles</th></tr></thead><tbody>'+filas+'</tbody></table></div>';
+  }
+  ids.forEach(function(k){ document.getElementById('p_'+k).addEventListener('input',calcula); });
+})();
+</script>
+</body>
+</html>
